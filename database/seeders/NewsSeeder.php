@@ -15,7 +15,7 @@ class NewsSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 0; $i < 20; $i++) {
+        for ($i = 0; $i < 50; $i++) {
             DB::table('news')->insert([
                 'title' => fake()->name(),
                 'description' => fake()->paragraph(2, true),

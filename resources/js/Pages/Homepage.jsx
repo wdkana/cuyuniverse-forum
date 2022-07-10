@@ -1,16 +1,22 @@
 import React from 'react';
-import { Link, Head } from '@inertiajs/inertia-react';
+import { Head } from '@inertiajs/inertia-react';
 import NewsLists from '@/Components/Homepage/NewsLists';
+import Paginate from '@/Components/Homepage/Paginate';
+import Navbar from '@/Components/Homepage/Navbar';
 
 export default function Homepage(props) {
-  console.log('props: ', props);
   return (
-    <div className='min-h-screen bg-slate-50'>
+    <>
       <Head title={props.title} />
-      <h2 className='p-4'>{props.description}</h2>
-      <div className='flex flex-row flex-wrap justify-center gap-4'>
-        <NewsLists news={props.news.data} />
+      <div className='min-h-screen bg-slate-50'>
+        <Navbar />
+        <div className='flex flex-col items-center lg:flex-row lg:flex-wrap lg:items-stretch p-4 justify-center gap-6'>
+          <NewsLists news={props.news.data} />
+        </div>
+        <div className='flex justify-center items-center p-4'>
+          <Paginate meta={props.news.meta} newsLength={props.news.data.length} />
+        </div>
       </div>
-    </div>
+    </>
   )
 }
