@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use App\Models\News;
 
 class NewsSeeder extends Seeder
 {
@@ -15,13 +16,6 @@ class NewsSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 0; $i < 50; $i++) {
-            DB::table('news')->insert([
-                'title' => fake()->name(),
-                'description' => fake()->paragraph(2, true),
-                'category' => fake()->sentence(1, true),
-                'author' => fake()->email(),
-            ]);
-        }
+        News::factory()->count(50)->create();
     }
 }
