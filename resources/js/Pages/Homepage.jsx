@@ -9,7 +9,7 @@ export default function Homepage(props) {
     <>
       <Head title={props.title} />
       <div className='min-h-screen bg-slate-50'>
-        <Navbar />
+        <Navbar user={props.auth.user} />
         <div className='flex flex-col justify-center items-center lg:flex-row lg:flex-wrap lg:items-stretch p-4 gap-6'>
           <NewsLists news={props.news.data} />
         </div>
