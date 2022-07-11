@@ -1,7 +1,6 @@
 import { Link } from "@inertiajs/inertia-react"
 
 const Paginate = ({ meta, newsLength }) => {
-  console.log('l:', newsLength)
   const prev = meta.links[0].url
   const next = meta.links[meta.links.length - 1].url
 
