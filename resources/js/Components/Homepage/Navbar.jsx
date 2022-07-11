@@ -34,13 +34,13 @@ const Navbar = ({ user }) => {
             {user ? (
               <>
                 <li>
-                  <Link href={route('dashboard')} active={route().current('dashboard')} as="button" className="justify-between">
+                  <Link href={route('dashboard')} as="button" className="justify-between">
                     Dashboard
                     <span className="badge badge-primary">New</span>
                   </Link>
                 </li>
-                <li><Link href={route('setting')} active={route().current('setting')}>Settings</Link></li>
-                <li><Link href="/logout" method='post'>Logout</Link></li>
+                <li><Link href={route('setting')} as="button">Settings</Link></li>
+                <li><Link href="/logout" method='post' as="button">Logout</Link></li>
               </>
             )
               : <>

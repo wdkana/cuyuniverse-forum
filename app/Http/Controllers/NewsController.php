@@ -39,7 +39,9 @@ class NewsController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Dashboard/CreateNews', [
+            'page' => 'Buat Berita'
+        ]);
     }
 
     /**
@@ -50,7 +52,20 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(
+            [
+                'title' => 'required|string',
+                'description' => 'required|string|max:50|min:4',
+                'category' => 'required|string|max:20|min:2'
+            ]
+        );
+        $news = new News();
+        $news->title = $request->title;
+        $news->description = $request->description;
+        $news->category = $request->category;
+        $news->author = auth()->user()->email;
+        $news->save();
+        return to_route('my.news')->with('message', 'Berita Berhasil Dibuat');
     }
 
     /**
