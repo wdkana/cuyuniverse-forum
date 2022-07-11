@@ -1,17 +1,7 @@
-import { Inertia } from '@inertiajs/inertia';
 import { Link } from '@inertiajs/inertia-react';
 import Avatar from 'avataaars';
-import { useState } from 'react';
 
-const Navbar = ({ user, news }) => {
-  const [text, setText] = useState([])
-
-  const handleSearchInput = (value) => {
-    setText(value);
-    if (value.length > 3) {
-      Inertia.get('/news/search', { q: text })
-    }
-  }
+const Navbar = ({ user }) => {
   return (
     <div className="navbar bg-base-100">
       <div className="flex-1">
@@ -19,7 +9,7 @@ const Navbar = ({ user, news }) => {
       </div>
       <div className="flex-none gap-2">
         <div className="form-control">
-          <input type="text" onChange={(text) => handleSearchInput(text.target.value)} placeholder="Search" className="input input-bordered" />
+          <input type="text" placeholder="Search" className="input input-bordered" />
         </div>
         <div className="dropdown dropdown-end">
           <label tabIndex="0" className="btn btn-ghost btn-circle avatar">

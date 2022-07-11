@@ -7,7 +7,6 @@ use Inertia\Inertia;
 
 // outer class
 Route::get('/', [NewsController::class, 'index']);
-Route::get('/news/search/{q}', [NewsController::class, 'search'])->name('search.news');
 
 // user authorized grup
 Route::prefix('dashboard')->middleware(['auth', 'verified'])->group(
