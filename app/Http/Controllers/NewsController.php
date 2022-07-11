@@ -24,6 +24,14 @@ class NewsController extends Controller
         ]);
     }
 
+    public function search(Request $request)
+    {
+        $news = News::search($request->text)->get();
+        return Inertia::render('Homepage', [
+            'filteredNews' => $news,
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -51,9 +59,13 @@ class NewsController extends Controller
      * @param  \App\Models\News  $news
      * @return \Illuminate\Http\Response
      */
-    public function show(News $news)
+    public function show()
     {
-        //
+        $news = News::where('author', auth()->user()->email)->get();
+        return Inertia::render('Dashboard/MyNews', [
+            'data' => $news,
+            'page' => 'Berita Saya'
+        ]);
     }
 
     /**

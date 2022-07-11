@@ -1,6 +1,17 @@
+import { Inertia } from '@inertiajs/inertia';
 import { Link } from '@inertiajs/inertia-react';
+import Avatar from 'avataaars';
+import { useState } from 'react';
 
-const Navbar = ({ user }) => {
+const Navbar = ({ user, news }) => {
+  const [text, setText] = useState([])
+
+  const handleSearchInput = (value) => {
+    setText(value);
+    if (value.length > 3) {
+      Inertia.get('/news/search', { q: text })
+    }
+  }
   return (
     <div className="navbar bg-base-100">
       <div className="flex-1">
@@ -8,12 +19,25 @@ const Navbar = ({ user }) => {
       </div>
       <div className="flex-none gap-2">
         <div className="form-control">
-          <input type="text" placeholder="Search" className="input input-bordered" />
+          <input type="text" onChange={(text) => handleSearchInput(text.target.value)} placeholder="Search" className="input input-bordered" />
         </div>
         <div className="dropdown dropdown-end">
           <label tabIndex="0" className="btn btn-ghost btn-circle avatar">
             <div className="w-10 rounded-full">
-              <img src="https://placeimg.com/80/80/people" />
+              <Avatar style={{ width: '100%', height: '100%' }}
+                avatarStyle='Circle'
+                topType='ShortHairTheCaesarSidePart'
+                accessoriesType='Wayfarers'
+                hairColor='Red'
+                facialHairType='BeardMajestic'
+                facialHairColor='Red'
+                clotheType='Hoodie'
+                clotheColor='Red'
+                eyeType='Squint'
+                eyebrowType='UnibrowNatural'
+                mouthType='Concerned'
+                skinColor='Light'
+              />
             </div>
           </label>
           <ul tabIndex="0" className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">

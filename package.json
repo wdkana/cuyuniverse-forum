@@ -23,6 +23,7 @@
         "vite": "^2.9.11"
     },
     "dependencies": {
+        "avataaars": "^2.0.0",
         "daisyui": "^2.19.0"
     }
 }
