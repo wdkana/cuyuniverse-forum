@@ -11,31 +11,31 @@ const Navbar = ({ user }) => {
           <input type="text" placeholder="Search" className="input input-bordered" />
         </div>
         <div className="dropdown dropdown-end">
-          <label tabindex="0" className="btn btn-ghost btn-circle avatar">
+          <label tabIndex="0" className="btn btn-ghost btn-circle avatar">
             <div className="w-10 rounded-full">
               <img src="https://placeimg.com/80/80/people" />
             </div>
           </label>
-          <ul tabindex="0" className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
+          <ul tabIndex="0" className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
             {user ? (
               <>
                 <li>
-                  <Link href="/dashboard" className="justify-between">
+                  <Link href={route('dashboard')} active={route().current('dashboard')} as="button" className="justify-between">
                     Dashboard
                     <span className="badge badge-primary">New</span>
                   </Link>
                 </li>
-                <li><Link href="/setting">Settings</Link></li>
+                <li><Link href={route('setting')} active={route().current('setting')}>Settings</Link></li>
                 <li><Link href="/logout" method='post'>Logout</Link></li>
               </>
             )
               : <>
                 <li>
-                  <Link href="/login" className="justify-between">
+                  <Link href={route('login')} method="get" as="button" className="justify-between">
                     Login
                   </Link>
                 </li>
-                <li><Link href="/register">Register</Link></li>
+                <li><Link href={route('register')} method="get" as="button">Register</Link></li>
               </>}
           </ul>
         </div>
