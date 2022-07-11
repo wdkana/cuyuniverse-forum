@@ -24,7 +24,7 @@ export default function CreateNews(props) {
     const data = {
       title, description, category
     }
-    if (title.length > 4 && description.length > 10 && category.length > 2) {
+    if (title.length > 4 || description.length > 10 || category.length > 2) {
       Inertia.post('/dashboard/news', data)
     } else {
       setIsValid(false)
