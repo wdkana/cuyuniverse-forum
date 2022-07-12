@@ -1,11 +1,11 @@
 import { Link } from '@inertiajs/inertia-react';
 import Avatar from 'avataaars';
 
-const Navbar = ({ user }) => {
+const Navbar = ({ user, title }) => {
   return (
     <div className="navbar bg-base-100">
       <div className="flex-1">
-        <a className="btn btn-ghost normal-case text-xl">CuyNews</a>
+        <Link href="/" as="button" className="btn btn-ghost normal-case text-xl">{title}</Link>
       </div>
       <div className="flex-none gap-2">
         <div className="form-control">

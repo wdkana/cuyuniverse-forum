@@ -24,6 +24,7 @@
     },
     "dependencies": {
         "avataaars": "^2.0.0",
-        "daisyui": "^2.19.0"
+        "daisyui": "^2.19.0",
+        "react-countdown": "^2.3.2"
     }
 }

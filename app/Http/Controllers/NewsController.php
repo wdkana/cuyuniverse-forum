@@ -17,17 +17,29 @@ class NewsController extends Controller
     public function index()
     {
         $news = new NewsCollection(News::orderBy('id', 'desc')->paginate(8));
-        return Inertia::render('Homepage', [
+        return Inertia::render('News', [
             'title' => "CUY UNIVERSE HOME",
             'description' => "Selamat Datang Di Cuy Universe News Portal",
             'news' => $news,
         ]);
     }
 
+    public function showLatest()
+    {
+        $news = new NewsCollection(News::lazy()->take(4)->shuffle()->all());
+        return Inertia::render('Home', [
+            'title' => "CUY UNIVERSE HOME",
+            'description' => "Selamat Datang Di Cuy Universe News Portal",
+            'news' => $news,
+        ]);
+    }
+
+
+
     public function search(Request $request)
     {
         $news = News::search($request->text)->get();
-        return Inertia::render('Homepage', [
+        return Inertia::render('News', [
             'filteredNews' => $news,
         ]);
     }

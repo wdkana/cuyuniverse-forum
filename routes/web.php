@@ -6,7 +6,8 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 // outer class
-Route::get('/', [NewsController::class, 'index']);
+Route::get('/', [NewsController::class, 'showLatest']);
+Route::get('/news', [NewsController::class, 'index'])->name('news');
 
 // user authorized grup
 Route::prefix('dashboard')->middleware(['auth', 'verified'])->group(
