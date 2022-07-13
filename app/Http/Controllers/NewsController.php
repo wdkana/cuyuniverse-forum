@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\NewsCollection;
 use Inertia\Inertia;
 use App\Models\News;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class NewsController extends Controller

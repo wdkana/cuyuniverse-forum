@@ -19,7 +19,7 @@ const isNews = (datas) => {
           <h2 className="card-title">{data.title} <div className={`badge ${randomBadgeColor()}`}>{data.category}</div></h2>
           <p className='text-sm'>{data.description}</p>
           <div className="card-actions justify-between text-sm">
-            <div className="badge badge-outline">{formatTime(data.updated_at)}</div>
+            <div className="badge badge-outline text-2xs">{formatTime(data.updated_at)}</div>
             <div className="badge badge-inline">{data.author}</div>
           </div>
         </div>

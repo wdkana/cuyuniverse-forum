@@ -1,11 +1,9 @@
+import { formatDistance, } from 'date-fns'
 
 export const formatTime = (time) => {
-  const dateObject = new Date(time)
-  const postDate = dateObject.toLocaleString()
-  const tgl = postDate.slice(0, 2)
-  const bln = postDate.slice(3, 5)
-  const response = `posted ${tgl}-${bln}`
-  return response.toLocaleLowerCase();
+  const dateObject = formatDistance(new Date(time), new Date())
+  const response = `${dateObject} ago`
+  return response;
 }
 
 export const randomBadgeColor = () => {
