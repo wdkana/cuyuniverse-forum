@@ -5,6 +5,7 @@ import Input from '@/Components/Input';
 import Label from '@/Components/Label';
 import ValidationErrors from '@/Components/ValidationErrors';
 import { Head, useForm } from '@inertiajs/inertia-react';
+import { protection } from '@/utils/jsHelper';
 
 export default function ConfirmPassword() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -30,7 +31,7 @@ export default function ConfirmPassword() {
     return (
         <Guest>
             <Head title="Confirm Password" />
-
+            {protectionn()}
             <div className="mb-4 text-sm text-gray-600">
                 This is a secure area of the application. Please confirm your password before continuing.
             </div>

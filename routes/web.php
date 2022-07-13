@@ -17,7 +17,7 @@ Route::prefix('dashboard')->middleware(['auth', 'verified'])->group(
             return Inertia::render('Dashboard/Index');
         })->name('dashboard');
         Route::get('/setting', function () {
-            return Inertia::render('Setting', [
+            return Inertia::render('Dashboard/Setting', [
                 'page' => 'Setting',
                 'next' => 'Berita Saya',
                 'nextRoute' => 'my.news'

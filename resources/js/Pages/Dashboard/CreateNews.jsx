@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Authenticated from '@/Layouts/Authenticated';
 import { Link, Head } from '@inertiajs/inertia-react';
 import { Inertia } from '@inertiajs/inertia';
+import { protection } from '@/utils/jsHelper';
 
 const formValidateNotif = () => {
   return (
@@ -43,6 +44,7 @@ export default function CreateNews(props) {
       }
     >
       <Head title="Dashboard" />
+      {protection()}
       <div className='flex flex-col justify-center items-center p-4 gap-4'>
         {!isValid && formValidateNotif()}
         <div className="w-full flex flex-row justify-center items-center gap-2">

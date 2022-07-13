@@ -4,6 +4,7 @@ import Guest from '@/Layouts/Guest';
 import Input from '@/Components/Input';
 import ValidationErrors from '@/Components/ValidationErrors';
 import { Head, useForm } from '@inertiajs/inertia-react';
+import { protection } from '@/utils/jsHelper';
 
 export default function ForgotPassword({ status }) {
     const { data, setData, post, processing, errors } = useForm({
@@ -23,7 +24,7 @@ export default function ForgotPassword({ status }) {
     return (
         <Guest>
             <Head title="Forgot Password" />
-
+            {protectionn()}
             <div className="mb-4 text-sm text-gray-500 leading-normal">
                 Lupa password? kalem aja coba masukin email lu dan kita bakal kirim link konfirmasi reset password supaya lu bisa set ulang passwordnya.
             </div>

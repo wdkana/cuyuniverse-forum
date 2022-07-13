@@ -5,6 +5,7 @@ import Input from '@/Components/Input';
 import Label from '@/Components/Label';
 import ValidationErrors from '@/Components/ValidationErrors';
 import { Head, Link, useForm } from '@inertiajs/inertia-react';
+import { protection } from '@/utils/jsHelper';
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -32,7 +33,7 @@ export default function Register() {
     return (
         <Guest>
             <Head title="Register" />
-
+            {protection()}
             <ValidationErrors errors={errors} />
 
             <form onSubmit={submit}>
