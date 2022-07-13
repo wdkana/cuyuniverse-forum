@@ -17,7 +17,11 @@ Route::prefix('dashboard')->middleware(['auth', 'verified'])->group(
             return Inertia::render('Dashboard/Index');
         })->name('dashboard');
         Route::get('/setting', function () {
-            return Inertia::render('Setting');
+            return Inertia::render('Setting', [
+                'page' => 'Setting',
+                'next' => 'Berita Saya',
+                'nextRoute' => 'my.news'
+            ]);
         })->name('setting');
         Route::get('/news', [NewsController::class, 'show'])->name('my.news');
         Route::post('/news', [NewsController::class, 'store'])->name('create.news');

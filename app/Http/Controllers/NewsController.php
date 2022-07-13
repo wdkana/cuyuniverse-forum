@@ -52,7 +52,9 @@ class NewsController extends Controller
     public function create()
     {
         return Inertia::render('Dashboard/CreateNews', [
-            'page' => 'Buat Berita'
+            'page' => 'BUAT BERITA',
+            'next' => 'BERITA SAYA',
+            'nextRoute' => 'my.news'
         ]);
     }
 
@@ -91,7 +93,9 @@ class NewsController extends Controller
         $news = News::where('author', auth()->user()->username)->get();
         return Inertia::render('Dashboard/MyNews', [
             'data' => $news,
-            'page' => 'Berita Saya'
+            'page' => 'BERITA SAYA',
+            'next' => 'BUAT BERITA',
+            'nextRoute' => 'form.news'
         ]);
     }
 

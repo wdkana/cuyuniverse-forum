@@ -1,13 +1,16 @@
 import React from 'react';
 import Authenticated from '@/Layouts/Authenticated';
-import { Head } from '@inertiajs/inertia-react';
+import { Head, Link } from '@inertiajs/inertia-react';
 
 export default function Setting(props) {
   return (
     <Authenticated
       auth={props.auth}
       errors={props.errors}
-      header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Dashboard</h2>}
+      header={<div className='flex flex-row justify-between'>
+        <h2 className="font-semibold text-xl text-gray-800 leading-tight cursor-default">{props.page}</h2>
+        <Link href={route(`${props.nextRoute}`)} as="button" className="btn btn-sm btn-link leading-tight">{props.next}</Link>
+      </div>}
     >
       <Head title="Dashboard" />
 

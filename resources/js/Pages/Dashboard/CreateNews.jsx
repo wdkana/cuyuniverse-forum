@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Authenticated from '@/Layouts/Authenticated';
-import { Head } from '@inertiajs/inertia-react';
+import { Link, Head } from '@inertiajs/inertia-react';
 import { Inertia } from '@inertiajs/inertia';
 
 const formValidateNotif = () => {
@@ -35,7 +35,12 @@ export default function CreateNews(props) {
     <Authenticated
       auth={props.auth}
       errors={props.errors}
-      header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">{props.page}</h2>}
+      header={
+        <div className='flex flex-row justify-between'>
+          <h2 className="font-semibold text-xl text-gray-800 leading-tight cursor-default">{props.page}</h2>
+          <Link href={route(`${props.nextRoute}`)} as="button" className="btn btn-sm btn-link leading-tight">{props.next}</Link>
+        </div>
+      }
     >
       <Head title="Dashboard" />
       <div className='flex flex-col justify-center items-center p-4 gap-4'>

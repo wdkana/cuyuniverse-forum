@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Authenticated from '@/Layouts/Authenticated';
-import { Head } from '@inertiajs/inertia-react';
+import { Head, Link } from '@inertiajs/inertia-react';
 import { usePage } from '@inertiajs/inertia-react'
 import { formatTime, randomBadgeColor } from '@/utils/jsHelper';
 
@@ -23,12 +23,17 @@ export default function MyNews(props) {
     <Authenticated
       auth={props.auth}
       errors={props.errors}
-      header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">{props.page}</h2>}
+      header={
+        <div className='flex flex-row justify-between'>
+          <h2 className="font-semibold text-xl text-gray-800 leading-tight cursor-default">{props.page}</h2>
+          <Link href={route(`${props.nextRoute}`)} as="button" className="btn btn-sm btn-link leading-tight">{props.next}</Link>
+        </div>
+      }
     >
       <Head title="Dashboard" />
       <div className='flex flex-col justify-center items-center lg:flex-row lg:flex-wrap lg:items-stretch p-4 gap-6'>
         {flash.message && newsNotification(flash.message)}
-        {props.data ? props.data.map((news, i) => {
+        {props.data.length > 0 ? props.data.map((news, i) => {
           return (
             <div key={i} className="card w-full sm:w-96 bg-base-100 shadow-xl">
               <div className="card-body">
@@ -40,7 +45,12 @@ export default function MyNews(props) {
               </div>
             </div>
           )
-        }) : <p>kamu belum membuat berita</p>}
+        }) : <div className='text-center'>
+          <p className='font-bold text-2xl'>
+            kamu belum membuat berita
+          </p>
+          <Link href={route('form.news')} as="button" className='btn btn-link'>Buat Berita Sekarang</Link>
+        </div>}
       </div>
     </Authenticated>
   );
