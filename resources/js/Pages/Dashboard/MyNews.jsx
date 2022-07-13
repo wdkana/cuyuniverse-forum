@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+
 import Authenticated from '@/Layouts/Authenticated';
 import { Head } from '@inertiajs/inertia-react';
 import { usePage } from '@inertiajs/inertia-react'
+import { formatTime, randomBadgeColor } from '@/utils/jsHelper';
 
 const newsNotification = (text) => {
   return (
@@ -30,10 +32,10 @@ export default function MyNews(props) {
           return (
             <div key={i} className="card w-full sm:w-96 bg-base-100 shadow-xl">
               <div className="card-body">
-                <h2 className="card-title">{news.title} <div className="badge badge-secondary">NEW</div></h2>
+                <h2 className="card-title">{news.title} <div className={`badge ${randomBadgeColor()}`}>{news.category.toUpperCase()}</div></h2>
                 <p className='text-sm'>{news.description}</p>
-                <div className="card-actions justify-end">
-                  <div className="badge badge-inline">{news.category}</div>
+                <div className="card-actions justify-start">
+                  <div className="badge badge-outline">{formatTime(news.updated_at)}</div>
                 </div>
               </div>
             </div>

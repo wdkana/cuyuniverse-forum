@@ -12,16 +12,19 @@ export default function Home(props) {
       <div className='min-h-screen bg-base-300'>
         <Navbar user={props.auth.user} title="Cuy Universe" />
         <Hero />
-        <div className='py-4 flex justify-center'>
-          <ResetTime />
-        </div>
+        {props.news.data.length > 4 &&
+          <div className='py-4 flex justify-center'>
+            <ResetTime />
+          </div>
+        }
         <div className='flex flex-col justify-center items-center flex-wrap lg:flex-row xl:flex-nowrap lg:items-stretch p-4 gap-6'>
           <NewsLists news={props.news.data} />
         </div>
-        <div className='flex flex-col justify-center items-center lg:flex-row lg:flex-wrap lg:items-stretch p-4 gap-6'>
-          <Link href={route('news')} as="button" className="btn btn-outline">more news</Link>
-        </div>
-        <div className="divider"></div>
+        {props.news.data.length > 3 &&
+          <div className='flex flex-col justify-center items-center lg:flex-row lg:flex-wrap lg:items-stretch p-4 gap-6'>
+            <Link href={route('news')} as="button" className="btn btn-outline">more news</Link>
+          </div>
+        }
       </div>
     </>
   )

@@ -66,16 +66,16 @@ class NewsController extends Controller
     {
         $request->validate(
             [
-                'title' => 'required|string',
-                'description' => 'required|string|max:50|min:4',
-                'category' => 'required|string|max:20|min:2'
+                'title' => 'required|string|min:4|max:50',
+                'description' => 'required|string|min:4|max:200',
+                'category' => 'required|string|min:2|max:20'
             ]
         );
         $news = new News();
         $news->title = $request->title;
         $news->description = $request->description;
         $news->category = $request->category;
-        $news->author = auth()->user()->email;
+        $news->author = auth()->user()->username;
         $news->save();
         return to_route('my.news')->with('message', 'Berita Berhasil Dibuat');
     }
@@ -88,7 +88,7 @@ class NewsController extends Controller
      */
     public function show()
     {
-        $news = News::where('author', auth()->user()->email)->get();
+        $news = News::where('author', auth()->user()->username)->get();
         return Inertia::render('Dashboard/MyNews', [
             'data' => $news,
             'page' => 'Berita Saya'
