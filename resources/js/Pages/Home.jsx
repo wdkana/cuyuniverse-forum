@@ -12,7 +12,7 @@ export default function Home(props) {
       <div className='min-h-screen bg-base-300'>
         <Navbar user={props.auth.user} title="Cuy Universe" />
         <Hero />
-        {props.news.data.length > 4 &&
+        {props.news.data.length > 3 &&
           <div className='py-4 flex justify-center'>
             <ResetTime />
           </div>

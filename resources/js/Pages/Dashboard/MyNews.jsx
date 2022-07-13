@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Authenticated from '@/Layouts/Authenticated';
 import { Head, Link } from '@inertiajs/inertia-react';
 import { usePage } from '@inertiajs/inertia-react'
 import { formatTime, randomBadgeColor } from '@/utils/jsHelper';
+import { Inertia } from '@inertiajs/inertia';
 
 const newsNotification = (text) => {
   return (
@@ -18,6 +19,21 @@ const newsNotification = (text) => {
 
 export default function MyNews(props) {
   const { flash } = usePage().props
+  const [wantRemove, setWantRemove] = useState(false)
+
+  const handleRemoveConfirmation = () => {
+    setWantRemove(true)
+  }
+
+  const removeNews = (id) => {
+    const data = {
+      id: id
+    }
+    Inertia.post('/dashboard/news/delete', data)
+    return setWantRemove(false)
+  }
+
+
 
   return (
     <Authenticated
@@ -39,8 +55,25 @@ export default function MyNews(props) {
               <div className="card-body">
                 <h2 className="card-title">{news.title} <div className={`badge ${randomBadgeColor()}`}>{news.category.toUpperCase()}</div></h2>
                 <p className='text-sm'>{news.description}</p>
-                <div className="card-actions justify-start">
+                <div className="card-actions justify-between">
                   <div className="badge badge-outline">{formatTime(news.updated_at)}</div>
+                  <label onClick={() => handleRemoveConfirmation()} className="cursor-pointer badge badge-outline modal-button" htmlFor={`my-modal-${news.id}`}>remove</label>
+                  {wantRemove &&
+                    <>
+                      <input type="checkbox" id={`my-modal-${news.id}`} className="modal-toggle" />
+                      <div className="modal">
+                        <div className="modal-box">
+                          <h3 className="font-bold text-lg">Hapus Postingan </h3>
+                          <p className="py-4">Kamu yakin ingin menghapus postingan <b>{news.title}</b>?</p>
+                          <div className="modal-action">
+                            <label htmlFor={`my-modal-${news.id}`} className="btn" onClick={() => removeNews(news.id)}>Ya Hapus</label>
+                            <label htmlFor={`my-modal-${news.id}`} className="btn btn-outline">Gak</label>
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  }
+                  {/* <Link href={route('delete.news')} method="post" data={{ id: news.id }} as="button" className="badge badge-outline">remove</Link> */}
                 </div>
               </div>
             </div>
@@ -52,6 +85,6 @@ export default function MyNews(props) {
           <Link href={route('form.news')} as="button" className='btn btn-link'>Buat Berita Sekarang</Link>
         </div>}
       </div>
-    </Authenticated>
+    </Authenticated >
   );
 }

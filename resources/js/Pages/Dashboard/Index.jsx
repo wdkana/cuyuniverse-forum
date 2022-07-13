@@ -11,13 +11,14 @@ export default function Dashboard(props) {
         >
             <Head title="Dashboard" />
 
-            <div className="py-12">
-                <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        <div className="p-6 bg-white border-b border-gray-200">
-                            <Link href={route('form.news')} method="get" as="button" className='btn btn-outline m-2'>Buat Berita</Link>
-                            <Link href={route('my.news')} method="get" as="button" className='btn btn-outline m-2'>Berita Saya</Link>
-                            <button className='btn btn-outline m-2'>Badge Saya <span className="badge badge-sm badge-primary ml-2">Soon</span></button>
+            <div className="py-12 flex justify-center items-center">
+                <div className='indicator'>
+                    <span className={`indicator-item indicator-top indicator-center badge badge-inline`}>Feature #1</span>
+                    <div className="max-w-2xl mx-auto sm:px-4 lg:px-6 rounded-lg bg-white border-b border-gray-200 shadow-lg">
+                        <div className="flex flex-wrap justify-center items-stretch p-12 gap-2">
+                            <Link href={route('form.news')} method="get" as="button" className='w-full lg:w-32 btn btn-outline'>Buat Berita</Link>
+                            <Link href={route('my.news')} method="get" as="button" className='w-full lg:w-32 btn btn-outline'>Berita Saya</Link>
+                            <button className='w-full lg:w-1/2 btn btn-outline'>Badge Saya <span className="ml-2 badge badge-sm badge-primary">Soon</span></button>
                         </div>
                     </div>
                 </div>
