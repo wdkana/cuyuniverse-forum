@@ -4,7 +4,8 @@ export const formatTime = (time) => {
   const postDate = dateObject.toLocaleString()
   const tgl = postDate.slice(0, 2)
   const bln = postDate.slice(3, 5)
-  return `posted on ${tgl}/${bln}`;
+  const response = `posted ${tgl}-${bln}`
+  return response.toLocaleLowerCase();
 }
 
 export const randomBadgeColor = () => {
