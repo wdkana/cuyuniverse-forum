@@ -1,34 +1,33 @@
 <?php
 
 use App\Http\Controllers\NewsController;
-use Illuminate\Foundation\Application;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+// outer class
+Route::get('/', [NewsController::class, 'showLatest'])->middleware('throttle:50,1');
+Route::get('/news', [NewsController::class, 'index'])->name('news')->middleware('throttle:50,1');;
 
-Route::get('/', [NewsController::class, 'index']);
-
-Route::get('/welcome', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
-
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// user authorized grup
+Route::prefix('dashboard')->middleware(['auth', 'verified'])->group(
+    function () {
+        Route::get('/', function () {
+            return Inertia::render('Dashboard/Index');
+        })->name('dashboard');
+        Route::get('/setting', function () {
+            return Inertia::render('Dashboard/Setting', [
+                'page' => 'Setting',
+                'next' => 'Berita Saya',
+                'nextRoute' => 'my.news'
+            ]);
+        })->name('setting');
+        Route::get('/news', [NewsController::class, 'show'])->name('my.news');
+        Route::post('/news', [NewsController::class, 'store'])->name('create.news');
+        Route::get('/news/create', [NewsController::class, 'create'])->name('form.news');
+        Route::post('/news/delete', [NewsController::class, 'destroy'])->name('delete.news');
+    }
+);
 
 require __DIR__ . '/auth.php';

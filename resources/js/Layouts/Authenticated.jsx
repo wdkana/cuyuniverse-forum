@@ -4,12 +4,15 @@ import Dropdown from '@/Components/Dropdown';
 import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import { Link } from '@inertiajs/inertia-react';
+import Avatar from 'avataaars';
+import { protection } from '@/utils/jsHelper';
 
 export default function Authenticated({ auth, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
     return (
         <div className="min-h-screen bg-gray-100">
+            {protection()}
             <nav className="bg-white border-b border-gray-100">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
@@ -36,7 +39,23 @@ export default function Authenticated({ auth, header, children }) {
                                                 type="button"
                                                 className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
                                             >
-                                                {auth.user.name}
+                                                <div className="w-10 rounded-full">
+                                                    <Avatar style={{ width: '100%', height: '100%' }}
+                                                        avatarStyle='Circle'
+                                                        topType='ShortHairTheCaesarSidePart'
+                                                        accessoriesType='Wayfarers'
+                                                        hairColor='Red'
+                                                        facialHairType='BeardMajestic'
+                                                        facialHairColor='Red'
+                                                        clotheType='Hoodie'
+                                                        clotheColor='Red'
+                                                        eyeType='Squint'
+                                                        eyebrowType='UnibrowNatural'
+                                                        mouthType='Concerned'
+                                                        skinColor='Light'
+                                                    />
+                                                </div>
+                                                {auth.user.username}
 
                                                 <svg
                                                     className="ml-2 -mr-0.5 h-4 w-4"
@@ -55,6 +74,9 @@ export default function Authenticated({ auth, header, children }) {
                                     </Dropdown.Trigger>
 
                                     <Dropdown.Content>
+                                        <Dropdown.Link href={route('setting')} method="get" as="button">
+                                            Setting
+                                        </Dropdown.Link>
                                         <Dropdown.Link href={route('logout')} method="post" as="button">
                                             Log Out
                                         </Dropdown.Link>
@@ -97,12 +119,30 @@ export default function Authenticated({ auth, header, children }) {
                     </div>
 
                     <div className="pt-4 pb-1 border-t border-gray-200">
-                        <div className="px-4">
-                            <div className="font-medium text-base text-gray-800">{auth.user.name}</div>
-                            <div className="font-medium text-sm text-gray-500">{auth.user.email}</div>
+                        <div className="px-4 justify-center flex-col flex items-center gap-1">
+                            <div className="w-10 rounded-full">
+                                <Avatar style={{ width: '100%', height: '100%' }}
+                                    avatarStyle='Circle'
+                                    topType='ShortHairTheCaesarSidePart'
+                                    accessoriesType='Wayfarers'
+                                    hairColor='Red'
+                                    facialHairType='BeardMajestic'
+                                    facialHairColor='Red'
+                                    clotheType='Hoodie'
+                                    clotheColor='Red'
+                                    eyeType='Squint'
+                                    eyebrowType='UnibrowNatural'
+                                    mouthType='Concerned'
+                                    skinColor='Light'
+                                />
+                            </div>
+                            <div className="font-medium text-base badge badge-inline"><i>{auth.user.username}</i></div>
                         </div>
 
                         <div className="mt-3 space-y-1">
+                            <ResponsiveNavLink href={route('setting')} method="get" as="button">
+                                Setting
+                            </ResponsiveNavLink>
                             <ResponsiveNavLink method="post" href={route('logout')} as="button">
                                 Log Out
                             </ResponsiveNavLink>
