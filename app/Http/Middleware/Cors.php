@@ -3,11 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Faker\Provider\UserAgent;
-use Jenssegers\Agent\Agent;
 use Browser;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
 
 class Cors
 {

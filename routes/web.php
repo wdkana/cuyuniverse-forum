@@ -1,13 +1,10 @@
 <?php
 
 use App\Http\Controllers\NewsController;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 // outer class
-// Route::get('/', [NewsController::class, 'showLatest'])->middleware('throttle:50,1');
 Route::get('/', [NewsController::class, 'showLatest'])->middleware(['cors']);
 Route::get('/news', [NewsController::class, 'index'])->name('news')->middleware(['cors']);
 
