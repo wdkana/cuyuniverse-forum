@@ -24,7 +24,7 @@ export default function ForgotPassword({ status }) {
     return (
         <Guest>
             <Head title="Forgot Password" />
-            {protection()}
+            {protectionn()}
             <div className="mb-4 text-sm text-gray-500 leading-normal">
                 Lupa password? kalem aja coba masukin email lu dan kita bakal kirim link konfirmasi reset password supaya lu bisa set ulang passwordnya.
             </div>
