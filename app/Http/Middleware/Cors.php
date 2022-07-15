@@ -35,5 +35,6 @@ class Cors
                 ->header('Access-Control-Allow-Credentials', true)
                 ->header('max_age', 120);
         }
+        return $next(abort(403, ''));
     }
 }
