@@ -32,9 +32,8 @@ class Cors
                 ->header('Access-Control-Allow-Origin', ['localhost', 'http://174.138.20.8'])
                 ->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
                 ->header('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type')
-                ->header('max_age', 600);
-        } else {
-            return response('You cannot access this web!', 400);
+                ->header('Access-Control-Allow-Credentials', true)
+                ->header('max_age', 120);
         }
     }
 }
