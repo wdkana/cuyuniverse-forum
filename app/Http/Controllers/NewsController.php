@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Resources\NewsCollection;
 use Inertia\Inertia;
 use App\Models\News;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
@@ -15,27 +14,26 @@ class NewsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $news = new NewsCollection(News::orderByDesc('id')->paginate(8));
-        return Inertia::render('News', [
-            'title' => "CUY UNIVERSE HOME",
-            'description' => "Selamat Datang Di Cuy Universe News Portal",
-            'news' => $news,
-        ]);
-    }
 
     public function showLatest()
     {
         $news = new NewsCollection(News::lazy()->take(4)->shuffle()->all());
         return Inertia::render('Home', [
-            'title' => "CUY UNIVERSE HOME",
+            'title' => "PORTAL",
             'description' => "Selamat Datang Di Cuy Universe News Portal",
             'news' => $news,
         ]);
     }
 
-
+    public function index()
+    {
+        $news = new NewsCollection(News::orderByDesc('id')->paginate(8));
+        return Inertia::render('News', [
+            'title' => "NEWS",
+            'description' => "Selamat Datang Di Cuy Universe News Portal",
+            'news' => $news,
+        ]);
+    }
 
     public function search(Request $request)
     {
@@ -53,8 +51,8 @@ class NewsController extends Controller
     public function create()
     {
         return Inertia::render('Dashboard/CreateNews', [
-            'page' => 'BUAT BERITA',
-            'next' => 'BERITA SAYA',
+            'page' => 'BUAT POSTING',
+            'next' => 'POSTINGAN SAYA',
             'nextRoute' => 'my.news'
         ]);
     }
@@ -94,8 +92,8 @@ class NewsController extends Controller
         $news = News::where('author', auth()->user()->username)->get();
         return Inertia::render('Dashboard/MyNews', [
             'data' => $news,
-            'page' => 'BERITA SAYA',
-            'next' => 'BUAT BERITA',
+            'page' => 'POSTINGAN SAYA',
+            'next' => 'BUAT POSTINGAN',
             'nextRoute' => 'form.news'
         ]);
     }

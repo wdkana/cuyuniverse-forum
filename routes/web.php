@@ -1,25 +1,25 @@
 <?php
 
 use App\Http\Controllers\NewsController;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 // outer class
-Route::get('/', [NewsController::class, 'showLatest'])->middleware('throttle:50,1');
-Route::get('/news', [NewsController::class, 'index'])->name('news')->middleware('throttle:50,1');;
+Route::get('/', [NewsController::class, 'showLatest'])->middleware(['cors']);
+Route::get('/news', [NewsController::class, 'index'])->name('news')->middleware(['cors']);
 
 // user authorized grup
-Route::prefix('dashboard')->middleware(['auth', 'verified'])->group(
+Route::prefix('dashboard')->middleware(['auth', 'verified', 'cors'])->group(
     function () {
         Route::get('/', function () {
-            return Inertia::render('Dashboard/Index');
+            return Inertia::render('Dashboard/Index', [
+                'title' => 'DASHBOARD'
+            ]);
         })->name('dashboard');
         Route::get('/setting', function () {
             return Inertia::render('Dashboard/Setting', [
-                'page' => 'Setting',
-                'next' => 'Berita Saya',
+                'page' => 'SETTING',
+                'next' => 'POSTINGAN SAYA',
                 'nextRoute' => 'my.news'
             ]);
         })->name('setting');

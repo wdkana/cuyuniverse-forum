@@ -3,10 +3,9 @@ import Avatar from 'avataaars';
 
 const Navbar = ({ user, title }) => {
   return (
-    <div className="navbar bg-gray-700 text-white">
+    <div className="navbar bg-neutral">
       <div className="flex-1">
         <Link href="/" as="button" className="btn btn-ghost normal-case text-xl">{title}</Link>
-        {/* <span className='text-sm'>[BETA]</span> */}
         <label className="swap swap-flip" style={{ marginLeft: -10 }}>
           <input type="checkbox" className='hidden' />
           <div className="swap-off">🅱🌜</div>
@@ -14,9 +13,6 @@ const Navbar = ({ user, title }) => {
         </label>
       </div>
       <div className="flex-none gap-2">
-        {/* <div className="form-control">
-          <input type="text" placeholder="Search" className="input input-bordered" />
-        </div> */}
         <div className="dropdown dropdown-end">
           <label tabIndex="0" className="btn btn-ghost btn-circle avatar">
             <div className="w-10  rounded-full">
@@ -36,7 +32,7 @@ const Navbar = ({ user, title }) => {
               />
             </div>
           </label>
-          <ul tabIndex="0" className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-gray-700 rounded-box w-52">
+          <ul tabIndex="0" className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-neutral rounded-box w-52">
             {user ? (
               <>
                 <li>

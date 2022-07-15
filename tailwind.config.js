@@ -8,7 +8,9 @@ module.exports = {
         './resources/views/**/*.blade.php',
         './resources/js/**/*.jsx',
     ],
-
+    daisyui: {
+        themes: ["dracula"]
+    },
     theme: {
         extend: {
             fontFamily: {
