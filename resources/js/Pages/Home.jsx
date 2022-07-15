@@ -6,12 +6,12 @@ import ResetTime from '@/Components/Homepage/ResetTimer';
 import Hero from '@/Components/Homepage/Hero';
 import { protection } from '@/utils/jsHelper';
 
-export default function Home(props) {
+export default function HomePage(props) {
   return (
     <>
       <Head title={props.title} />
       {protection()}
-      <div className='min-h-screen bg-base-300'>
+      <div className='min-h-screen'>
         <Navbar user={props.auth.user} title="Cuy Universe" />
         <Hero />
         {props.news.data.length > 3 &&

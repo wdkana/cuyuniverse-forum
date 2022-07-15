@@ -8,7 +8,7 @@ import { Inertia } from '@inertiajs/inertia';
 
 const newsNotification = (text) => {
   return (
-    <div className="alert alert-info shadow-lg">
+    <div className="alert alert-sm bg-base-300 shadow-lg">
       <div>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-current flex-shrink-0 w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
         <span>{text}</span>
@@ -20,7 +20,7 @@ const newsNotification = (text) => {
 export default function MyNews(props) {
   const { flash } = usePage().props
   const [wantRemove, setWantRemove] = useState(false)
-
+  console.log(props)
   const handleRemoveConfirmation = () => {
     setWantRemove(true)
   }
@@ -41,8 +41,8 @@ export default function MyNews(props) {
       errors={props.errors}
       header={
         <div className='flex flex-row justify-between'>
-          <h2 className="font-semibold text-xl text-gray-800 leading-tight cursor-default">{props.page}</h2>
-          <Link href={route(`${props.nextRoute}`)} as="button" className="btn btn-sm btn-link leading-tight">{props.next}</Link>
+          <h2 className="font-semibold text-xl leading-tight cursor-default">{props.page}</h2>
+          <Link href={`${route(props.nextRoute)}`} method="get" as="button" className="btn btn-sm btn-link leading-tight">{props.next}</Link>
         </div>
       }
     >
@@ -67,14 +67,13 @@ export default function MyNews(props) {
                           <h3 className="font-bold text-lg">Hapus Postingan </h3>
                           <p className="py-4">Kamu yakin ingin menghapus postingan <b>{news.title}</b>?</p>
                           <div className="modal-action">
-                            <label htmlFor={`my-modal-${news.id}`} className="btn" onClick={() => removeNews(news.id)}>Ya Hapus</label>
-                            <label htmlFor={`my-modal-${news.id}`} className="btn btn-outline">Gak</label>
+                            <label htmlFor={`my-modal-${news.id}`} className="btn btn-outline" onClick={() => removeNews(news.id)}>Ya Hapus</label>
+                            <label htmlFor={`my-modal-${news.id}`} className="btn btn-inline">Gak</label>
                           </div>
                         </div>
                       </div>
                     </>
                   }
-                  {/* <Link href={route('delete.news')} method="post" data={{ id: news.id }} as="button" className="badge badge-outline">remove</Link> */}
                 </div>
               </div>
             </div>
@@ -83,7 +82,8 @@ export default function MyNews(props) {
           <p className='font-bold text-2xl'>
             kamu belum membuat berita
           </p>
-          <Link href={route('form.news')} as="button" className='btn btn-link'>Buat Berita Sekarang</Link>
+          <Link href={
+            route('form.news')} as="button" className='btn btn-link'>Buat Berita Sekarang</Link>
         </div>}
       </div>
     </Authenticated >
