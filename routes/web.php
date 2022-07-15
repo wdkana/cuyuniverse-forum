@@ -12,12 +12,14 @@ Route::get('/news', [NewsController::class, 'index'])->name('news')->middleware(
 Route::prefix('dashboard')->middleware(['auth', 'verified', 'cors'])->group(
     function () {
         Route::get('/', function () {
-            return Inertia::render('Dashboard/Index');
+            return Inertia::render('Dashboard/Index', [
+                'title' => 'DASHBOARD'
+            ]);
         })->name('dashboard');
         Route::get('/setting', function () {
             return Inertia::render('Dashboard/Setting', [
-                'page' => 'Setting',
-                'next' => 'Berita Saya',
+                'page' => 'SETTING',
+                'next' => 'POSTINGAN SAYA',
                 'nextRoute' => 'my.news'
             ]);
         })->name('setting');

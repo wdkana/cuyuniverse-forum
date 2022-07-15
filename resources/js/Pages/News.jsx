@@ -10,7 +10,7 @@ export default function News(props) {
     <>
       <Head title={props.title} />
       {protection()}
-      <div className='min-h-screen bg-slate-50'>
+      <div className='min-h-screen'>
         <Navbar user={props.auth.user} title="CuyNews Center" />
         <div className='flex flex-col justify-center items-center lg:flex-row lg:flex-wrap lg:items-stretch p-4 gap-6'>
           <NewsLists news={props.news.data} />
