@@ -2,7 +2,6 @@ import React from 'react';
 import Button from '@/Components/Button';
 import Guest from '@/Layouts/Guest';
 import { Head, Link, useForm } from '@inertiajs/inertia-react';
-import { protection } from '@/utils/jsHelper';
 
 export default function VerifyEmail({ status }) {
     const { post, processing } = useForm();
@@ -16,7 +15,6 @@ export default function VerifyEmail({ status }) {
     return (
         <Guest>
             <Head title="Email Verification" />
-            {protection()}
             <div className="mb-4 text-sm text-white">
                 Thanks loh udah daftar di Cuy Universe, Sekarang coba di verifikasi dulu emailnya ya bro. Klik link yang udah kita kirim ke email kalian. Kalau belom dapet linknya, kita bakal kirim ulang konfirmasinya kok kalem.
             </div>
