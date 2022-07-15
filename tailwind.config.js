@@ -9,7 +9,7 @@ module.exports = {
         './resources/js/**/*.jsx',
     ],
     daisyui: {
-        themes: ["halloween"]
+        themes: ["dracula"]
     },
     theme: {
         extend: {
