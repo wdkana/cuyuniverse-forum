@@ -25,11 +25,11 @@ export default function ForgotPassword({ status }) {
         <Guest>
             <Head title="Forgot Password" />
             {protection()}
-            <div className="mb-4 text-sm text-gray-500 leading-normal">
+            <div className="mb-4 text-sm text-gray-200 leading-normal">
                 Lupa password? kalem aja coba masukin email lu dan kita bakal kirim link konfirmasi reset password supaya lu bisa set ulang passwordnya.
             </div>
 
-            {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
+            {status && <div className="mb-4 font-medium text-sm text-indigo-800">{status}</div>}
 
             <ValidationErrors errors={errors} />
 
@@ -45,7 +45,7 @@ export default function ForgotPassword({ status }) {
                 />
 
                 <div className="flex items-center justify-end mt-4">
-                    <Button className="ml-4" processing={processing}>
+                    <Button className="ml-4 hover:bg-indigo-800" processing={processing}>
                         Email Password Reset Link
                     </Button>
                 </div>

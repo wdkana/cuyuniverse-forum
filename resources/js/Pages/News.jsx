@@ -5,7 +5,7 @@ import Paginate from '@/Components/Homepage/Paginate';
 import Navbar from '@/Components/Homepage/Navbar';
 import { protection } from '@/utils/jsHelper';
 
-export default function News(props) {
+export default function NewsPage(props) {
   return (
     <>
       <Head title={props.title} />

@@ -38,7 +38,7 @@ export default function Register() {
 
             <form onSubmit={submit}>
                 <div>
-                    <Label forInput="username" value="Username" />
+                    <Label forInput="username" value="Username" className="text-white" />
 
                     <Input
                         type="text"
@@ -53,7 +53,7 @@ export default function Register() {
                 </div>
 
                 <div className="mt-4">
-                    <Label forInput="email" value="Email" />
+                    <Label forInput="email" value="Email" className="text-white" />
 
                     <Input
                         type="email"
@@ -67,7 +67,7 @@ export default function Register() {
                 </div>
 
                 <div className="mt-4">
-                    <Label forInput="password" value="Password" />
+                    <Label forInput="password" value="Password" className="text-white" />
 
                     <Input
                         type="password"
@@ -81,7 +81,7 @@ export default function Register() {
                 </div>
 
                 <div className="mt-4">
-                    <Label forInput="password_confirmation" value="Confirm Password" />
+                    <Label forInput="password_confirmation" value="Confirm Password" className="text-white" />
 
                     <Input
                         type="password"
@@ -94,11 +94,11 @@ export default function Register() {
                 </div>
 
                 <div className="flex items-center justify-end mt-4">
-                    <Link href={route('login')} className="underline text-sm text-gray-600 hover:text-gray-900">
+                    <Link href={route('login')} className="underline text-sm text-gray-300 hover:text-white">
                         Udah punya akun?
                     </Link>
 
-                    <Button className="ml-4" processing={processing}>
+                    <Button className="ml-4 hover:bg-indigo-800" processing={processing}>
                         Register
                     </Button>
                 </div>

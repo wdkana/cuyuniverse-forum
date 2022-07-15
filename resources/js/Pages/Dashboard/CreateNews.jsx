@@ -6,7 +6,7 @@ import { protection } from '@/utils/jsHelper';
 
 const formValidateNotif = () => {
   return (
-    <div className="alert alert-info shadow-lg">
+    <div className="alert alert-sm shadow-lg">
       <div>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-current flex-shrink-0 w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
         <span>Silahkan isi postingan dengan lengkap</span>
@@ -38,7 +38,7 @@ export default function CreateNews(props) {
       errors={props.errors}
       header={
         <div className='flex flex-row justify-between'>
-          <h2 className="font-semibold text-xl text-gray-800 leading-tight cursor-default">{props.page}</h2>
+          <h2 className="font-semibold text-xl leading-tight cursor-default">{props.page}</h2>
           <Link href={route(`${props.nextRoute}`)} as="button" className="btn btn-sm btn-link leading-tight">{props.next}</Link>
         </div>
       }
@@ -48,13 +48,13 @@ export default function CreateNews(props) {
       <div className='flex flex-col justify-center items-center p-4 gap-4'>
         {!isValid && formValidateNotif()}
         <div className="w-full flex flex-row justify-center items-center gap-2">
-          <input minLength={4} maxLength={50} required type="text" placeholder="Judul [min:4]" className="w-full input input-bordered input-info" onChange={(title) => setTitle(title.target.value)} />
-          <input minLength={2} maxLength={20} required type="text" placeholder="Kategori [min:2]" className="w-full input input-bordered input-info" onChange={(category) => setCategory(category.target.value)} />
+          <input minLength={4} maxLength={50} required type="text" placeholder="Judul [min:4]" className="w-full input input-bordered bg-base-300" onChange={(title) => setTitle(title.target.value)} />
+          <input minLength={2} maxLength={20} required type="text" placeholder="Kategori [min:2]" className="w-full input input-bordered bg-base-300" onChange={(category) => setCategory(category.target.value)} />
         </div>
         <div className='w-full'>
-          <textarea minLength={10} maxLength={200} required className="textarea textarea-info w-full" placeholder="Isi berita [min:10]" onChange={(description) => setDescription(description.target.value)}></textarea>
+          <textarea minLength={10} maxLength={200} required className="textarea bg-base-300 w-full" placeholder="Isi berita [min:10]" onChange={(description) => setDescription(description.target.value)}></textarea>
         </div>
-        <button disabled={!isValid} className="btn btn-primary lg:w-96 w-full" onClick={() => handleSubmit()}>Submit</button>
+        <button disabled={!isValid} className="btn lg:w-96 w-full" onClick={() => handleSubmit()}>Submit</button>
       </div >
     </Authenticated>
   )

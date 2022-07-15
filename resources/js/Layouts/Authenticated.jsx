@@ -13,7 +13,7 @@ export default function Authenticated({ auth, header, children }) {
     return (
         <div className="min-h-screen">
             {protection()}
-            <nav className="border-b border-neutral">
+            <nav className="md:shadow-lg bg-neutral">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
                         <div className="flex">

@@ -13,7 +13,7 @@ export default function Dashboard(props) {
             <Head title={props.title} />
             {protection()}
             <div className="py-12 flex justify-center items-center">
-                <div className='indicator'>
+                <div className='indicator bg-base-300'>
                     <span className={`indicator-item indicator-top indicator-center badge badge-inline`}>Feature #1</span>
                     <div className="max-w-2xl mx-auto sm:px-4 lg:px-6 rounded-lg border-b border-neutral shadow-lg">
                         <div className="flex flex-wrap justify-center items-stretch p-12 gap-2">
