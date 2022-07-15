@@ -29,7 +29,7 @@ class Cors
         }
         if ($isBrowser === true) {
             return $next($request)
-                ->header('Access-Control-Allow-Origin', ['localhost', 'http://174.138.20.8', 'http://cuyuniverse.co', 'http://www.cuyuniverse.co', 'https://cuyuniverse.co', 'https://www.cuyuniverse.co', 'http://137.184.248.42', '137.184.248.42', '174.138.20.8'])
+                ->header('Access-Control-Allow-Origin', ['localhost', 'http://174.138.20.8', 'http://cuyuniverse.co', 'http://www.cuyuniverse.co', 'https://cuyuniverse.co', 'https://www.cuyuniverse.co', 'http://137.184.248.42', '137.184.248.42', '174.138.20.8', '*.cuyuniverse.co', 'http://*.cuyuniverse.co', 'https://*.cuyuniverse.co'])
                 ->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
                 ->header('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type')
                 ->header('Access-Control-Allow-Credentials', true)
