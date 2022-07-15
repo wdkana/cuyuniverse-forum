@@ -1,7 +1,6 @@
 import React from 'react';
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import { Link } from '@inertiajs/inertia-react';
-import { protection } from '@/utils/jsHelper';
 import Navbar from '@/Components/Homepage/Navbar';
 
 export default function Guest({ children }) {
@@ -10,7 +9,6 @@ export default function Guest({ children }) {
 
             <Navbar user={null} title="Cuy Universe" />
             <div className="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 ">
-                {protection()}
                 <div>
                     <Link href="/">
                         <ApplicationLogo className="w-20 h-20 fill-current text-white" />

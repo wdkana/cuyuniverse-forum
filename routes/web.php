@@ -5,11 +5,11 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 // outer class
-Route::get('/', [NewsController::class, 'showLatest']);
-Route::get('/news', [NewsController::class, 'index'])->name('news');
+Route::get('/', [NewsController::class, 'showLatest'])->middleware(['auth']);
+Route::get('/news', [NewsController::class, 'index'])->name('news')->middleware(['auth']);
 
 // user authorized grup
-Route::prefix('dashboard')->middleware(['auth', 'verified'])->group(
+Route::prefix('dashboard')->middleware(['auth', 'verified', 'auth'])->group(
     function () {
         Route::get('/', function () {
             return Inertia::render('Dashboard/Index', [
