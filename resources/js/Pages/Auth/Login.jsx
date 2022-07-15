@@ -41,7 +41,7 @@ export default function Login({ status, canResetPassword }) {
 
             <form onSubmit={submit}>
                 <div>
-                    <Label forInput="username" value="Username" />
+                    <Label forInput="username" value="Username" className="text-white" />
 
                     <Input
                         type="text"
@@ -55,7 +55,7 @@ export default function Login({ status, canResetPassword }) {
                 </div>
 
                 <div className="mt-4">
-                    <Label forInput="password" value="Password" />
+                    <Label forInput="password" value="Password" className="text-white" />
 
                     <Input
                         type="password"
@@ -71,7 +71,7 @@ export default function Login({ status, canResetPassword }) {
                     <label className="flex items-center">
                         <Checkbox name="remember" value={data.remember} handleChange={onHandleChange} />
 
-                        <span className="ml-2 text-sm text-gray-600">Remember me</span>
+                        <span className="ml-2 text-sm text-white">Remember me</span>
                     </label>
                 </div>
 
@@ -79,13 +79,13 @@ export default function Login({ status, canResetPassword }) {
                     {canResetPassword && (
                         <Link
                             href={route('password.request')}
-                            className="underline text-sm text-gray-600 hover:text-gray-900"
+                            className="underline text-sm text-gray-300 hover:text-white"
                         >
                             Lupa password?
                         </Link>
                     )}
 
-                    <Button className="ml-4" processing={processing}>
+                    <Button className="ml-4 hover:bg-indigo-800" processing={processing}>
                         Log in
                     </Button>
                 </div>

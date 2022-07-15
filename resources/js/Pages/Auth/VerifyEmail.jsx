@@ -17,12 +17,12 @@ export default function VerifyEmail({ status }) {
         <Guest>
             <Head title="Email Verification" />
             {protection()}
-            <div className="mb-4 text-sm text-gray-600">
+            <div className="mb-4 text-sm text-white">
                 Thanks loh udah daftar di Cuy Universe, Sekarang coba di verifikasi dulu emailnya ya bro. Klik link yang udah kita kirim ke email kalian. Kalau belom dapet linknya, kita bakal kirim ulang konfirmasinya kok kalem.
             </div>
 
             {status === 'verification-link-sent' && (
-                <div className="mb-4 font-medium text-sm text-green-600">
+                <div className="mb-4 font-medium text-sm text-whie">
                     Thanks udah daftar bro, silahkan dicek dan dibuka duls emailnya untuk konfirmasi pendaftaran di CUY UNIVERSE
                 </div>
             )}
@@ -35,7 +35,7 @@ export default function VerifyEmail({ status }) {
                         href={route('logout')}
                         method="post"
                         as="button"
-                        className="underline text-sm text-gray-600 hover:text-gray-900"
+                        className="underline text-sm text-gray-400 hover:text-gray-900"
                     >
                         Keluar
                     </Link>

@@ -32,7 +32,7 @@ export default function ConfirmPassword() {
         <Guest>
             <Head title="Confirm Password" />
             {protectionn()}
-            <div className="mb-4 text-sm text-gray-600">
+            <div className="mb-4 text-sm text-white">
                 This is a secure area of the application. Please confirm your password before continuing.
             </div>
 
@@ -40,7 +40,7 @@ export default function ConfirmPassword() {
 
             <form onSubmit={submit}>
                 <div className="mt-4">
-                    <Label forInput="password" value="Password" />
+                    <Label forInput="password" value="Password" className="text-white" />
 
                     <Input
                         type="password"
@@ -53,7 +53,7 @@ export default function ConfirmPassword() {
                 </div>
 
                 <div className="flex items-center justify-end mt-4">
-                    <Button className="ml-4" processing={processing}>
+                    <Button className="ml-4 hover:bg-indigo-800" processing={processing}>
                         Confirm
                     </Button>
                 </div>
