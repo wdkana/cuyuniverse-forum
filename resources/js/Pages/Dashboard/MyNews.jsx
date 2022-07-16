@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Authenticated from '@/Layouts/Authenticated';
 import { Head, Link } from '@inertiajs/inertia-react';
 import { usePage } from '@inertiajs/inertia-react'
-import { formatTime, protection, randomBadgeColor } from '@/utils/jsHelper';
+import { formatTime, randomBadgeColor } from '@/utils/jsHelper';
 import { Inertia } from '@inertiajs/inertia';
 
 const newsNotification = (text) => {
@@ -47,7 +47,6 @@ export default function MyNews(props) {
       }
     >
       <Head title="Dashboard" />
-      {protection()}
       <div className='flex flex-col justify-center items-center lg:flex-row lg:flex-wrap lg:items-stretch p-4 gap-6'>
         {flash.message && newsNotification(flash.message)}
         {props.data.length > 0 ? props.data.map((news, i) => {

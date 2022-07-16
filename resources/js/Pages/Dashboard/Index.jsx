@@ -1,7 +1,6 @@
 import React from 'react';
 import Authenticated from '@/Layouts/Authenticated';
 import { Link, Head } from '@inertiajs/inertia-react';
-import { protection } from '@/utils/jsHelper';
 
 export default function Dashboard(props) {
     return (
@@ -11,7 +10,6 @@ export default function Dashboard(props) {
             header={<h2 className="font-semibold text-xl leading-tight">{props.title}</h2>}
         >
             <Head title={props.title} />
-            {protection()}
             <div className="py-12 flex justify-center items-center">
                 <div className='indicator bg-base-300'>
                     <span className={`indicator-item indicator-top indicator-center badge badge-inline`}>Feature #1</span>
