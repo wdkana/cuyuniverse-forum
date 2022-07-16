@@ -1,5 +1,3 @@
-import { Link } from "@inertiajs/inertia-react"
-
 const Content = () => {
   return (
     <div className="lg:px-10 px-2 py-2">
@@ -13,7 +11,7 @@ const Content = () => {
               <small>
                 06:50 - RSUD OTO ISKANDAR DI NATA GADING TUTUKA SOREANG KAB.BANDUNG
               </small>
-              <Link href="https://goo.gl/maps/pRNskif9mJnGkhcXA" className="btn btn-link btn-xs">check maps disini</Link>
+              <a href="https://goo.gl/maps/pRNskif9mJnGkhcXA" className="btn btn-link btn-xs">check maps disini</a>
               <p>Minggu, 17 Juli 2022</p>
 
             </div>
@@ -42,7 +40,7 @@ const Content = () => {
             </ol>
           </div>
           <div className="card-actions justify-end">
-            <Link href="https://chat.whatsapp.com/BuTcQeoDspw1XJhosakUi6" className="btn btn-primary">Ikut Grup Mori #1</Link>
+            <a href="https://chat.whatsapp.com/BuTcQeoDspw1XJhosakUi6" className="btn btn-primary">Ikut Grup Mori #1</a>
           </div>
         </div>
       </div>
