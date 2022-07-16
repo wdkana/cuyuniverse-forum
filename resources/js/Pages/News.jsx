@@ -10,6 +10,10 @@ export default function NewsPage(props) {
       <Head title={props.title} />
       <div className='min-h-screen'>
         <Navbar user={props.auth.user} title="CuyNews Center" />
+        <div className="text-center py-6">
+          <h1 className="text-3xl font-bold">✨ Posts ON! ✨</h1>
+          <p className="pt-4 whitespace-pre-wrap"><i>Semua postingan dari CuyPeople tersedia disini</i></p>
+        </div>
         <div className='flex flex-col justify-center items-center lg:flex-row lg:flex-wrap lg:items-stretch p-4 gap-6'>
           <NewsLists news={props.news.data} />
         </div>

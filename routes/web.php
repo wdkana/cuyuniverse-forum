@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\MadingController;
 use App\Http\Controllers\NewsController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 // outer class
-Route::get('/', [NewsController::class, 'showLatest']);
+Route::get('/', [NewsController::class, 'showLatest'])->name('home');
+Route::get('/mading', [MadingController::class, 'index'])->name('mading');
 Route::get('/news', [NewsController::class, 'index'])->name('news');
 
 // user authorized grup
