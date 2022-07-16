@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\MadingController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -9,6 +10,9 @@ use Inertia\Inertia;
 Route::get('/', [NewsController::class, 'showLatest'])->name('home');
 Route::get('/mading', [MadingController::class, 'index'])->name('mading');
 Route::get('/news', [NewsController::class, 'index'])->name('news');
+Route::get('/video', [VideoController::class, 'index'])->name('video');
+Route::post('/video', [VideoController::class, 'store'])->name('post.video');
+Route::get('/youtube/callback', [VideoController::class, 'callback'])->name('callback');
 
 // user authorized grup
 Route::prefix('dashboard')->middleware(['auth', 'verified'])->group(

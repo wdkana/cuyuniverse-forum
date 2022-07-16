@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, Head } from '@inertiajs/inertia-react';
 import NewsLists from '@/Components/Homepage/NewsLists';
 import Navbar from '@/Components/Homepage/Navbar';

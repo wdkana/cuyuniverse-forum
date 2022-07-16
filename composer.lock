@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bea51c495058907f8d3dc43db64157ca",
+    "content-hash": "d0fd5fd4d274caa0a366fa742ed20427",
     "packages": [
         {
             "name": "albertcht/invisible-recaptcha",
@@ -204,6 +204,53 @@
                 }
             ],
             "time": "2022-05-24T11:56:16+00:00"
+        },
+        {
+            "name": "dawson/youtube",
+            "version": "2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/JoeDawson/youtube.git",
+                "reference": "29fa6ae36af6a88c49368e60b3ba4857e638b164"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/JoeDawson/youtube/zipball/29fa6ae36af6a88c49368e60b3ba4857e638b164",
+                "reference": "29fa6ae36af6a88c49368e60b3ba4857e638b164",
+                "shasum": ""
+            },
+            "require": {
+                "google/apiclient": "1.1.*",
+                "illuminate/support": ">=5.2",
+                "php": ">=5.6.4"
+            },
+            "require-dev": {
+                "orchestra/testbench": "~3.2",
+                "phpunit/phpcov": "~3.0",
+                "phpunit/phpunit": "~5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Dawson\\Youtube\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Joe Dawson",
+                    "email": "hi@joedawson.me"
+                }
+            ],
+            "description": "Upload a video to YouTube with Laravel 5.",
+            "support": {
+                "issues": "https://github.com/JoeDawson/youtube/issues",
+                "source": "https://github.com/JoeDawson/youtube/tree/2.0.1"
+            },
+            "time": "2017-03-05T22:04:46+00:00"
         },
         {
             "name": "dflydev/dot-access-data",
@@ -646,6 +693,53 @@
                 }
             ],
             "time": "2022-02-20T15:07:15+00:00"
+        },
+        {
+            "name": "google/apiclient",
+            "version": "v1.1.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/googleapis/google-api-php-client.git",
+                "reference": "19d7d735ee4cff0f8c14a234b5094b99d00ef278"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/googleapis/google-api-php-client/zipball/19d7d735ee4cff0f8c14a234b5094b99d00ef278",
+                "reference": "19d7d735ee4cff0f8c14a234b5094b99d00ef278",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*",
+                "squizlabs/php_codesniffer": "~2.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-v1-master": "1.1.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/Google/autoload.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "Client library for Google APIs",
+            "homepage": "http://developers.google.com/api-client-library/php",
+            "keywords": [
+                "google"
+            ],
+            "support": {
+                "issues": "https://github.com/googleapis/google-api-php-client/issues",
+                "source": "https://github.com/googleapis/google-api-php-client/tree/v1.1.9"
+            },
+            "time": "2020-07-22T19:51:49+00:00"
         },
         {
             "name": "graham-campbell/result-type",

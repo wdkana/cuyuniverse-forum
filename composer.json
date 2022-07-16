@@ -7,6 +7,7 @@
     "require": {
         "php": "^8.0.2",
         "albertcht/invisible-recaptcha": "^1.9",
+        "dawson/youtube": "^2.0",
         "guzzlehttp/guzzle": "^7.2",
         "hisorange/browser-detect": "^4.5",
         "inertiajs/inertia-laravel": "^0.5.4",
