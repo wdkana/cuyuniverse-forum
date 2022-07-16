@@ -5,12 +5,14 @@ const Navbar = ({ user, title }) => {
   return (
     <div className="navbar bg-neutral">
       <div className="flex-1">
-        <Link href="/" as="button" className="btn btn-ghost normal-case text-xl">{title}</Link>
         <label className="swap swap-flip" style={{ marginLeft: -10 }}>
           <input type="checkbox" className='hidden' />
           <div className="swap-off">🅱🌜</div>
           <div className="swap-on">T 🅰</div>
         </label>
+        <Link href={route('home')} as="button" className="btn btn-ghost normal-case text-xl">{title}</Link>
+        <Link href={route('news')} as="button" className="btn btn-xs btn-ghost normal-case">Posts</Link>
+        <Link href={route('mading')} as="button" className="btn btn-xs btn-ghost normal-case">Mading</Link>
       </div>
       <div className="flex-none gap-2">
         <div className="dropdown dropdown-end">
