@@ -1,34 +1,45 @@
 <?php
 
-use App\Http\Controllers\MadingController;
-use App\Http\Controllers\NewsController;
+use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PostsController;
+use App\Http\Controllers\OuterController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
+
+// ..
+// dont use PREFIX for this main routes!
+// ..
 
 // outer class
-Route::get('/', [NewsController::class, 'showLatest'])->name('home');
-Route::get('/mading', [MadingController::class, 'index'])->name('mading');
-Route::get('/news', [NewsController::class, 'index'])->name('news');
-
-// user authorized grup
-Route::prefix('dashboard')->middleware(['auth', 'verified'])->group(
+Route::controller(OuterController::class)->name('outer.')->group(
     function () {
-        Route::get('/', function () {
-            return Inertia::render('Dashboard/Index', [
-                'title' => 'DASHBOARD'
-            ]);
-        })->name('dashboard');
-        Route::get('/setting', function () {
-            return Inertia::render('Dashboard/Setting', [
-                'page' => 'SETTING',
-                'next' => 'POSTINGAN SAYA',
-                'nextRoute' => 'my.news'
-            ]);
-        })->name('setting');
-        Route::get('/news', [NewsController::class, 'show'])->name('my.news');
-        Route::post('/news', [NewsController::class, 'store'])->name('create.news');
-        Route::get('/news/create', [NewsController::class, 'create'])->name('form.news');
-        Route::post('/news/delete', [NewsController::class, 'destroy'])->name('delete.news');
+        Route::get('/', 'index')->name('main');
+        Route::get('/posts', 'PostsAll')->name('posts');
+        Route::post('/posts', 'MorePosts')->name('posts.more');
+    }
+);
+
+Route::controller(AuthorController::class)->name('author.')->group(
+    function () {
+        Route::get('/author/{author}', 'profile')->name('profile');
+    }
+);
+
+// user dashboard authorized grup
+Route::controller(DashboardController::class)->middleware(['auth', 'verified'])->name('dash.')->group(
+    function () {
+        Route::get('/dashboard', 'index')->name('main');
+        Route::get('/dashboard/setting', 'setting')->name('setting');
+    }
+);
+
+//user dashboard posts
+Route::controller(PostsController::class)->middleware(['auth', 'verified'])->name('posts.')->group(
+    function () {
+        Route::get('/dashboard/posts', 'show')->name('main');
+        Route::get('/dashboard/posts/create', 'create')->name('create');
+        Route::post('/dashboard/posts', 'store')->name('store');
+        Route::post('/dashboard/posts/delete', 'destroy')->name('remove');
     }
 );
 

@@ -4,18 +4,18 @@ import Countdown from 'react-countdown';
 const ResetTime = () => {
 
   const done = () => {
-    Inertia.reload({ only: ['news'] })
+    Inertia.reload({ only: ['posts'] })
   }
 
   const countRender = (value) => {
     return (
       <div className="mockup-code">
         <pre data-prefix="1" className={value > 5 ? "bg-warning text-warning-content" : null}>
-          <code>microfrontend preparing...</code>
+          <code>menuggu pembaruan...</code>
         </pre>
         {value < 0 ? "renews..." :
           <pre data-prefix="2" className={value <= 5 ? "bg-warning text-warning-content" : null}>
-            <code>news will updated on <span className={value <= 5 ? "bg-white text-black" : "bg-secondary"}>{value}</span></code>
+            <code>postingan diacak dalam <span className={value <= 5 ? "bg-white text-black" : "bg-primary text-black"}>{value} detik</span></code>
           </pre>}
       </div >
     )

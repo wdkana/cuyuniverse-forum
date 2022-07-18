@@ -2,12 +2,13 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\News>
  */
-class NewsFactory extends Factory
+class PostsFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -16,11 +17,11 @@ class NewsFactory extends Factory
      */
     public function definition()
     {
+        $id = User::pluck('id');
         return [
-            'title' => fake()->name(),
-            'description' => fake()->paragraph(2, true),
-            'category' => fake()->sentence(1, true),
-            'author' => fake()->username(),
+            'description' => fake()->paragraph(1, true),
+            'user_id' => fake()->randomElement($id),
+            'author' => 'testing',
         ];
     }
 }

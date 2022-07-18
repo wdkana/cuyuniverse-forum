@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Authenticated from '@/Layouts/Authenticated';
 import { Head, Link } from '@inertiajs/inertia-react';
 import { usePage } from '@inertiajs/inertia-react'
-import { formatTime, randomBadgeColor } from '@/utils/jsHelper';
+import { formatTime } from '@/utils/jsHelper';
 import { Inertia } from '@inertiajs/inertia';
 
 const newsNotification = (text) => {
@@ -17,19 +17,16 @@ const newsNotification = (text) => {
   )
 }
 
-export default function MyNews(props) {
+export default function MyPosts(props) {
   const { flash } = usePage().props
   const [wantRemove, setWantRemove] = useState(false)
-  console.log(props)
+
   const handleRemoveConfirmation = () => {
     setWantRemove(true)
   }
 
-  const removeNews = (id) => {
-    const data = {
-      id: id
-    }
-    Inertia.post('/dashboard/news/delete', data)
+  const removePosts = (id) => {
+    Inertia.post('/dashboard/posts/delete', { id })
     return setWantRemove(false)
   }
 
@@ -47,27 +44,28 @@ export default function MyNews(props) {
       }
     >
       <Head title="Dashboard" />
-      <div className='flex flex-col justify-center items-center lg:flex-row lg:flex-wrap lg:items-stretch p-4 gap-6'>
+      <div className='flex flex-col justify-center items-center p-4 gap-6'>
         {flash.message && newsNotification(flash.message)}
-        {props.data.length > 0 ? props.data.map((news, i) => {
+        {props.data.length > 0 ? props.data.map((posts, i) => {
           return (
-            <div key={i} className="card w-full sm:w-96 bg-base-100 shadow-xl">
+            <div key={i} className="card w-full sm:w-1/2 bg-base-300 shadow-xl">
               <div className="card-body">
-                <h2 className="card-title">{news.title} <div className={`badge ${randomBadgeColor()}`}>{news.category.toUpperCase()}</div></h2>
-                <p className='text-sm'>{news.description}</p>
+                <div className='card-title'>
+                  <p className='break-all'>{posts.description}</p>
+                </div>
                 <div className="card-actions justify-between">
-                  <div className="badge badge-outline">{formatTime(news.updated_at)}</div>
-                  <label onClick={() => handleRemoveConfirmation()} className="cursor-pointer badge badge-outline modal-button" htmlFor={`my-modal-${news.id}`}>remove</label>
+                  <div className="badge badge-outline">{formatTime(posts.updated_at)}</div>
+                  <label onClick={() => handleRemoveConfirmation()} className="cursor-pointer badge badge-outline modal-button" htmlFor={`my-modal-${posts.id}`}>remove</label>
                   {wantRemove &&
                     <>
-                      <input type="checkbox" id={`my-modal-${news.id}`} className="modal-toggle" />
+                      <input type="checkbox" id={`my-modal-${posts.id}`} className="modal-toggle" />
                       <div className="modal">
                         <div className="modal-box">
                           <h3 className="font-bold text-lg">Hapus Postingan </h3>
-                          <p className="py-4">Kamu yakin ingin menghapus postingan <b>{news.title}</b>?</p>
+                          <p className="py-4">Kamu yakin ingin menghapus postingan <b>{posts.title}</b>?</p>
                           <div className="modal-action">
-                            <label htmlFor={`my-modal-${news.id}`} className="btn btn-outline" onClick={() => removeNews(news.id)}>Ya Hapus</label>
-                            <label htmlFor={`my-modal-${news.id}`} className="btn btn-inline">Gak</label>
+                            <label htmlFor={`my-modal-${posts.id}`} className="btn btn-outline" onClick={() => removePosts(posts.id)}>Ya Hapus</label>
+                            <label htmlFor={`my-modal-${posts.id}`} className="btn btn-inline">Gak</label>
                           </div>
                         </div>
                       </div>
@@ -82,7 +80,7 @@ export default function MyNews(props) {
             kamu belum membuat berita
           </p>
           <Link href={
-            route('form.news')} as="button" className='btn btn-link'>Buat Berita Sekarang</Link>
+            route('posts.create')} as="button" className='btn btn-link'>Buat Berita Sekarang</Link>
         </div>}
       </div>
     </Authenticated >
