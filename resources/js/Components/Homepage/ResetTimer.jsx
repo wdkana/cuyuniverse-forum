@@ -27,7 +27,7 @@ const ResetTime = () => {
 
   return (
     <Countdown
-      date={Date.now() + randomInteger(90000, 1200000)}
+      date={Date.now() + randomInteger(60000, 90000)}
       intervalDelay={1000}
       precision={0}
       renderer={props => countRender(props.seconds)}
