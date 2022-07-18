@@ -41,7 +41,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Dashboard/CreateNews', [
+        return Inertia::render('Dashboard/CreatePosts', [
             'page' => 'BUAT POSTING',
             'next' => 'POSTINGAN SAYA',
             'nextRoute' => 'posts.main'
@@ -64,6 +64,7 @@ class PostsController extends Controller
         $posts = new Posts();
         $posts->description = $request->description;
         $posts->author = auth()->user()->username;
+        $posts->user_id = auth()->user()->id;
         $posts->save();
         return to_route('posts.main')->with('message', 'Posting Berhasil');
     }

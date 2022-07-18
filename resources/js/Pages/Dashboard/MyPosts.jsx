@@ -6,9 +6,9 @@ import { usePage } from '@inertiajs/inertia-react'
 import { formatTime } from '@/utils/jsHelper';
 import { Inertia } from '@inertiajs/inertia';
 
-const newsNotification = (text) => {
+const postsNotification = (text) => {
   return (
-    <div className="alert alert-sm bg-base-300 shadow-lg">
+    <div className="alert alert-sm shadow-lg w-full lg:w-1/2 bg-base-300">
       <div>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-current flex-shrink-0 w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
         <span>{text}</span>
@@ -45,7 +45,7 @@ export default function MyPosts(props) {
     >
       <Head title="Dashboard" />
       <div className='flex flex-col justify-center items-center p-4 gap-6'>
-        {flash.message && newsNotification(flash.message)}
+        {flash.message && postsNotification(flash.message)}
         {props.data.length > 0 ? props.data.map((posts, i) => {
           return (
             <div key={i} className="card w-full sm:w-1/2 bg-base-300 shadow-xl">

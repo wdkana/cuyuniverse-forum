@@ -3,7 +3,7 @@ import Authenticated from '@/Layouts/Authenticated';
 import { Link, Head } from '@inertiajs/inertia-react';
 import { Inertia } from '@inertiajs/inertia';
 
-export default function CreateNews(props) {
+export default function CreatePosts(props) {
   const [description, setDescription] = useState("")
   const [limiter, setLimiter] = useState(200)
   const [isValid, setIsValid] = useState(true)
@@ -26,7 +26,7 @@ export default function CreateNews(props) {
 
   const formValidateNotif = () => {
     return (
-      <div className="alert alert-sm shadow-lg w-full lg:w-1/2">
+      <div className="alert alert-sm shadow-lg w-full lg:w-1/2 bg-base-300">
         <div>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-current flex-shrink-0 w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
           <span>{!limiter ? "Ngetiknya udah dulu ya, simpen buat postingan berikutnya 👍" : `Saat ini postingan kamu dibatasi ${limiter} karakter`}</span>
