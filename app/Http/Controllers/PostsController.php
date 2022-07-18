@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\NewsCollection;
+use App\Http\Resources\PostsCollection;
 use Inertia\Inertia;
-use App\Models\News;
+use App\Models\Posts;
 use Illuminate\Http\Request;
 
-class NewsController extends Controller
+class PostsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,31 +15,22 @@ class NewsController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function showLatest()
-    {
-        $news = new NewsCollection(News::lazy()->take(4)->shuffle()->all());
-        return Inertia::render('Home', [
-            'title' => "PORTAL",
-            'description' => "Selamat Datang Di Cuy Universe News Portal",
-            'news' => $news,
-        ]);
-    }
-
     public function index()
     {
-        $news = new NewsCollection(News::orderByDesc('id')->paginate(8));
-        return Inertia::render('News', [
-            'title' => "NEWS",
-            'description' => "Selamat Datang Di Cuy Universe News Portal",
-            'news' => $news,
+        $posts = new PostsCollection(Posts::orderByDesc('id')->paginate(8));
+        return Inertia::render('Posts', [
+            'title' => "POSTS",
+            'root' => "HOME",
+            'description' => "Selamat Datang Di Cuy Universe Posts Portal",
+            'posts' => $posts,
         ]);
     }
 
     public function search(Request $request)
     {
-        $news = News::search($request->text)->get();
-        return Inertia::render('News', [
-            'filteredNews' => $news,
+        $posts = Posts::search($request->text)->get();
+        return Inertia::render('Posts', [
+            'filteredNews' => $posts,
         ]);
     }
 
@@ -53,7 +44,7 @@ class NewsController extends Controller
         return Inertia::render('Dashboard/CreateNews', [
             'page' => 'BUAT POSTING',
             'next' => 'POSTINGAN SAYA',
-            'nextRoute' => 'my.news'
+            'nextRoute' => 'my.posts'
         ]);
     }
 
@@ -72,33 +63,33 @@ class NewsController extends Controller
                 'category' => 'required|string|min:2|max:20'
             ]
         );
-        $news = new News();
-        $news->title = $request->title;
-        $news->description = $request->description;
-        $news->category = $request->category;
-        $news->author = auth()->user()->username;
-        $news->save();
-        return to_route('my.news')->with('message', 'Berita Berhasil Dibuat');
+        $posts = new Posts();
+        $posts->title = $request->title;
+        $posts->description = $request->description;
+        $posts->category = $request->category;
+        $posts->author = auth()->user()->username;
+        $posts->save();
+        return to_route('my.posts')->with('message', 'Berita Berhasil Dibuat');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\News  $news
+     * @param  \App\Models\Posts  $posts
      * @return \Illuminate\Http\Response
      */
     public function show()
     {
-        $news = News::where('author', auth()->user()->username)->get();
+        $posts = Posts::where('author', auth()->user()->username)->get();
         return Inertia::render('Dashboard/MyNews', [
-            'data' => $news,
+            'data' => $posts,
             'page' => 'POSTINGAN SAYA',
             'next' => 'BUAT POSTINGAN',
-            'nextRoute' => 'form.news'
+            'nextRoute' => 'form.posts'
         ]);
     }
 
-    public function edit(News $news)
+    public function edit(Posts $posts)
     {
         //
     }
@@ -107,10 +98,10 @@ class NewsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\News  $news
+     * @param  \App\Models\Posts  $posts
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, News $news)
+    public function update(Request $request, Posts $posts)
     {
         //
     }
@@ -118,12 +109,12 @@ class NewsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\News  $news
+     * @param  \App\Models\Posts  $posts
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request)
     {
-        News::where('id', $request->id)->delete();
-        return to_route('my.news');
+        Posts::where('id', $request->id)->delete();
+        return to_route('my.posts');
     }
 }

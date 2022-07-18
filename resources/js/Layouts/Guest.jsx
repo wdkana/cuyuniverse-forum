@@ -1,5 +1,5 @@
 import React from 'react';
-import ApplicationLogo from '@/Components/ApplicationLogo';
+import ApplicationLogo from '@/Components/Default/ApplicationLogo';
 import { Link } from '@inertiajs/inertia-react';
 import Navbar from '@/Components/Homepage/Navbar';
 

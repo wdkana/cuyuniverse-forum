@@ -1,18 +1,19 @@
 import { Link } from '@inertiajs/inertia-react';
 import Avatar from 'avataaars';
 
-const Navbar = ({ user, title }) => {
+const Navbar = ({ user, title, root }) => {
   return (
     <div className="navbar bg-neutral">
       <div className="flex-1">
-        <label className="swap swap-flip" style={{ marginLeft: -10 }}>
+        <label className="swap swap-flip">
           <input type="checkbox" className='hidden' />
           <div className="swap-off">🅱🌜</div>
           <div className="swap-on">T 🅰</div>
         </label>
-        <Link href={route('home')} as="button" className="btn btn-ghost normal-case text-xl">{title}</Link>
-        <Link href={route('news')} as="button" className="btn btn-xs btn-ghost normal-case">Posts</Link>
-        <Link href={route('mading')} as="button" className="btn btn-xs btn-ghost normal-case">Mading</Link>
+        {title !== root && title &&
+          <Link href={route('outer.main')} as="button" className="btn btn-ghost btn-sm normal-case">{root || "HOME"}</Link>
+        }
+        <Link href={route('outer.posts')} as="button" className="btn btn-sm btn-ghost normal-case">Posts</Link>
       </div>
       <div className="flex-none gap-2">
         <div className="dropdown dropdown-end">
@@ -38,12 +39,12 @@ const Navbar = ({ user, title }) => {
             {user ? (
               <>
                 <li>
-                  <Link href={route('dashboard')} as="button" className="justify-between">
+                  <Link href={route('dashboard.main')} as="button" className="justify-between">
                     Dashboard
                     <span className="badge badge-primary">New</span>
                   </Link>
                 </li>
-                <li><Link href={route('setting')} as="button">Settings</Link></li>
+                <li><Link href={route('dashboard.setting')} as="button">Settings</Link></li>
                 <li><Link href="/logout" method='post' as="button">Logout</Link></li>
               </>
             )

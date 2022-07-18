@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import ApplicationLogo from '@/Components/ApplicationLogo';
-import Dropdown from '@/Components/Dropdown';
-import NavLink from '@/Components/NavLink';
-import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
+import ApplicationLogo from '@/Components/Default/ApplicationLogo';
+import Dropdown from '@/Components/Default/Dropdown';
+import NavLink from '@/Components/Default/NavLink';
+import ResponsiveNavLink from '@/Components/Default/ResponsiveNavLink';
 import { Link } from '@inertiajs/inertia-react';
 import Avatar from 'avataaars';
 
