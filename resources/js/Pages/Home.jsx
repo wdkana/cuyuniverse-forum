@@ -12,11 +12,9 @@ export default function HomePage(props) {
       <div className='min-h-screen'>
         <Navbar user={props.auth.user} title={props.title} root={props.root} />
         <Hero />
-        {props.posts.data.length > 3 &&
-          <div className='py-4 flex justify-center'>
-            <ResetTime />
-          </div>
-        }
+        <div className='py-4 flex justify-center'>
+          <ResetTime />
+        </div>
         <div className='flex flex-col justify-center items-center flex-wrap lg:flex-row xl:flex-nowrap lg:items-stretch p-4 gap-6'>
           <PostsList posts={props.posts.data} />
         </div>
