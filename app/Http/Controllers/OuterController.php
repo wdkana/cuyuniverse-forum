@@ -15,7 +15,7 @@ class OuterController extends Controller
         return Inertia::render('Home', [
             'title' => "HOME",
             'root' => "HOME",
-            'description' => "Selamat Datang Di Cuy Universe News Portal",
+            'description' => "Selamat Datang Di Cuy Universe Portal",
             'posts' => $posts,
         ]);
     }
