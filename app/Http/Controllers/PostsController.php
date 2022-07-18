@@ -77,7 +77,7 @@ class PostsController extends Controller
      */
     public function show()
     {
-        $posts = Posts::where('author', auth()->user()->username)->get();
+        $posts = Posts::orderByDesc('id')->where('author', auth()->user()->username)->get();
         return Inertia::render('Dashboard/MyPosts', [
             'data' => $posts,
             'page' => 'POSTINGAN SAYA',
