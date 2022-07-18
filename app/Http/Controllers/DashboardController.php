@@ -19,7 +19,7 @@ class DashboardController extends Controller
         return Inertia::render('Dashboard/Setting', [
             'page' => 'SETTING',
             'next' => 'POSTINGAN SAYA',
-            'nextRoute' => 'my.news'
+            'nextRoute' => 'posts.main'
         ]);
     }
 }

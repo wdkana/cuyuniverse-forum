@@ -10,9 +10,11 @@ export default function PostsPage(props) {
       <Head title={props.title} />
       <div className='min-h-screen'>
         <Navbar user={props.auth.user} title={props.title} root={props.root} />
-        <div className='py-6 flex flex-col justify-center items-center gap-6'>
+        <div className='flex flex-col justify-center items-center lg:flex-row lg:flex-wrap lg:items-stretch pt-6 gap-6'>
           <PostsList posts={props.posts.data} />
-          <Paginate meta={props.posts.meta} postsLength={props.posts.data.length} />
+        </div>
+        <div className='flex justify-center items-center py-6'>
+          <Paginate meta={props.posts.meta} />
         </div>
       </div>
     </>

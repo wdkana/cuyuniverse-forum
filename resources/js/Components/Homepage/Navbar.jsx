@@ -39,12 +39,11 @@ const Navbar = ({ user, title, root }) => {
             {user ? (
               <>
                 <li>
-                  <Link href={route('dashboard.main')} as="button" className="justify-between">
+                  <Link href={route('dash.main')} as="button" className="justify-between">
                     Dashboard
                     <span className="badge badge-primary">New</span>
                   </Link>
                 </li>
-                <li><Link href={route('dashboard.setting')} as="button">Settings</Link></li>
                 <li><Link href="/logout" method='post' as="button">Logout</Link></li>
               </>
             )

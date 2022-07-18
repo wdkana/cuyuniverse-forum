@@ -22,7 +22,7 @@ export default function PostsPage(props) {
           <PostsList posts={props.posts.data} />
         </div>
         <div className='flex justify-center items-center p-4'>
-          <Paginate meta={props.posts} postsLength={props.posts.data.length} />
+          <Paginate meta={props.posts} />
         </div>
       </div>
     </>

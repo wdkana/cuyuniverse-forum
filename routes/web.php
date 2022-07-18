@@ -26,7 +26,7 @@ Route::controller(AuthorController::class)->name('author.')->group(
 );
 
 // user dashboard authorized grup
-Route::controller(DashboardController::class)->middleware(['auth', config('app.env' !== 'local') ? 'verified' : null])->name('dash.')->group(
+Route::controller(DashboardController::class)->middleware(['auth', 'verified'])->name('dash.')->group(
     function () {
         Route::get('/dashboard', 'index')->name('main');
         Route::get('/dashboard/setting', 'setting')->name('setting');
@@ -34,7 +34,7 @@ Route::controller(DashboardController::class)->middleware(['auth', config('app.e
 );
 
 //user dashboard posts
-Route::controller(PostsController::class)->middleware(['auth', config('app.env' !== 'local') ? 'verified' : null])->name('posts.')->group(
+Route::controller(PostsController::class)->middleware(['auth', 'verified'])->name('posts.')->group(
     function () {
         Route::get('/dashboard/posts', 'show')->name('main');
         Route::get('/dashboard/posts/create', 'create')->name('create');

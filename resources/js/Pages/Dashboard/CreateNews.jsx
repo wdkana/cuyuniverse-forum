@@ -3,33 +3,37 @@ import Authenticated from '@/Layouts/Authenticated';
 import { Link, Head } from '@inertiajs/inertia-react';
 import { Inertia } from '@inertiajs/inertia';
 
-const formValidateNotif = () => {
-  return (
-    <div className="alert alert-sm shadow-lg">
-      <div>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-current flex-shrink-0 w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-        <span>Silahkan isi postingan dengan lengkap</span>
-      </div>
-    </div>
-  )
-}
-
 export default function CreateNews(props) {
-  const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
-  const [category, setCategory] = useState("")
+  const [limiter, setLimiter] = useState(200)
   const [isValid, setIsValid] = useState(true)
 
   const handleSubmit = () => {
-    const data = {
-      title, description, category
+    return isValid && Inertia.post('/dashboard/posts', { description })
+  }
+
+  const handleChange = (e) => {
+    setDescription(e.target.value);
+    const x = 200 - Number(e.target.value.length)
+    if (x >= 0) {
+      setLimiter(x)
     }
-    return isValid && Inertia.post('/dashboard/news', data)
   }
 
   useEffect(() => {
-    title.length >= 4 && description.length >= 10 && category.length >= 2 ? setIsValid(true) : setIsValid(false)
-  }, [title, description, category])
+    description.length >= 10 && description.length <= 200 ? setIsValid(true) : setIsValid(false)
+  }, [description])
+
+  const formValidateNotif = () => {
+    return (
+      <div className="alert alert-sm shadow-lg w-full lg:w-1/2">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-current flex-shrink-0 w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          <span>{!limiter ? "Ngetiknya udah dulu ya, simpen buat postingan berikutnya 👍" : `Saat ini postingan kamu dibatasi ${limiter} karakter`}</span>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <Authenticated
@@ -44,13 +48,9 @@ export default function CreateNews(props) {
     >
       <Head title="Dashboard" />
       <div className='flex flex-col justify-center items-center p-4 gap-4'>
-        {!isValid && formValidateNotif()}
-        <div className="w-full flex flex-row justify-center items-center gap-2">
-          <input minLength={4} maxLength={50} required type="text" placeholder="Judul [min:4]" className="w-full input input-bordered bg-base-300" onChange={(title) => setTitle(title.target.value)} />
-          <input minLength={2} maxLength={20} required type="text" placeholder="Kategori [min:2]" className="w-full input input-bordered bg-base-300" onChange={(category) => setCategory(category.target.value)} />
-        </div>
-        <div className='w-full'>
-          <textarea minLength={10} maxLength={200} required className="textarea bg-base-300 w-full" placeholder="Isi berita [min:10]" onChange={(description) => setDescription(description.target.value)}></textarea>
+        {formValidateNotif()}
+        <div className='w-full lg:w-1/2'>
+          <textarea minLength={10} maxLength={200} required className="textarea bg-base-300 w-full" placeholder="Isi berita [min:10]" onChange={(description) => handleChange(description)}></textarea>
         </div>
         <button disabled={!isValid} className="btn lg:w-96 w-full" onClick={() => handleSubmit()}>Submit</button>
       </div >

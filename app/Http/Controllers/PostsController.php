@@ -21,7 +21,7 @@ class PostsController extends Controller
         return Inertia::render('Posts', [
             'title' => "POSTS",
             'root' => "HOME",
-            'description' => "Selamat Datang Di Cuy Universe Posts Portal",
+            'description' => "Selamat Datang Di Cuy Universe Portal",
             'posts' => $posts,
         ]);
     }
@@ -30,7 +30,7 @@ class PostsController extends Controller
     {
         $posts = Posts::search($request->text)->get();
         return Inertia::render('Posts', [
-            'filteredNews' => $posts,
+            'filteredPosts' => $posts,
         ]);
     }
 
@@ -44,7 +44,7 @@ class PostsController extends Controller
         return Inertia::render('Dashboard/CreateNews', [
             'page' => 'BUAT POSTING',
             'next' => 'POSTINGAN SAYA',
-            'nextRoute' => 'my.posts'
+            'nextRoute' => 'posts.main'
         ]);
     }
 
@@ -58,18 +58,14 @@ class PostsController extends Controller
     {
         $request->validate(
             [
-                'title' => 'required|string|min:4|max:50',
                 'description' => 'required|string|min:4|max:200',
-                'category' => 'required|string|min:2|max:20'
             ]
         );
         $posts = new Posts();
-        $posts->title = $request->title;
         $posts->description = $request->description;
-        $posts->category = $request->category;
         $posts->author = auth()->user()->username;
         $posts->save();
-        return to_route('my.posts')->with('message', 'Berita Berhasil Dibuat');
+        return to_route('posts.main')->with('message', 'Posting Berhasil');
     }
 
     /**
@@ -81,11 +77,11 @@ class PostsController extends Controller
     public function show()
     {
         $posts = Posts::where('author', auth()->user()->username)->get();
-        return Inertia::render('Dashboard/MyNews', [
+        return Inertia::render('Dashboard/MyPosts', [
             'data' => $posts,
             'page' => 'POSTINGAN SAYA',
             'next' => 'BUAT POSTINGAN',
-            'nextRoute' => 'form.posts'
+            'nextRoute' => 'posts.create'
         ]);
     }
 
@@ -115,6 +111,6 @@ class PostsController extends Controller
     public function destroy(Request $request)
     {
         Posts::where('id', $request->id)->delete();
-        return to_route('my.posts');
+        return to_route('posts.main');
     }
 }

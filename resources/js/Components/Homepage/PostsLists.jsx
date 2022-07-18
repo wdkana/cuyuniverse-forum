@@ -14,12 +14,16 @@ const noPosts = () => {
 const isPosts = (posts) => {
   return posts.map((post, i) => {
     return (
-      <div key={i} className="card w-full sm:w-1/2 bg-base-300 shadow-lg">
+      <div key={i} className="card w-full lg:w-1/3 bg-base-300 shadow-lg">
         <div className="card-body">
-          <p className='text-lg'>{post.description}</p>
+          <p className='text-lg break-all'>{post.description}</p>
           <div className="card-actions justify-between text-sm">
             <div className="badge badge-outline">{formatTime(post.updated_at)}</div>
-            <Link href={`/author/${post.author}`} as="button" method="get" className="badge badge-inline">{post.author}</Link>
+            <Link href={`/author/${post.author}`} as="button" method="get" className="badge badge-inline p-4 max-w-xs">
+              <p className='break-words'>
+                {post.author}
+              </p>
+            </Link>
           </div>
         </div>
       </div>
