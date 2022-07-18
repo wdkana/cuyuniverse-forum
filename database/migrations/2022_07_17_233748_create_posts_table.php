@@ -31,9 +31,9 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('posts', function (Blueprint $table) {
-            $table->dropForeign('posts_author_foreign');
-            $table->dropIndex('posts_author_index');
-            $table->dropColumn('author');
+            $table->dropForeign('posts_user_id_foreign');
+            $table->dropIndex('posts_user_id_index');
+            $table->dropColumn('user_id');
         });
     }
 };

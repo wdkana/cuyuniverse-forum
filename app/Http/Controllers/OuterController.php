@@ -11,7 +11,7 @@ class OuterController extends Controller
 {
     public function index()
     {
-        $posts = new PostsCollection(Posts::lazy()->take(4)->shuffle()->all());
+        $posts = new PostsCollection(Posts::lazy()->shuffle()->take(4)->all());
         return Inertia::render('Home', [
             'title' => "HOME",
             'root' => "HOME",
