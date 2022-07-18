@@ -22,7 +22,7 @@ export default function HomePage(props) {
         </div>
         {props.posts.data.length > 3 &&
           <div className='flex flex-col justify-center items-center lg:flex-row lg:flex-wrap lg:items-stretch p-4 gap-6'>
-            <Link href={route('outer.posts')} as="button" className="btn btn-outline">more posts</Link>
+            <Link href={route('outer.posts')} as="button" className="btn btn-outline">Lihat Semua Postingan</Link>
           </div>
         }
       </div>
