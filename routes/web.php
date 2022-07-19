@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\OuterController;
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 
 // ..
@@ -17,6 +18,7 @@ Route::controller(OuterController::class)->name('outer.')->group(
         Route::get('/', 'index')->name('main');
         Route::get('/posts', 'PostsAll')->name('posts');
         Route::post('/posts', 'MorePosts')->name('posts.more');
+        Route::get('/post/{id}', 'find')->name('byId');
     }
 );
 
@@ -24,6 +26,12 @@ Route::controller(AuthorController::class)->name('author.')->group(
     function () {
         Route::get('/author/{author}', 'profile')->name('profile');
         Route::get('/cuypeople/status', 'userOnlineStatus')->name('status');
+    }
+);
+
+Route::controller(CommentController::class)->name('comment.')->group(
+    function () {
+        Route::get('/comment/{post_id}', 'index')->name('main');
     }
 );
 

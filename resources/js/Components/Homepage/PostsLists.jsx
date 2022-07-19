@@ -17,8 +17,8 @@ const isPosts = (posts, from) => {
   return posts.map((post, i) => {
     return (
       <div key={i} className="card w-full md:w-1/2 lg:w-1/3 xl:w-1/4 bg-base-300 shadow-lg">
-        <div className="card-body p-3">
-          <p className='text-xl break-all cursor-default'>{post.description}</p>
+        <div className="card-body p-6">
+          <Link href={`/post/${post.id}`} method="get" as="button" className='text-xl break-all cursor-pointer text-left'>{post.description}</Link>
           <div className="badge badge-outline cursor-default">{formatTime(post.updated_at)}</div>
           <div className="card-actions flex flex-col justify-end items-end text-sm">
             <div className='justify-center items-center flex flex-col'>
