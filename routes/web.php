@@ -4,7 +4,6 @@ use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\OuterController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 // ..
