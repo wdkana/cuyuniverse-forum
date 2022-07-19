@@ -14,6 +14,7 @@ const Navbar = ({ user, title, root }) => {
           <Link href={route('outer.main')} as="button" className="btn btn-ghost btn-sm normal-case">{root || "HOME"}</Link>
         }
         <Link href={route('outer.posts')} as="button" className="btn btn-sm btn-ghost normal-case">Posts</Link>
+        <Link href="/cuypeople/status" as="button" className="btn btn-sm btn-ghost normal-case">User Stats</Link>
       </div>
       <div className="flex-none gap-2">
         <div className="dropdown dropdown-end">
