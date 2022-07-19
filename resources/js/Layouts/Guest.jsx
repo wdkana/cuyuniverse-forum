@@ -6,7 +6,7 @@ import Navbar from '@/Components/Homepage/Navbar';
 export default function Guest({ children }) {
     return (
         <div>
-            <Navbar user={null} title="Cuy Universe" />
+            <Navbar user={null} title="Cuy Universe" root="HOME" />
             <div className="min -h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 ">
                 <div>
                     <Link href="/">

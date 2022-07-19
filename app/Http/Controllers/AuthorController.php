@@ -37,6 +37,7 @@ class AuthorController extends Controller
 
         return Inertia::render('AuthorList', [
             "title" => "CUY PEOPLE STATS",
+            'root' => "HOME",
             "description" => "Pengguna aktif dan non-aktif di Cuy Universe",
             "data" => $user
         ]);
