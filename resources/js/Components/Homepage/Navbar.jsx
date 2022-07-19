@@ -2,6 +2,7 @@ import { Link } from '@inertiajs/inertia-react';
 import Avatar from 'avataaars';
 
 const Navbar = ({ user, title, root }) => {
+
   return (
     <div className="navbar bg-neutral">
       <div className="flex-1">
@@ -22,16 +23,15 @@ const Navbar = ({ user, title, root }) => {
             <div className="w-10  rounded-full">
               <Avatar style={{ width: '100%', height: '100%' }}
                 avatarStyle='Circle'
-                topType='ShortHairTheCaesarSidePart'
-                accessoriesType='Wayfarers'
-                hairColor='Red'
-                facialHairType='BeardMajestic'
+                topType='WinterHat3'
+                accessoriesType='Prescription02'
+                hatColor='Red'
+                facialHairType='BeardMedium'
                 facialHairColor='Red'
-                clotheType='Hoodie'
-                clotheColor='Red'
-                eyeType='Squint'
-                eyebrowType='UnibrowNatural'
-                mouthType='Concerned'
+                clotheType='BlazerSweater'
+                eyeType='WinkWacky'
+                eyebrowType='RaisedExcited'
+                mouthType='Smile'
                 skinColor='Light'
               />
             </div>

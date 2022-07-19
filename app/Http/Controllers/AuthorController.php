@@ -16,7 +16,7 @@ class AuthorController extends Controller
         return Inertia::render('Author', [
             'title' => $author,
             'root' => "HOME",
-            'description' => "Profile $author",
+            'description' => $author,
             'posts' => $data,
         ]);
     }

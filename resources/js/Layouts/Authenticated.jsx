@@ -40,16 +40,15 @@ export default function Authenticated({ auth, header, children }) {
                                                 <div className="w-10 rounded-full">
                                                     <Avatar style={{ width: '100%', height: '100%' }}
                                                         avatarStyle='Circle'
-                                                        topType='ShortHairTheCaesarSidePart'
-                                                        accessoriesType='Wayfarers'
-                                                        hairColor='Red'
-                                                        facialHairType='BeardMajestic'
+                                                        topType='WinterHat3'
+                                                        accessoriesType='Prescription02'
+                                                        hatColor='Red'
+                                                        facialHairType='BeardMedium'
                                                         facialHairColor='Red'
-                                                        clotheType='Hoodie'
-                                                        clotheColor='Red'
-                                                        eyeType='Squint'
-                                                        eyebrowType='UnibrowNatural'
-                                                        mouthType='Concerned'
+                                                        clotheType='BlazerSweater'
+                                                        eyeType='WinkWacky'
+                                                        eyebrowType='RaisedExcited'
+                                                        mouthType='Smile'
                                                         skinColor='Light'
                                                     />
                                                 </div>
@@ -118,16 +117,15 @@ export default function Authenticated({ auth, header, children }) {
                             <div className="w-10 rounded-full">
                                 <Avatar style={{ width: '100%', height: '100%' }}
                                     avatarStyle='Circle'
-                                    topType='ShortHairTheCaesarSidePart'
-                                    accessoriesType='Wayfarers'
-                                    hairColor='Red'
-                                    facialHairType='BeardMajestic'
+                                    topType='WinterHat3'
+                                    accessoriesType='Prescription02'
+                                    hatColor='Red'
+                                    facialHairType='BeardMedium'
                                     facialHairColor='Red'
-                                    clotheType='Hoodie'
-                                    clotheColor='Red'
-                                    eyeType='Squint'
-                                    eyebrowType='UnibrowNatural'
-                                    mouthType='Concerned'
+                                    clotheType='BlazerSweater'
+                                    eyeType='WinkWacky'
+                                    eyebrowType='RaisedExcited'
+                                    mouthType='Smile'
                                     skinColor='Light'
                                 />
                             </div>
