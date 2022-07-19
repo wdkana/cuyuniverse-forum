@@ -1,5 +1,6 @@
 import { Link } from '@inertiajs/inertia-react';
 import Avatar from 'avataaars';
+import { randomColor } from '@/utils/jsHelper';
 
 const Navbar = ({ user, title, root }) => {
   return (
@@ -22,16 +23,16 @@ const Navbar = ({ user, title, root }) => {
             <div className="w-10  rounded-full">
               <Avatar style={{ width: '100%', height: '100%' }}
                 avatarStyle='Circle'
-                topType='ShortHairTheCaesarSidePart'
+                topType={randomColor("top")}
                 accessoriesType='Wayfarers'
-                hairColor='Red'
-                facialHairType='BeardMajestic'
+                hairColor={randomColor("hair")}
+                facialHairType={randomColor("facial")}
                 facialHairColor='Red'
-                clotheType='Hoodie'
+                clotheType={randomColor("shirt")}
                 clotheColor='Red'
-                eyeType='Squint'
+                eyeType={randomColor("eyes")}
                 eyebrowType='UnibrowNatural'
-                mouthType='Concerned'
+                mouthType={randomColor("mouth")}
                 skinColor='Light'
               />
             </div>

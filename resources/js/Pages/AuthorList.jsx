@@ -1,7 +1,9 @@
 import React from 'react';
 import { Head, Link } from '@inertiajs/inertia-react';
 import Navbar from '@/Components/Homepage/Navbar';
-import Avatar from 'react-avatar';
+import Avatar from 'avataaars';
+import { randomColor } from '@/utils/jsHelper';
+
 
 export default function AuthorListPage(props) {
 
@@ -22,10 +24,22 @@ export default function AuthorListPage(props) {
           {props.data.sort((a, b) => b.total_post - a.total_post).map((user, i) => {
             return (
               <Link href={`/author/${user.username}`} as="button" className="flex flex-col justify-center items-center cursor-pointer" key={i}>
-                <div className='stat text-center'>
+                <div className='stat'>
                   <div className={`avatar ${user.is_online ? 'online' : 'offline'} p-2`}>
-                    <div className="rounded-full">
-                      <Avatar name={user.username} fgColor="#fff" />
+                    <div className="w-auto rounded-full">
+                      <Avatar style={{ width: '100%', height: '100%' }}
+                        topType={randomColor("top")}
+                        accessoriesType='Wayfarers'
+                        hairColor={randomColor("hair")}
+                        facialHairType={randomColor("facial")}
+                        facialHairColor='Red'
+                        clotheType={randomColor("shirt")}
+                        clotheColor='Red'
+                        eyeType={randomColor("eyes")}
+                        eyebrowType='UnibrowNatural'
+                        mouthType={randomColor("mouth")}
+                        skinColor='Light'
+                      />
                     </div>
                   </div>
                   <div className="stat-title text-xs">Total Post</div>
