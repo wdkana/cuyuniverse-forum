@@ -33,7 +33,7 @@ export default function AuthorPage(props) {
           <h1 className="text-xl font-bold">✨ {props.description} ✨</h1>
         </div>
         <div className='flex flex-col justify-center items-center lg:flex-row lg:flex-wrap lg:items-stretch p-4 gap-6'>
-          <PostsList posts={props.posts.data} />
+          <PostsList posts={props.posts.data} from="authorPage" />
         </div>
         <div className='flex justify-center items-center p-4'>
           <Paginate meta={props.posts} />

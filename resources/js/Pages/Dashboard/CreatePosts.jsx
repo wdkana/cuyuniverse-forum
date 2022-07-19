@@ -50,7 +50,7 @@ export default function CreatePosts(props) {
       <div className='flex flex-col justify-center items-center p-4 gap-4'>
         {formValidateNotif()}
         <div className='w-full lg:w-1/2'>
-          <textarea minLength={10} maxLength={200} required className="textarea bg-base-300 w-full" placeholder="Isi berita [min:10]" onChange={(description) => handleChange(description)}></textarea>
+          <textarea minLength={10} maxLength={200} required className="textarea h-36 bg-base-300 w-full" placeholder="Isi berita [min:10]" onChange={(description) => handleChange(description)}></textarea>
         </div>
         <button disabled={!isValid} className="btn lg:w-96 w-full" onClick={() => handleSubmit()}>Submit</button>
       </div >

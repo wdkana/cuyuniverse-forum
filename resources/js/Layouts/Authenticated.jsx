@@ -5,7 +5,6 @@ import NavLink from '@/Components/Default/NavLink';
 import ResponsiveNavLink from '@/Components/Default/ResponsiveNavLink';
 import { Link } from '@inertiajs/inertia-react';
 import Avatar from 'avataaars';
-import { randomColor } from '@/utils/jsHelper';
 
 export default function Authenticated({ auth, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
@@ -40,16 +39,16 @@ export default function Authenticated({ auth, header, children }) {
                                             >
                                                 <div className="w-10 rounded-full">
                                                     <Avatar style={{ width: '100%', height: '100%' }}
-                                                        topType={randomColor("top")}
-                                                        accessoriesType='Wayfarers'
-                                                        hairColor={randomColor("hair")}
-                                                        facialHairType={randomColor("facial")}
+                                                        avatarStyle='Circle'
+                                                        topType='WinterHat3'
+                                                        accessoriesType='Prescription02'
+                                                        hatColor='Red'
+                                                        facialHairType='BeardMedium'
                                                         facialHairColor='Red'
-                                                        clotheType={randomColor("shirt")}
-                                                        clotheColor='Red'
-                                                        eyeType={randomColor("eyes")}
-                                                        eyebrowType='UnibrowNatural'
-                                                        mouthType={randomColor("mouth")}
+                                                        clotheType='BlazerSweater'
+                                                        eyeType='WinkWacky'
+                                                        eyebrowType='RaisedExcited'
+                                                        mouthType='Smile'
                                                         skinColor='Light'
                                                     />
                                                 </div>
@@ -117,16 +116,16 @@ export default function Authenticated({ auth, header, children }) {
                         <div className="px-4 justify-center flex-col flex items-center gap-1">
                             <div className="w-10 rounded-full">
                                 <Avatar style={{ width: '100%', height: '100%' }}
-                                    topType={randomColor("top")}
-                                    accessoriesType='Wayfarers'
-                                    hairColor={randomColor("hair")}
-                                    facialHairType={randomColor("facial")}
+                                    avatarStyle='Circle'
+                                    topType='WinterHat3'
+                                    accessoriesType='Prescription02'
+                                    hatColor='Red'
+                                    facialHairType='BeardMedium'
                                     facialHairColor='Red'
-                                    clotheType={randomColor("shirt")}
-                                    clotheColor='Red'
-                                    eyeType={randomColor("eyes")}
-                                    eyebrowType='UnibrowNatural'
-                                    mouthType={randomColor("mouth")}
+                                    clotheType='BlazerSweater'
+                                    eyeType='WinkWacky'
+                                    eyebrowType='RaisedExcited'
+                                    mouthType='Smile'
                                     skinColor='Light'
                                 />
                             </div>

@@ -1,8 +1,8 @@
 import { Link } from '@inertiajs/inertia-react';
 import Avatar from 'avataaars';
-import { randomColor } from '@/utils/jsHelper';
 
 const Navbar = ({ user, title, root }) => {
+
   return (
     <div className="navbar bg-neutral">
       <div className="flex-1">
@@ -23,16 +23,15 @@ const Navbar = ({ user, title, root }) => {
             <div className="w-10  rounded-full">
               <Avatar style={{ width: '100%', height: '100%' }}
                 avatarStyle='Circle'
-                topType={randomColor("top")}
-                accessoriesType='Wayfarers'
-                hairColor={randomColor("hair")}
-                facialHairType={randomColor("facial")}
+                topType='WinterHat3'
+                accessoriesType='Prescription02'
+                hatColor='Red'
+                facialHairType='BeardMedium'
                 facialHairColor='Red'
-                clotheType={randomColor("shirt")}
-                clotheColor='Red'
-                eyeType={randomColor("eyes")}
-                eyebrowType='UnibrowNatural'
-                mouthType={randomColor("mouth")}
+                clotheType='BlazerSweater'
+                eyeType='WinkWacky'
+                eyebrowType='RaisedExcited'
+                mouthType='Smile'
                 skinColor='Light'
               />
             </div>
