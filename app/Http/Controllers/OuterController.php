@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\PostsCollection;
 use App\Models\Posts;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class OuterController extends Controller
@@ -28,6 +27,21 @@ class OuterController extends Controller
             'root' => 'HOME',
             'description' => "Semua postingan dari CuyPeople tersedia disini",
             'posts' => $posts,
+        ]);
+    }
+
+    public function find($post_id)
+    {
+        $posts = Posts::where('id', $post_id)->with(['comments.users'])->get()->makeHidden(['user_id']);
+
+        return Inertia::render('Post', [
+            'data' => $posts,
+            'title' => "POSTING DETAIL",
+            'description' => "Detail Postingan CuyPeople",
+            'root' => 'HOME',
+            'page' => 'POSTING COMMENT',
+            'next' => 'HOME',
+            'nextRoute' => 'outer.main'
         ]);
     }
 }
