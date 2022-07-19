@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\OuterController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 // ..
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 // ..
 
 // outer class
+
 Route::controller(OuterController::class)->name('outer.')->group(
     function () {
         Route::get('/', 'index')->name('main');
@@ -22,6 +24,7 @@ Route::controller(OuterController::class)->name('outer.')->group(
 Route::controller(AuthorController::class)->name('author.')->group(
     function () {
         Route::get('/author/{author}', 'profile')->name('profile');
+        Route::get('/cuypeople/status', 'userOnlineStatus')->name('status');
     }
 );
 

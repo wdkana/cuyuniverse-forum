@@ -24,7 +24,7 @@ class OuterController extends Controller
     {
         $posts = new PostsCollection(Posts::orderByDesc('id')->paginate(10));
         return Inertia::render('Posts', [
-            'title' => "POSTS",
+            'title' => "POSTINGAN CUYPEOPLE",
             'root' => 'HOME',
             'description' => "Semua postingan dari CuyPeople tersedia disini",
             'posts' => $posts,

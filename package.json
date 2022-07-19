@@ -26,6 +26,7 @@
         "avataaars": "^2.0.0",
         "daisyui": "^2.19.0",
         "date-fns": "^2.28.0",
+        "react-avatar": "^5.0.1",
         "react-countdown": "^2.3.2",
         "react-google-recaptcha": "^2.1.0"
     }
