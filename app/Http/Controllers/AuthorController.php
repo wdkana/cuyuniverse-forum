@@ -25,7 +25,7 @@ class AuthorController extends Controller
 
     public function userOnlineStatus()
     {
-        $users = User::with(['posts', 'comments'])->get();
+        $users = User::with(['posts', 'comments'])->where('email_verified_at', '!=', 'NULL')->get();
         $user = $users->map(function ($items) {
             $data['username'] = $items->username;
             $data['is_online'] = Cache::has('user-is-online-' . $items->id);
