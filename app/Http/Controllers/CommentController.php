@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 use Inertia\Inertia;
 
 class CommentController extends Controller
@@ -36,7 +37,20 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $request->validate(
+        //     [
+        //         'description' => 'required|string|min:2|max:80'
+        //     ]
+        // );
+        // Comment::create([
+        //     [
+        //         'description' => $request->description,
+        //         'commentartor' => auth()->user()->username
+        //     ]
+        // ]);
+
+
+        // return redirect()->back()->with('message', 'Komentar telah dikirim');
     }
 
     /**

@@ -19,11 +19,11 @@ class CommentFactory extends Factory
     public function definition()
     {
         $post_id = Posts::pluck('id');
-        $user_id = User::pluck('id');
+        $username = User::pluck('username');
         return [
             'description' => fake()->paragraph(1, true),
             'post_id' => fake()->randomElement($post_id),
-            'user_id' => fake()->randomElement($user_id),
+            'commentartor' => fake()->randomElement($username),
         ];
     }
 }

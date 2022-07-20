@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('description');
             $table->bigInteger('post_id')->unsigned()->index()->nullable();
             $table->foreign('post_id')->references('id')->on('posts')->onDelete('CASCADE');
-            $table->bigInteger('user_id')->unsigned()->index()->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('CASCADE');
+            $table->string('commentartor')->index()->nullable();
+            $table->foreign('commentartor')->references('username')->on('users')->onDelete('CASCADE');
             $table->timestamps();
         });
     }
@@ -35,9 +35,9 @@ return new class extends Migration
             $table->dropForeign('posts_post_id_foreign');
             $table->dropIndex('posts_post_id_index');
             $table->dropColumn('post_id');
-            $table->dropForeign('posts_user_id_foreign');
-            $table->dropIndex('posts_user_id_index');
-            $table->dropColumn('user_id');
+            $table->dropForeign('posts_commentartor_foreign');
+            $table->dropIndex('posts_commentartor_index');
+            $table->dropColumn('commentartor');
         });
     }
 };

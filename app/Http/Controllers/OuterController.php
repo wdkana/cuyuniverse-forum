@@ -33,11 +33,10 @@ class OuterController extends Controller
     public function find($post_id)
     {
         $posts = Posts::where('id', $post_id)->with(['comments.users'])->get()->makeHidden(['user_id']);
-
         return Inertia::render('Post', [
             'data' => $posts,
-            'title' => "POSTING DETAIL",
-            'description' => "Detail Postingan CuyPeople",
+            'title' => "Postingan Dari CuyPeople",
+            'description' => "komentari postingan ini",
             'root' => 'HOME',
             'page' => 'POSTING COMMENT',
             'next' => 'HOME',

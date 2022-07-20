@@ -4,7 +4,6 @@ use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\OuterController;
-use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 
 // ..
@@ -29,12 +28,6 @@ Route::controller(AuthorController::class)->name('author.')->group(
     }
 );
 
-Route::controller(CommentController::class)->name('comment.')->group(
-    function () {
-        Route::get('/comment/{post_id}', 'index')->name('main');
-    }
-);
-
 // user dashboard authorized grup
 Route::controller(DashboardController::class)->middleware(['auth', 'verified'])->name('dash.')->group(
     function () {
@@ -50,6 +43,7 @@ Route::controller(PostsController::class)->middleware(['auth', 'verified'])->nam
         Route::get('/dashboard/posts/create', 'create')->name('create');
         Route::post('/dashboard/posts', 'store')->name('store');
         Route::post('/dashboard/posts/delete', 'destroy')->name('remove');
+        Route::post('/post/comment', 'storeComment')->name('storeComment');
     }
 );
 

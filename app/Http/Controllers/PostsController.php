@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\PostsCollection;
+use App\Models\Comment;
 use Inertia\Inertia;
 use App\Models\Posts;
 use Illuminate\Http\Request;
@@ -84,6 +85,26 @@ class PostsController extends Controller
             'next' => 'BUAT POSTINGAN',
             'nextRoute' => 'posts.create'
         ]);
+    }
+
+    public function storeComment(Request $request)
+    {
+        $request->validate(
+            [
+                'description' => 'required|string|min:2|max:80'
+            ]
+        );
+
+        $comment = new Comment([
+            'description' => $request->description,
+            'commentartor' => auth()->user()->username
+        ]);
+
+        $post = Posts::find($request->post_id);
+
+        $post->comments()->save($comment);
+
+        return to_route('outer.byId', ['id' => $request->post_id])->with('message', 'Komentar telah dikirim');
     }
 
     public function edit(Posts $posts)

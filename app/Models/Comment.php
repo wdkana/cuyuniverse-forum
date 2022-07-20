@@ -9,6 +9,8 @@ class Comment extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['description', 'post_id', 'commentartor'];
+
     public function posts()
     {
         return $this->belongsTo(Posts::class, 'post_id', 'id');
@@ -16,6 +18,6 @@ class Comment extends Model
 
     public function users()
     {
-        return $this->belongsTo(Posts::class, 'user_id', 'id');
+        return $this->belongsTo(User::class, 'commentartor', 'username');
     }
 }
