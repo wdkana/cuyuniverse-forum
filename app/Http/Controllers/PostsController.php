@@ -26,15 +26,6 @@ class PostsController extends Controller
             'posts' => $posts,
         ]);
     }
-
-    public function search(Request $request)
-    {
-        $posts = Posts::search($request->text)->get();
-        return Inertia::render('Posts', [
-            'filteredPosts' => $posts,
-        ]);
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -78,7 +69,7 @@ class PostsController extends Controller
      */
     public function show()
     {
-        $posts = Posts::orderByDesc('id')->where('author', auth()->user()->username)->get();
+        $posts = Posts::orderByDesc('id')->where('author', auth()->user()->username)->with('comments')->get();
         return Inertia::render('Dashboard/MyPosts', [
             'data' => $posts,
             'page' => 'POSTINGAN SAYA',

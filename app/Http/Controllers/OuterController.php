@@ -21,7 +21,7 @@ class OuterController extends Controller
 
     public function PostsAll()
     {
-        $posts = new PostsCollection(Posts::orderByDesc('id')->paginate(10));
+        $posts = new PostsCollection(Posts::orderByDesc('id')->with('comments')->paginate(10));
         return Inertia::render('Posts', [
             'title' => "POSTINGAN CUYPEOPLE",
             'root' => 'HOME',

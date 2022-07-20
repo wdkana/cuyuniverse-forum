@@ -1,29 +1,25 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Authenticated from '@/Layouts/Authenticated';
 import { Head, Link } from '@inertiajs/inertia-react';
 import { usePage } from '@inertiajs/inertia-react'
 import { formatTime } from '@/utils/jsHelper';
 import { Inertia } from '@inertiajs/inertia';
-
-const postsNotification = (text) => {
-  return (
-    <div className="alert alert-sm shadow-lg w-full lg:w-1/2 bg-base-300">
-      <div>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-current flex-shrink-0 w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-        <span>{text}</span>
-      </div>
-    </div>
-  )
-}
+import NotificationAlert from '@/Components/Default/NotificationAlert';
 
 export default function MyPosts(props) {
   const { flash } = usePage().props
   const [wantRemove, setWantRemove] = useState(false)
+  const [showNotif, setShowNotif] = useState(false)
 
   const handleRemoveConfirmation = () => {
     setWantRemove(true)
   }
+
+  useEffect(() => {
+    flash.message ? setShowNotif(true) : setShowNotif(false)
+    return () => props.flash
+  }, [props])
 
   const removePosts = (id) => {
     Inertia.post('/dashboard/posts/delete', { id })
@@ -44,17 +40,19 @@ export default function MyPosts(props) {
       }
     >
       <Head title="Dashboard" />
-      <div className='flex flex-col justify-center items-center p-4 gap-6'>
-        {flash.message && postsNotification(flash.message)}
+      <div className='flex flex-col justify-center items-center lg:flex-row lg:flex-wrap lg:items-strech pt-6 px-4 gap-6'>
+        {showNotif && <NotificationAlert message={flash.message} />}
         {props.data.length > 0 ? props.data.map((posts, i) => {
           return (
-            <div key={i} className="card w-full sm:w-1/2 bg-base-300 shadow-xl">
+            <Link href={`/post/${posts.id}`} method="get" as="div" key={i} className="card w-full md:w-1/2 lg:w-1/3 bg-base-300 shadow-lg">
               <div className="card-body">
                 <div className='card-title'>
-                  <p className='break-all'>{posts.description}</p>
+                  <p className={`text-xl text-left ${posts.description.length > 100 ? "break-normal overflow-x-hidden" : "break-words"} h-20`}>{posts.description}</p>
                 </div>
                 <div className="card-actions justify-between">
-                  <div className="badge badge-outline">{formatTime(posts.updated_at)}</div>
+                  <div className='text-xs'>
+                    posted {formatTime(posts.updated_at)} | {posts.comments.length} comment
+                  </div>
                   <label onClick={() => handleRemoveConfirmation()} className="cursor-pointer badge badge-outline modal-button" htmlFor={`my-modal-${posts.id}`}>remove</label>
                   {wantRemove &&
                     <>
@@ -73,7 +71,7 @@ export default function MyPosts(props) {
                   }
                 </div>
               </div>
-            </div>
+            </Link>
           )
         }) : <div className='text-center'>
           <p className='font-bold text-2xl'>

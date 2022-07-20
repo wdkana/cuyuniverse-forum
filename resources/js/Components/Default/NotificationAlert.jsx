@@ -8,7 +8,7 @@ const NotificationAlert = ({ message }) => {
   }, 4000)
 
   return show &&
-    <div className="toast toast-center">
+    <div className="toast toast-top toast-center z-10">
       <div className="alert bg-primary text-black">
         <span className="text-sm">{message}</span>
       </div>

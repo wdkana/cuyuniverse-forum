@@ -55,26 +55,25 @@ export default function PostList(props) {
       {showNotif && <NotificationAlert message={props.notif} />}
       <div className="card-body p-6">
         <p className='text-xl break-all cursor-default'>{props.posts.description}</p>
-        <div className="badge badge-outline cursor-default">{formatTime(props.posts.created_at)}</div>
+        <div className="cursor-default text-xs">posted {formatTime(props.posts.created_at)}</div>
         <div className="card-actions flex flex-col justify-end items-end text-sm py-2">
           <div className='justify-center items-center flex flex-col'>
-            <Link href={`/author/${props.posts.author}`} as="button" method="get" className="badge badge-inline p-4 max-w-xs cursor-pointer">
+            <Link href={`/author/${props.posts.author}`} as="button" method="get" className="badge badge-inline p-4 max-w-xs cursor-pointer hover:translate-y-1 hover:transition-all">
               {props.posts.author}
             </Link>
           </div>
         </div>
         <div className="collapse rounded-md">
           <input type="checkbox" className="peer" />
-          <div className="collapse-title bg-base-100 text-white-content peer-checked:bg-slate-300 peer-checked:text-black">
-            semua komentar
+          <div className="collapse-title bg-base-100 text-white text-white-content peer-checked:bg-white peer-checked:text-black text-md">
+            🧾 <i>lihat semua komentar</i>
           </div>
-          <div className="collapse-content bg-base-100 text-white-content peer-checked:bg-slate-300 peer-checked:text-black-content">
-            {props.posts.comments.sort((a, b) => b.id - a.id).map((comment, i) => {
+          <div className="collapse-content mt-3 p-0 bg-base-300 text-white-content peer-checked:bg-base-300 peer-checked:text-black-content">
+            {props.posts.comments.map((comment, i) => {
               return (
-                <div className='mb-3 rounded-md shadow-lg flex flex-col bg-base-300 p-4' key={i}>
-                  <p className='text-lg font-bold mb-1'>{comment.commentartor}</p>
-                  <p>{comment.description}</p>
-                  <div className='mt-4 text-xs text-right'>{formatTime(comment.created_at)}</div>
+                <div className='mb-3 shadow-lg flex flex-col bg-white text-base-300 p-6' key={i}>
+                  <p className='text-xl font-mono font-bold'>{comment.description}</p>
+                  <Link href={`/author/${comment.commentartor}`} as="div" method="get" className='mt-4 text-xs text-left cursor-pointer  hover:cursor-pointer hover:translate-x-1 hover:transition-all'>comment {formatTime(comment.created_at)} by {comment.commentartor}</Link>
                 </div>
               )
             })}
