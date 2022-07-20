@@ -1,7 +1,6 @@
 import { formatTime } from '@/utils/jsHelper';
 import { Inertia } from '@inertiajs/inertia';
 import { Link } from '@inertiajs/inertia-react';
-import Avatar from 'avataaars';
 import { useEffect, useState } from 'react';
 import NotificationAlert from '../Default/NotificationAlert';
 
@@ -52,7 +51,7 @@ export default function PostList(props) {
   }
 
   return (
-    <div className="card md:w-2/3 bg-base-300 shadow-lg">
+    <div className="card w-full md:w-2/3 bg-base-300 shadow-lg">
       {showNotif && <NotificationAlert message={props.notif} />}
       <div className="card-body p-6">
         <p className='text-xl break-all cursor-default'>{props.posts.description}</p>
