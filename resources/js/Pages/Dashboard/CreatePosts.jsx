@@ -22,6 +22,7 @@ export default function CreatePosts(props) {
 
   useEffect(() => {
     description.length >= 10 && description.length <= 200 ? setIsValid(true) : setIsValid(false)
+    return () => description
   }, [description])
 
   const formValidateNotif = () => {
@@ -50,9 +51,9 @@ export default function CreatePosts(props) {
       <div className='flex flex-col justify-center items-center p-4 gap-4'>
         {formValidateNotif()}
         <div className='w-full lg:w-1/2'>
-          <textarea minLength={10} maxLength={200} required className="textarea h-36 bg-base-300 w-full" placeholder="Isi berita [min:10]" onChange={(description) => handleChange(description)}></textarea>
+          <textarea minLength={10} maxLength={200} required className="textarea h-36 bg-base-300 w-full" placeholder="Isi posting [min:10]" onChange={(description) => handleChange(description)}></textarea>
         </div>
-        <button disabled={!isValid} className="btn lg:w-96 w-full" onClick={() => handleSubmit()}>Submit</button>
+        <button disabled={!isValid} className="btn btn-outline lg:w-1/2 w-full" onClick={() => handleSubmit()}>Submit</button>
       </div >
     </Authenticated>
   )

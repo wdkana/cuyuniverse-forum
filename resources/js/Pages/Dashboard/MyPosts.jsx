@@ -77,10 +77,10 @@ export default function MyPosts(props) {
           )
         }) : <div className='text-center'>
           <p className='font-bold text-2xl'>
-            kamu belum membuat berita
+            kamu belum punya postingan
           </p>
           <Link href={
-            route('posts.create')} as="button" className='btn btn-link'>Buat Berita Sekarang</Link>
+            route('posts.create')} as="button" className='btn btn-link'>Post Sekarang!</Link>
         </div>}
       </div>
     </Authenticated >

@@ -2,13 +2,14 @@
 
 namespace Database\Factories;
 
+use App\Models\Posts;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Posts>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Comment>
  */
-class PostsFactory extends Factory
+class CommentFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,12 +18,12 @@ class PostsFactory extends Factory
      */
     public function definition()
     {
-        $id = User::pluck('id');
+        $post_id = Posts::pluck('id');
         $username = User::pluck('username');
         return [
             'description' => fake()->paragraph(1, true),
-            'user_id' => fake()->randomElement($id),
-            'author' => fake()->randomElement($username),
+            'post_id' => fake()->randomElement($post_id),
+            'commentartor' => fake()->randomElement($username),
         ];
     }
 }

@@ -14,13 +14,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::controller(OuterController::class)->name('outer.')->group(
     function () {
-        Route::get('/', 'index')->name('main');
+        Route::get('/', 'index')->name('main')->middleware('throttle:20,1');
         Route::get('/posts', 'PostsAll')->name('posts');
         Route::post('/posts', 'MorePosts')->name('posts.more');
+        Route::get('/post/{id}', 'find')->name('byId');
     }
 );
 
-Route::controller(AuthorController::class)->name('author.')->group(
+Route::controller(AuthorController::class)->name('author.')->middleware('throttle:30,1')->group(
     function () {
         Route::get('/author/{author}', 'profile')->name('profile');
         Route::get('/cuypeople/status', 'userOnlineStatus')->name('status');
@@ -38,10 +39,11 @@ Route::controller(DashboardController::class)->middleware(['auth', 'verified'])-
 //user dashboard posts
 Route::controller(PostsController::class)->middleware(['auth', 'verified'])->name('posts.')->group(
     function () {
-        Route::get('/dashboard/posts', 'show')->name('main');
+        Route::get('/dashboard/posts', 'show')->name('main')->middleware('throttle:30,1');
         Route::get('/dashboard/posts/create', 'create')->name('create');
-        Route::post('/dashboard/posts', 'store')->name('store');
+        Route::post('/dashboard/posts', 'store')->name('store')->middleware('throttle:15,5');
         Route::post('/dashboard/posts/delete', 'destroy')->name('remove');
+        Route::post('/post/comment', 'storeComment')->name('storeComment')->middleware('throttle:50,5');;
     }
 );
 

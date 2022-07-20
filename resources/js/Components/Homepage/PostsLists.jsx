@@ -1,7 +1,5 @@
 import { formatTime } from '@/utils/jsHelper';
 import { Link } from '@inertiajs/inertia-react';
-import Avatar from 'avataaars';
-import { randomColor } from '@/utils/jsHelper';
 
 const noPosts = () => {
   return (
@@ -13,40 +11,21 @@ const noPosts = () => {
   )
 }
 
-const isPosts = (posts, from) => {
+const isPosts = (posts) => {
   return posts.map((post, i) => {
     return (
       <div key={i} className="card w-full md:w-1/2 lg:w-1/3 xl:w-1/4 bg-base-300 shadow-lg">
-        <div className="card-body p-3">
-          <p className='text-xl break-all cursor-default'>{post.description}</p>
-          <div className="badge badge-outline cursor-default">{formatTime(post.updated_at)}</div>
-          <div className="card-actions flex flex-col justify-end items-end text-sm">
-            <div className='justify-center items-center flex flex-col'>
-              <Link href={`/author/${post.author}`} as="button" method="get" className="avatar p-2">
-                {from != "authorPage" &&
-                  <div className="w-10 rounded-full ring ring-primary ring-offset-base-100">
-                    <Avatar style={{ width: '100%', height: '100%' }}
-                      topType={randomColor("top")}
-                      accessoriesType='Wayfarers'
-                      hairColor={randomColor("hair")}
-                      facialHairType={randomColor("facial")}
-                      facialHairColor='Red'
-                      clotheType={randomColor("shirt")}
-                      clotheColor='Red'
-                      eyeType={randomColor("eyes")}
-                      eyebrowType='UnibrowNatural'
-                      mouthType={randomColor("mouth")}
-                      skinColor='Light'
-                    />
-                  </div>
-                }
-              </Link>
-              <div className="badge badge-inline p-4 max-w-xs cursor-default">
+        <Link href={`/post/${post.id}`} method="get" as="div" className="card-body p-6 cursor-pointer">
+          <div className='text-xl break-all text-left'>{post.description}</div>
+          <div className="badge badge-outline">{formatTime(post.updated_at)}</div>
+          <div className="card-actions flex justify-end items-end text-sm">
+            <Link href={`/author/${post.author}`} as="button" method="get" className="badge badge-inline p-4 max-w-xs">
+              <div className="badge badge-inline max-w-xs cursor-pointer">
                 {post.author}
               </div>
-            </div>
+            </Link>
           </div>
-        </div>
+        </Link>
       </div >
     )
   }
