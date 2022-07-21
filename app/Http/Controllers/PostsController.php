@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Middleware\isValidUser;
 use App\Http\Resources\PostsCollection;
 use App\Models\Comment;
 use Inertia\Inertia;
 use App\Models\Posts;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -58,6 +56,7 @@ class PostsController extends Controller
                 'token' => 'required'
             ]
         );
+
         $posts = new Posts();
         $posts->description = $request->description;
         $posts->author = auth()->user()->username;
@@ -87,13 +86,15 @@ class PostsController extends Controller
     {
         $request->validate(
             [
-                'description' => 'required|string|min:2|max:80'
+                'description' => 'required|string|min:2|max:80',
+                'token' => 'required'
             ]
         );
 
         $comment = new Comment([
             'description' => $request->description,
-            'commentartor' => auth()->user()->username
+            'commentartor' => auth()->user()->username,
+            'token' => $request->token
         ]);
 
         $post = Posts::find($request->post_id);
@@ -101,23 +102,6 @@ class PostsController extends Controller
         $post->comments()->save($comment);
 
         return to_route('outer.byId', ['id' => $request->post_id])->with('message', 'Komentar telah dikirim');
-    }
-
-    public function edit(Posts $posts)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Posts  $posts
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Posts $posts)
-    {
-        //
     }
 
     /**

@@ -193,7 +193,7 @@ button {
     </div>
     <div class="text">
         <h1>Request Terlarang</h1>  
-      <h2>mencoba melindungi kemanan data anda</h2>
+      <h2>mencoba melindungi keamanan data anda</h2>
       <h6>Mohon maaf sepertinya kamu harus login ulang terlebih dahulu demi keamanan data pribadi yang kamu miliki  <a href="/dashboard">silahkan logout sekarang</a></h6> 
       </div>
 </article>
