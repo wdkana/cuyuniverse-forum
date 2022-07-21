@@ -1,6 +1,6 @@
 import React from 'react';
 import Authenticated from '@/Layouts/Authenticated';
-import { Link, Head } from '@inertiajs/inertia-react';
+import { Head } from '@inertiajs/inertia-react';
 
 export default function DashboardPage(props) {
     return (
@@ -11,10 +11,8 @@ export default function DashboardPage(props) {
         >
             <Head title={props.title} />
             <div className='max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8'>
-                <div className="flex flex-col md:flex-row w-full gap-2">
-                    <Link href={route('posts.create')} method="get" as="button" className='btn btn-outline'>Create New Post</Link>
-                    <Link href={route('posts.main')} method="get" as="button" className='btn btn-outline'>Manage My Post</Link>
-                    <button className='btn btn-outline'>Badge Saya <span className="ml-2 badge badge-sm badge-primary">Soon</span></button>
+                <div className="flex flex-col md:flex-row w-full">
+                    <h1>Untuk saat ini silahkan gunakan menubar yang ada dibagian atas website ini untuk mengakses menu fitur yang tersedia.</h1>
                 </div>
             </div>
         </Authenticated>

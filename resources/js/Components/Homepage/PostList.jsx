@@ -6,22 +6,28 @@ import NotificationAlert from '../Default/NotificationAlert';
 
 export default function PostList(props) {
   const [newComment, setNewComment] = useState("")
-
   const [limiter, setLimiter] = useState(80)
   const [isValid, setIsValid] = useState(true)
   const [showNotif, setShowNotif] = useState(false)
 
   useEffect(() => {
-    newComment.length >= 2 && newComment.length <= 80 ? setIsValid(true) : setIsValid(false)
-  }, [newComment])
+    let mount = true
+    if (limiter > 0) {
+      mount && newComment.length >= 2 && newComment.length <= 80 ? setIsValid(true) : setIsValid(false)
+    }
+    return () => { mount = false }
+  }, [newComment.length])
 
   useEffect(() => {
-    props.notif ? setShowNotif(true) : setShowNotif(false)
-    return () => props.notif
+    setShowNotif(true)
+    return () => setShowNotif(false)
   }, [props])
 
   const handlerCommentInput = (value) => {
     setNewComment(value)
+    if (value.length > 2) {
+      setShowNotif(false)
+    }
     const x = 80 - Number(value.length)
     if (x >= 0) {
       setLimiter(x)
@@ -31,12 +37,12 @@ export default function PostList(props) {
   const handlerCommentSubmit = () => {
     const data = {
       post_id: props.posts.id,
-      description: newComment
+      description: newComment,
+      token: props.user.token
     }
     isValid && Inertia.post('/post/comment', data)
     setNewComment('')
-    setLimiter(80)
-    return () => isValid
+    return setLimiter(80)
   }
 
   const formValidateNotif = () => {
@@ -80,9 +86,9 @@ export default function PostList(props) {
           </div>
         </div>
         <div className='flex flex-col justify-center items-center gap-4 py-2'>
-          {props.users && formValidateNotif()}
-          <input type="text" minLength={2} maxLength={80} value={newComment} className='input w-full h-42' placeholder={props.users == null ? "Login untuk mengisi komentar" : "Tulis komentar"} onChange={(e) => handlerCommentInput(e.target.value)} disabled={props.users == null ? true : false} />
-          <button type="button" className='btn btn-outline font-bold btn-sm w-full' disabled={props.users == null || !isValid ? true : false} onClick={() => handlerCommentSubmit()}>Komentar</button>
+          {props.user && formValidateNotif()}
+          <input type="text" minLength={2} maxLength={80} value={newComment} className='input w-full h-42' placeholder={props.user == null ? "Login untuk mengisi komentar" : "Tulis komentar"} onChange={(e) => handlerCommentInput(e.target.value)} disabled={props.user == null ? true : false} />
+          <button type="button" className='btn btn-outline font-bold btn-sm w-full' disabled={props.user == null || !isValid ? true : false} onClick={() => handlerCommentSubmit()}>Komentar</button>
         </div>
       </div>
     </div >

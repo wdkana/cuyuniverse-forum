@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\isValidUser;
 use App\Http\Resources\PostsCollection;
 use App\Models\Comment;
 use Inertia\Inertia;
 use App\Models\Posts;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostsController extends Controller
 {
@@ -26,6 +29,7 @@ class PostsController extends Controller
             'posts' => $posts,
         ]);
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -51,6 +55,7 @@ class PostsController extends Controller
         $request->validate(
             [
                 'description' => 'required|string|min:4|max:200',
+                'token' => 'required'
             ]
         );
         $posts = new Posts();

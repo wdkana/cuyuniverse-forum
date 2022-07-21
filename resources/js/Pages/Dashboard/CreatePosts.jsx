@@ -9,7 +9,11 @@ export default function CreatePosts(props) {
   const [isValid, setIsValid] = useState(true)
 
   const handleSubmit = () => {
-    return isValid && Inertia.post('/dashboard/posts', { description })
+    const data = {
+      description: description,
+      token: props.auth.user.token
+    }
+    return isValid && Inertia.post('/dashboard/manage-posts/posts', data)
   }
 
   const handleChange = (e) => {
@@ -21,9 +25,12 @@ export default function CreatePosts(props) {
   }
 
   useEffect(() => {
-    description.length >= 10 && description.length <= 200 ? setIsValid(true) : setIsValid(false)
-    return () => description
-  }, [description])
+    let mount = true
+    if (limiter > 0) {
+      mount && description.length >= 10 && description.length <= 200 ? setIsValid(true) : setIsValid(false)
+    }
+    return () => { mount = false }
+  }, [description.length])
 
   const formValidateNotif = () => {
     return (

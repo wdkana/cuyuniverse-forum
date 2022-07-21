@@ -13,20 +13,24 @@ export default function MyPosts(props) {
   const [showNotif, setShowNotif] = useState(false)
 
   const handleRemoveConfirmation = () => {
-    setWantRemove(true)
+    return setWantRemove(true)
   }
 
   useEffect(() => {
-    flash.message ? setShowNotif(true) : setShowNotif(false)
-    return () => props.flash
+    if (flash.message) {
+      setShowNotif(true)
+    }
+    return () => setShowNotif(false)
   }, [props])
 
   const removePosts = (id) => {
-    Inertia.post('/dashboard/posts/delete', { id })
+    const data = {
+      id: id,
+      token: props.auth.user.token
+    }
+    Inertia.post('/dashboard/manage-posts/posts/delete', data)
     return setWantRemove(false)
   }
-
-
 
   return (
     <Authenticated
@@ -44,16 +48,16 @@ export default function MyPosts(props) {
         {showNotif && <NotificationAlert message={flash.message} />}
         {props.data.length > 0 ? props.data.map((posts, i) => {
           return (
-            <Link href={`/post/${posts.id}`} method="get" as="div" key={i} className="card w-full md:w-1/2 lg:w-1/3 bg-base-300 shadow-lg">
+            <div key={i} className="card w-full md:w-1/2 lg:w-1/3 bg-base-300 shadow-lg">
               <div className="card-body">
-                <div className='card-title'>
-                  <p className={`text-xl text-left ${posts.description.length > 100 ? "break-normal overflow-x-hidden" : "break-words"} h-20`}>{posts.description}</p>
-                </div>
+                <Link href={`/post/${posts.id}`} method="get" as="div" className='card-title'>
+                  <p className={`cursor-pointer hover:-translate-y-1 hover:transition-all text-xl text-left ${posts.description.length > 100 ? "break-normal overflow-x-hidden" : "break-words"} h-20`}>{posts.description}</p>
+                </Link>
                 <div className="card-actions justify-between">
                   <div className='text-xs'>
                     posted {formatTime(posts.updated_at)} | {posts.comments.length} comment
                   </div>
-                  <label onClick={() => handleRemoveConfirmation()} className="cursor-pointer badge badge-outline modal-button" htmlFor={`my-modal-${posts.id}`}>remove</label>
+                  <label onClick={() => handleRemoveConfirmation()} className="hover:bg-white hover:text-black cursor-pointer badge badge-outline modal-button" htmlFor={`my-modal-${posts.id}`}>remove</label>
                   {wantRemove &&
                     <>
                       <input type="checkbox" id={`my-modal-${posts.id}`} className="modal-toggle" />
@@ -71,7 +75,7 @@ export default function MyPosts(props) {
                   }
                 </div>
               </div>
-            </Link>
+            </div>
           )
         }) : <div className='text-center'>
           <p className='font-bold text-2xl'>
