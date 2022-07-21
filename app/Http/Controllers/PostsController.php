@@ -94,7 +94,6 @@ class PostsController extends Controller
         $comment = new Comment([
             'description' => $request->description,
             'commentartor' => auth()->user()->username,
-            'token' => $request->token
         ]);
 
         $post = Posts::find($request->post_id);
