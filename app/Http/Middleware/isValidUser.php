@@ -18,19 +18,14 @@ class isValidUser
      */
     public function handle(Request $request, Closure $next)
     {
-        $users = User::find(Auth::user()->id);
-        if ($request->token) {
-            if (Auth::user()->token === $users->token) {
-                return $next($request);
-            } else {
-                $users->token = NULL;
-                $users->save();
-                Auth::guard('web')->logout();
-                $request->session()->invalidate();
-                $request->session()->regenerateToken();
-                return abort(403);
-            }
+        $user_data_token = User::find(Auth::user()->id)->where('token', $request->token)->first();
+
+        if ($user_data_token == null) {
+            return abort(403);
         }
-        return abort(403);
+        if ($user_data_token->token !== $request->token) {
+            return abort(403);
+        }
+        return $next($request);
     }
 }
