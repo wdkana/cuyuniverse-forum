@@ -1,5 +1,5 @@
 <!doctype html>
-<title>Mencapai Batas</title>
+  <title>Document</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Fira+Mono:wght@500&display=swap');
 body {
@@ -192,9 +192,8 @@ button {
             </svg>
     </div>
     <div class="text">
-        <h1>Cuy Universe Off Duls ✌</h1>  
-      <h2>Server Sleeping Now</h2>
-      <h6>Mohon maaf saat ini website sedang dalam <i>pengecekan</i> guna memperbaiki performa untuk kepuasan Cuy People. Kalau kamu pengen bertanya sesuatu <a href="mailto:deacode@icloud.com">hubungi admin sekarang</a>, terimakasih CuyUniverse akan kembali online dari beberapa waktu kedepan!</h6> 
-       <p>&mdash; Dea Afrizal</p>
+        <h1>Request Terlarang</h1>  
+      <h2>mencoba melindungi kemanan data anda</h2>
+      <h6>Mohon maaf sepertinya kamu harus login ulang terlebih dahulu demi keamanan data pribadi yang kamu miliki  <a href="/dashboard">silahkan logout sekarang</a></h6> 
       </div>
 </article>

@@ -19,7 +19,7 @@ export default function AuthorListPage(props) {
         <div className="flex flex-col justify-center items-center sm:flex-row sm:flex-wrap p-4 gap-6">
           {props.data.sort((a, b) => b.total_post - a.total_post).map((user, i) => {
             return (
-              <Link href={`/author/${user.username}`} as="button" className="flex flex-col bg-slate-50 text-black rounded-md shadow-lg w-full md:w-5/6 lg:w-1/3 xl:w-1/4 justify-center items-center cursor-pointer" key={i}>
+              <Link href={`/author/${user.username}`} as="button" className="flex flex-col bg-base-300 text-white rounded-md shadow-lg w-full md:w-5/6 lg:w-1/3 xl:w-1/4 justify-center items-center cursor-pointer hover:-translate-y-1 hover:transition-all" key={i}>
                 <div className='stat'>
                   <div className="text-md">{user.username}</div>
                   <div className="text-sm">
@@ -40,9 +40,10 @@ export default function AuthorListPage(props) {
             )
           })}
         </div>
-        <div className='text-center py-6'>
+        {props.data.length > 20 && <div className='text-center py-6'>
           <button onClick={() => scrollToTop()} className="btn btn-link text-white btn-sm">Kembali Ke Atas</button>
         </div>
+        }
       </div>
     </>
   )

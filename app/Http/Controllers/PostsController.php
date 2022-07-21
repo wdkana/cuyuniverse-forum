@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\isValidUser;
 use App\Http\Resources\PostsCollection;
 use App\Models\Comment;
 use Inertia\Inertia;
 use App\Models\Posts;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostsController extends Controller
 {
@@ -24,14 +27,6 @@ class PostsController extends Controller
             'root' => "HOME",
             'description' => "Selamat Datang Di Cuy Universe Portal",
             'posts' => $posts,
-        ]);
-    }
-
-    public function search(Request $request)
-    {
-        $posts = Posts::search($request->text)->get();
-        return Inertia::render('Posts', [
-            'filteredPosts' => $posts,
         ]);
     }
 
@@ -60,6 +55,7 @@ class PostsController extends Controller
         $request->validate(
             [
                 'description' => 'required|string|min:4|max:200',
+                'token' => 'required'
             ]
         );
         $posts = new Posts();
@@ -78,7 +74,7 @@ class PostsController extends Controller
      */
     public function show()
     {
-        $posts = Posts::orderByDesc('id')->where('author', auth()->user()->username)->get();
+        $posts = Posts::orderByDesc('id')->where('author', auth()->user()->username)->with('comments')->get();
         return Inertia::render('Dashboard/MyPosts', [
             'data' => $posts,
             'page' => 'POSTINGAN SAYA',
