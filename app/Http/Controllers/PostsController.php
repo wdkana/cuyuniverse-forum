@@ -128,7 +128,7 @@ class PostsController extends Controller
      */
     public function destroy(Request $request)
     {
-        Posts::where('id', $request->id)->delete();
+        Posts::where('id', $request->id)->where('user_id', Auth::user()->id)->delete();
         return to_route('posts.main');
     }
 }
