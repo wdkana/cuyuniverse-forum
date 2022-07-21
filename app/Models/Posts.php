@@ -9,6 +9,8 @@ class Posts extends Model
 {
     use HasFactory;
 
+    protected $hidden = ['user_id'];
+
     public function users()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');

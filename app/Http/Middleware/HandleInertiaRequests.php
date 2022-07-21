@@ -41,11 +41,11 @@ class HandleInertiaRequests extends Middleware
             'flash' => [
                 'message' => fn () => $request->session()->get('message')
             ],
-            'ziggy' => function () use ($request) {
-                return array_merge((new Ziggy)->toArray(), [
-                    'location' => $request->url(),
-                ]);
-            },
+            // 'ziggy' => function () use ($request) {
+            //     return array_merge((new Ziggy)->toArray(), [
+            //         'location' => $request->url(),
+            //     ]);
+            // },
         ]);
     }
 }
