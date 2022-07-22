@@ -83,9 +83,11 @@ export default function PostList(props) {
                 <div className='mb-2 flex flex-col bg-neutral text-white p-6' key={i}>
                   <div className='text-xl font-mono font-bold'>{comment.description}</div>
                   <Link href={`/author/${comment.commentartor}`} as="div" method="get" className='mt-2 p-2 items-end justify-end flex gap-1 flex-row text-xs cursor-pointer hover:cursor-pointer hover:translate-x-1 hover:transition-all'>
-                    <div className=''>comment {formatTime(comment.created_at)} by {comment.commentartor}</div>
-                    <div className="w-6 rounded-full">
-                      <img src={comment.users.image !== null ? `/storage/images/${comment.users.image}` : '/storage/images/defaultavatar.png'} />
+                    <div className='mr-1'>comment {formatTime(comment.created_at)} by {comment.commentartor}</div>
+                    <div className="avatar">
+                      <div className="w-6 rounded-full">
+                        <img src={comment.users.image !== null ? `/storage/images/${comment.users.image}` : '/storage/images/defaultavatar.png'} />
+                      </div>
                     </div>
                   </Link>
                 </div>
