@@ -61,18 +61,26 @@ export default function PostList(props) {
       {showNotif && <NotificationAlert message={props.notif} />}
       <div className="card-body p-6">
         <p className='text-2xl break-all cursor-default font-bold'>{props.posts.description}</p>
-        <div className="card-actions flex flex-col justify-content-between items-end text-sm py-2 border-b-4 border-b-primary">
-            <div className="cursor-default text-xs">posted {formatTime(props.posts.created_at)}</div>
-            <div className='justify-center items-center flex flex-col'>
-                <Link href={`/author/${props.posts.author}`} as="button" method="get" className="avatar">
-                <div className="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                    <img src={props.author_image !==null ? `/storage/images/${props.author_image}`
-                        : '/storage/images/defaultavatar.png' } />
-                </div>
-                </Link>
-                <div className='py-2'>{props.posts.author}</div>
+        
+        <div class="flex flex-row py-2 border-b-4 border-b-primary">
+          <div className="basis-1/2 flex justify-start items-end"> 
+            <div className='text-xs cursor-default break-normal'>
+              posted {formatTime(props.posts.created_at)}
             </div>
+          </div>
+          
+          <div className="basis-1/2 card-actions flex flex-col justify-end items-end text-sm">
+            <div className='justify-center items-center flex flex-col'>
+              <Link href={`/author/${props.posts.author}`} as="button" method="get" className="avatar">
+                <div className="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                  <img src={props.author_image !== null ? `/storage/images/${props.author_image}` : '/storage/images/defaultavatar.png'} />
+                </div>
+              </Link>
+              <div className='py-2'>{props.posts.author}</div>
+            </div>
+          </div>
         </div>
+        
         <div className="bg-base-200">
           {props.comments.map((comment, i) => {
             return (

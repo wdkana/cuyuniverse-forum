@@ -20,7 +20,7 @@ const isPosts = (posts, from) => {
           
           <div class="flex flex-row">
             <div className="basis-1/2 content-end card-actions text-sm">
-              <div className='text-xs'>
+              <div className='text-xs break-normal'>
                 posted {formatTime(post.updated_at)} | {post.comments && post.comments.length > 0 ? post.comments.length : "no"} comment
               </div>
             </div>
