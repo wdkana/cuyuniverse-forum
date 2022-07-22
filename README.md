@@ -19,7 +19,7 @@
 CuyUniverse adalah project terbuka untuk siapa saja yang mau belajar ngoding terutama dengan pemilihan 2 bahasa pemrograman (PHP & Javascript).
 3 core stack yang digunakan saat ini: LARAVEL9, REACTJS & MYSQL
 
-👇 Clone project ini sekarang di lokal komputer kalian masing-masing.
+👇 FORK atau coba-coba di clone project ini sekarang di lokal komputer kalian masing-masing.
 
 ```bash
 git clone https://github.com/deaaprizal/laract9.git .
