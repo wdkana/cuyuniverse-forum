@@ -35,13 +35,13 @@ export default function Login({ status, canResetPassword }) {
             <div className='p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 flex flex-col justify-center items-center'>
                 <Head title="MASUK AKUN" />
                 <div className='font-bold text-xl'>MASUK CUYUNIVERSE</div>
-                {status && <div className="mb-4 font-medium text-sm text-white">{status}</div>}
+                {status && <div className="mb-4 font-medium text-sm">{status}</div>}
 
                 <ValidationErrors errors={errors} />
 
                 <form onSubmit={submit} className="w-full md:w-1/2">
                     <div>
-                        <Label forInput="username" value="Username" className="text-white" />
+                        <Label forInput="username" value="Username" />
 
                         <Input
                             type="text"
@@ -55,7 +55,7 @@ export default function Login({ status, canResetPassword }) {
                     </div>
 
                     <div className="mt-4">
-                        <Label forInput="password" value="Password" className="text-white" />
+                        <Label forInput="password" value="Password" />
 
                         <Input
                             type="password"
@@ -71,7 +71,7 @@ export default function Login({ status, canResetPassword }) {
                         <label className="flex items-center">
                             <Checkbox name="remember" value={data.remember} handleChange={onHandleChange} />
 
-                            <span className="ml-2 text-sm text-white">Remember me</span>
+                            <span className="ml-2 text-sm ">Remember me</span>
                         </label>
                     </div>
 
@@ -79,7 +79,7 @@ export default function Login({ status, canResetPassword }) {
                         {canResetPassword && (
                             <Link
                                 href={route('password.request')}
-                                className="underline text-sm text-gray-300 hover:text-white"
+                                className="underline text-sm"
                             >
                                 Lupa password?
                             </Link>

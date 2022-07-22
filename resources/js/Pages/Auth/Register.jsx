@@ -38,7 +38,7 @@ export default function Register() {
 
                 <form onSubmit={submit} className="w-full md:w-1/2">
                     <div>
-                        <Label forInput="username" value="Username" className="text-white" />
+                        <Label forInput="username" value="Username" className="" />
 
                         <Input
                             type="text"
@@ -53,7 +53,7 @@ export default function Register() {
                     </div>
 
                     <div className="mt-4">
-                        <Label forInput="email" value="Email" className="text-white" />
+                        <Label forInput="email" value="Email" className="" />
 
                         <Input
                             type="email"
@@ -67,7 +67,7 @@ export default function Register() {
                     </div>
 
                     <div className="mt-4">
-                        <Label forInput="password" value="Password" className="text-white" />
+                        <Label forInput="password" value="Password" className="" />
 
                         <Input
                             type="password"
@@ -81,7 +81,7 @@ export default function Register() {
                     </div>
 
                     <div className="mt-4">
-                        <Label forInput="password_confirmation" value="Confirm Password" className="text-white" />
+                        <Label forInput="password_confirmation" value="Confirm Password" className="" />
 
                         <Input
                             type="password"
@@ -94,7 +94,7 @@ export default function Register() {
                     </div>
 
                     <div className="flex items-center justify-end mt-4">
-                        <Link href={route('login')} className="underline text-sm text-gray-300 hover:text-white">
+                        <Link href={route('login')} className="underline text-sm">
                             Udah punya akun?
                         </Link>
 
