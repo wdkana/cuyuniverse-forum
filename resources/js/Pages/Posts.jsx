@@ -2,14 +2,13 @@ import React from 'react';
 import { Head } from '@inertiajs/inertia-react';
 import PostsList from '@/Components/Homepage/PostsLists';
 import Paginate from '@/Components/Homepage/Paginate';
-import Navbar from '@/Components/Homepage/Navbar';
+import Guest from '@/Layouts/Guest';
 
 export default function PostsPage(props) {
   return (
-    <>
+    <Guest auth={props.auth.user}>
       <Head title={props.title} />
       <div className='min-h-screen'>
-        <Navbar user={props.auth.user} title={props.title} root={props.root} />
         <div className='text-center pt-6'>
           <h1 className='font-bold text-lg'>✨ {props.title} ✨</h1>
           <p className='text-sm'>{props.description}</p>
@@ -21,6 +20,6 @@ export default function PostsPage(props) {
           <Paginate meta={props.posts.meta} />
         </div>
       </div>
-    </>
+    </Guest>
   )
 }

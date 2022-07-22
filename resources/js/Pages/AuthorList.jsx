@@ -1,6 +1,6 @@
 import React from 'react';
 import { Head, Link } from '@inertiajs/inertia-react';
-import Navbar from '@/Components/Homepage/Navbar';
+import Guest from '@/Layouts/Guest';
 
 export default function AuthorListPage(props) {
   const scrollToTop = () => {
@@ -8,10 +8,9 @@ export default function AuthorListPage(props) {
   }
 
   return (
-    <>
+    <Guest auth={props.auth.user}>
       <Head title={props.title} />
       <div className='min-h-screen'>
-        <Navbar user={props.auth.user} title={props.title} root={props.root} />
         <div className='text-center pt-6'>
           <h1 className='font-bold text-lg'>✨ {props.title} ✨</h1>
           <p className='text-sm'>{props.description}</p>
@@ -20,6 +19,11 @@ export default function AuthorListPage(props) {
           {props.data.sort((a, b) => b.total_post - a.total_post).map((user, i) => {
             return (
               <Link href={`/author/${user.username}`} as="button" className="flex flex-col bg-base-300 text-white rounded-md shadow-lg w-full md:w-5/6 lg:w-1/3 xl:w-1/4 justify-center items-center cursor-pointer hover:-translate-y-1 hover:transition-all" key={i}>
+                <div className={`avatar ${user.is_online ? 'online' : 'offline'}`}>
+                  <div className="w-16 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                    <img src={user.author_image !== null ? `/storage/images/${user.author_image}` : '/storage/images/defaultavatar.png'} />
+                  </div>
+                </div>
                 <div className='stat'>
                   <div className="text-md">{user.username}</div>
                   <div className="text-sm">
@@ -33,7 +37,9 @@ export default function AuthorListPage(props) {
                     <div className="divider divider-horizontal">
                       {user.total_comment > 10 ? "📖" : user.total_post > 5 && user.total_comment > 10 ? "🐱‍💻" : "🗿"}
                     </div>
-                    <div className="text-sm">telah mengomentari  <span className={`stat-value ${user.total_post > 9 ? "text-primary" : "text-secondary"} text-sm`}>{user.total_comment}</span> post</div>
+                    <div className="text-sm">
+                      {user.total_post == 0 ? "belum pernah komentar" : `telah mengomentari ${user.total_comment} postingan`}
+                    </div>
                   </div>
                 </div>
               </Link>
@@ -45,6 +51,6 @@ export default function AuthorListPage(props) {
         </div>
         }
       </div>
-    </>
+    </Guest>
   )
 }

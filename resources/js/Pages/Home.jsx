@@ -1,16 +1,15 @@
 import React from 'react';
 import { Link, Head } from '@inertiajs/inertia-react';
 import PostsList from '@/Components/Homepage/PostsLists';
-import Navbar from '@/Components/Homepage/Navbar';
 import ResetTime from '@/Components/Homepage/ResetTimer';
 import Hero from '@/Components/Homepage/Hero';
+import Guest from '@/Layouts/Guest';
 
 export default function HomePage(props) {
   return (
-    <>
+    <Guest auth={props.auth.user}>
       <Head title={props.title} />
       <div className='min-h-screen'>
-        <Navbar user={props.auth.user} title={props.title} root={props.root} />
         <Hero />
         <div className='pb-2 flex justify-center'>
           <ResetTime />
@@ -24,6 +23,6 @@ export default function HomePage(props) {
           </div>
         }
       </div>
-    </>
+    </Guest>
   )
 }
