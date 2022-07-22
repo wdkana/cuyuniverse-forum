@@ -18,6 +18,10 @@ class isValidUser
      */
     public function handle(Request $request, Closure $next)
     {
+        if ($request->token == null) {
+            return abort(403);
+        }
+
         $user_data_token = User::find(Auth::user()->id)->where('token', $request->token)->first();
 
         if ($user_data_token == null) {

@@ -64,9 +64,12 @@ export default function PostList(props) {
         <div className="cursor-default text-xs">posted {formatTime(props.posts.created_at)}</div>
         <div className="card-actions flex flex-col justify-end items-end text-sm py-2">
           <div className='justify-center items-center flex flex-col'>
-            <Link href={`/author/${props.posts.author}`} as="button" method="get" className="badge badge-inline p-4 max-w-xs cursor-pointer hover:translate-y-1 hover:transition-all">
-              {props.posts.author}
+            <Link href={`/author/${props.posts.author}`} as="button" method="get" className="avatar">
+              <div className="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                <img src={props.author_image !== null ? `/storage/images/${props.author_image}` : '/storage/images/defaultavatar.png'} />
+              </div>
             </Link>
+            <div className='py-2'>{props.posts.author}</div>
           </div>
         </div>
         <div className="collapse rounded-md">
@@ -74,12 +77,17 @@ export default function PostList(props) {
           <div className="collapse-title bg-base-100 text-white text-white-content peer-checked:bg-white peer-checked:text-black text-md">
             🧾 <i>lihat semua komentar</i>
           </div>
-          <div className="collapse-content mt-3 p-0 bg-base-300 text-white-content peer-checked:bg-base-300 peer-checked:text-black-content">
-            {props.posts.comments.map((comment, i) => {
+          <div className="p-0 py-2 collapse-content bg-base-300 text-white-content peer-checked:bg-base-300 peer-checked:text-black-content">
+            {props.comments.map((comment, i) => {
               return (
-                <div className='mb-3 shadow-lg flex flex-col bg-white text-base-300 p-6' key={i}>
-                  <p className='text-xl font-mono font-bold'>{comment.description}</p>
-                  <Link href={`/author/${comment.commentartor}`} as="div" method="get" className='mt-4 text-xs text-left cursor-pointer  hover:cursor-pointer hover:translate-x-1 hover:transition-all'>comment {formatTime(comment.created_at)} by {comment.commentartor}</Link>
+                <div className='mb-2 flex flex-col bg-neutral text-white p-6' key={i}>
+                  <div className='text-xl font-mono font-bold'>{comment.description}</div>
+                  <Link href={`/author/${comment.commentartor}`} as="div" method="get" className='mt-2 p-2 items-end justify-end flex gap-1 flex-row text-xs cursor-pointer hover:cursor-pointer hover:translate-x-1 hover:transition-all'>
+                    <div className=''>comment {formatTime(comment.created_at)} by {comment.commentartor}</div>
+                    <div className="w-6 rounded-full">
+                      <img src={comment.users.image !== null ? `/storage/images/${comment.users.image}` : '/storage/images/defaultavatar.png'} />
+                    </div>
+                  </Link>
                 </div>
               )
             })}
