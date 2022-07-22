@@ -8,11 +8,10 @@ import Avatar from 'avataaars';
 
 export default function Authenticated({ auth, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
-
     return (
         <div className="min-h-screen">
-            <nav className="md:shadow-lg bg-neutral">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <nav className="md:shadow-lg">
+                <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
                         <div className="flex">
                             <div className="shrink-0 flex items-center">
@@ -25,6 +24,12 @@ export default function Authenticated({ auth, header, children }) {
                                 <NavLink href={route('dash.main')} active={route().current('dash.main')}>
                                     Dashboard
                                 </NavLink>
+                                <NavLink href={route('dash.manage.posts')} active={route().current('dash.manage.posts')}>
+                                    Manage Post
+                                </NavLink>
+                                <NavLink href={route('dash.notif')} active={route().current('dash.notif')}>
+                                    Notification
+                                </NavLink>
                             </div>
                         </div>
 
@@ -32,25 +37,13 @@ export default function Authenticated({ auth, header, children }) {
                             <div className="ml-3 relative">
                                 <Dropdown>
                                     <Dropdown.Trigger>
-                                        <span className="inline-flex rounded-md ">
+                                        <span className="inline-flex">
                                             <button
                                                 type="button"
-                                                className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md hover:text-white focus:outline-none transition ease-in-out duration-150 "
+                                                className="inline-flex items-center py-2 border border-transparent text-sm leading-4 font-medium hover:text-white focus:outline-none transition ease-in-out duration-150"
                                             >
-                                                <div className="w-10 rounded-full">
-                                                    <Avatar style={{ width: '100%', height: '100%' }}
-                                                        avatarStyle='Circle'
-                                                        topType='WinterHat3'
-                                                        accessoriesType='Prescription02'
-                                                        hatColor='Red'
-                                                        facialHairType='BeardMedium'
-                                                        facialHairColor='Red'
-                                                        clotheType='BlazerSweater'
-                                                        eyeType='WinkWacky'
-                                                        eyebrowType='RaisedExcited'
-                                                        mouthType='Smile'
-                                                        skinColor='Light'
-                                                    />
+                                                <div className='avatar w-10 h-10 mr-2'>
+                                                    <img src={auth.user.image ? `/storage/images/${auth.user.image}` : '/storage/images/defaultavatar.png'} className=" rounded-full ring ring-primary ring-offset-base-100 ring-offset-2" />
                                                 </div>
                                                 {auth.user.username}
 
@@ -110,24 +103,20 @@ export default function Authenticated({ auth, header, children }) {
                         <ResponsiveNavLink href={route('dash.main')} active={route().current('dash.main')}>
                             Dashboard
                         </ResponsiveNavLink>
+                        <ResponsiveNavLink href={route('dash.manage.posts')} active={route().current('dash.manage.posts')}>
+                            Manage Post
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink href={route('dash.notif')} active={route().current('dash.notif')}>
+                            Notification
+                        </ResponsiveNavLink>
                     </div>
 
-                    <div className="pt-4 pb-1 border-t border-neutral">
+                    <div className="pt-4 pb-1 border-b border-neutral">
                         <div className="px-4 justify-center flex-col flex items-center gap-1">
-                            <div className="w-10 rounded-full">
-                                <Avatar style={{ width: '100%', height: '100%' }}
-                                    avatarStyle='Circle'
-                                    topType='WinterHat3'
-                                    accessoriesType='Prescription02'
-                                    hatColor='Red'
-                                    facialHairType='BeardMedium'
-                                    facialHairColor='Red'
-                                    clotheType='BlazerSweater'
-                                    eyeType='WinkWacky'
-                                    eyebrowType='RaisedExcited'
-                                    mouthType='Smile'
-                                    skinColor='Light'
-                                />
+                            <div className="w-16 rounded-full">
+                                <div className='avatar w-16 h-16 mr-2'>
+                                    <img src={auth.user.image ? `/storage/images/${auth.user.image}` : '/storage/images/defaultavatar.png'} className=" rounded-full ring ring-primary ring-offset-base-100 ring-offset-2" />
+                                </div>
                             </div>
                             <div className="font-medium text-base badge badge-inline"><i>{auth.user.username}</i></div>
                         </div>

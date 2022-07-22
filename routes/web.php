@@ -32,18 +32,20 @@ Route::controller(AuthorController::class)->name('author.')->middleware('throttl
 Route::controller(DashboardController::class)->middleware(['auth', 'verified'])->name('dash.')->group(
     function () {
         Route::get('/dashboard', 'index')->name('main');
-        Route::get('/dashboard/setting', 'setting')->name('setting');
+        Route::get('/dashboard/notif', 'notification')->name('notif');
+        Route::get('/dashboard/manage-posts', 'manage_posts')->name('manage.posts');
+        Route::post('/dashboard/photo', 'update_photo')->name('update.photo')->middleware('isValidUser');
     }
 );
 
 //user dashboard posts
 Route::controller(PostsController::class)->middleware(['auth', 'verified'])->name('posts.')->group(
     function () {
-        Route::get('/dashboard/posts', 'show')->name('main')->middleware('throttle:30,1');
-        Route::get('/dashboard/posts/create', 'create')->name('create');
-        Route::post('/dashboard/posts', 'store')->name('store')->middleware('throttle:15,5');
-        Route::post('/dashboard/posts/delete', 'destroy')->name('remove');
-        Route::post('/post/comment', 'storeComment')->name('storeComment')->middleware('throttle:50,5');;
+        Route::get('/dashboard/manage-posts/posts', 'show')->name('main');
+        Route::get('/dashboard/manage-posts/posts/create', 'create')->name('create');
+        Route::post('/dashboard/manage-posts/posts', 'store')->name('store')->middleware('isValidUser');
+        Route::post('/dashboard/manage-posts/posts/delete', 'destroy')->name('remove')->middleware('isValidUser');
+        Route::post('/post/comment', 'storeComment')->name('storeComment')->middleware('isValidUser');
     }
 );
 

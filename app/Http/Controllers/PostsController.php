@@ -7,6 +7,7 @@ use App\Models\Comment;
 use Inertia\Inertia;
 use App\Models\Posts;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostsController extends Controller
 {
@@ -24,14 +25,6 @@ class PostsController extends Controller
             'root' => "HOME",
             'description' => "Selamat Datang Di Cuy Universe Portal",
             'posts' => $posts,
-        ]);
-    }
-
-    public function search(Request $request)
-    {
-        $posts = Posts::search($request->text)->get();
-        return Inertia::render('Posts', [
-            'filteredPosts' => $posts,
         ]);
     }
 
@@ -60,8 +53,10 @@ class PostsController extends Controller
         $request->validate(
             [
                 'description' => 'required|string|min:4|max:200',
+                'token' => 'required'
             ]
         );
+
         $posts = new Posts();
         $posts->description = $request->description;
         $posts->author = auth()->user()->username;
@@ -78,7 +73,7 @@ class PostsController extends Controller
      */
     public function show()
     {
-        $posts = Posts::orderByDesc('id')->where('author', auth()->user()->username)->get();
+        $posts = Posts::orderByDesc('id')->where('author', auth()->user()->username)->with('comments')->get();
         return Inertia::render('Dashboard/MyPosts', [
             'data' => $posts,
             'page' => 'POSTINGAN SAYA',
@@ -91,13 +86,14 @@ class PostsController extends Controller
     {
         $request->validate(
             [
-                'description' => 'required|string|min:2|max:80'
+                'description' => 'required|string|min:2|max:80',
+                'token' => 'required'
             ]
         );
 
         $comment = new Comment([
             'description' => $request->description,
-            'commentartor' => auth()->user()->username
+            'commentartor' => auth()->user()->username,
         ]);
 
         $post = Posts::find($request->post_id);
@@ -105,23 +101,6 @@ class PostsController extends Controller
         $post->comments()->save($comment);
 
         return to_route('outer.byId', ['id' => $request->post_id])->with('message', 'Komentar telah dikirim');
-    }
-
-    public function edit(Posts $posts)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Posts  $posts
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Posts $posts)
-    {
-        //
     }
 
     /**
@@ -132,7 +111,7 @@ class PostsController extends Controller
      */
     public function destroy(Request $request)
     {
-        Posts::where('id', $request->id)->delete();
+        Posts::where('id', $request->id)->where('user_id', Auth::user()->id)->delete();
         return to_route('posts.main');
     }
 }

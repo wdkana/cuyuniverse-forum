@@ -30,7 +30,7 @@ export default function ConfirmPassword() {
     return (
         <Guest>
             <Head title="Confirm Password" />
-            <div className="mb-4 text-sm text-white">
+            <div className="mb-4 text-sm ">
                 This is a secure area of the application. Please confirm your password before continuing.
             </div>
 
@@ -38,7 +38,7 @@ export default function ConfirmPassword() {
 
             <form onSubmit={submit}>
                 <div className="mt-4">
-                    <Label forInput="password" value="Password" className="text-white" />
+                    <Label forInput="password" value="Password" className="" />
 
                     <Input
                         type="password"
