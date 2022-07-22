@@ -58,7 +58,7 @@ export default function MyPosts(props) {
                   <div className='text-xs'>
                     posted {formatTime(posts.updated_at)} | {posts.comments.length} comment
                   </div>
-                  <button onClick={() => handleRemoveConfirmation()} className="btn btn-ghost cursor-pointer hover:bg-base-300 hover:rounded-md modal-button" htmlFor={`my-modal-${posts.id}`}><TbTrashX size={20} /></button>
+                  <label onClick={() => handleRemoveConfirmation()} className="btn btn-ghost cursor-pointer hover:bg-base-300 hover:rounded-md modal-button" htmlFor={`my-modal-${posts.id}`}><TbTrashX size={20} /></label>
                   {wantRemove &&
                     <>
                       <input type="checkbox" id={`my-modal-${posts.id}`} className="modal-toggle" />
