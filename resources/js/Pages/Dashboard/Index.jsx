@@ -11,6 +11,7 @@ export default function DashboardPage(props) {
         username: null
     });
 
+
     const [username, setUsername] = useState(props.auth.user.username);
 
     const { flash } = usePage().props

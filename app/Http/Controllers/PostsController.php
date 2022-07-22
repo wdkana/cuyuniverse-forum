@@ -111,7 +111,7 @@ class PostsController extends Controller
 
         $postLiked = Like::where('post_id', $postId)->where('user_id', Auth::id())->first();
 
-        if(! $postLiked) {
+        if (!$postLiked) {
             Like::create([
                 'post_id' => $postId,
                 'user_id' => Auth::id()
