@@ -13,21 +13,22 @@
 
 ### 📫 Join projek isengan ini?
 #### check staging server https://cuyuniverse.co
-
+<br/>
 
 👇 Clone this project first and make your own features 👇
 ```bash
 git clone https://github.com/deaaprizal/laract9.git .
 ```
+<br/>
 
 CuyUniverse adalah project terbuka untuk siapa saja yang mau belajar ngoding terutama dengan pemilihan 2 bahasa pemrograman (PHP & Javascript).
 3 core stack yang digunakan saat ini: LARAVEL9, REACTJS & MYSQL
 FORK atau coba-coba di clone project ini sekarang di lokal komputer kalian masing-masing.
-
+<br/>
 
 ### BRANCH UTAMA UNTUK SEMUA PERUBAHAN MULAI DARI => DEV 
 CHECKOUT ke "dev" dan lakukan push ke "dev" juga
-
+<br/>
 
 ### <img src="https://media.giphy.com/media/VgCDAzcKvsR6OM0uWg/giphy.gif" width="50"> Beberapa library yang digunakan...  
 
@@ -51,14 +52,19 @@ const cuyuniverse = {
 
 
 ### Bagimana cara FORK? Please searching di google aja ya bro
-bisa baca docs resminya disini https://docs.github.com/en/get-started/quickstart/fork-a-repo
-
+<p>bisa baca docs resminya disini https://docs.github.com/en/get-started/quickstart/fork-a-repo </p>
+<br/>
+<br/>
 
 ### Apakah sudah ada guideline untuk bagaimana cara ikut kontribusi?
-Belum. Feel free to make update into this readme file for guiding people to setup laract9 👍
+<p>Belum. Feel free to make update into this readme file for guiding people to setup laract9 👍</p>
+<p>Bebaskan jiwa codingmu dan mari berdiskusi disini: https://github.com/deaaprizal/laract9/discussions</p>
+<br/>
+<br/>
 
+<p>seputar kreasi fitur projek cuyuniverse akan diupdate disini: https://github.com/deaaprizal/laract9/projects?type=beta </p>
 
-<img src="https://media.giphy.com/media/LnQjpWaON8nhr21vNW/giphy.gif" width="60"> <em><b>Gue suka berkolaborasi dengan siapa saja</b> jadi buat kalian <b>peduli apa kata orang skill-mu, mari berkontribusi dan belajar bareng!</b> 😊</em>
+<img src="https://media.giphy.com/media/LnQjpWaON8nhr21vNW/giphy.gif" width="60"> <em><b>Gue suka berkolaborasi dengan siapa saja</b> jadi buat kalian <b>peduli apa kata orang skill-mu, mari berkontribusi dan belajar bareng!</b></em>
 
 ---
 
