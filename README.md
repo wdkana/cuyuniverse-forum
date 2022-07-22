@@ -29,7 +29,7 @@ git clone https://github.com/deaaprizal/laract9.git .
 ### <img src="https://media.giphy.com/media/VgCDAzcKvsR6OM0uWg/giphy.gif" width="50"> Beberapa library yang digunakan...  
 
 ```javascript
-const anmol = {
+const cuyuniverse = {
   Technologies: {
     CSS: ["Tailwind", "DaisyUI"],
     backEnd: {
