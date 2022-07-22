@@ -6,6 +6,7 @@ import { usePage } from '@inertiajs/inertia-react'
 import { formatTime } from '@/utils/jsHelper';
 import { Inertia } from '@inertiajs/inertia';
 import NotificationAlert from '@/Components/Default/NotificationAlert';
+import { TbTrashX } from "react-icons/tb";
 
 export default function MyPosts(props) {
   const { flash } = usePage().props
@@ -39,7 +40,7 @@ export default function MyPosts(props) {
       header={
         <div className='flex flex-row justify-between'>
           <h2 className="font-semibold text-xl leading-tight cursor-default">{props.page}</h2>
-          <Link href={`${route(props.nextRoute)}`} method="get" as="button" className="btn btn-sm btn-link leading-tight">{props.next}</Link>
+          <Link href={`${route(props.nextRoute)}`} method="get" as="button" className="btn btn-sm btn-ghost leading-tight">{props.next}</Link>
         </div>
       }
     >
@@ -48,7 +49,7 @@ export default function MyPosts(props) {
         {showNotif && <NotificationAlert message={flash.message} />}
         {props.data.length > 0 ? props.data.map((posts, i) => {
           return (
-            <div key={i} className="card w-full md:w-1/2 lg:w-1/3 bg-base-300 shadow-lg">
+            <div key={i} className="card w-full md:w-1/2 lg:w-1/3 bg-base-100 shadow-lg">
               <div className="card-body">
                 <Link href={`/post/${posts.id}`} method="get" as="div" className='card-title'>
                   <p className={`cursor-pointer hover:-translate-y-1 hover:transition-all text-xl text-left ${posts.description.length > 100 ? "break-normal overflow-x-hidden" : "break-words"} h-20`}>{posts.description}</p>
@@ -57,7 +58,7 @@ export default function MyPosts(props) {
                   <div className='text-xs'>
                     posted {formatTime(posts.updated_at)} | {posts.comments.length} comment
                   </div>
-                  <label onClick={() => handleRemoveConfirmation()} className="hover:bg-white hover:text-black cursor-pointer badge badge-outline modal-button" htmlFor={`my-modal-${posts.id}`}>remove</label>
+                  <button onClick={() => handleRemoveConfirmation()} className="btn btn-ghost cursor-pointer hover:bg-base-300 hover:rounded-md modal-button" htmlFor={`my-modal-${posts.id}`}><TbTrashX size={20} /></button>
                   {wantRemove &&
                     <>
                       <input type="checkbox" id={`my-modal-${posts.id}`} className="modal-toggle" />
@@ -66,8 +67,8 @@ export default function MyPosts(props) {
                           <h3 className="font-bold text-lg">Hapus Postingan </h3>
                           <p className="py-4">Kamu yakin ingin menghapus postingan <b>{posts.title}</b>?</p>
                           <div className="modal-action">
-                            <label htmlFor={`my-modal-${posts.id}`} className="btn btn-outline" onClick={() => removePosts(posts.id)}>Ya Hapus</label>
-                            <label htmlFor={`my-modal-${posts.id}`} className="btn btn-inline">Gak</label>
+                            <label htmlFor={`my-modal-${posts.id}`} className="btn btn-outline rounded-md" onClick={() => removePosts(posts.id)}>Ya Hapus</label>
+                            <label htmlFor={`my-modal-${posts.id}`} className="btn btn-inline rounded-md">Gak</label>
                           </div>
                         </div>
                       </div>
@@ -82,7 +83,7 @@ export default function MyPosts(props) {
             kamu belum punya postingan
           </p>
           <Link href={
-            route('posts.create')} as="button" className='btn btn-link'>Post Sekarang!</Link>
+            route('posts.create')} as="button" className='btn btn-ghost rounded-md'>Post Sekarang!</Link>
         </div>}
       </div>
     </Authenticated >

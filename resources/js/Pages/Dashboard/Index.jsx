@@ -42,13 +42,13 @@ export default function DashboardPage(props) {
                     </div>
                     <div className='flex flex-col justify-center items-center'>
                         <form onSubmit={submit}>
-                            <input className="input py-2 px-0 my-4 w-full" type="file" name="image" onChange={e => setData(e.target.files)} />
+                            <input className="input py-2 px-2 my-4 w-full" type="file" name="image" onChange={e => setData(e.target.files)} />
                             {progress && (
                                 <progress value={progress.percentage} max="100">
                                     {progress.percentage}%
                                 </progress>
                             )}
-                            <button type="submit" disabled={processing} className='btn btn-outline w-full'>Upload Avatar</button>
+                            <button type="submit" disabled={processing} className='btn btn-outline w-full rounded-md'>Upload Avatar</button>
                         </form>
                     </div>
                     <div>

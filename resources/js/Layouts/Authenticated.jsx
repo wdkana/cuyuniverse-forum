@@ -10,7 +10,7 @@ export default function Authenticated({ auth, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
     return (
         <div className="min-h-screen">
-            <nav className="md:shadow-lg bg-neutral">
+            <nav className="md:shadow-lg">
                 <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
                         <div className="flex">
@@ -111,7 +111,7 @@ export default function Authenticated({ auth, header, children }) {
                         </ResponsiveNavLink>
                     </div>
 
-                    <div className="pt-4 pb-1 border-t border-neutral">
+                    <div className="pt-4 pb-1 border-b border-neutral">
                         <div className="px-4 justify-center flex-col flex items-center gap-1">
                             <div className="w-16 rounded-full">
                                 <div className='avatar w-16 h-16 mr-2'>
