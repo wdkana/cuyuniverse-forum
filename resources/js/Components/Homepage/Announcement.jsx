@@ -8,7 +8,7 @@ const Announcemenet = () => {
         <code>sedang dalam development</code>
       </pre>
     </div>
-  )
-}
-export default Announcemenet
+  );
+};
 
+export default Announcemenet;
