@@ -26,7 +26,7 @@ export default function NotificationPage(props) {
       errors={props.errors}
       header={<div className='flex flex-row justify-between'>
         <h2 className="font-semibold text-xl leading-tight cursor-default">{props.page}</h2>
-        <Link href={route(`${props.nextRoute}`)} as="button" className="btn btn-sm btn-link leading-tight">{props.next}</Link>
+        <Link href={route(`${props.nextRoute}`)} as="button" className="btn btn-sm btn-ghost leading-tight">{props.next}</Link>
       </div>}
     >
       <Head title="Notification" />

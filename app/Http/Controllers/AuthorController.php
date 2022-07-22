@@ -12,12 +12,18 @@ class AuthorController extends Controller
 {
     public function profile($author)
     {
-        $data = Posts::orderByDesc('id')->where('author', $author)->paginate(10);
+        $user = User::where('username', $author)->first();
+        if ($user == null) {
+            return abort(404);
+        }
+        $posts = Posts::orderByDesc('id')->where('author', $author)->with('comments')->paginate(10);
         return Inertia::render('Author', [
             'title' => $author,
             'root' => "HOME",
-            'description' => $author,
-            'posts' => $data,
+            'author' => $user->username,
+            'author_image' => $user->image,
+            'is_online' => $user->token ? true : false,
+            'posts' => $posts
         ]);
     }
 
@@ -32,6 +38,7 @@ class AuthorController extends Controller
             $data['last_seen'] = Carbon::parse($items->last_seen)->diffForHumans();
             $data['total_post'] = count($items->posts);
             $data['total_comment'] = count($items->comments);
+            $data['author_image'] = $items->image;
             return $data;
         });
 

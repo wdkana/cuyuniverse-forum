@@ -47,7 +47,7 @@ export default function PostList(props) {
 
   const formValidateNotif = () => {
     return (
-      <div className="alert alert-sm shadow-lg bg-base-300 mt-4">
+      <div className="alert alert-sm shadow-sm bg-primary mt-4 rounded-md">
         <div>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-current flex-shrink-0 w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
           <span>{!limiter ? "Ngetiknya udah dulu ya, simpen buat komentar berikutnya 👍" : `Saat ini komentar kamu dibatasi ${limiter} karakter`}</span>
@@ -57,39 +57,43 @@ export default function PostList(props) {
   }
 
   return (
-    <div className="card w-full md:w-2/3 bg-base-300 shadow-lg">
+    <div className="card w-full md:w-2/3 bg-base-100 shadow-lg">
       {showNotif && <NotificationAlert message={props.notif} />}
       <div className="card-body p-6">
-        <p className='text-xl break-all cursor-default'>{props.posts.description}</p>
+        <p className='text-2xl break-all cursor-default font-bold'>{props.posts.description}</p>
         <div className="cursor-default text-xs">posted {formatTime(props.posts.created_at)}</div>
-        <div className="card-actions flex flex-col justify-end items-end text-sm py-2">
+        <div className="card-actions flex flex-col justify-end items-end text-sm py-2 border-b-4 border-b-primary">
           <div className='justify-center items-center flex flex-col'>
-            <Link href={`/author/${props.posts.author}`} as="button" method="get" className="badge badge-inline p-4 max-w-xs cursor-pointer hover:translate-y-1 hover:transition-all">
-              {props.posts.author}
+            <Link href={`/author/${props.posts.author}`} as="button" method="get" className="avatar">
+              <div className="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                <img src={props.author_image !== null ? `/storage/images/${props.author_image}` : '/storage/images/defaultavatar.png'} />
+              </div>
             </Link>
+            <div className='py-2'>{props.posts.author}</div>
           </div>
         </div>
-        <div className="collapse rounded-md">
-          <input type="checkbox" className="peer" />
-          <div className="collapse-title bg-base-100 text-white text-white-content peer-checked:bg-white peer-checked:text-black text-md">
-            🧾 <i>lihat semua komentar</i>
-          </div>
-          <div className="collapse-content mt-3 p-0 bg-base-300 text-white-content peer-checked:bg-base-300 peer-checked:text-black-content">
-            {props.posts.comments.map((comment, i) => {
-              return (
-                <div className='mb-3 shadow-lg flex flex-col bg-white text-base-300 p-6' key={i}>
-                  <p className='text-xl font-mono font-bold'>{comment.description}</p>
-                  <Link href={`/author/${comment.commentartor}`} as="div" method="get" className='mt-4 text-xs text-left cursor-pointer  hover:cursor-pointer hover:translate-x-1 hover:transition-all'>comment {formatTime(comment.created_at)} by {comment.commentartor}</Link>
-                </div>
-              )
-            })}
-          </div>
+        <div className="bg-base-200">
+          {props.comments.map((comment, i) => {
+            return (
+              <div className='border-b-2 flex flex-col p-2' key={i}>
+                <div className='text-md font-mono font-bold'>{comment.description}</div>
+                <Link href={`/author/${comment.commentartor}`} as="div" method="get" className='mt-2 p-2 items-end justify-end flex gap-1 flex-row text-xs cursor-pointer hover:cursor-pointer hover:translate-x-1 hover:transition-all'>
+                  <div className='mr-1'>comment {formatTime(comment.created_at)} by {comment.commentartor}</div>
+                  <div className="avatar">
+                    <div className="w-6 rounded-full">
+                      <img src={comment.users.image !== null ? `/storage/images/${comment.users.image}` : '/storage/images/defaultavatar.png'} />
+                    </div>
+                  </div>
+                </Link>
+              </div>
+            )
+          })}
         </div>
-        <div className='flex flex-col justify-center items-center gap-4 py-2'>
-          {props.user && formValidateNotif()}
-          <input type="text" minLength={2} maxLength={80} value={newComment} className='input w-full h-42' placeholder={props.user == null ? "Login untuk mengisi komentar" : "Tulis komentar"} onChange={(e) => handlerCommentInput(e.target.value)} disabled={props.user == null ? true : false} />
-          <button type="button" className='btn btn-outline font-bold btn-sm w-full' disabled={props.user == null || !isValid ? true : false} onClick={() => handlerCommentSubmit()}>Komentar</button>
-        </div>
+      </div>
+      <div className='flex flex-col justify-center items-center gap-4 py-2 px-2 sm:px-10'>
+        {props.user && formValidateNotif()}
+        <input type="text" minLength={2} maxLength={80} value={newComment} className='input rounded-md w-full h-42' placeholder={props.user == null ? "Login untuk mengisi komentar" : "Tulis komentar"} onChange={(e) => handlerCommentInput(e.target.value)} disabled={props.user == null ? true : false} />
+        <button type="button" className='btn btn-primary font-bold btn-md w-full rounded-md' disabled={props.user == null || !isValid ? true : false} onClick={() => handlerCommentSubmit()}>Komentar</button>
       </div>
     </div >
   )
