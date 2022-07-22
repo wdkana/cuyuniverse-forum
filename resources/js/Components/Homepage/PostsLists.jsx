@@ -32,36 +32,40 @@ const isPosts = (posts, from) => {
           >
             {post.description}
           </div>
-          <div className="card-actions text-sm">
-            <div className="text-xs">
-              posted {formatTime(post.updated_at)} |{" "}
-              {post.comments && post.comments.length > 0
-                ? post.comments.length
-                : "no"}{" "}
-              comment
+
+          <div class="flex flex-row">
+            <div className="basis-1/2 content-end card-actions text-sm">
+              <div className="text-xs break-normal">
+                posted {formatTime(post.updated_at)} |{" "}
+                {post.comments && post.comments.length > 0
+                  ? post.comments.length
+                  : "no"}{" "}
+                comment
+              </div>
             </div>
+
+            <RenderIfTrue isTrue={from !== "authorPage"}>
+              <div className="basis-1/2 justify-end items-end flex flex-col">
+                <Link
+                  href={`/author/${post.author}`}
+                  as="button"
+                  method="get"
+                  className="avatar"
+                >
+                  <div className="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                    <img
+                      src={
+                        post.users && post.users.image !== null
+                          ? `/storage/images/${post.users.image}`
+                          : "/storage/images/defaultavatar.png"
+                      }
+                    />
+                  </div>
+                </Link>
+                <div className="py-2">{post.author}</div>
+              </div>
+            </RenderIfTrue>
           </div>
-          <RenderIfTrue isTrue={from !== "authorPage"}>
-            <div className="justify-end items-end flex flex-col">
-              <Link
-                href={`/author/${post.author}`}
-                as="button"
-                method="get"
-                className="avatar"
-              >
-                <div className="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                  <img
-                    src={
-                      post.users && post.users.image !== null
-                        ? `/storage/images/${post.users.image}`
-                        : "/storage/images/defaultavatar.png"
-                    }
-                  />
-                </div>
-              </Link>
-              <div className="py-2">{post.author}</div>
-            </div>
-          </RenderIfTrue>
         </Link>
       </div>
     );

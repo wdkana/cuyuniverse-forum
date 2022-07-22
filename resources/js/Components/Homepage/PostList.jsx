@@ -77,6 +77,14 @@ export default function PostList(props) {
     );
   };
 
+  const likePost = (postId) => {
+    const data = {
+      post_id: postId,
+      token: props.user.token,
+    };
+
+    return Inertia.post("/post/like/love", data);
+  };
   return (
     <div className="card w-full md:w-2/3 bg-base-100 shadow-lg">
       <RenderIfTrue isTrue={showNotif}>
@@ -86,30 +94,37 @@ export default function PostList(props) {
         <p className="text-2xl break-all cursor-default font-bold">
           {props.posts.description}
         </p>
-        <div className="cursor-default text-xs">
-          posted {formatTime(props.posts.created_at)}
-        </div>
-        <div className="card-actions flex flex-col justify-end items-end text-sm py-2 border-b-4 border-b-primary">
-          <div className="justify-center items-center flex flex-col">
-            <Link
-              href={`/author/${props.posts.author}`}
-              as="button"
-              method="get"
-              className="avatar"
-            >
-              <div className="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                <img
-                  src={
-                    props.author_image !== null
-                      ? `/storage/images/${props.author_image}`
-                      : "/storage/images/defaultavatar.png"
-                  }
-                />
-              </div>
-            </Link>
-            <div className="py-2">{props.posts.author}</div>
+
+        <div class="flex flex-row py-2 border-b-4 border-b-primary">
+          <div className="basis-1/2 flex justify-start items-end">
+            <div className="text-xs cursor-default break-normal">
+              posted {formatTime(props.posts.created_at)}
+            </div>
+          </div>
+
+          <div className="basis-1/2 card-actions flex flex-col justify-end items-end text-sm">
+            <div className="justify-center items-center flex flex-col">
+              <Link
+                href={`/author/${props.posts.author}`}
+                as="button"
+                method="get"
+                className="avatar"
+              >
+                <div className="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                  <img
+                    src={
+                      props.author_image !== null
+                        ? `/storage/images/${props.author_image}`
+                        : "/storage/images/defaultavatar.png"
+                    }
+                  />
+                </div>
+              </Link>
+              <div className="py-2">{props.posts.author}</div>
+            </div>
           </div>
         </div>
+
         <div className="bg-base-200">
           {props.comments.map((comment, i) => {
             return (
@@ -143,6 +158,16 @@ export default function PostList(props) {
             );
           })}
         </div>
+      </div>
+      <div className="flex flex-col justify-center items-start gap-4 py-2 px-2 sm:px-10">
+        {/* {props.user && formValidateNotif()} */}
+        <button
+          onClick={() => likePost(props.posts.id)}
+          type="button"
+          className="btn btn-primary"
+        >
+          {props.posts.likes_count} Like
+        </button>
       </div>
       <div className="flex flex-col justify-center items-center gap-4 py-2 px-2 sm:px-10">
         {props.user && formValidateNotif()}
