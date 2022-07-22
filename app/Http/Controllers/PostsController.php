@@ -104,23 +104,20 @@ class PostsController extends Controller
         return to_route('outer.byId', ['id' => $request->post_id])->with('message', 'Komentar telah dikirim');
     }
 
-    public function storeLike($postId)
+    public function storeLike(Request $request)
     {
-
-        $user = Auth::user();
-
-        $postLiked = Like::where('post_id', $postId)->where('user_id', Auth::id())->first();
+        $postLiked = Like::where('post_id', $request->post_id)->where('user_id', Auth::user()->id)->first();
 
         if (!$postLiked) {
             Like::create([
-                'post_id' => $postId,
-                'user_id' => Auth::id()
+                'post_id' => $request->post_id,
+                'user_id' => Auth::user()->id
             ]);
         } else {
             $postLiked->delete();
         }
 
-        return to_route('outer.byId', ['id' => $postId])->with('message', 'Post telah di-like!');
+        return to_route('outer.byId', ['id' => $request->post_id])->with('message', 'Post telah di-like!');
     }
 
     /**

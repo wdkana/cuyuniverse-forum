@@ -58,25 +58,25 @@ export default function PostList(props) {
 
   const likePost = (postId) => {
     const data = {
-        token: props.user.token
+      post_id: postId,
+      token: props.user.token
     }
 
-    return Inertia.post('/post/like/' + postId, data)
-}
-console.log(props);
+    return Inertia.post('/post/like/love', data)
+  }
   return (
     <div className="card w-full md:w-2/3 bg-base-100 shadow-lg">
       {showNotif && <NotificationAlert message={props.notif} />}
       <div className="card-body p-6">
         <p className='text-2xl break-all cursor-default font-bold'>{props.posts.description}</p>
-        
+
         <div class="flex flex-row py-2 border-b-4 border-b-primary">
-          <div className="basis-1/2 flex justify-start items-end"> 
+          <div className="basis-1/2 flex justify-start items-end">
             <div className='text-xs cursor-default break-normal'>
               posted {formatTime(props.posts.created_at)}
             </div>
           </div>
-          
+
           <div className="basis-1/2 card-actions flex flex-col justify-end items-end text-sm">
             <div className='justify-center items-center flex flex-col'>
               <Link href={`/author/${props.posts.author}`} as="button" method="get" className="avatar">
@@ -88,7 +88,7 @@ console.log(props);
             </div>
           </div>
         </div>
-        
+
         <div className="bg-base-200">
           {props.comments.map((comment, i) => {
             return (
