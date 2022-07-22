@@ -47,6 +47,7 @@ Route::controller(PostsController::class)->middleware(['auth', 'verified'])->nam
         Route::post('/dashboard/manage-posts/posts', 'store')->name('store')->middleware('isValidUser');
         Route::post('/dashboard/manage-posts/posts/delete', 'destroy')->name('remove')->middleware('isValidUser');
         Route::post('/post/comment', 'storeComment')->name('storeComment')->middleware('isValidUser');
+        Route::post('/post/like/{postId}', 'storeLike')->name('storeLike')->middleware('isValidUser');
     }
 );
 

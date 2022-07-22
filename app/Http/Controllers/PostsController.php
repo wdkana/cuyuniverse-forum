@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\PostsCollection;
 use App\Models\Comment;
+use App\Models\Like;
 use Inertia\Inertia;
 use App\Models\Posts;
 use Illuminate\Http\Request;
@@ -101,6 +102,25 @@ class PostsController extends Controller
         $post->comments()->save($comment);
 
         return to_route('outer.byId', ['id' => $request->post_id])->with('message', 'Komentar telah dikirim');
+    }
+
+    public function storeLike($postId)
+    {
+
+        $user = Auth::user();
+
+        $postLiked = Like::where('post_id', $postId)->where('user_id', Auth::id())->first();
+
+        if(! $postLiked) {
+            Like::create([
+                'post_id' => $postId,
+                'user_id' => Auth::id()
+            ]);
+        } else {
+            $postLiked->delete();
+        }
+
+        return to_route('outer.byId', ['id' => $postId])->with('message', 'Post telah di-like!');
     }
 
     /**
