@@ -27,7 +27,8 @@ export default function CreatePosts(props) {
   useEffect(() => {
     let mount = true
     if (limiter > 0) {
-      mount && description.length >= 10 && description.length <= 200 ? setIsValid(true) : setIsValid(false)
+      const isEmptySpace = /^\s*$/.test(description);
+      mount && (description.length >= 10) && (description.length <= 200) && !isEmptySpace ? setIsValid(true) : setIsValid(false)
     }
     return () => { mount = false }
   }, [description.length])
