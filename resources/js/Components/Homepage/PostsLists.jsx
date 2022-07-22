@@ -16,7 +16,7 @@ const isPosts = (posts, from) => {
     return (
       <div key={i} className="card w-full md:w-1/2 lg:w-1/3 xl:w-1/3 bg-base-100 shadow-lg cursor-pointer hover:transition-all hover:delay-75 hover:-translate-y-1 hover:bg-neutral">
         <Link href={`/post/${post.id}`} method="get" as="div" className="card-body p-6">
-          <div className={`text-xl ${post.description.length > 100 ? "overflow-x-hidden" : "break-words"} h-20`}>{post.description}</div>
+          <div className={`text-xl ${post.description.length > 80 ? "overflow-x-hidden" : "break-words"} h-20`}>{post.description}</div>
           <div className="card-actions text-sm">
             <div className='text-xs'>
               posted {formatTime(post.updated_at)} | {post.comments && post.comments.length > 0 ? post.comments.length : "no"} comment
