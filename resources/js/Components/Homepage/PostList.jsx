@@ -65,7 +65,7 @@ export default function PostList(props) {
         <div class="flex flex-row py-2 border-b-4 border-b-primary">
           <div className="basis-1/2 flex justify-start items-end"> 
             <div className='text-xs cursor-default break-normal'>
-              1 posted {formatTime(props.posts.created_at)}
+              posted {formatTime(props.posts.created_at)}
             </div>
           </div>
           
@@ -79,7 +79,6 @@ export default function PostList(props) {
               <div className='py-2'>{props.posts.author}</div>
             </div>
           </div>
-          
         </div>
         
         <div className="bg-base-200">
