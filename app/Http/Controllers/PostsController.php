@@ -56,7 +56,6 @@ class PostsController extends Controller
                 'token' => 'required'
             ]
         );
-
         $posts = new Posts();
         $posts->description = $request->description;
         $posts->author = auth()->user()->username;
