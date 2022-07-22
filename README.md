@@ -1,65 +1,93 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+<h2><img src="https://emojis.slackmojis.com/emojis/images/1531849430/4246/blob-sunglasses.gif?1531849430" width="30"/> LARACT9 🐱‍💻, CUY UNIVERSE PROJECT <img src="https://media.giphy.com/media/12oufCB0MyZ1Go/giphy.gif" width="50"></h2>
+<img align='right' src="https://media.giphy.com/media/M9gbBd9nbDrOTu1Mqx/giphy.gif" width="230">
+<p><em>Tech Entertainer <a href="https://www.footloose.io/">youtube.com/deaafrizal
+</a><img src="https://media.giphy.com/media/WUlplcMpOCEmTGBtBW/giphy.gif" width="30"> 
+</em></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+![Visitor Count](https://profile-counter.glitch.me/deaaprizal/count.svg)
+![YouTube Channel Subscribers](https://img.shields.io/youtube/channel/subscribers/UCU7YluxOYon-yofPxfGHVog?label=Dea%20Afrizal&style=for-the-badge)
+![GitHub followers](https://img.shields.io/github/followers/deaaprizal?label=Follow%20My%20Github&style=for-the-badge)
+![Discord](https://img.shields.io/discord/887712251887382578?label=DISCORD%20CUYHUB&style=for-the-badge)
+![GitHub top language](https://img.shields.io/github/languages/top/deaaprizal/laract9?label=LARACT9%20LANG&style=for-the-badge)
+![Website](https://img.shields.io/website?down_color=red&down_message=DOWN%20%2F%20OFFLINE&label=cuyuniverse%20web%20stats%20%3D%3E&style=for-the-badge&up_color=pink&up_message=UP%20%2F%20ONLINE&url=https%3A%2F%2Fcuyuniverse.co)
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### 📫 Join projek isengan ini?
+#### check staging server https://cuyuniverse.co
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+CuyUniverse adalah project terbuka untuk siapa saja yang mau belajar ngoding terutama dengan pemilihan 2 bahasa pemrograman (PHP & Javascript).
+3 core stack yang digunakan saat ini: LARAVEL9, REACTJS & MYSQL
 
-## Learning Laravel
+👇 Clone project ini sekarang di lokal komputer kalian masing-masing.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+```bash
+git clone https://github.com/deaaprizal/laract9.git .
+```
+**👆 This command line tool can be found at [npx anmol](https://github.com/anmol098/npx_card)**
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### <img src="https://media.giphy.com/media/VgCDAzcKvsR6OM0uWg/giphy.gif" width="50"> Beberapa library yang digunakan...  
 
-## Laravel Sponsors
+```javascript
+const anmol = {
+  Technologies: {
+    CSS: ["Tailwind", "DaisyUI"],
+    backEnd: {
+      laravel9: ["Breeze", "Sanctum", "Eloquent"],
+    },
+    devOps: ["FORGE", "DROPLET", "CLOUDFLARE"],
+    databases: ["MySql"],
+    misc: ["Inertiajs", "...", "...", "soon"]
+  },
+  authentication: "Google Mail SMTP",
+  architecture: ["Serverless Architecture", "Progressive web applications*soon", "Hybrid Rendering"],
+    currentFocus: "Building users business flow",
+    funFact: "Clone aja dulu, errornya belakangan"
+};
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+<img src="https://media.giphy.com/media/LnQjpWaON8nhr21vNW/giphy.gif" width="60"> <em><b>Gue suka berkolaborasi dengan siapa saja</b> jadi buat kalian <b>peduli apa kata orang skill-mu, mari berkontribusi dan belajar bareng!</b> 😊</em>
 
-### Premium Partners
+---
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+![GitHub contributors](https://img.shields.io/github/contributors/deaaprizal/laract9?label=cuycontributors&style=for-the-badge)
+![Lines of code](https://img.shields.io/tokei/lines/github/deaaprizal/laract9?style=for-the-badge)
+![GitHub repo size](https://img.shields.io/github/repo-size/deaaprizal/laract9?style=for-the-badge)
+![GitHub Discussions](https://img.shields.io/github/discussions/deaaprizal/laract9?style=for-the-badge)
+![GitHub issues](https://img.shields.io/github/issues/deaaprizal/laract9?style=for-the-badge)
 
-## Contributing
+**🐱 CuyUniverse notes:** 
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+> 🏆 98% Performance on Lighthouse
+ > 
+> 📦 0.2s First load time 
+ > 
+> 🔑 2 Layer security
+  > 
+> 📜 Masih banyak catatan kekurangan
+ > 
+> 
+**CuyUniverse Feature Progress 🐤** 
 
-## Code of Conduct
+```text
+🌞 UsersFlow     60% ongoing  ████████░░░░░░
+🌆 Posting       80% ongoing  ██████████░░░░
+🌃 Comments      75% ongoing  ████████░░░░░░ 
+🌙 Dashboard     30% ongoing  ████░░░░░░░░░░
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```
 
-## Security Vulnerabilities
+**CuyUniverse NEXT FEATURE 📖** 
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```text
+🌞 Notification        xxx ████████░░░░░░
+🌆 Users Friendship    xxx ██████████░░░░
+🌃 ide kalian sendiri  ooo ████████░░░░░░ 
 
-## License
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-# laract9
+
+ Terakhir diupdate pada 22/07/2022 21:30:04 WIB
+
+
+NOTE: Terimakasih kepada siapa saja yang membantu project ini sampai pada dimana kita sendiri bingung ingin menambahkan apa lagi kedalamnya. Ini adalah project iseng for fun and for learning, so join sekarang kuy!
