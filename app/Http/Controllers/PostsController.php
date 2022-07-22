@@ -9,6 +9,7 @@ use Inertia\Inertia;
 use App\Models\Posts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class PostsController extends Controller
 {
@@ -58,11 +59,18 @@ class PostsController extends Controller
             ]
         );
 
+
         $posts = new Posts();
         $posts->description = $request->description;
+        if ($request->hasFile('gambar')) {
+            $nama_foto = Auth::user()->username . Str::random(60) . "." . $request->gambar->getClientOriginalExtension();
+            $filePath = $request->file('gambar')->storeAs('images_post', $nama_foto);
+            $posts->gambar = $nama_foto;
+        }
         $posts->author = auth()->user()->username;
         $posts->user_id = auth()->user()->id;
         $posts->save();
+
         return to_route('posts.main')->with('message', 'Posting Berhasil');
     }
 

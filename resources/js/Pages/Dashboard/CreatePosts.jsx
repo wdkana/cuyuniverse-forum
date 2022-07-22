@@ -5,7 +5,8 @@ import { Inertia } from '@inertiajs/inertia';
 import { set } from 'lodash';
 
 export default function CreatePosts(props) {
-  const [description, setDescription, gambar, setGambar] = useState("")
+  const [description, setDescription] = useState('');
+  const [gambar, setGambar] = useState('');
   const [limiter, setLimiter] = useState(200)
   const [isValid, setIsValid] = useState(true)
 
@@ -17,15 +18,20 @@ export default function CreatePosts(props) {
     }
     return isValid && Inertia.post('/dashboard/manage-posts/posts', data)
   }
- 
+
+  const imageHandler = (e) => {
+    setGambar(e.target.files[0])
+    let filename = e.target.files[0].name;
+  }
+
   const handleChange = (e) => {
     setDescription(e.target.value);
-    setGambar(e.target.files[0]);
     const x = 200 - Number(e.target.value.length)
     if (x >= 0) {
       setLimiter(x)
     }
   }
+  
 
   useEffect(() => {
     let mount = true
@@ -46,7 +52,6 @@ export default function CreatePosts(props) {
       </div>
     )
   }
-   console.log(gambar)
 
   return (
     <Authenticated
@@ -64,12 +69,12 @@ export default function CreatePosts(props) {
         {formValidateNotif()}
         <div className='w-full lg:w-1/2'>
           <label className="block text-sm font-medium leading-5 text-gray-700 mb-2">Error Image</label>
-          <input type="file" name="gambar" onChange={(gambar) => handleChange(gambar)} className='block w-full text-sm text-slate-500
+          <input type="file" name="gambar"onChange={imageHandler} className="block w-full text-sm text-slate-500
       file:mr-4 file:py-2 file:px-4
       file:rounded-full file:border-0
       file:text-sm file:font-semibold
       file:bg-violet-50 file:text-violet-700
-      hover:file:bg-violet-100' />
+      hover:file:bg-violet-100" />
       
           <textarea minLength={10} maxLength={200} required className="textarea h-36 bg-base-200 rounded-md w-full mt-3" placeholder="Isi posting [min:10]" onChange={(description) => handleChange(description)}></textarea>
         </div>

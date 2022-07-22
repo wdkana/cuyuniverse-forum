@@ -50,15 +50,17 @@ export default function MyPosts(props) {
         {props.data.length > 0 ? props.data.map((posts, i) => {
           return (
             <div key={i} className="card w-full md:w-1/2 lg:w-1/3 bg-base-100 shadow-lg">
-              <div className="card-body">
+              <div className="card-body ">
                 <Link href={`/post/${posts.id}`} method="get" as="div" className='card-title'>
+                    {
+                        posts.gambar !== null ? <img  src={`/storage/images_post/${posts.gambar}`} class="object-cover h-48 w-100 rounded-lg" alt=""></img> : null
+                    }
                   <p className={`cursor-pointer hover:-translate-y-1 hover:transition-all text-xl text-left ${posts.description.length > 100 ? "break-normal overflow-x-hidden" : "break-words"} h-20`}>{posts.description}</p>
                 </Link>
                 <div className="card-actions justify-between">
                   <div className='text-xs'>
                     posted {formatTime(posts.updated_at)} | {posts.comments.length} comment
                   </div>
-                  <a href="">Tes</a>
                   <label onClick={() => handleRemoveConfirmation()} className="btn btn-ghost cursor-pointer hover:bg-base-300 hover:rounded-md modal-button" htmlFor={`my-modal-${posts.id}`}><TbTrashX size={20} /></label>
                   {wantRemove &&
                     <>
