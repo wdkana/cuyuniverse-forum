@@ -19,7 +19,7 @@ return new class extends Migration
             $table->bigInteger('post_id')->unsigned()->index()->nullable();
             $table->foreign('post_id')->references('id')->on('posts')->onDelete('CASCADE');
             $table->string('commentartor')->index()->nullable();
-            $table->foreign('commentartor')->references('username')->on('users')->onDelete('CASCADE');
+            $table->foreign('commentartor')->references('username')->on('users')->onDelete('CASCADE')->onUpdate('CASCADE');
             $table->timestamps();
         });
     }
