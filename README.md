@@ -1,5 +1,4 @@
 <h2><img src="https://emojis.slackmojis.com/emojis/images/1531849430/4246/blob-sunglasses.gif?1531849430" width="30"/> LARACT9 🐱‍💻, CUY UNIVERSE PROJECT <img src="https://media.giphy.com/media/12oufCB0MyZ1Go/giphy.gif" width="50"></h2>
-<img align='right' src="https://media.giphy.com/media/M9gbBd9nbDrOTu1Mqx/giphy.gif" width="230">
 <p><em>Tech Entertainer <a href="https://www.footloose.io/">youtube.com/deaafrizal
 </a><img src="https://media.giphy.com/media/WUlplcMpOCEmTGBtBW/giphy.gif" width="30"> 
 </em></p>
@@ -19,17 +18,17 @@
 CuyUniverse adalah project terbuka untuk siapa saja yang mau belajar ngoding terutama dengan pemilihan 2 bahasa pemrograman (PHP & Javascript).
 3 core stack yang digunakan saat ini: LARAVEL9, REACTJS & MYSQL
 
-👇 Clone project ini sekarang di lokal komputer kalian masing-masing.
+👇 FORK atau coba-coba di clone project ini sekarang di lokal komputer kalian masing-masing.
+### FIRST PULL DI BRANCH DEV YA & PUSH KE DEV JUGA OKEH!
 
 ```bash
 git clone https://github.com/deaaprizal/laract9.git .
 ```
-**👆 This command line tool can be found at [npx anmol](https://github.com/anmol098/npx_card)**
 
 ### <img src="https://media.giphy.com/media/VgCDAzcKvsR6OM0uWg/giphy.gif" width="50"> Beberapa library yang digunakan...  
 
 ```javascript
-const anmol = {
+const cuyuniverse = {
   Technologies: {
     CSS: ["Tailwind", "DaisyUI"],
     backEnd: {

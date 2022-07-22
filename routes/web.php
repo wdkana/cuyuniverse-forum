@@ -35,6 +35,7 @@ Route::controller(DashboardController::class)->middleware(['auth', 'verified'])-
         Route::get('/dashboard/notif', 'notification')->name('notif');
         Route::get('/dashboard/manage-posts', 'manage_posts')->name('manage.posts');
         Route::post('/dashboard/photo', 'update_photo')->name('update.photo')->middleware('isValidUser');
+        Route::put('/dashboard/update-username', 'update_username')->name('update.username')->middleware('isValidUser');
     }
 );
 
