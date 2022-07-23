@@ -68,14 +68,13 @@ final class DashboardController extends Controller
 
     public function update_username(Request $request)
     {
-        $user = Auth::user();
-
         $request->validate([
-            'username' => 'required|string|min:4|max:20|unique:users,username,' . $user->id,
+            'username' => 'required|string|min:4|max:40|unique:users|alpha_dash',
             'token' => 'required',
         ]);
 
-        $user->update([
+        $users = User::find(Auth::user()->id)->where('token', $request->token);
+        $users->update([
             'username' => $request->username,
         ]);
 
