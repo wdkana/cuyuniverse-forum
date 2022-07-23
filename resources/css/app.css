@@ -21,3 +21,15 @@
 ::-webkit-scrollbar-thumb:hover {
     background: #c0a0b9;
 }
+
+.avatar svg {
+    display: none;
+    position: relative;
+    top: -64px;
+    width: 32px;
+    height: 32px;
+    margin: auto;
+    cursor: pointer;
+}
+.avatar div:hover svg {display: block;}
+.avatar div:hover img {opacity: 0.3;}
