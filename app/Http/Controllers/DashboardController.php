@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Models\Posts;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,29 +15,24 @@ final class DashboardController extends Controller
 {
     public function index()
     {
+        $user = User::find(Auth::user()->id);
+
+        if ($user->token == null) {
+            $user->token = Str::random(60);
+            $user->save();
+            return back();
+        }
+
         return Inertia::render('Dashboard/Index', [
             'title' => 'DASHBOARD',
         ]);
     }
 
-    public function notification()
+    public function setting()
     {
-        $posts = Posts::where('user_id', Auth::user()->id)->has('comments', '>', 0)->with('comments')->get()->map(static function ($item) {
-            return $item->comments;
-        });
-
-        return Inertia::render('Dashboard/Notification', [
-            'page' => 'COMMENTS',
-            'next' => 'MANAGE MY POST',
-            'nextRoute' => 'dash.main',
-            'comments' => $posts,
-        ]);
-    }
-
-    public function manage_posts()
-    {
-        return Inertia::render('Dashboard/PostManagement', [
-            'title' => 'MANAGE MY POST',
+        return Inertia::render('Dashboard/Setting', [
+            'title' => 'USER PROFILE',
+            'next' => 'DASHBOARD',
             'nextRoute' => 'dash.main',
         ]);
     }
@@ -63,7 +57,7 @@ final class DashboardController extends Controller
         }
         $user->save();
 
-        return to_route('dash.main')->with('message', 'Avatar berhasil diganti');
+        return to_route('dash.setting.profile')->with('message', 'Avatar berhasil diganti');
     }
 
     public function update_username(Request $request)
