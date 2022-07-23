@@ -13,3 +13,6 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+
+# cache php cs fixer
+.php-cs-fixer.cache
