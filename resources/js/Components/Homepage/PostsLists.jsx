@@ -32,19 +32,8 @@ const isPosts = (posts, from) => {
             {post.description}
           </div>
 
-          <div className="flex flex-row">
-            <div className="basis-1/2 content-end card-actions text-sm">
-              <div className="text-xs break-normal">
-                posted {formatTime(post.updated_at)} |{" "}
-                {post.comments && post.comments.length > 0
-                  ? post.comments.length
-                  : "no"}{" "}
-                comment
-              </div>
-            </div>
-
+          <div className="flex items-center">
             <RenderIfTrue isTrue={from !== "authorPage"}>
-              <div className="basis-1/2 justify-end items-end flex flex-col">
                 <Link
                   href={`/author/${post.author}`}
                   as="button"
@@ -61,7 +50,16 @@ const isPosts = (posts, from) => {
                     />
                   </div>
                 </Link>
-                <div className="py-2">{post.author}</div>
+  
+              <div className="text-sm ml-4">
+                <p className="text-gray-900 leading-none">{post.author}</p>
+                <p className="text-xs break-normal">
+                  posted {formatTime(post.updated_at)} |{" "}
+                  {post.comments && post.comments.length > 0
+                    ? post.comments.length
+                    : "no"}{" "}
+                  comment
+                </p>
               </div>
             </RenderIfTrue>
           </div>
