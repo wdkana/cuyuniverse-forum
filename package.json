@@ -29,6 +29,7 @@
         "react-avatar": "^5.0.1",
         "react-countdown": "^2.3.2",
         "react-google-recaptcha": "^2.1.0",
+        "react-haiku": "^2.0.1",
         "react-icons": "^4.4.0"
     }
 }
