@@ -3,6 +3,7 @@ import { formatTime } from "@/utils/jsHelper";
 import { Inertia } from "@inertiajs/inertia";
 import { Link } from "@inertiajs/inertia-react";
 import { useEffect, useState } from "react";
+import { FcLike } from "react-icons/fc"
 import NotificationAlert from "../Default/NotificationAlert";
 
 export default function PostList(props) {
@@ -161,13 +162,14 @@ export default function PostList(props) {
           })}
         </div>
       </div>
-      <div className="flex flex-col justify-center items-start gap-4 py-2 px-2 sm:px-10">
+      <div className="flex flex-col justify-center items-start gap-4 py-2 px-2 sm:px-10 ">
         {/* {props.user && formValidateNotif()} */}
         <button
           onClick={() => likePost(props.posts.id)}
           type="button"
-          className="btn btn-primary"
+          className="btn gap-2 bg-orange-50"
         >
+          <FcLike />
           {props.posts.likes_count} Like
         </button>
       </div>

@@ -20,14 +20,14 @@ class OuterController extends Controller
     ]);
   }
 
-    public function Teams()
-    {
-        return Inertia::render('Teams', [
-            'title' => "TEAMS",
-            'root' => "TEAMS",
-            'description' => "Cuy Universe Teams",
-        ]);
-    }
+  public function Teams()
+  {
+    return Inertia::render('Teams', [
+      'title' => "TEAMS",
+      'root' => "TEAMS",
+      'description' => "Cuy Universe Teams",
+    ]);
+  }
 
   public function PostsAll()
   {

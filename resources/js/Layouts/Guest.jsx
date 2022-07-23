@@ -30,7 +30,7 @@ export default function Guest({ children, auth }) {
                                     <MdOutlineLeaderboard className='m-1' /> Pengguna
                                 </NavLink>
                             </div>
-                               <div className="flex items-center">
+                            <div className="flex items-center">
                                 <NavLink  href="/teams" active={route().current('outer.teams')}>
                                     <MdPeople className='m-1' /> Team
                                 </NavLink>
