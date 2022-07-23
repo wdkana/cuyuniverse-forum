@@ -22,6 +22,15 @@ class OuterController extends Controller
     ]);
   }
 
+    public function Teams()
+    {
+        return Inertia::render('Teams', [
+            'title' => "TEAMS",
+            'root' => "TEAMS",
+            'description' => "Cuy Universe Teams",
+        ]);
+    }
+
   public function PostsAll()
   {
     $posts = new PostsCollection(Posts::orderByDesc('id')->with(['comments', 'users:id,image'])->paginate(12));

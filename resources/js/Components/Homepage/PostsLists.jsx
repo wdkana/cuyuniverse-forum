@@ -61,7 +61,17 @@ const isPosts = (posts, from) => {
                     />
                   </div>
                 </Link>
-                <div className="py-2">{post.author}</div>
+  
+              <div className="text-sm ml-4">
+                <p className="text-gray-900 leading-none">{post.author}</p>
+                <p className="text-xs break-normal">
+                  posted {formatTime(post.updated_at)} |{" "}
+                  {post.comments && post.comments.length > 0
+                    ? post.comments.length
+                    : "no"}{" "}
+                  comment
+                </p>
+              </div>
               </div>
             </RenderIfTrue>
           </div>

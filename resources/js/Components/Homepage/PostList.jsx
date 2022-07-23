@@ -83,8 +83,11 @@ export default function PostList(props) {
       token: props.user.token
     }
     
-    return Inertia.post('/post/like/love', data)
+    return Inertia.post("/post/like/love", data, {
+      preserveScroll: true,
+    });
   }
+
   const savePost = (postId) => {
     const data = {
       post_id: postId,

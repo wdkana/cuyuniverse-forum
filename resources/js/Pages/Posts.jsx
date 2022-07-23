@@ -32,7 +32,7 @@ export default function PostsPage(props) {
         });
       })
       .catch((err) => {
-        console.log(err);
+        throw err
       });
   };
 
