@@ -36,13 +36,13 @@ class OuterController extends Controller
 
     public function find($post_id)
     {
-        $posts = Posts::with('comments.users:username,image')->where('id', $post_id)->first();
+        $posts = Posts::with('comments.users:username,image')->withCount('likes')->where('id', $post_id)->first();
         if ($posts == null) {
             return abort(404);
         }
 
         return Inertia::render('Post', [
-            'posts' => $posts->only(['id', 'description', 'author', 'created_at']),
+            'posts' => $posts->only(['id', 'description', 'image', 'author', 'created_at', 'likes_count']),
             'comments' => $posts->comments,
             'author_image' => $posts->users->image,
             'title' => "Postingan Dari CuyPeople",

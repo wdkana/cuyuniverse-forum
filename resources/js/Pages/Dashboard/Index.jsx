@@ -7,8 +7,12 @@ import NotificationAlert from '@/Components/Default/NotificationAlert';
 
 export default function DashboardPage(props) {
     const { data, setData, progress, processing } = useForm({
-        image: null
-    })
+        image: null,
+        username: null
+    });
+
+    const [username, setUsername] = useState(props.auth.user.username);
+
     const { flash } = usePage().props
     const [showNotif, setShowNotif] = useState(false)
 
@@ -24,6 +28,19 @@ export default function DashboardPage(props) {
         Inertia.post('/dashboard/photo', { image: data[0], token: props.auth.user.token })
     }
 
+    function handleChangeUsername(e) {
+        setUsername(e.target.value)
+    }
+
+    function updateUsername(e) {
+        e.preventDefault();
+        setData({
+            ...data,
+            username: e.target.value
+        });
+        Inertia.put('/dashboard/update-username', { username: username, token: props.auth.user.token })
+    }
+
     return (
         <Authenticated
             auth={props.auth}
@@ -33,6 +50,7 @@ export default function DashboardPage(props) {
             <Head title={props.title} />
             <div className='max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8'>
                 {showNotif && <NotificationAlert message={flash.message} />}
+                {props.errors && props.errors.username && <NotificationAlert message={props.errors.username} />}
                 {props.errors && <NotificationAlert message={props.errors.image} />}
                 <div className="flex flex-col lg:flex-row justify-center items-center w-full gap-6">
                     <div className="avatar online">
@@ -53,6 +71,17 @@ export default function DashboardPage(props) {
                     </div>
                     <div>
                         <h1>Untuk saat ini silahkan gunakan menubar yang ada dibagian atas website ini untuk mengakses menu fitur yang tersedia.</h1>
+                    </div>
+                </div>
+                <div className='row'>
+                    <div className="col-lg-12">
+                        <form onSubmit={updateUsername}>
+                            <div className="form-group">
+                                <label className="form-label">Username</label>
+                                <input onChange={handleChangeUsername} name='username' type="text" className="form-control" value={username} />
+                            </div>
+                            <button type='submit' disabled={processing} className='btn btn-primary float-right'>Simpan</button>
+                        </form>
                     </div>
                 </div>
             </div>
