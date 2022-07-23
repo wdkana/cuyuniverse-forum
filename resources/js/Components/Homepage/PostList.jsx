@@ -83,7 +83,9 @@ export default function PostList(props) {
       token: props.user.token,
     };
 
-    return Inertia.post("/post/like/love", data);
+    return Inertia.post("/post/like/love", data, {
+      preserveScroll: true,
+    });
   };
   return (
     <div className="card w-full md:w-2/3 bg-base-100 dark:bg-slate-700 shadow-lg">
