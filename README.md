@@ -1,5 +1,4 @@
 <h2><img src="https://emojis.slackmojis.com/emojis/images/1531849430/4246/blob-sunglasses.gif?1531849430" width="30"/> LARACT9 🐱‍💻, CUY UNIVERSE PROJECT <img src="https://media.giphy.com/media/12oufCB0MyZ1Go/giphy.gif" width="50"></h2>
-<img align='right' src="https://media.giphy.com/media/M9gbBd9nbDrOTu1Mqx/giphy.gif" width="230">
 <p><em>Tech Entertainer <a href="https://www.footloose.io/">youtube.com/deaafrizal
 </a><img src="https://media.giphy.com/media/WUlplcMpOCEmTGBtBW/giphy.gif" width="30"> 
 </em></p>
@@ -10,20 +9,29 @@
 ![Discord](https://img.shields.io/discord/887712251887382578?label=DISCORD%20CUYHUB&style=for-the-badge)
 ![GitHub top language](https://img.shields.io/github/languages/top/deaaprizal/laract9?label=LARACT9%20LANG&style=for-the-badge)
 ![Website](https://img.shields.io/website?down_color=red&down_message=DOWN%20%2F%20OFFLINE&label=cuyuniverse%20web%20stats%20%3D%3E&style=for-the-badge&up_color=pink&up_message=UP%20%2F%20ONLINE&url=https%3A%2F%2Fcuyuniverse.co)
-
+![GitHub contributors](https://img.shields.io/github/contributors/deaaprizal/laract9?label=cuycontributors&style=for-the-badge)
 
 ### 📫 Join projek isengan ini?
 #### check staging server https://cuyuniverse.co
+<br/>
 
-
-CuyUniverse adalah project terbuka untuk siapa saja yang mau belajar ngoding terutama dengan pemilihan 2 bahasa pemrograman (PHP & Javascript).
-3 core stack yang digunakan saat ini: LARAVEL9, REACTJS & MYSQL
-
-👇 FORK atau coba-coba di clone project ini sekarang di lokal komputer kalian masing-masing.
-
+👇 Clone this project first and make your own features 👇
 ```bash
 git clone https://github.com/deaaprizal/laract9.git .
 ```
+<br/>
+
+CuyUniverse adalah project terbuka untuk siapa saja yang mau belajar ngoding terutama dengan pemilihan 2 bahasa pemrograman (PHP & Javascript).
+3 core stack yang digunakan saat ini: LARAVEL9, REACTJS & MYSQL
+FORK atau coba-coba di clone project ini sekarang di lokal komputer kalian masing-masing.
+<br/>
+
+---
+
+### BRANCH UTAMA UNTUK SEMUA PERUBAHAN MULAI DARI => DEV 
+CHECKOUT ke "dev" dan lakukan push ke "dev" juga
+
+---
 
 ### <img src="https://media.giphy.com/media/VgCDAzcKvsR6OM0uWg/giphy.gif" width="50"> Beberapa library yang digunakan...  
 
@@ -45,11 +53,26 @@ const cuyuniverse = {
 };
 ```
 
-<img src="https://media.giphy.com/media/LnQjpWaON8nhr21vNW/giphy.gif" width="60"> <em><b>Gue suka berkolaborasi dengan siapa saja</b> jadi buat kalian <b>peduli apa kata orang skill-mu, mari berkontribusi dan belajar bareng!</b> 😊</em>
+---
+
+### Bagimana cara FORK? Please searching di google aja ya bro
+<p>bisa baca docs resminya disini https://docs.github.com/en/get-started/quickstart/fork-a-repo </p>
+<br/>
+
+### Apakah sudah ada guideline untuk bagaimana cara ikut kontribusi?
+<p>Belum. Feel free to make update into this readme file for guiding people to setup laract9 👍</p>
+<p>Bebaskan jiwa codingmu dan mari berdiskusi disini: https://github.com/deaaprizal/laract9/discussions</p>
+<br/>
+<br/>
+
+<p>seputar kreasi fitur projek cuyuniverse akan diupdate disini: https://github.com/deaaprizal/laract9/projects?type=beta </p>
 
 ---
 
-![GitHub contributors](https://img.shields.io/github/contributors/deaaprizal/laract9?label=cuycontributors&style=for-the-badge)
+<img src="https://media.giphy.com/media/LnQjpWaON8nhr21vNW/giphy.gif" width="60"> <em><b>Gue suka berkolaborasi dengan siapa saja</b> jadi buat kalian <b>peduli apa kata orang skill-mu, mari berkontribusi dan belajar bareng!</b></em>
+
+---
+
 ![Lines of code](https://img.shields.io/tokei/lines/github/deaaprizal/laract9?style=for-the-badge)
 ![GitHub repo size](https://img.shields.io/github/repo-size/deaaprizal/laract9?style=for-the-badge)
 ![GitHub Discussions](https://img.shields.io/github/discussions/deaaprizal/laract9?style=for-the-badge)
