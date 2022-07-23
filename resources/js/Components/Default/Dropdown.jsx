@@ -1,6 +1,6 @@
-import React, { useState, useContext, Fragment } from 'react';
-import { Link } from '@inertiajs/inertia-react';
-import { Transition } from '@headlessui/react';
+import React, { useState, useContext, Fragment } from "react";
+import { Link } from "@inertiajs/inertia-react";
+import { Transition } from "@headlessui/react";
 
 const DropDownContext = React.createContext();
 
@@ -25,26 +25,36 @@ const Trigger = ({ children }) => {
         <>
             <div onClick={toggleOpen}>{children}</div>
 
-            {open && <div className="fixed inset-0 z-40" onClick={() => setOpen(false)}></div>}
+            {open && (
+                <div
+                    className="fixed inset-0 z-40"
+                    onClick={() => setOpen(false)}
+                ></div>
+            )}
         </>
     );
 };
 
-const Content = ({ align = 'right', width = '48', contentClasses = 'py-1', children }) => {
+const Content = ({
+    align = "right",
+    width = "48",
+    contentClasses = "py-1",
+    children,
+}) => {
     const { open, setOpen } = useContext(DropDownContext);
 
-    let alignmentClasses = 'origin-top';
+    let alignmentClasses = "origin-top";
 
-    if (align === 'left') {
-        alignmentClasses = 'origin-top-left left-0';
-    } else if (align === 'right') {
-        alignmentClasses = 'origin-top-right right-0';
+    if (align === "left") {
+        alignmentClasses = "origin-top-left left-0";
+    } else if (align === "right") {
+        alignmentClasses = "origin-top-right right-0";
     }
 
-    let widthClasses = '';
+    let widthClasses = "";
 
-    if (width === '48') {
-        widthClasses = 'w-48';
+    if (width === "48") {
+        widthClasses = "w-48";
     }
 
     return (
@@ -60,23 +70,30 @@ const Content = ({ align = 'right', width = '48', contentClasses = 'py-1', child
                 leaveTo="transform opacity-0 scale-95"
             >
                 <div
-                    className={`absolute bg-base-300 z-50 mt-2 rounded-md shadow-lg ${alignmentClasses} ${widthClasses}`}
+                    className={`absolute bg-gray-200 z-50 mt-2 rounded-md shadow-lg ${alignmentClasses} ${widthClasses}`}
                     onClick={() => setOpen(false)}
                 >
-                    <div className={`rounded-md ring-1 ring-black ring-opacity-5 ` + contentClasses}>{children}</div>
+                    <div
+                        className={
+                            `rounded-md ring-1 ring-black ring-opacity-5 ` +
+                            contentClasses
+                        }
+                    >
+                        {children}
+                    </div>
                 </div>
             </Transition>
         </>
     );
 };
 
-const DropdownLink = ({ href, method = 'post', as = 'a', children }) => {
+const DropdownLink = ({ href, method = "post", as = "a", children }) => {
     return (
         <Link
             href={href}
             method={method}
             as={as}
-            className="block w-full px-4 py-2 text-left text-sm leading-5 hover:bg-indigo-600 hover:text-white focus:outline-none focus:bg-indigo-700 transition duration-150 ease-in-out"
+            className="block w-full px-4 py-2 text-left text-sm leading-5 hover:bg-indigo-500 hover:text-white focus:outline-none focus:bg-indigo-700 transition duration-150 ease-in-out"
         >
             {children}
         </Link>
