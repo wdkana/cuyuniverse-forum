@@ -3,6 +3,7 @@ import Authenticated from "@/Layouts/Authenticated";
 import { Head, Link } from "@inertiajs/inertia-react";
 
 export default function NotificationPage(props) {
+    console.log(props.notifications);
     return (
         <Authenticated
             auth={props.auth}
@@ -26,16 +27,21 @@ export default function NotificationPage(props) {
             <div className="overflow-hidden shadow-sm sm:rounded-lg p-4">
                 {/* <div className='flex flex-col justify-center items-center lg:flex-row lg:flex-wrap lg:items-center gap-4'> */}
                 <div className="flex flex-col justify-center items-center lg:flex-col lg:flex-wrap gap-4">
-                    {props.notifications.map((notification, index) => (
+                    {(props.notifications.length > 0) ? props.notifications.map((notification, index) => (
                         <div className="card w-full p-5 md:w-1/2 lg:w-1/3 xl:w-1/3 bg-base-100 shadow-lg">
-                            <Link href={route("outer.byId", [notification.data.id])}>
-                                Lihat Semua Postingan
-                                <i>
-                                    "{notification.data.description}"
-                                </i>dari {notification.data.commentartor}
+                            {(notification.data.type === 'comment') ? (
+                                <Link href={route("outer.byId", [notification.data.post_id])}>
+                                <b>{notification.data.commentartor}</b> mengomentari postingan Anda <i> "{notification.data.description}"</i>
+                        </Link>
+                            ) : (
+                            <Link href={route("outer.byId", [notification.data.post_id])}>
+                                <b>{notification.data.user_like}</b> menyukai postingan Anda
                             </Link>
+                            )}
                         </div>
-                    ))}
+                    )) : (
+                        <h1>Tidak ada notifikasi</h1>
+                    )}
                 </div>
             </div>
             {/* <div className='divider'></div> */}
