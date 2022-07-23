@@ -7,6 +7,8 @@ use App\Models\Comment;
 use App\Models\Like;
 use Inertia\Inertia;
 use App\Models\Posts;
+use App\Models\User;
+use App\Notifications\UserComment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -99,6 +101,13 @@ class PostsController extends Controller
         $post = Posts::find($request->post_id);
 
         $post->comments()->save($comment);
+
+        //kirim notifikasi ke user yang nge-post
+        $user = User::find($post->user_id);
+        //jika yang mengomentari bukan post miliknya sendiri, maka kirim notifikasi
+        if($post->user_id !== Auth::id()) {
+            $user->notify(new UserComment($comment));
+        }
 
         return to_route('outer.byId', ['id' => $request->post_id])->with('message', 'Komentar telah dikirim');
     }

@@ -21,15 +21,18 @@ class DashboardController extends Controller
 
     public function notification()
     {
-        $posts = Posts::where('user_id', Auth::user()->id)->has('comments', '>', 0)->with('comments')->get()->map(function ($item) {
-            return $item->comments;
-        });
+        // $posts = Posts::where('user_id', Auth::user()->id)->has('comments', '>', 0)->with('comments')->get()->map(function ($item) {
+        //     return $item->comments;
+        // });
+
+        $notifications = Auth::user()->unreadNotifications;
 
         return Inertia::render('Dashboard/Notification', [
             'page' => 'COMMENTS',
             'next' => 'MANAGE MY POST',
             'nextRoute' => 'dash.main',
-            'comments' => $posts,
+            'notifications' => $notifications
+            // 'comments' => $posts,
         ]);
     }
 
