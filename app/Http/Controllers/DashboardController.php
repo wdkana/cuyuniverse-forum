@@ -68,10 +68,10 @@ final class DashboardController extends Controller
 
     public function update_username(Request $request)
     {
-        $user = new User();
+        $user = Auth::user();
 
         $request->validate([
-            'username' => 'required|string|min:4|max:20|unique:users,username,' . Auth::user()->id,
+            'username' => 'required|string|min:4|max:20|unique:users,username,' . $user->id,
             'token' => 'required',
         ]);
 
