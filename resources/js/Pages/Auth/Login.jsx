@@ -1,11 +1,8 @@
 import React, { useEffect } from 'react';
-import Button from '@/Components/Default/Button';
-import Checkbox from '@/Components/Default/Checkbox';
 import Guest from '@/Layouts/Guest';
-import Input from '@/Components/Default/Input';
-import Label from '@/Components/Default/Label';
 import ValidationErrors from '@/Components/Default/ValidationErrors';
 import { Head, Link, useForm } from '@inertiajs/inertia-react';
+import { MdLockOpen } from 'react-icons/md';
 
 export default function Login({ status, canResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -32,64 +29,95 @@ export default function Login({ status, canResetPassword }) {
 
     return (
         <Guest>
-            <div className='p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 flex flex-col justify-center items-center'>
-                <Head title="MASUK AKUN" />
-                <div className='font-bold text-xl'>MASUK CUYUNIVERSE</div>
-                {status && <div className="mb-4 font-medium text-sm">{status}</div>}
-
-                <ValidationErrors errors={errors} />
-
-                <form onSubmit={submit} className="w-full md:w-1/2">
+            <Head title="MASUK AKUN" />
+            <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+                <div className="max-w-md w-full space-y-8">
                     <div>
-                        <Label forInput="username" value="Username" />
-
-                        <Input
-                            type="text"
-                            name={"username"}
-                            value={data.username}
-                            className="mt-1 block w-full"
-                            autoComplete={"username"}
-                            isFocused={true}
-                            handleChange={onHandleChange}
-                        />
-                    </div>
-
-                    <div className="mt-4">
-                        <Label forInput="password" value="Password" />
-
-                        <Input
-                            type="password"
-                            name="password"
-                            value={data.password}
-                            className="mt-1 block w-full"
-                            autoComplete="current-password"
-                            handleChange={onHandleChange}
-                        />
-                    </div>
-
-                    <div className="block mt-4">
-                        <label className="flex items-center">
-                            <Checkbox name="remember" value={data.remember} handleChange={onHandleChange} />
-
-                            <span className="ml-2 text-sm ">Remember me</span>
-                        </label>
-                    </div>
-
-                    <div className="flex items-center justify-end mt-4">
-                        {canResetPassword && (
-                            <Link
-                                href={route('password.request')}
-                                className="underline text-sm"
-                            >
-                                Lupa password?
+                        {/* <img
+                            className="mx-auto h-12 w-auto"
+                            src="logo gue"
+                            alt="logo gue" /> */}
+                        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Masuk CuyUniverse</h2>
+                        <p className="mt-2 text-center text-sm text-gray-600">
+                            Atau{' '}
+                            <Link href={route('register')} as="button" className="font-medium text-indigo-600 hover:text-indigo-500">
+                                daftar gratis disini
                             </Link>
-                        )}
-
-                        <Button className="ml-4 hover:bg-indigo-800" processing={processing}>
-                            Masuk
-                        </Button>
+                        </p>
+                        {status && <div className="mb-4 font-medium text-sm">{status}</div>}
+                        <ValidationErrors errors={errors} />
                     </div>
-                </form>
+                    <form className="mt-8 space-y-6" onSubmit={submit}>
+                        <input type="hidden" name="remember" defaultValue="true" />
+                        <div className="flex flex-col gap-2 rounded-md shadow-sm -space-y-px">
+                            <div>
+                                <label htmlFor="email-address" className="sr-only">
+                                    Username
+                                </label>
+                                <input
+                                    id="username"
+                                    name="username"
+                                    type="text"
+                                    autoComplete="on"
+                                    required
+                                    className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                    placeholder="Masukan Username"
+                                    onChange={onHandleChange}
+                                    value={data.username} />
+                            </div>
+                            <div>
+                                <label htmlFor="password" className="sr-only">
+                                    Password
+                                </label>
+                                <input
+                                    id="password"
+                                    name="password"
+                                    type="password"
+                                    autoComplete="on"
+                                    required
+                                    className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                    placeholder="Password"
+                                    onChange={onHandleChange}
+                                    value={data.password} />
+                            </div>
+                        </div>
+
+                        <div className="flex items-center justify-between">
+                            <div className="flex items-center">
+                                <input
+                                    id="remember-me"
+                                    type="checkbox"
+                                    className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                                    name="remember" value={data.remember} onChange={onHandleChange} />
+                                <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
+                                    Ingatkan saya
+                                </label>
+                            </div>
+
+                            <div className="text-sm">
+                                {canResetPassword && (
+                                    <Link
+                                        href={route('password.request')}
+                                        className="font-medium text-indigo-600 hover:text-indigo-500">
+                                        Lupa password?
+                                    </Link>
+                                )}
+                            </div>
+                        </div>
+
+                        <div>
+                            <button
+                                type="submit"
+                                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                disabled={processing}>
+                                <span className="absolute left-0 inset-y-0 flex items-center pl-3">
+                                    <MdLockOpen />
+                                </span>
+                                Masuk Akun
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </Guest>
     );
