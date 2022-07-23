@@ -16,7 +16,7 @@ Route::controller(OuterController::class)->name('outer.')->group(
     function () {
         Route::get('/', 'index')->name('main')->middleware('throttle:20,1');
         Route::get('/posts', 'PostsAll')->name('posts');
-        Route::post('/posts', 'MorePosts')->name('posts.more');
+        // Route::post('/posts', 'MorePosts')->name('posts.more');
         Route::get('/post/{id}', 'find')->name('byId');
     }
 );

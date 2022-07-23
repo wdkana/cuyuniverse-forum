@@ -33,7 +33,7 @@ const isPosts = (posts, from) => {
           </div>
 
           <div className="flex items-center">
-            <RenderIfTrue isTrue={from !== "authorPage"}>             
+            <RenderIfTrue isTrue={from !== "authorPage"}>
                 <Link
                   href={`/author/${post.author}`}
                   as="button"
@@ -50,15 +50,15 @@ const isPosts = (posts, from) => {
                     />
                   </div>
                 </Link>
-                <div class="text-sm ml-4">
-                    <p className="text-gray-900 leading-none">{post.author}</p>    
+                <div className="text-sm ml-4">
+                    <p className="text-gray-900 leading-none">{post.author}</p>
                     <p className="text-xs break-normal">
                       posted {formatTime(post.updated_at)} |{" "}
                         {post.comments && post.comments.length > 0
                           ? post.comments.length
                           : "no"}{" "}
                         comment
-                    </p>  
+                    </p>
                 </div>
             </RenderIfTrue>
           </div>
