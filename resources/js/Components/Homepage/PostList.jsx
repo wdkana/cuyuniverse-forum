@@ -130,7 +130,10 @@ export default function PostList(props) {
         <div className="bg-base-200">
           {props.comments.map((comment, i) => {
             return (
-              <div className="border-b-2 flex flex-col p-2" key={i}>
+              <div
+                className="border-b-2 dark:border-b-slate-500 flex flex-col p-3 bg-slate-800"
+                key={i}
+              >
                 <div className="text-md font-mono font-bold">
                   {comment.description}
                 </div>
@@ -162,7 +165,6 @@ export default function PostList(props) {
         </div>
       </div>
       <div className="flex flex-col justify-center items-start gap-4 py-2 px-2 sm:px-10">
-        {/* {props.user && formValidateNotif()} */}
         <button
           onClick={() => likePost(props.posts.id)}
           type="button"
