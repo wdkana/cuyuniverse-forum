@@ -17,7 +17,7 @@ const isPosts = (posts, from) => {
       <div key={i} className="card w-full md:w-1/2 lg:w-1/3 xl:w-1/3 bg-base-100 shadow-lg cursor-pointer hover:transition-all hover:delay-75 hover:-translate-y-1 hover:bg-neutral">
         <Link href={`/post/${post.id}`} method="get" as="div" className="card-body p-6">
          {
-            post.gambar !== null ? <img  src={`/storage/images_post/${post.gambar}`} class="object-cover h-48 w-100 rounded-lg" alt=""></img> : null
+            post.image !== null ? <img  src={`/storage/images_post/${post.image}`} class="object-cover h-48 w-100 rounded-lg" alt=""></img> : null
          }
 
 

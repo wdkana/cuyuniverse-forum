@@ -70,7 +70,7 @@ export default function PostList(props) {
       <div className="card-body p-6">
        
            {
-            props.posts.gambar !== null ? <img  src={`/storage/images_post/${props.posts.gambar}`} class="object-cover h-100 w-100 rounded-lg" alt=""></img> : null
+            props.posts.image !== null ? <img  src={`/storage/images_post/${props.posts.image}`} class="object-cover h-100 w-100 rounded-lg" alt=""></img> : null
          }
 
         <p className='text-2xl break-all cursor-default font-bold'>{props.posts.description}</p>

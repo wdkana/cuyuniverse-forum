@@ -42,7 +42,7 @@ class OuterController extends Controller
         }
 
         return Inertia::render('Post', [
-            'posts' => $posts->only(['id', 'description', 'gambar', 'author', 'created_at', 'likes_count']),
+            'posts' => $posts->only(['id', 'description', 'image', 'author', 'created_at', 'likes_count']),
             'comments' => $posts->comments,
             'author_image' => $posts->users->image,
             'title' => "Postingan Dari CuyPeople",

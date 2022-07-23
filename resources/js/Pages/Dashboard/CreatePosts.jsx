@@ -6,21 +6,21 @@ import { set } from 'lodash';
 
 export default function CreatePosts(props) {
   const [description, setDescription] = useState('');
-  const [gambar, setGambar] = useState('');
+  const [image, setImage] = useState('');
   const [limiter, setLimiter] = useState(200)
   const [isValid, setIsValid] = useState(true)
 
   const handleSubmit = () => {
     const data = {
       description: description,
-      gambar: gambar,
+      image: image,
       token: props.auth.user.token
     }
     return isValid && Inertia.post('/dashboard/manage-posts/posts', data)
   }
 
   const imageHandler = (e) => {
-    setGambar(e.target.files[0])
+    setImage(e.target.files[0])
     let filename = e.target.files[0].name;
   }
 
@@ -68,8 +68,8 @@ export default function CreatePosts(props) {
       <div className='flex flex-col justify-center items-center p-4 gap-4'>
         {formValidateNotif()}
         <div className='w-full lg:w-1/2'>
-          <label className="block text-sm font-medium leading-5 text-gray-700 mb-2">Error Image</label>
-          <input type="file" name="gambar"onChange={imageHandler} className="block w-full text-sm text-slate-500
+          <label className="block text-sm font-medium leading-5 text-gray-700 mb-2">Error Image <span className='text-red-600'>*Max 1 mb</span></label>
+          <input type="file" name="image"onChange={imageHandler} className="block w-full text-sm text-slate-500
       file:mr-4 file:py-2 file:px-4
       file:rounded-full file:border-0
       file:text-sm file:font-semibold
