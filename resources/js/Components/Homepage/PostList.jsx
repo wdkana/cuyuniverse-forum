@@ -95,7 +95,7 @@ export default function PostList(props) {
           {props.posts.description}
         </p>
 
-        <div class="flex flex-row py-2 border-b-4 border-b-primary">
+        <div className="flex flex-row py-2 border-b-4 border-b-primary">
           <div className="basis-1/2 flex justify-start items-end">
             <div className="text-xs cursor-default break-normal">
               posted {formatTime(props.posts.created_at)}

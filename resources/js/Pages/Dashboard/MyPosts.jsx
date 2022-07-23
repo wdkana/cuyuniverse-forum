@@ -52,9 +52,9 @@ export default function MyPosts(props) {
             <div key={i} className="card w-full md:w-1/2 lg:w-1/3 bg-base-100 shadow-lg">
               <div className="card-body ">
                 <Link href={`/post/${posts.id}`} method="get" as="div" className='card-title'>
-                    {
-                        posts.image !== null ? <img  src={`/storage/images_post/${posts.image}`} class="object-cover h-48 w-100 rounded-lg" alt=""></img> : null
-                    }
+                  {
+                    posts.image !== null ? <img src={`/storage/images_post/${posts.image}`} className="object-cover h-48 w-100 rounded-lg" alt=""></img> : null
+                  }
                   <p className={`cursor-pointer hover:-translate-y-1 hover:transition-all text-xl text-left ${posts.description.length > 100 ? "break-normal overflow-x-hidden" : "break-words"} h-20`}>{posts.description}</p>
                 </Link>
                 <div className="card-actions justify-between">
