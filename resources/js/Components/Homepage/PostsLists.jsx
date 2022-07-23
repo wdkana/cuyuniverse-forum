@@ -32,7 +32,7 @@ const isPosts = (posts, from) => {
             {post.description}
           </div>
 
-          <div className="flex items-center">          
+          <div className="flex items-center">      
                 <Link
                   href={`/author/${post.author}`}
                   as="button"

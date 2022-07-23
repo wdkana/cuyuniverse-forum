@@ -1,5 +1,4 @@
 import React from 'react';
-import Button from '@/Components/Default/Button';
 import Guest from '@/Layouts/Guest';
 import { Head, Link, useForm } from '@inertiajs/inertia-react';
 
@@ -15,31 +14,34 @@ export default function VerifyEmail({ status }) {
     return (
         <Guest>
             <Head title="Email Verification" />
-            <div className="alert alert-info shadow-lg">
-                <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current flex-shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    <span className='text-white'> Thanks loh udah daftar di Cuy Universe, Sekarang coba di verifikasi dulu emailnya ya bro. Klik link yang udah kita kirim ke email kalian. Kalau belom dapet linknya, kita bakal kirim ulang konfirmasinya kok kalem.</span>
-                </div>
-                <div className="flex-none">
+            <div className='flex p-4 m-2 lg:p-10 lg:m-8 min-h-screen'>
+                <div className='flex flex-col w-full justify-center items-center'>
+                    <div className="mb-4 text-lg lg:text-2xl">
+                        Thanks loh udah daftar di Cuy Universe, Sekarang coba di verifikasi dulu emailnya ya bro. Klik link yang udah kita kirim ke email kalian. Kalau belom dapet linknya, kita bakal kirim ulang konfirmasinya kok kalem.
+                    </div>
+
+                    {status === 'verification-link-sent' && (
+                        <div className="mb-4 font-medium text-xl">
+                            Thanks udah daftar bro, silahkan dicek dan dibuka duls emailnya untuk konfirmasi pendaftaran di CUY UNIVERSE
+                        </div>
+                    )}
+
                     <form onSubmit={submit}>
+                        <div className="mt-4 flex flex-col items-center justify-center gap-4">
+                            <button disabled={processing} className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Kirim Ulang Verifikasi Email</button>
+
                             <Link
                                 href={route('logout')}
                                 method="post"
                                 as="button"
-                                className="btn btn-sm btn-ghost"
+                                className="underline text-lg"
                             >
                                 Keluar
-                            </Link>  
-
-                            <Button processing={processing}>Kirim Ulang Verifikasi Email</Button>      
+                            </Link>
+                        </div>
                     </form>
                 </div>
             </div>
-            {status === 'verification-link-sent' && (
-                <div className="mb-4 font-medium text-sm">
-                    Thanks udah daftar bro, silahkan dicek dan dibuka duls emailnya untuk konfirmasi pendaftaran di CUY UNIVERSE
-                </div>
-            )}
         </Guest>
     );
 }
