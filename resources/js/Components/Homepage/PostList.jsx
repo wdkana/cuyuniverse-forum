@@ -68,6 +68,11 @@ export default function PostList(props) {
     <div className="card w-full md:w-2/3 bg-base-100 shadow-lg">
       {showNotif && <NotificationAlert message={props.notif} />}
       <div className="card-body p-6">
+       
+           {
+            props.posts.image !== null ? <img  src={`/storage/images_post/${props.posts.image}`} class="object-cover h-100 w-100 rounded-lg" alt=""></img> : null
+         }
+
         <p className='text-2xl break-all cursor-default font-bold'>{props.posts.description}</p>
 
         <div class="flex flex-row py-2 border-b-4 border-b-primary">
@@ -114,7 +119,7 @@ export default function PostList(props) {
       <div className='flex flex-col justify-center items-center gap-4 py-2 px-2 sm:px-10'>
         {props.user && formValidateNotif()}
         <input type="text" minLength={2} maxLength={80} value={newComment} className='input rounded-md w-full h-42' placeholder={props.user == null ? "Login untuk mengisi komentar" : "Tulis komentar"} onChange={(e) => handlerCommentInput(e.target.value)} disabled={props.user == null ? true : false} />
-        <button type="button" className='btn btn-primary font-bold btn-md w-full rounded-md' disabled={props.user == null || !isValid ? true : false} onClick={() => handlerCommentSubmit()}>Komentar</button>
+        <button type="button" className='btn btn-primary font-bold btn-md w-full rounded-md mb-4' disabled={props.user == null || !isValid ? true : false} onClick={() => handlerCommentSubmit()}>Komentar</button>
       </div>
     </div >
   )

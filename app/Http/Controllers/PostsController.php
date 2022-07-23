@@ -9,6 +9,7 @@ use Inertia\Inertia;
 use App\Models\Posts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class PostsController extends Controller
 {
@@ -54,15 +55,23 @@ class PostsController extends Controller
         $request->validate(
             [
                 'description' => 'required|string|min:4|max:200',
+                'image' => 'nullable|image|mimes:jpeg,png,jpg,|max:1048',
                 'token' => 'required'
             ]
         );
 
+
         $posts = new Posts();
         $posts->description = $request->description;
+        if ($request->hasFile('image')) {
+            $nama_foto = Auth::user()->username . Str::random(60) . "." . $request->image->getClientOriginalExtension();
+            $filePath = $request->file('image')->storeAs('images_post', $nama_foto);
+            $posts->image = $nama_foto;
+        }
         $posts->author = auth()->user()->username;
         $posts->user_id = auth()->user()->id;
         $posts->save();
+
         return to_route('posts.main')->with('message', 'Posting Berhasil');
     }
 
