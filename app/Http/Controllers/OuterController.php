@@ -22,7 +22,7 @@ class OuterController extends Controller
 
   public function PostsAll()
   {
-    $posts = new PostsCollection(Posts::orderByDesc('id')->with(['comments', 'users:id,image'])->paginate(3));
+    $posts = new PostsCollection(Posts::orderByDesc('id')->with(['comments', 'users:id,image'])->paginate(12));
 
     return Inertia::render('Posts', [
       'title' => "POSTINGAN CUYPEOPLE",
@@ -54,9 +54,11 @@ class OuterController extends Controller
 
   public function MorePosts(Request $request)
   {
-    $posts = Posts::where('description', 'like', "%$request->keyword%")
+    $posts = Posts::when(!is_null($request->keyword), function ($q) use ($request) {
+      $q->where('description', 'like', "%$request->keyword%");
+    })
       ->with(['comments', 'users:id,image'])
-      ->paginate(3);
+      ->paginate(12);
 
     return response()->json($posts, 200);
   }

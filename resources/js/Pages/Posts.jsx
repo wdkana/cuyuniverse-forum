@@ -6,31 +6,34 @@ import Guest from "@/Layouts/Guest";
 import axios from "axios";
 
 export default function PostsPage(props) {
-  const [keyword, setKeyword] = useState('');
+  const [keyword, setKeyword] = useState("");
   const [posts, setPosts] = useState([]);
   const [meta, setMeta] = useState({});
+  const [nodata, setNodata] = useState(false);
 
   const handleChange = (event) => {
     setKeyword(event.target.value);
   };
 
   const searchHandle = async (event) => {
-    event.preventDefault();
-
-    await axios.post(route('posts.more'), {
-      keyword: keyword
-    })
-    .then((res) => {
-      console.log(res);
-      setPosts(res.data.data);
-      setMeta({
-        current_page: res.data.current_page,
-        links: res.data.links
+    await axios
+      .post(route("posts.more"), {
+        keyword: keyword,
       })
-    })
-    .catch((err) => {
-      console.log(err);
-    })
+      .then((res) => {
+        if (!res.data.data.length) {
+          setNodata(true);
+          return;
+        }
+        setPosts(res.data.data);
+        setMeta({
+          current_page: res.data.current_page,
+          links: res.data.links,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -72,12 +75,37 @@ export default function PostsPage(props) {
             </button>
           </div>
         </div>
-        <div className="flex flex-col justify-center items-center lg:flex-row lg:flex-wrap lg:items-strech pt-6 px-4 gap-6">
-          <PostsList posts={(!posts.length) ? props.posts.data : posts} />
-        </div>
-        <div className="flex justify-center items-center py-6">
-          <Paginate meta={props.posts.meta} />
-        </div>
+        {nodata ? (
+          <div className="flex justify-center pt-5">
+            <div className="alert alert-warning shadow-lg text-white w-1/3">
+              <div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  className="stroke-current flex-shrink-0 w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
+                </svg>
+                <span>Tidak ada postingan yang tersedia</span>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <>
+            <div className="flex flex-col justify-center items-center lg:flex-row lg:flex-wrap lg:items-strech pt-6 px-4 gap-6">
+              <PostsList posts={!posts.length ? props.posts.data : posts} />
+            </div>
+            <div className="flex justify-center items-center py-6">
+              <Paginate meta={props.posts.meta} />
+            </div>
+          </>
+        )}
       </div>
     </Guest>
   );
