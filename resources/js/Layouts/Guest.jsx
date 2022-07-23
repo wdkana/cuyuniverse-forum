@@ -8,6 +8,7 @@ import {
   MdOutlineLeaderboard,
   MdLogin,
   MdDashboard,
+  MdPeople,
 } from "react-icons/md";
 import { Link } from "@inertiajs/inertia-react";
 import DarkToggle from "@/Components/Homepage/DarkToggle";
@@ -47,6 +48,12 @@ export default function Guest({ children, auth }) {
                   active={route().current("author.status")}
                 >
                   <MdOutlineLeaderboard className="m-1" /> Pengguna
+                </NavLink>
+              </div>
+
+              <div className="flex items-center">
+                <NavLink href="/teams" active={route().current("outer.teams")}>
+                  <MdPeople className="m-1" /> Team
                 </NavLink>
               </div>
             </div>
