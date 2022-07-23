@@ -32,8 +32,7 @@ const isPosts = (posts, from) => {
             {post.description}
           </div>
 
-          <div className="flex items-center">
-            <RenderIfTrue isTrue={from !== "authorPage"}>             
+          <div className="flex items-center">          
                 <Link
                   href={`/author/${post.author}`}
                   as="button"
@@ -60,7 +59,6 @@ const isPosts = (posts, from) => {
                         comment
                     </p>  
                 </div>
-            </RenderIfTrue>
           </div>
         </Link>
       </div>
