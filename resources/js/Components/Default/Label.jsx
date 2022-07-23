@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 export default function Label({ forInput, value, className, children }) {
     return (

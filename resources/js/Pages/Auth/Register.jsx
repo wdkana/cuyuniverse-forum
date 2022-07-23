@@ -1,39 +1,39 @@
-import React, { useEffect } from 'react';
-import Button from '@/Components/Default/Button';
-import Guest from '@/Layouts/Guest';
-import Input from '@/Components/Default/Input';
-import Label from '@/Components/Default/Label';
-import ValidationErrors from '@/Components/Default/ValidationErrors';
-import { Head, Link, useForm } from '@inertiajs/inertia-react';
+import React, { useEffect } from "react";
+import Button from "@/Components/Default/Button";
+import Guest from "@/Layouts/Guest";
+import Input from "@/Components/Default/Input";
+import Label from "@/Components/Default/Label";
+import ValidationErrors from "@/Components/Default/ValidationErrors";
+import { Head, Link, useForm } from "@inertiajs/inertia-react";
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
-        username: '',
-        email: '',
-        password: '',
-        password_confirmation: '',
+        username: "",
+        email: "",
+        password: "",
+        password_confirmation: "",
     });
 
     useEffect(() => {
         return () => {
-            reset('password', 'password_confirmation');
+            reset("password", "password_confirmation");
         };
     }, []);
 
     const onHandleChange = (event) => {
-        setData(event.target.name, event.target.type === 'checkbox' ? event.target.checked : event.target.value);
+        setData(event.target.name, event.target.type === "checkbox" ? event.target.checked : event.target.value);
     };
 
     const submit = (e) => {
         e.preventDefault();
-        post(route('register'));
+        post(route("register"));
     };
 
     return (
         <Guest>
-            <div className='p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 flex flex-col justify-center items-center'>
+            <div className="p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 flex flex-col justify-center items-center">
                 <Head title="DAFTAR AKUN" />
-                <div className='font-bold text-xl'>DAFTAR CUYUNIVERSE</div>
+                <div className="font-bold text-xl">DAFTAR CUYUNIVERSE</div>
                 <ValidationErrors errors={errors} />
 
                 <form onSubmit={submit} className="w-full md:w-1/2">
@@ -94,7 +94,7 @@ export default function Register() {
                     </div>
 
                     <div className="flex items-center justify-end mt-4">
-                        <Link href={route('login')} className="underline text-sm">
+                        <Link href={route("login")} className="underline text-sm">
                             Udah punya akun?
                         </Link>
 
@@ -104,7 +104,6 @@ export default function Register() {
                     </div>
                 </form>
             </div>
-
-        </Guest >
+        </Guest>
     );
 }

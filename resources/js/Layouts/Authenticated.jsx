@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import ApplicationLogo from '@/Components/Default/ApplicationLogo';
-import Dropdown from '@/Components/Default/Dropdown';
-import NavLink from '@/Components/Default/NavLink';
-import ResponsiveNavLink from '@/Components/Default/ResponsiveNavLink';
-import { Link } from '@inertiajs/inertia-react';
-import Avatar from 'avataaars';
+import React, { useState } from "react";
+import ApplicationLogo from "@/Components/Default/ApplicationLogo";
+import Dropdown from "@/Components/Default/Dropdown";
+import NavLink from "@/Components/Default/NavLink";
+import ResponsiveNavLink from "@/Components/Default/ResponsiveNavLink";
+import { Link } from "@inertiajs/inertia-react";
+import Avatar from "avataaars";
 
 export default function Authenticated({ auth, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
@@ -21,13 +21,16 @@ export default function Authenticated({ auth, header, children }) {
                             </div>
 
                             <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <NavLink href={route('dash.main')} active={route().current('dash.main')}>
+                                <NavLink href={route("dash.main")} active={route().current("dash.main")}>
                                     Dashboard
                                 </NavLink>
-                                <NavLink href={route('dash.manage.posts')} active={route().current('dash.manage.posts')}>
+                                <NavLink
+                                    href={route("dash.manage.posts")}
+                                    active={route().current("dash.manage.posts")}
+                                >
                                     Manage Post
                                 </NavLink>
-                                <NavLink href={route('dash.notif')} active={route().current('dash.notif')}>
+                                <NavLink href={route("dash.notif")} active={route().current("dash.notif")}>
                                     Notification
                                 </NavLink>
                             </div>
@@ -42,8 +45,15 @@ export default function Authenticated({ auth, header, children }) {
                                                 type="button"
                                                 className="inline-flex items-center py-2 border border-transparent text-sm leading-4 font-medium hover:text-white focus:outline-none transition ease-in-out duration-150"
                                             >
-                                                <div className='avatar w-10 h-10 mr-2'>
-                                                    <img src={auth.user.image ? `/storage/images/${auth.user.image}` : '/storage/images/defaultavatar.png'} className=" rounded-full ring ring-primary ring-offset-base-100 ring-offset-2" />
+                                                <div className="avatar w-10 h-10 mr-2">
+                                                    <img
+                                                        src={
+                                                            auth.user.image
+                                                                ? `/storage/images/${auth.user.image}`
+                                                                : "/storage/images/defaultavatar.png"
+                                                        }
+                                                        className=" rounded-full ring ring-primary ring-offset-base-100 ring-offset-2"
+                                                    />
                                                 </div>
                                                 {auth.user.username}
 
@@ -64,7 +74,7 @@ export default function Authenticated({ auth, header, children }) {
                                     </Dropdown.Trigger>
 
                                     <Dropdown.Content>
-                                        <Dropdown.Link href={route('logout')} method="post" as="button">
+                                        <Dropdown.Link href={route("logout")} method="post" as="button">
                                             Log Out
                                         </Dropdown.Link>
                                     </Dropdown.Content>
@@ -79,14 +89,14 @@ export default function Authenticated({ auth, header, children }) {
                             >
                                 <svg className="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                                     <path
-                                        className={!showingNavigationDropdown ? 'inline-flex' : 'hidden'}
+                                        className={!showingNavigationDropdown ? "inline-flex" : "hidden"}
                                         strokeLinecap="round"
                                         strokeLinejoin="round"
                                         strokeWidth="2"
                                         d="M4 6h16M4 12h16M4 18h16"
                                     />
                                     <path
-                                        className={showingNavigationDropdown ? 'inline-flex' : 'hidden'}
+                                        className={showingNavigationDropdown ? "inline-flex" : "hidden"}
                                         strokeLinecap="round"
                                         strokeLinejoin="round"
                                         strokeWidth="2"
@@ -98,15 +108,18 @@ export default function Authenticated({ auth, header, children }) {
                     </div>
                 </div>
 
-                <div className={(showingNavigationDropdown ? 'block' : 'hidden') + ' sm:hidden'}>
+                <div className={(showingNavigationDropdown ? "block" : "hidden") + " sm:hidden"}>
                     <div className="pt-2 pb-3 space-y-1">
-                        <ResponsiveNavLink href={route('dash.main')} active={route().current('dash.main')}>
+                        <ResponsiveNavLink href={route("dash.main")} active={route().current("dash.main")}>
                             Dashboard
                         </ResponsiveNavLink>
-                        <ResponsiveNavLink href={route('dash.manage.posts')} active={route().current('dash.manage.posts')}>
+                        <ResponsiveNavLink
+                            href={route("dash.manage.posts")}
+                            active={route().current("dash.manage.posts")}
+                        >
                             Manage Post
                         </ResponsiveNavLink>
-                        <ResponsiveNavLink href={route('dash.notif')} active={route().current('dash.notif')}>
+                        <ResponsiveNavLink href={route("dash.notif")} active={route().current("dash.notif")}>
                             Notification
                         </ResponsiveNavLink>
                     </div>
@@ -114,15 +127,24 @@ export default function Authenticated({ auth, header, children }) {
                     <div className="pt-4 pb-1 border-b border-neutral">
                         <div className="px-4 justify-center flex-col flex items-center gap-1">
                             <div className="w-16 rounded-full">
-                                <div className='avatar w-16 h-16 mr-2'>
-                                    <img src={auth.user.image ? `/storage/images/${auth.user.image}` : '/storage/images/defaultavatar.png'} className=" rounded-full ring ring-primary ring-offset-base-100 ring-offset-2" />
+                                <div className="avatar w-16 h-16 mr-2">
+                                    <img
+                                        src={
+                                            auth.user.image
+                                                ? `/storage/images/${auth.user.image}`
+                                                : "/storage/images/defaultavatar.png"
+                                        }
+                                        className=" rounded-full ring ring-primary ring-offset-base-100 ring-offset-2"
+                                    />
                                 </div>
                             </div>
-                            <div className="font-medium text-base badge badge-inline"><i>{auth.user.username}</i></div>
+                            <div className="font-medium text-base badge badge-inline">
+                                <i>{auth.user.username}</i>
+                            </div>
                         </div>
 
                         <div className="mt-3 space-y-1">
-                            <ResponsiveNavLink method="post" href={route('logout')} as="button">
+                            <ResponsiveNavLink method="post" href={route("logout")} as="button">
                                 Log Out
                             </ResponsiveNavLink>
                         </div>

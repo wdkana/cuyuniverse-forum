@@ -17,9 +17,10 @@
 
 👇 Clone this project first and make your own features 👇
 ```bash
-git clone https://github.com/deaaprizal/laract9.git .
+git clone https://github.com/deaaprizal/laract9.git cuy-universe
 ```
 <br/>
+jika sudah, kalian dapat melihat cara setup projek ini [DISINI](#)
 
 CuyUniverse adalah project terbuka untuk siapa saja yang mau belajar ngoding terutama dengan pemilihan 2 bahasa pemrograman (PHP & Javascript).
 3 core stack yang digunakan saat ini: LARAVEL9, REACTJS & MYSQL
@@ -66,6 +67,7 @@ const cuyuniverse = {
 <br/>
 
 <p>seputar kreasi fitur projek cuyuniverse akan diupdate disini: https://github.com/deaaprizal/laract9/projects?type=beta </p>
+
 
 ---
 
