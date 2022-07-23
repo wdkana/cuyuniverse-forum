@@ -18,7 +18,7 @@ export default function Guest({ children, auth }) {
 
   return (
     <div className="min-h-screen">
-      <nav className="md:shadow-lg">
+      <nav className="md:shadow-lg dark:bg-slate-900">
         <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex gap-2">
@@ -77,9 +77,9 @@ export default function Guest({ children, auth }) {
                       <span className="inline-flex rounded-md ">
                         <button
                           type="button"
-                          className="inline-flex items-center px-3 py-2 border border-transparent text-black text-sm leading-4 font-medium rounded-md hover:text-black focus:outline-none transition ease-in-out duration-150 "
+                          className="inline-flex items-center px-3 py-2 border border-transparent text-black text-sm leading-4 font-medium rounded-md hover:text-black focus:outline-none transition ease-in-out duration-150 dark:text-white"
                         >
-                          <MdLogin size={24} />
+                          <MdLogin size={24} className="dark:text-white" />
                           <svg
                             className="ml-2 -mr-0.5 h-4 w-4"
                             xmlns="http://www.w3.org/2000/svg"

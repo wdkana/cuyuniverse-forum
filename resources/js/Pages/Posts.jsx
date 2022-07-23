@@ -32,7 +32,7 @@ export default function PostsPage(props) {
         });
       })
       .catch((err) => {
-        throw err
+        throw err;
       });
   };
 
@@ -47,7 +47,7 @@ export default function PostsPage(props) {
         <div className="flex flex-col">
           <div className="pt-2 relative mx-auto text-gray-600">
             <input
-              className="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
+              className="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none dark:bg-slate-900 dark:border-gray-700"
               type="search"
               name="search"
               onChange={handleChange}
