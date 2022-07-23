@@ -46,7 +46,7 @@ class OuterController extends Controller
         $isSavedPost = SavedPosts::where('post_id', $post_id)->where('user_id', Auth::user()->id)->get(); 
         
         return Inertia::render('Post', [
-            'posts' => $posts->only(['id', 'description', 'author', 'created_at', 'likes_count']),
+            'posts' => $posts->only(['id', 'description', 'image', 'author', 'created_at', 'likes_count']),
             'is_saved_post' => !count($isSavedPost) == 0,
             'comments' => $posts->comments,
             'author_image' => $posts->users->image,

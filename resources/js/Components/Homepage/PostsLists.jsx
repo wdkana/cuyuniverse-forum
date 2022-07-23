@@ -1,5 +1,6 @@
-import { formatTime } from '@/utils/jsHelper';
-import { Link } from '@inertiajs/inertia-react';
+import RenderIfTrue from "@/helper/RenderIfTrue";
+import { formatTime } from "@/utils/jsHelper";
+import { Link } from "@inertiajs/inertia-react";
 
 const noPosts = () => {
   return (
@@ -8,8 +9,8 @@ const noPosts = () => {
         <progress className="progress w-56"></progress>
       </h6>
     </div>
-  )
-}
+  );
+};
 
 const isPosts = (posts, from) => {
   return posts.map((post, i) => {
@@ -20,30 +21,44 @@ const isPosts = (posts, from) => {
           
           <div className="flex flex-row">
             <div className="basis-1/2 content-end card-actions text-sm">
-              <div className='text-xs break-normal'>
-                posted {formatTime(post.updated_at)} | {post.comments && post.comments.length > 0 ? post.comments.length : "no"} comment
+              <div className="text-xs break-normal">
+                posted {formatTime(post.updated_at)} |{" "}
+                {post.comments && post.comments.length > 0
+                  ? post.comments.length
+                  : "no"}{" "}
+                comment
               </div>
             </div>
-          
-          {from !== "authorPage" &&
-            <div className='basis-1/2 justify-end items-end flex flex-col'>
-              <Link href={`/author/${post.author}`} as="button" method="get" className="avatar">
-                <div className="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                  <img src={post.users && post.users.image !== null ? `/storage/images/${post.users.image}` : '/storage/images/defaultavatar.png'} />
-                </div>
-              </Link>
-              <div className='py-2'>{post.author}</div>
-            </div>
-          }
+
+            <RenderIfTrue isTrue={from !== "authorPage"}>
+              <div className="basis-1/2 justify-end items-end flex flex-col">
+                <Link
+                  href={`/author/${post.author}`}
+                  as="button"
+                  method="get"
+                  className="avatar"
+                >
+                  <div className="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                    <img
+                      src={
+                        post.users && post.users.image !== null
+                          ? `/storage/images/${post.users.image}`
+                          : "/storage/images/defaultavatar.png"
+                      }
+                    />
+                  </div>
+                </Link>
+                <div className="py-2">{post.author}</div>
+              </div>
+            </RenderIfTrue>
           </div>
         </Link>
-      </div >
-    )
-  }
-  )
-}
+      </div>
+    );
+  });
+};
 
 export default function PostsList(props) {
-  if (!props.posts || !props.posts.length) return noPosts()
-  return isPosts(props.posts, props.from)
+  if (!props.posts || !props.posts.length) return noPosts();
+  return isPosts(props.posts, props.from);
 }
