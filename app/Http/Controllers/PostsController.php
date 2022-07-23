@@ -59,8 +59,6 @@ class PostsController extends Controller
                 'token' => 'required'
             ]
         );
-
-
         $posts = new Posts();
         $posts->description = $request->description;
         if ($request->hasFile('image')) {
@@ -71,7 +69,6 @@ class PostsController extends Controller
         $posts->author = auth()->user()->username;
         $posts->user_id = auth()->user()->id;
         $posts->save();
-
         return to_route('posts.main')->with('message', 'Posting Berhasil');
     }
 
