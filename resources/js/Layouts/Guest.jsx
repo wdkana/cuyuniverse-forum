@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Dropdown from '@/Components/Default/Dropdown';
 import NavLink from '@/Components/Default/NavLink';
 import ResponsiveNavLink from '@/Components/Default/ResponsiveNavLink';
-import { MdOutlineArticle, MdOutlineTrendingUp, MdOutlineLeaderboard, MdLogin, MdDashboard } from "react-icons/md"
+import { MdOutlineArticle, MdOutlineTrendingUp, MdOutlineLeaderboard, MdLogin, MdDashboard, MdPeople } from "react-icons/md"
 import { Link } from '@inertiajs/inertia-react';
 
 export default function Guest({ children, auth }) {
@@ -28,6 +28,11 @@ export default function Guest({ children, auth }) {
                             <div className="flex items-center">
                                 <NavLink href={route('author.status')} active={route().current('author.status')}>
                                     <MdOutlineLeaderboard className='m-1' /> Pengguna
+                                </NavLink>
+                            </div>
+                               <div className="flex items-center">
+                                <NavLink  href="/teams" active={route().current('outer.teams')}>
+                                    <MdPeople className='m-1' /> Team
                                 </NavLink>
                             </div>
                         </div>

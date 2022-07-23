@@ -50,7 +50,7 @@ const isPosts = (posts, from) => {
                     />
                   </div>
                 </Link>
-                <div class="text-sm ml-4">
+                <div className="text-sm ml-4">
                     <p className="text-gray-900 leading-none">{post.author}</p>    
                     <p className="text-xs break-normal">
                       posted {formatTime(post.updated_at)} |{" "}
