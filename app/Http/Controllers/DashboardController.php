@@ -46,7 +46,7 @@ final class DashboardController extends Controller
     public function update_photo(Request $request)
     {
         $request->validate([
-            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:1000',
+            'image' => 'required|image|mimes:jpg,png,jpeg,gif|max:1048',
             'token' => 'required',
         ]);
 
@@ -68,10 +68,10 @@ final class DashboardController extends Controller
 
     public function update_username(Request $request)
     {
-        $user = Auth::user();
+        $user = new User();
 
         $request->validate([
-            'username' => 'required|string|min:4|max:20|unique:users,username,' . $user->id,
+            'username' => 'required|string|min:4|max:20|unique:users,username,' . Auth::user()->id,
             'token' => 'required',
         ]);
 

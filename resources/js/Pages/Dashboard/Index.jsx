@@ -11,7 +11,6 @@ export default function DashboardPage(props) {
         username: null
     });
 
-
     const [username, setUsername] = useState(props.auth.user.username);
 
     const { flash } = usePage().props
@@ -51,6 +50,7 @@ export default function DashboardPage(props) {
             <Head title={props.title} />
             <div className='max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8'>
                 {showNotif && <NotificationAlert message={flash.message} />}
+                {props.errors && props.errors.username && <NotificationAlert message={props.errors.username} />}
                 {props.errors && <NotificationAlert message={props.errors.image} />}
                 <div className="flex flex-col lg:flex-row justify-center items-center w-full gap-6">
                     <div className="avatar online">
@@ -76,11 +76,11 @@ export default function DashboardPage(props) {
                 <div className='row'>
                     <div className="col-lg-12">
                         <form onSubmit={updateUsername}>
-                                <div className="form-group">
-                                    <label className="form-label">Username</label>
-                                    <input onChange={handleChangeUsername} name='username' type="text" className="form-control" value={username} />
-                                </div>
-                                <button type='submit' disabled={processing} className='btn btn-primary float-right'>Simpan</button>
+                            <div className="form-group">
+                                <label className="form-label">Username</label>
+                                <input onChange={handleChangeUsername} name='username' type="text" className="form-control" value={username} />
+                            </div>
+                            <button type='submit' disabled={processing} className='btn btn-primary float-right'>Simpan</button>
                         </form>
                     </div>
                 </div>
