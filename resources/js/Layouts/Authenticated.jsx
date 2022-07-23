@@ -27,6 +27,9 @@ export default function Authenticated({ auth, header, children }) {
                                 <NavLink href={route('dash.manage.posts')} active={route().current('dash.manage.posts')}>
                                     Manage Post
                                 </NavLink>
+                                <NavLink href={route('dash.savedpost')} active={route().current('dash.savedpost')}>
+                                    Saved Post
+                                </NavLink>
                                 <NavLink href={route('dash.notif')} active={route().current('dash.notif')}>
                                     Notification
                                 </NavLink>
@@ -105,6 +108,9 @@ export default function Authenticated({ auth, header, children }) {
                         </ResponsiveNavLink>
                         <ResponsiveNavLink href={route('dash.manage.posts')} active={route().current('dash.manage.posts')}>
                             Manage Post
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink href={route('dash.savedpost')} active={route().current('dash.savedpost')}>
+                            Saved Post
                         </ResponsiveNavLink>
                         <ResponsiveNavLink href={route('dash.notif')} active={route().current('dash.notif')}>
                             Notification

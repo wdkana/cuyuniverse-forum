@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\PostsCollection;
 use App\Models\Posts;
+use App\Models\SavedPosts;
 use App\Models\User;
 use GuzzleHttp\Psr7\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
@@ -36,13 +38,16 @@ class OuterController extends Controller
 
     public function find($post_id)
     {
+
         $posts = Posts::with('comments.users:username,image')->withCount('likes')->where('id', $post_id)->first();
         if ($posts == null) {
             return abort(404);
         }
-
+        $isSavedPost = SavedPosts::where('post_id', $post_id)->where('user_id', Auth::user()->id)->get(); 
+        
         return Inertia::render('Post', [
             'posts' => $posts->only(['id', 'description', 'author', 'created_at', 'likes_count']),
+            'is_saved_post' => !count($isSavedPost) == 0,
             'comments' => $posts->comments,
             'author_image' => $posts->users->image,
             'title' => "Postingan Dari CuyPeople",

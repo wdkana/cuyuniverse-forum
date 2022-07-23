@@ -18,7 +18,7 @@ const isPosts = (posts, from) => {
         <Link href={`/post/${post.id}`} method="get" as="div" className="card-body p-6">
           <div className={`text-xl ${post.description.length > 80 ? "overflow-x-hidden" : "break-words"} h-20`}>{post.description}</div>
           
-          <div class="flex flex-row">
+          <div className="flex flex-row">
             <div className="basis-1/2 content-end card-actions text-sm">
               <div className='text-xs break-normal'>
                 posted {formatTime(post.updated_at)} | {post.comments && post.comments.length > 0 ? post.comments.length : "no"} comment
