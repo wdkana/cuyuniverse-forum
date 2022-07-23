@@ -17,7 +17,7 @@ const isPosts = (posts, from) => {
     return (
       <div
         key={i}
-        className="card w-full md:w-1/2 lg:w-1/3 xl:w-1/3 bg-base-100 dark:bg-slate-700 shadow-lg cursor-pointer hover:transition-all hover:delay-75 dark:hover:bg-gray-600 hover:-translate-y-1 hover:bg-neutral"
+        className="card w-full md:w-1/2 lg:w-1/3 xl:w-1/3 bg-base-100 dark:bg-slate-700 shadow-lg cursor-pointer hover:transition-all hover:delay-75 dark:hover:bg-gray-600 dark:text-white hover:-translate-y-1 hover:bg-neutral"
       >
         <Link
           href={`/post/${post.id}`}
@@ -52,7 +52,9 @@ const isPosts = (posts, from) => {
                 </div>
               </Link>
               <div class="text-sm ml-4">
-                <p className="text-gray-900 leading-none">{post.author}</p>
+                <p className="text-gray-900 dark:text-white leading-none">
+                  {post.author}
+                </p>
                 <p className="text-xs break-normal">
                   posted {formatTime(post.updated_at)} |{" "}
                   {post.comments && post.comments.length > 0

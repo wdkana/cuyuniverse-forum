@@ -29,7 +29,7 @@ export default function TeamsPage(props) {
             return (
               <a href={item.html_url} key={index} target="_blank">
                 <div
-                  className="card card-side bg-blue-100 dark:bg-blue-600 shadow-xl"
+                  className="card card-side bg-blue-100 dark:bg-blue-600 shadow-xl dark:shadow-slate-900"
                   key={index}
                 >
                   <img

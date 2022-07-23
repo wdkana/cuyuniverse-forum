@@ -47,7 +47,7 @@ export default function PostsPage(props) {
         <div className="flex flex-col">
           <div className="pt-2 relative mx-auto text-gray-600">
             <input
-              className="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none dark:bg-slate-900 dark:border-gray-700"
+              className="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none dark:bg-slate-900 dark:border-gray-700 dark:placeholder-white"
               type="search"
               name="search"
               onChange={handleChange}
@@ -59,7 +59,7 @@ export default function PostsPage(props) {
               onClick={searchHandle}
             >
               <svg
-                className="text-gray-600 h-4 w-4 fill-current"
+                className="text-gray-600 dark:text-white h-4 w-4 fill-current"
                 xmlns="http://www.w3.org/2000/svg"
                 xmlnsXlink="http://www.w3.org/1999/xlink"
                 version="1.1"

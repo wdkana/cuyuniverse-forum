@@ -178,7 +178,7 @@ export default function PostList(props) {
           minLength={2}
           maxLength={80}
           value={newComment}
-          className="input rounded-md w-full h-42 dark:bg-slate-800 outline-none border-none dark:!text-white"
+          className="input rounded-md w-full h-42 dark:bg-slate-800 outline-none border-none dark:placeholder-white"
           placeholder={
             props.user == null
               ? "Login untuk mengisi komentar"
