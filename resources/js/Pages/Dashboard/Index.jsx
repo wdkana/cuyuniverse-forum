@@ -91,7 +91,7 @@ export default function DashboardPage(props) {
                             <button
                                 type="submit"
                                 disabled={processing}
-                                className="btn btn-outline w-full rounded-md"
+                                className="bg-indigo-500 text-white py-3 w-full rounded-md"
                             >
                                 Upload Avatar
                             </button>
