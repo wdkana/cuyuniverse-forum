@@ -63,4 +63,20 @@ class DashboardController extends Controller
 
         return to_route('dash.main')->with('message', 'Avatar berhasil diganti');
     }
+
+    public function update_username(Request $request)
+    {
+        $user = Auth::user();
+
+        $request->validate([
+            'username' => 'required|string|min:4|max:20|unique:users,username,' . $user->id,
+            'token' => 'required'
+        ]);
+
+         $user->update([
+            'username' => $request->username
+         ]);
+
+            return to_route('dash.main')->with('message', 'Username berhasil diganti');
+    }
 }
