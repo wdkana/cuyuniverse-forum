@@ -15,10 +15,23 @@ const noPosts = () => {
 const isPosts = (posts, from) => {
   return posts.map((post, i) => {
     return (
-      <div key={i} className="card w-full md:w-1/2 lg:w-1/3 xl:w-1/3 bg-base-100 shadow-lg cursor-pointer hover:transition-all hover:delay-75 hover:-translate-y-1 hover:bg-neutral">
-        <Link href={`/post/${post.id}`} method="get" as="div" className="card-body p-6">
-          <div className={`text-xl ${post.description.length > 80 ? "overflow-x-hidden" : "break-words"} h-20`}>{post.description}</div>
-          
+      <div
+        key={i}
+        className="card w-full md:w-1/2 lg:w-1/3 xl:w-1/3 bg-base-100 shadow-lg cursor-pointer hover:transition-all hover:delay-75 hover:-translate-y-1 hover:bg-neutral"
+      >
+        <Link
+          href={`/post/${post.id}`}
+          method="get"
+          as="div"
+          className="card-body p-6"
+        >
+          <div
+            className={`text-xl ${post.description.length > 80 ? "overflow-x-hidden" : "break-words"
+              } h-20`}
+          >
+            {post.description}
+          </div>
+
           <div className="flex flex-row">
             <div className="basis-1/2 content-end card-actions text-sm">
               <div className="text-xs break-normal">

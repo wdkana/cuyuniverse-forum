@@ -36,14 +36,6 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        return Inertia::render('Dashboard/CreatePosts', [
-            'page' => 'BUAT POSTING',
-            'next' => 'POSTINGAN SAYA',
-            'nextRoute' => 'posts.main'
-        ]);
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -87,7 +79,7 @@ class PostsController extends Controller
             'data' => $posts,
             'page' => 'POSTINGAN SAYA',
             'next' => 'BUAT POSTINGAN',
-            'nextRoute' => 'posts.create'
+            'nextRoute' => 'dash.main'
         ]);
     }
 

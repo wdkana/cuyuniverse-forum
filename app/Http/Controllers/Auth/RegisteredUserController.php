@@ -35,16 +35,6 @@ class RegisteredUserController extends Controller
     public function store(Request $request)
     {
 
-        $forbidnames = ["admin", "dea", "afrizal", "administrator", "root", "support", "helper", "moderator", "ceo", "owner", "deaafrizal", "afrizaldea", "dea.afrizal", "afrizal.dea", "admin1", "admin2", "admin3", "cuyuniverse", "cuy universe", "cuyuniversity"];
-
-        foreach ($forbidnames as $forbidname) {
-            if (strpos($forbidname, strtolower($request->username)) !== false) {
-                return to_route('outer.main');
-                break;
-            }
-        }
-
-
         $request->validate([
             'username' => 'required|string|min:4|max:40|unique:users|alpha_dash',
             'email' => 'required|string|email|max:255|unique:users',
@@ -59,8 +49,7 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        // dihapus biar gak auto-login pasca register
-        // Auth::login($user);
+        Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);
     }
