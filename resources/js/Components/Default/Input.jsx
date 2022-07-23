@@ -9,7 +9,7 @@ export default function Input({
     required,
     isFocused,
     handleChange,
-    placeholder,
+    placeholder
 }) {
     const input = useRef();
 
