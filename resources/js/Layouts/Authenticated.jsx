@@ -4,7 +4,6 @@ import Dropdown from '@/Components/Default/Dropdown';
 import NavLink from '@/Components/Default/NavLink';
 import ResponsiveNavLink from '@/Components/Default/ResponsiveNavLink';
 import { Link } from '@inertiajs/inertia-react';
-import Avatar from 'avataaars';
 
 export default function Authenticated({ auth, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
@@ -24,11 +23,11 @@ export default function Authenticated({ auth, header, children }) {
                                 <NavLink href={route('dash.main')} active={route().current('dash.main')}>
                                     Dashboard
                                 </NavLink>
-                                <NavLink href={route('dash.manage.posts')} active={route().current('dash.manage.posts')}>
+                                <NavLink href={route('posts.main')} active={route().current('posts.main')}>
                                     Manage Post
                                 </NavLink>
-                                <NavLink href={route('dash.notif')} active={route().current('dash.notif')}>
-                                    Notification
+                                <NavLink href={route('dash.setting.profile')} active={route().current('dash.setting.profile')}>
+                                    Setting
                                 </NavLink>
                             </div>
                         </div>
@@ -103,11 +102,11 @@ export default function Authenticated({ auth, header, children }) {
                         <ResponsiveNavLink href={route('dash.main')} active={route().current('dash.main')}>
                             Dashboard
                         </ResponsiveNavLink>
-                        <ResponsiveNavLink href={route('dash.manage.posts')} active={route().current('dash.manage.posts')}>
+                        <ResponsiveNavLink href={route('posts.main')} active={route().current('posts.main')}>
                             Manage Post
                         </ResponsiveNavLink>
-                        <ResponsiveNavLink href={route('dash.notif')} active={route().current('dash.notif')}>
-                            Notification
+                        <ResponsiveNavLink href={route('dash.setting.profile')} active={route().current('dash.setting.profile')}>
+                            Setting
                         </ResponsiveNavLink>
                     </div>
 
