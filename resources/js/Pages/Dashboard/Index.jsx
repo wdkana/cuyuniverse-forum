@@ -65,7 +65,7 @@ export default function DashboardPage(props) {
                 )}
                 <div className="flex flex-col lg:flex-row justify-center items-center w-full gap-6">
                     <div className="avatar online">
-                        <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                        <div className="w-24 rounded-full ring ring-indigo-300 ring-offset-base-100 ring-offset-2">
                             <img
                                 src={
                                     props.auth.user.image
