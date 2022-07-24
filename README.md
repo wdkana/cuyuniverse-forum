@@ -1,187 +1,132 @@
-<h2><img src="https://emojis.slackmojis.com/emojis/images/1531849430/4246/blob-sunglasses.gif?1531849430" width="30"/> LARACT9 🐱‍💻, CUY UNIVERSE PROJECT <img src="https://media.giphy.com/media/12oufCB0MyZ1Go/giphy.gif" width="50"></h2>
-<p><em>Tech Entertainer <a href="https://www.footloose.io/">youtube.com/deaafrizal
+<h2 align="center"><img src="https://emojis.slackmojis.com/emojis/images/1531849430/4246/blob-sunglasses.gif?1531849430" width="30"/> LARACT9 🐱‍💻, CUY UNIVERSE PROJECT <img src="https://media.giphy.com/media/12oufCB0MyZ1Go/giphy.gif" width="50"></h2>
+
+<p align="center"><em>Tech Entertainer <a href="https://youtube.com/deaafrizal">youtube.com/deaafrizal
 </a><img src="https://media.giphy.com/media/WUlplcMpOCEmTGBtBW/giphy.gif" width="30"> 
 </em></p>
 
-![Visitor Count](https://profile-counter.glitch.me/deaaprizal/count.svg)
-![YouTube Channel Subscribers](https://img.shields.io/youtube/channel/subscribers/UCU7YluxOYon-yofPxfGHVog?label=Dea%20Afrizal&style=for-the-badge)
-![GitHub followers](https://img.shields.io/github/followers/deaaprizal?label=Follow%20My%20Github&style=for-the-badge)
-![Discord](https://img.shields.io/discord/887712251887382578?label=DISCORD%20CUYHUB&style=for-the-badge)
-![GitHub top language](https://img.shields.io/github/languages/top/deaaprizal/laract9?label=LARACT9%20LANG&style=for-the-badge)
-![Website](https://img.shields.io/website?down_color=red&down_message=DOWN%20%2F%20OFFLINE&label=cuyuniverse%20web%20stats%20%3D%3E&style=for-the-badge&up_color=pink&up_message=UP%20%2F%20ONLINE&url=https%3A%2F%2Fcuyuniverse.co)
-![GitHub contributors](https://img.shields.io/github/contributors/deaaprizal/laract9?label=cuycontributors&style=for-the-badge)
+<p align="center">
+    <a href="https://github.com/deaaprizal/laract9/issues"><img src="https://img.shields.io/github/issues/deaaprizal/laract9" alt="GitHub issues"></a>
+    <a href="https://github.com/deaaprizal/laract9"><img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/deaaprizal/laract9"></a>
+    <a href="https://github.com/deaaprizal/laract9/pulls"><img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/deaaprizal/laract9"></a>
+</p>
 
-### 📫 Join projek isengan ini?
-#### check staging server https://cuyuniverse.co
-<br/>
+<p align="center">
+  <a href="https://github.com/ideaaprizal/laract9/blob/main/CONTRIBUTING.md">Contributing Guidelines</a>
+  ·
+  <a href="https://github.com/deaaprizal/laract9/issues/new">Submit an Issue</a>
+  <br>
 
-👇 Clone this project first and make your own features 👇
-```bash
-git clone https://github.com/deaaprizal/laract9.git .
-```
-<br/>
+ <p align="center">
+    <a href="https://github.com/deaaprizal/laract9/"><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/deaaprizal/laract9?style=social"></a>
+    <a href="https://github.com/deaaprizal/laract9/"><img alt="GitHub forks" src="https://img.shields.io/github/forks/deaaprizal/laract9?style=social"></a>
+  </p>
+</p>
 
+<br>
+
+## 📫 Join projek isengan ini?
+Cek staging server https://cuyuniverse.co
+
+<br>
+
+## CUYUNIVERSE
 CuyUniverse adalah project terbuka untuk siapa saja yang mau belajar ngoding terutama dengan pemilihan 2 bahasa pemrograman (PHP & Javascript).
 3 core stack yang digunakan saat ini: LARAVEL9, REACTJS & MYSQL
 FORK atau coba-coba di clone project ini sekarang di lokal komputer kalian masing-masing.
+
+
 <br/>
 
----
+## Development Setup
+### Prerequisites
+- Pertama, pastikan kalian sudah punya [PHP](https://php.net).
+- Kedua, mempunyai [nodejs](https://nodejs.org) beserta [Node Package Manager](https://www.npmjs.com/get-npm) atau [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/)
+- Ketiga, jangan lupa kalian sudah terinstall juga [Composer](https://getcomposer.org)
+- Terakhir, pastikan kalian juga sudah punya database relasional seperti [MySQL](https://www.mysql.com/downloads/), [PostgreSQL](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads) atau [SQLite](https://www.sqlite.com/download.html)
 
-### BRANCH UTAMA UNTUK SEMUA PERUBAHAN MULAI DARI => DEV 
-CHECKOUT ke "dev" dan lakukan push ke "dev" juga
+### Setting Up Project
 
----
-
-### <img src="https://media.giphy.com/media/VgCDAzcKvsR6OM0uWg/giphy.gif" width="50"> Beberapa library yang digunakan...  
-
-```javascript
-const cuyuniverse = {
-  Technologies: {
-    CSS: ["Tailwind", "DaisyUI"],
-    backEnd: {
-      laravel9: ["Breeze", "Sanctum", "Eloquent"],
-    },
-    devOps: ["FORGE", "DROPLET", "CLOUDFLARE"],
-    databases: ["MySql"],
-    misc: ["Inertiajs", "...", "...", "soon"]
-  },
-  authentication: "Google Mail SMTP",
-  architecture: ["Serverless Architecture", "Progressive web applications*soon", "Hybrid Rendering"],
-    currentFocus: "Building users business flow",
-    funFact: "Clone aja dulu, errornya belakangan"
-};
-```
-<br/>
-
----
-<br/>
-
-## Tutorial Setup Project
-1. Pertama, pastikan kalian sudah punya php, composer, nodejs dan npm / yarn ya cuy, kalo belum punya silahkan download versi terbarunya
-
-2. Pastikan kalian juga sudah punya mysql terinstall
-
-3. Silahkan fork terlebih dahulu repository ini, kemudian clone repository yang udah kalian fork ya (Inget repository yang kalian fork, bukan repository ini). Bisa gunakan command berikut
-  ```bash
-  git clone git@github.com:{username github kalian}/laract9.git
-  ```
-  atau kalo kalian pake http (bukan ssh)
-  ```bash
-  git clone https://github.com/{username github kalian}/laract9.git
-  ```
-4. Buka directory project nya di terminal (command prompt / powershell dsb)
-
-5. Install dependency composer dengan command berikut
+Silahkan fork terlebih dahulu repository ini, kemudian clone repository yang udah kalian fork ya (Inget repository yang kalian fork, bukan repository ini). 
+Bisa gunakan command berikut:
 ```bash
-composer install
+git clone git@github.com:{username github kalian}/laract9.git
+# atau kalo kalian pake https (bukan ssh)
+git clone https://github.com/{username github kalian}/laract9.git
 ```
-
-6. Copy file .env.example dengan nama .env atau bisa gunakan command berikut
+Kemudian, buka terminal seperti bash, zsh, command prompt atau powershell dan nstall dependency composer dengan command berikut
+```bash
+composer install && composer update
+```
+Lanjut, copy file `.env.example` dengan nama `.env` sebagai berikut:
 ```bash
 cp .env.example .env
 ```
-
-7. Silahkan ganti credentials database di file .env nya seperti
-```env
-DB_DATABASE
-DB_USERNAME
-DB_PASSWORD
+Kemudian, silahkan ganti credentials database di file .env nya seperti
+```bash
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=xxx
+DB_USERNAME=root
+DB_PASSWORD=
 ```
+untuk panduan atau dokumentasi mengenai setup database pada file `.env` bisa kalian baca pada dokumentasi resmi laravelnya ya cui, [klik disini.](https://laravel.com/docs/9.x/database)
 
-8. Setelah itu, silahkan kalian buat database nya di mysql dengan command sql berikut (nama database sesuaikan dengan yang di .env) atau jika kalian bikin databasenya di phpmyadmin silahkan disesuaikan ya
-```sql
-create database namadatabase;
-```
-
-9. Setelah database terbuat, silahkan migrate dengan command berikut
+Kemudian, silahkan migrate semua database di project ini dengan menggunakan artisan command:
 ```bash
 php artisan migrate
 ```
-
-10. Generate application key dengan command berikut
+Lanjut, generate aplikasi key untuk keamanan pada project laravel dengan menggunakan artisan command berikut:
 ```bash
 php artisan key:generate
+# atau 
+php artisan key:generate --show
 ```
-
-11. Install dependencies dan start vite untuk frontend nya menggunakan npm atau yarn  
-
-Kalo pake npm
+Install dependencies nodejs didalam folder `node_modules` menggunakan Npm atau Yarn:
 ```bash
-npm install && npm run dev
-```
-Kalo pake yarn
-```bash
+npm install && npm update
+# atau menggunakan Yarn
 yarn && yarn dev
 ```
-
-12. Silahkan start server laravel nya dengan command
+Langkah Terakhir, silahkan jalankan local development server Laravel dengan menggunakan artisan command sebagai berikut:
 ```bash
 php artisan serve
 ```
+Project ini akan berjalan di `https://localhost:8080`.
 
-13. Sekarang project nya udah running di http://localhost:8000 atau http://127.0.0.1:8000  
-Untuk contribute, kalian bisa bikin perubahan yang kalian develop, terus push ke github ya cuy. Ntar di github kalian, di bagian repository yang kalian fork (bukan repo ini), nanti ada opsi buat contribute dan ada tombol buat open pull request. Tinggal di klik aja dan ikutin stepnya, beres dah
-<br/>
-<br/>
-
----
-
-### Bagimana cara FORK? Please searching di google aja ya bro
-<p>bisa baca docs resminya disini https://docs.github.com/en/get-started/quickstart/fork-a-repo </p>
-<br/>
-
-### Apakah sudah ada guideline untuk bagaimana cara ikut kontribusi?
-<p>Belum. Feel free to make update into this readme file for guiding people to setup laract9 👍</p>
-<p>Bebaskan jiwa codingmu dan mari berdiskusi disini: https://github.com/deaaprizal/laract9/discussions</p>
-<br/>
-<br/>
-
-<p>seputar kreasi fitur projek cuyuniverse akan diupdate disini: https://github.com/deaaprizal/laract9/projects?type=beta </p>
-
----
-
-<img src="https://media.giphy.com/media/LnQjpWaON8nhr21vNW/giphy.gif" width="60"> <em><b>Gue suka berkolaborasi dengan siapa saja</b> jadi buat kalian <b>peduli apa kata orang skill-mu, mari berkontribusi dan belajar bareng!</b></em>
-
----
-
-![Lines of code](https://img.shields.io/tokei/lines/github/deaaprizal/laract9?style=for-the-badge)
-![GitHub repo size](https://img.shields.io/github/repo-size/deaaprizal/laract9?style=for-the-badge)
-![GitHub Discussions](https://img.shields.io/github/discussions/deaaprizal/laract9?style=for-the-badge)
-![GitHub issues](https://img.shields.io/github/issues/deaaprizal/laract9?style=for-the-badge)
-
-**🐱 CuyUniverse notes:** 
-
-> 🏆 98% Performance on Lighthouse
- > 
-> 📦 0.2s First load time 
- > 
-> 🔑 2 Layer security
-  > 
-> 📜 Masih banyak catatan kekurangan
- > 
-> 
-**CuyUniverse Feature Progress 🐤** 
-
-```text
-🌞 UsersFlow     60% ongoing  ████████░░░░░░
-🌆 Posting       80% ongoing  ██████████░░░░
-🌃 Comments      75% ongoing  ████████░░░░░░ 
-🌙 Dashboard     30% ongoing  ████░░░░░░░░░░
-
-```
-
-**CuyUniverse NEXT FEATURE 📖** 
-
-```text
-🌞 Notification        xxx ████████░░░░░░
-🌆 Users Friendship    xxx ██████████░░░░
-🌃 ide kalian sendiri  ooo ████████░░░░░░ 
-
-```
+Untuk mengenai bagaimana cara untuk berkontribusi dalam pengembangan project ini bisa kalian lihat pada dokumentasi tentang [CONTRIBUTING.md]() ya cui.
 
 
- Terakhir diupdate pada 22/07/2022 21:30:04 WIB
+<br>
 
+## Contributing
+### Contributing Guidelines
+Kalian juga bisa kunjungi [CONTRIBUTING.md]() untuk bagaimana cara berkontribusi ke project ini ya cui.
+### Want To Help?
+Ingin melaporkan bug, menyumbangkan beberapa kode, atau meningkatkan dokumentasi? Tentu bisa cui, kalian bisa baca [panduan]() untuk berkontribusi.
+### Code Of Conduct
+Bantu menjaga project ini tetap terbuka dan selalu terupdate ya cui. Harap baca dan ikuti [Code Of Conduct]().
 
-NOTE: Terimakasih kepada siapa saja yang membantu project ini sampai pada dimana kita sendiri bingung ingin menambahkan apa lagi kedalamnya. Ini adalah project iseng for fun and for learning, so join sekarang kuy!
+<br>
+
+## Security Vulnerabilities
+Jika kali menemukan kerentanan keamanan dalam project ini, silahkan untuk buka issue. Semua kerentanan keamanan akan segera ditangani.
+
+<br>
+
+## Discussions
+Bebaskan jiwa codingmu dan mari berdiskusi mengenai fitur, keamanan atau yang lain ya cui, bisa kalian kunjungi forum [diskusi](https://github.com/deaaprizal/laract9/discussions.)
+
+<br>
+
+## Community
+Gabung komunitas CUYUNIVERSE dan ramaikan ya cui:
+- [Youtube](https://youtube.com/deaafrizal)
+- [Discord]()
+
+<br>
+
+## All Contributors
+Terima kasih atas peran kontribusi kalian di project CUYUNIVERSE ini ya cui, berikut adalah para kontributor hebat yang sudah menyumbangkan ide idenya!
+
+<a href="https://github.com/deaaprizal/laract9/graphs/contributors"><img src="https://contrib.rocks/image?repo=deaaprizal/laract9" alt="All of amazing contributors"></a>
