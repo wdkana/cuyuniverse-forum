@@ -17,10 +17,31 @@ export default function PostsPage(props) {
   const { data: posts, meta } = props.posts;
   const [keyword, setKeyword] = useState(filter.search);
 
+<<<<<<< HEAD
   const reload = useCallback(
     debounce((q) => {
       Inertia.get("/posts", pickBy({ search: q, page: filter.page }), {
         preserveState: true,
+=======
+  const searchHandle = async (event) => {
+    await axios
+      .post(route("posts.more"), {
+        keyword: keyword,
+      })
+      .then((res) => {
+        if (!res.data.data.length) {
+          setNodata(true);
+          return;
+        }
+        setPosts(res.data.data);
+        setMeta({
+          current_page: res.data.current_page,
+          links: res.data.links,
+        });
+      })
+      .catch((err) => {
+        throw err;
+>>>>>>> upstream/main
       });
     }, 500),
     []
@@ -35,12 +56,40 @@ export default function PostsPage(props) {
           <h1 className="font-bold text-lg">✨ {title} ✨</h1>
           <p className="text-sm">{description}</p>
         </div>
+<<<<<<< HEAD
         <div className="flex justify-center pt-5">
           <div className="w-full lg:w-2/3 flex justify-between">
             <div className="flex">
               <Menu
                 as="div"
                 className="relative focus-within:ring focus-within:ring-blue-100 focus-within:border-blue-400 transition duration-200 rounded-lg border"
+=======
+        <div className="flex flex-col">
+          <div className="pt-2 relative mx-auto text-gray-600">
+            <input
+              className="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none dark:bg-slate-900 dark:border-gray-700 dark:placeholder-white"
+              type="search"
+              name="search"
+              onChange={handleChange}
+              placeholder="Search"
+            />
+            <button
+              type="button"
+              className="absolute right-0 top-0 mt-5 mr-4"
+              onClick={searchHandle}
+            >
+              <svg
+                className="text-gray-600 dark:text-white h-4 w-4 fill-current"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlnsXlink="http://www.w3.org/1999/xlink"
+                version="1.1"
+                id="Capa_1"
+                x="0px"
+                y="0px"
+                viewBox="0 0 56.966 56.966"
+                width="512px"
+                height="512px"
+>>>>>>> upstream/main
               >
                 <Menu.Button className="capitalize flex items-center justify-between rounded-lg focus:outline-none bg-white h-10 pl-3 pr-2 w-full lg:w-52">
                   {/* {filter.filtered ? filter.filtered : 'Filter'} */}

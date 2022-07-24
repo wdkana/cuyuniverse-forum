@@ -52,6 +52,78 @@ const cuyuniverse = {
     funFact: "Clone aja dulu, errornya belakangan"
 };
 ```
+<br/>
+
+---
+<br/>
+
+## Tutorial Setup Project
+1. Pertama, pastikan kalian sudah punya php, composer, nodejs dan npm / yarn ya cuy, kalo belum punya silahkan download versi terbarunya
+
+2. Pastikan kalian juga sudah punya mysql terinstall
+
+3. Silahkan fork terlebih dahulu repository ini, kemudian clone repository yang udah kalian fork ya (Inget repository yang kalian fork, bukan repository ini). Bisa gunakan command berikut
+  ```bash
+  git clone git@github.com:{username github kalian}/laract9.git
+  ```
+  atau kalo kalian pake http (bukan ssh)
+  ```bash
+  git clone https://github.com/{username github kalian}/laract9.git
+  ```
+4. Buka directory project nya di terminal (command prompt / powershell dsb)
+
+5. Install dependency composer dengan command berikut
+```bash
+composer install
+```
+
+6. Copy file .env.example dengan nama .env atau bisa gunakan command berikut
+```bash
+cp .env.example .env
+```
+
+7. Silahkan ganti credentials database di file .env nya seperti
+```env
+DB_DATABASE
+DB_USERNAME
+DB_PASSWORD
+```
+
+8. Setelah itu, silahkan kalian buat database nya di mysql dengan command sql berikut (nama database sesuaikan dengan yang di .env) atau jika kalian bikin databasenya di phpmyadmin silahkan disesuaikan ya
+```sql
+create database namadatabase;
+```
+
+9. Setelah database terbuat, silahkan migrate dengan command berikut
+```bash
+php artisan migrate
+```
+
+10. Generate application key dengan command berikut
+```bash
+php artisan key:generate
+```
+
+11. Install dependencies dan start vite untuk frontend nya menggunakan npm atau yarn  
+
+Kalo pake npm
+```bash
+npm install && npm run dev
+```
+Kalo pake yarn
+```bash
+yarn && yarn dev
+```
+
+12. Silahkan start server laravel nya dengan command
+```bash
+php artisan serve
+```
+
+13. Sekarang project nya udah running di http://localhost:8000 atau http://127.0.0.1:8000  
+Untuk contribute, kalian bisa bikin perubahan yang kalian develop, terus push ke github ya cuy. Ntar di github kalian, di bagian repository yang kalian fork (bukan repo ini), nanti ada opsi buat contribute dan ada tombol buat open pull request. Tinggal di klik aja dan ikutin stepnya, beres dah
+<br/>
+<br/>
 
 ---
 
