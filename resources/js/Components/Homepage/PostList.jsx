@@ -99,7 +99,7 @@ export default function PostList(props) {
   }
 
   return (
-    <div className="card w-full md:w-2/3 bg-base-100 dark:bg-slate-700 shadow-lg">
+    <div className="card w-full md:w-2/3 bg-base-100 dark:bg-slate-700 shadow-lg dark:text-white">
       <RenderIfTrue isTrue={showNotif}>
         <NotificationAlert message={props.notif} />
       </RenderIfTrue>
