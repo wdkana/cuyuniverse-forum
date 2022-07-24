@@ -77,6 +77,14 @@ export default function SettingPage(props) {
               <button type='submit' disabled={processing} className='btn w-full dark:text-white border-0 rounded-md mt-2 bg-primary hover:bg-secondary'>Update</button>
             </form>
           </div>
+          <div className='divider w-full dark:text-white'>Security</div>
+          <Link
+            as="button"
+            href={route('dash.change.password')}
+            className="btn w-full sm:w-1/2 lg:w-1/3 dark:text-white border-0 rounded-md mt-2 bg-primary hover:bg-secondary"
+          >
+            Change Password
+          </Link>
         </div>
       </div>
     </Authenticated>
