@@ -38,14 +38,15 @@ final class DashboardController extends Controller
         ]);
     }
 
-    public function showSavedPost(){
+    public function showSavedPost()
+    {
         $savedPosts = SavedPosts::orderByDesc('id')->where('user_id', auth()->user()->id)->with('posts')->with('comments')->get();
         return Inertia::render('Dashboard/SavedPosts', [
             'data' => $savedPosts,
             'title' => 'SAVED POST',
             'page' => 'Postingan yang anda simpan',
             'next' => 'BUAT POSTINGAN',
-            'nextRoute' => 'posts.create'
+            'nextRoute' => 'posts.main'
         ]);
     }
 
