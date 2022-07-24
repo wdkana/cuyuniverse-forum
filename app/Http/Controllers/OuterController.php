@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\PostsCollection;
 use App\Models\Posts;
-use Illuminate\Http\Request;
+use App\Models\SavedPosts;
+use GuzzleHttp\Psr7\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class OuterController extends Controller
@@ -40,24 +42,26 @@ class OuterController extends Controller
       'posts' => $posts,
     ]);
   }
-
+  
   public function find($post_id)
   {
     $posts = Posts::with('comments.users:username,image')->withCount('likes')->where('id', $post_id)->first();
     if ($posts == null) {
-      return abort(404);
+        return abort(404);
     }
-
+    $isSavedPost = SavedPosts::where('post_id', $post_id)->where('user_id', Auth::user()->id)->get(); 
+    
     return Inertia::render('Post', [
-      'posts' => $posts->only(['id', 'description', 'image', 'author', 'created_at', 'likes_count']),
-      'comments' => $posts->comments,
-      'author_image' => $posts->users->image,
-      'title' => "Postingan Dari CuyPeople",
-      'description' => "komentari postingan ini",
-      'next' => 'HOME',
-      'root' => 'HOME',
-      'page' => 'POSTING COMMENT',
-      'nextRoute' => 'outer.main'
+        'posts' => $posts->only(['id', 'description', 'image', 'author', 'created_at', 'likes_count']),
+        'is_saved_post' => !count($isSavedPost) == 0,
+        'comments' => $posts->comments,
+        'author_image' => $posts->users->image,
+        'title' => "Postingan Dari CuyPeople",
+        'description' => "komentari postingan ini",
+        'next' => 'HOME',
+        'root' => 'HOME',
+        'page' => 'POSTING COMMENT',
+        'nextRoute' => 'outer.main'
     ]);
   }
 
@@ -71,4 +75,5 @@ class OuterController extends Controller
 
     return response()->json($posts, 200);
   }
+  
 }

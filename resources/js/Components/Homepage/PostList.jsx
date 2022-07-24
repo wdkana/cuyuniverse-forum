@@ -80,13 +80,23 @@ export default function PostList(props) {
   const likePost = (postId) => {
     const data = {
       post_id: postId,
-      token: props.user.token,
-    };
-
+      token: props.user.token
+    }
+    
     return Inertia.post("/post/like/love", data, {
       preserveScroll: true,
     });
-  };
+  }
+
+  const savePost = (postId) => {
+    const data = {
+      post_id: postId,
+      token: props.user.token
+    }
+    
+    return Inertia.post('/post/savedpost/saved', data)
+  }
+  
   return (
     <div className="card w-full md:w-2/3 bg-base-100 dark:bg-slate-700 shadow-lg">
       <RenderIfTrue isTrue={showNotif}>
@@ -164,17 +174,10 @@ export default function PostList(props) {
           })}
         </div>
       </div>
-      <div className="flex flex-col justify-center items-start gap-4 py-2 px-2 sm:px-10">
-        <button
-          onClick={() => likePost(props.posts.id)}
-          type="button"
-          className="btn btn-primary"
-        >
-          {props.posts.likes_count} Like
-        </button>
-      </div>
       <div className="flex flex-col justify-center items-center gap-4 py-2 px-2 sm:px-10">
         {props.user && formValidateNotif()}
+         <button onClick={() => likePost(props.posts.id)} type='button' className='btn btn-primary'>{props.posts.likes_count} Like</button>
+        <button onClick={() => savePost(props.posts.id)} type='button' className={`btn ${props.is_saved_post ? 'btn-primary' : 'btn-outline hover:btn-primary'}`}>{props.is_saved_post ? 'Disimpan' : 'Simpan'}</button>   
         <input
           type="text"
           minLength={2}

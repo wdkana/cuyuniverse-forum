@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Models\SavedPosts;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -34,6 +35,17 @@ final class DashboardController extends Controller
             'title' => 'USER PROFILE',
             'next' => 'DASHBOARD',
             'nextRoute' => 'dash.main',
+        ]);
+    }
+
+    public function showSavedPost(){
+        $savedPosts = SavedPosts::orderByDesc('id')->where('user_id', auth()->user()->id)->with('posts')->with('comments')->get();
+        return Inertia::render('Dashboard/SavedPosts', [
+            'data' => $savedPosts,
+            'title' => 'SAVED POST',
+            'page' => 'Postingan yang anda simpan',
+            'next' => 'BUAT POSTINGAN',
+            'nextRoute' => 'posts.create'
         ]);
     }
 
