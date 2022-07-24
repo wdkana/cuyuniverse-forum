@@ -84,7 +84,7 @@ php artisan key:generate --show
 ```
 Install dependencies nodejs didalam folder `node_modules` menggunakan Npm atau Yarn:
 ```bash
-npm install && npm update
+npm install && npm update && npm run dev
 # atau menggunakan Yarn
 yarn && yarn dev
 ```
