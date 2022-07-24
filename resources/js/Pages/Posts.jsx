@@ -19,9 +19,13 @@ export default function PostsPage(props) {
 
   const reload = useCallback(
     debounce((q) => {
-      Inertia.get("/posts", pickBy({ search: q, page: filter.page }), {
-        preserveState: true,
-      });
+      Inertia.get(
+        "/posts",
+        pickBy({ search: q, page: filter.page, filtered: filter.filtered }),
+        {
+          preserveState: true,
+        }
+      );
     }, 500),
     []
   );
@@ -43,7 +47,7 @@ export default function PostsPage(props) {
                 className="relative focus-within:ring focus-within:ring-blue-100 focus-within:border-blue-300 dark:focus-within:ring-0 dark:focus-within:border-slate-500 transition duration-200 rounded-lg border dark:border-slate-600 text-gray-600 dark:text-slate-600"
               >
                 <Menu.Button className="capitalize flex items-center justify-between rounded-lg focus:outline-none bg-white dark:bg-slate-800 h-10 pl-3 pr-2 w-full lg:w-52">
-                  {filter.filtered == filter.filtered ? "All" : filter.filtered}
+                  {!filter.filtered ? "All" : filter.filtered}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-5 w-5 text-gray-400"
