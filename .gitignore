@@ -18,3 +18,4 @@ yarn-error.log
 .php-cs-fixer.cache
 
 yarn.lock
+package-lock.json
