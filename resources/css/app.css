@@ -29,3 +29,15 @@ body {
 html.dark body {
   @apply bg-slate-800 text-white;
 }
+
+.avatar svg {
+    display: none;
+    position: relative;
+    top: -64px;
+    width: 32px;
+    height: 32px;
+    margin: auto;
+    cursor: pointer;
+}
+.avatar div:hover svg {display: block;}
+.avatar div:hover img {opacity: 0.3;}
