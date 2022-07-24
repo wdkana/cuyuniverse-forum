@@ -1,1 +1,10 @@
 *.md
+/vendor
+/node_modules
+/lang
+/database
+/public
+/storage
+/bootstrap
+/config
+/app

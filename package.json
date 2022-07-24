@@ -3,7 +3,7 @@
     "scripts": {
         "dev": "vite",
         "build": "vite build",
-        "format": "prettier --write './resources/**/*.{js,jsx,css}'"
+        "format": "prettier --write './**/*.{js,jsx,json,css}' --ignore-path .prettierignore"
     },
     "devDependencies": {
         "@headlessui/react": "^1.4.2",

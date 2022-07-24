@@ -1,6 +1,6 @@
 {
     "githubPullRequests.ignoredPullRequestBranches": ["main"],
-    "editor.tabSize": 2,
+    "editor.tabSize": 4,
     "editor.cursorStyle": "line-thin",
     "editor.wordWrap": "on"
 }
