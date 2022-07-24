@@ -35,7 +35,7 @@ export default function PostsPage(props) {
           <h1 className="font-bold text-lg">✨ {title} ✨</h1>
           <p className="text-sm">{description}</p>
         </div>
-        <div className="flex justify-center pt-5">
+        <div className="flex justify-center pt-5 lg:px-0 px-5">
           <div className="w-full lg:w-2/3 flex justify-between">
             <div className="flex">
               <Menu
