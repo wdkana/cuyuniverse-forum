@@ -98,7 +98,7 @@ export default function PostList(props) {
   }
   
   return (
-    <div className="card w-full md:w-2/3 bg-base-100 shadow-lg">
+    <div className="card w-full md:w-2/3 bg-base-100 dark:bg-slate-700 shadow-lg">
       <RenderIfTrue isTrue={showNotif}>
         <NotificationAlert message={props.notif} />
       </RenderIfTrue>
@@ -140,7 +140,10 @@ export default function PostList(props) {
         <div className="bg-base-200">
           {props.comments.map((comment, i) => {
             return (
-              <div className="border-b-2 flex flex-col p-2" key={i}>
+              <div
+                className="border-b-2 dark:border-b-slate-500 flex flex-col p-3 bg-slate-800"
+                key={i}
+              >
                 <div className="text-md font-mono font-bold">
                   {comment.description}
                 </div>
@@ -171,19 +174,16 @@ export default function PostList(props) {
           })}
         </div>
       </div>
-      <div className='flex justify-between items-center gap-4 py-2 px-2 sm:px-10'>
-        {/* {props.user && formValidateNotif()} */}
-        <button onClick={() => likePost(props.posts.id)} type='button' className='btn btn-primary'>{props.posts.likes_count} Like</button>
-        <button onClick={() => savePost(props.posts.id)} type='button' className={`btn ${props.is_saved_post ? 'btn-primary' : 'btn-outline hover:btn-primary'}`}>{props.is_saved_post ? 'Disimpan' : 'Simpan'}</button>          
-      </div>
       <div className="flex flex-col justify-center items-center gap-4 py-2 px-2 sm:px-10">
         {props.user && formValidateNotif()}
+         <button onClick={() => likePost(props.posts.id)} type='button' className='btn btn-primary'>{props.posts.likes_count} Like</button>
+        <button onClick={() => savePost(props.posts.id)} type='button' className={`btn ${props.is_saved_post ? 'btn-primary' : 'btn-outline hover:btn-primary'}`}>{props.is_saved_post ? 'Disimpan' : 'Simpan'}</button>   
         <input
           type="text"
           minLength={2}
           maxLength={80}
           value={newComment}
-          className="input rounded-md w-full h-42"
+          className="input rounded-md w-full h-42 dark:bg-slate-800 outline-none border-none dark:placeholder-white"
           placeholder={
             props.user == null
               ? "Login untuk mengisi komentar"
@@ -194,7 +194,7 @@ export default function PostList(props) {
         />
         <button
           type="button"
-          className="btn btn-primary font-bold btn-md w-full rounded-md"
+          className="btn btn-primary font-bold btn-md w-full rounded-md dark:text-white"
           disabled={props.user == null || !isValid ? true : false}
           onClick={() => handlerCommentSubmit()}
         >

@@ -17,7 +17,7 @@ const isPosts = (posts, from) => {
     return (
       <div
         key={i}
-        className="card w-full md:w-1/2 lg:w-1/3 xl:w-1/3 bg-base-100 shadow-lg cursor-pointer hover:transition-all hover:delay-75 hover:-translate-y-1 hover:bg-neutral"
+        className="card w-full md:w-1/2 lg:w-1/3 xl:w-1/3 bg-base-100 dark:bg-slate-700 shadow-lg cursor-pointer hover:transition-all hover:delay-75 dark:hover:bg-gray-600 dark:text-white hover:-translate-y-1 hover:bg-neutral"
       >
         <Link
           href={`/post/${post.id}`}
@@ -26,8 +26,9 @@ const isPosts = (posts, from) => {
           className="card-body p-6"
         >
           <div
-            className={`text-xl ${post.description.length > 80 ? "overflow-x-hidden" : "break-words"
-              } h-20`}
+            className={`text-xl ${
+              post.description.length > 80 ? "overflow-x-hidden" : "break-words"
+            } h-20`}
           >
             {post.description}
           </div>
@@ -44,26 +45,26 @@ const isPosts = (posts, from) => {
             </div>
 
             <RenderIfTrue isTrue={from !== "authorPage"}>
-              <div className="basis-1/2 justify-end items-end flex flex-col">
-                <Link
-                  href={`/author/${post.author}`}
-                  as="button"
-                  method="get"
-                  className="avatar"
-                >
-                  <div className="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                    <img
-                      src={
-                        post.users && post.users.image !== null
-                          ? `/storage/images/${post.users.image}`
-                          : "/storage/images/defaultavatar.png"
-                      }
-                    />
-                  </div>
-                </Link>
-  
-              <div className="text-sm ml-4">
-                <p className="text-gray-900 leading-none">{post.author}</p>
+              <Link
+                href={`/author/${post.author}`}
+                as="button"
+                method="get"
+                className="avatar"
+              >
+                <div className="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                  <img
+                    src={
+                      post.users && post.users.image !== null
+                        ? `/storage/images/${post.users.image}`
+                        : "/storage/images/defaultavatar.png"
+                    }
+                  />
+                </div>
+              </Link>
+              <div class="text-sm ml-4">
+                <p className="text-gray-900 dark:text-white leading-none">
+                  {post.author}
+                </p>
                 <p className="text-xs break-normal">
                   posted {formatTime(post.updated_at)} |{" "}
                   {post.comments && post.comments.length > 0
