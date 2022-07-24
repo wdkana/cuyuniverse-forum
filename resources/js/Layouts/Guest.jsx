@@ -29,7 +29,7 @@ export default function Guest({ children, auth }) {
                   active={route().current("outer.main")}
                 >
                   <MdOutlineTrendingUp className="m-1" />
-                  Trending
+                  Trend
                 </NavLink>
               </div>
 
@@ -38,7 +38,7 @@ export default function Guest({ children, auth }) {
                   href={route("outer.posts")}
                   active={route().current("outer.posts")}
                 >
-                  <MdOutlineArticle className="m-1" /> Postingan
+                  <MdOutlineArticle className="m-1" /> Post
                 </NavLink>
               </div>
 
@@ -47,7 +47,7 @@ export default function Guest({ children, auth }) {
                   href={route("author.status")}
                   active={route().current("author.status")}
                 >
-                  <MdOutlineLeaderboard className="m-1" /> Pengguna
+                  <MdOutlineLeaderboard className="m-1" /> User
                 </NavLink>
               </div>
 
