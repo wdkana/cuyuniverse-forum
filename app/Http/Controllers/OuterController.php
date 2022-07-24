@@ -6,7 +6,7 @@ use App\Http\Resources\PostResource;
 use App\Http\Resources\PostsCollection;
 use App\Models\Posts;
 use App\Models\SavedPosts;
-use GuzzleHttp\Psr7\Request;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
