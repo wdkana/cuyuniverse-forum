@@ -38,6 +38,7 @@ Route::controller(DashboardController::class)->middleware(['auth', 'verified'])-
         Route::get('/dashboard/setting-profile', 'setting')->name('setting.profile');
         Route::post('/dashboard/photo', 'update_photo')->name('update.photo')->middleware('isValidUser');
         Route::put('/dashboard/update-username', 'update_username')->name('update.username')->middleware('isValidUser');
+        Route::get('/dashboard/mark-notification-as-read/{id}', 'markNotificationAsRead')->name('notif.mark-as-read')->middleware('isValidUser');
     }
 );
 
