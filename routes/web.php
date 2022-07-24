@@ -33,6 +33,9 @@ Route::controller(AuthorController::class)->name('author.')->middleware('throttl
 Route::controller(DashboardController::class)->middleware(['auth', 'verified'])->name('dash.')->group(
     function () {
         Route::get('/dashboard', 'index')->name('main');
+        Route::get('/dashboard/notif', 'notification')->name('notif');
+        Route::get('/dashboard/saved-post', 'showSavedPost')->name('saved.post');
+        Route::get('/dashboard/manage-posts', 'manage_posts')->name('manage.posts');
         Route::get('/dashboard/setting-profile', 'setting')->name('setting.profile');
         Route::post('/dashboard/photo', 'update_photo')->name('update.photo')->middleware('isValidUser');
         Route::put('/dashboard/update-username', 'update_username')->name('update.username')->middleware('isValidUser');
@@ -47,6 +50,7 @@ Route::controller(PostsController::class)->middleware(['auth', 'verified'])->nam
         Route::post('/dashboard/manage-posts/posts/delete', 'destroy')->name('remove')->middleware('isValidUser');
         Route::post('/post/comment', 'storeComment')->name('storeComment')->middleware('isValidUser');
         Route::post('/post/like/love', 'storeLike')->name('storeLike')->middleware('isValidUser');
+        Route::post('/post/saved-post/saved', 'storeSavedPosts')->name('storeSavedPosts')->middleware('isValidUser');
     }
 );
 
