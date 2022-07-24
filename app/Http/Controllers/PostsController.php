@@ -7,6 +7,9 @@ use App\Models\Comment;
 use App\Models\Like;
 use Inertia\Inertia;
 use App\Models\Posts;
+use App\Models\User;
+use App\Notifications\UserComment;
+use App\Notifications\UserLike;
 use App\Models\SavedPosts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -72,9 +75,9 @@ class PostsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show()
-    {   
+    {
         $posts = Posts::orderByDesc('id')->where('author', auth()->user()->username)->with('comments')->get();
-    
+
         return Inertia::render('Dashboard/MyPosts', [
             'data' => $posts,
             'page' => 'POSTINGAN SAYA',
@@ -99,28 +102,33 @@ class PostsController extends Controller
 
         $post = Posts::find($request->post_id);
 
-        $post->comments()->save($comment);
+        $saveComment = $post->comments()->save($comment);
+
+        $user = User::find($post->user_id);
+        if($post->user_id !== Auth::id()) {
+            $user->notify(new UserComment($saveComment));
+        }
 
         return to_route('outer.byId', ['id' => $request->post_id])->with('message', 'Komentar telah dikirim');
     }
 
-    
+
     public function storeLike(Request $request)
     {
         $postLiked = Like::where('post_id', $request->post_id)->where('user_id', Auth::user()->id)->first();
 
-        if (!$postLiked) {
-            Like::create([
+        if (! $postLiked) {
+            $like = Like::create([
                 'post_id' => $request->post_id,
                 'user_id' => Auth::user()->id
             ]);
-        } else {
-            $postLiked->delete();
+            return to_route('outer.byId', ['id' => $request->post_id])->with('message', 'Post telah dilike!');
         }
 
-        return to_route('outer.byId', ['id' => $request->post_id])->with('message', 'Post telah di-like!');
+        $postLiked->delete();
+        return to_route('outer.byId', ['id' => $request->post_id])->with('message', 'Post telah didislike!');
     }
-    
+
     public function storeSavedPosts(Request $request)
     {
         $savedPosts = SavedPosts::where('post_id', $request->post_id)->where('user_id', Auth::user()->id)->first();
@@ -130,10 +138,10 @@ class PostsController extends Controller
                 'user_id' => Auth::user()->id
             ]);
             return to_route('outer.byId', ['id' => $request->post_id])->with('message', 'Post telah disimpan!');
-        } else {
-            $savedPosts->delete();
-            return to_route('outer.byId', ['id' => $request->post_id])->with('message', 'Post telah dihapus!');
         }
+
+        $savedPosts->delete();
+        return to_route('outer.byId', ['id' => $request->post_id])->with('message', 'Post telah dihapus!');
     }
     /**
      * Remove the specified resource from storage.

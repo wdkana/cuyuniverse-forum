@@ -18,7 +18,7 @@ export default function DashboardPage(props) {
         <Authenticated
             auth={props.auth}
             errors={props.errors}
-            header={<div className="font-semibold text-md">
+            header={<div className="font-semibold text-md dark:text-white">
                 Login as
                 <Link href={route('dash.setting.profile')} as="button" method="get" className='btn btn-ghost btn-sm underline -ml-2'>
                     {props.auth.user.username}

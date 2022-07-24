@@ -98,7 +98,7 @@ export default function PostList(props) {
   }
 
   return (
-    <div className="card w-full md:w-2/3 bg-base-100 dark:bg-slate-700 shadow-lg">
+    <div className="card w-full md:w-2/3 bg-base-100 dark:bg-slate-700 shadow-lg dark:text-white">
       <RenderIfTrue isTrue={showNotif}>
         <NotificationAlert message={props.notif} />
       </RenderIfTrue>
@@ -175,17 +175,17 @@ export default function PostList(props) {
         </div>
       </div>
       <div className="flex justify-start px-2 lg:px-10 py-2 items-center gap-2">
-        <button onClick={() => likePost(props.posts.id)} type='button' className='btn dark:text-white btn-primary rounded-md btn-sm' disabled={!props.user ? true : false}>{props.posts.likes_count} Like</button>
+        <button onClick={() => likePost(props.posts.id)} type='button' className={`btn dark:text-white rounded-md btn-sm ${props.is_liked_post ? 'btn-primary' : 'hover:btn-primary'}`} disabled={!props.user ? true : false}>{props.posts.likes_count} {props.posts.likes_count === 1 ? 'Like' : 'Likes'}</button>
         <button onClick={() => savePost(props.posts.id)} type='button' className={`btn dark:text-white rounded-md btn-sm ${props.is_saved_post ? 'btn-primary' : 'hover:btn-primary'}`} disabled={!props.user ? true : false}>{props.is_saved_post ? 'Disimpan' : 'Simpan'}</button>
       </div>
-      <div className="flex flex-col justify-center items-center gap-4 py-2 px-2 sm:px-10">
+      <div className="flex flex-col justify-center items-center gap-4 py-2 px-2 sm:px-10 ">
         {props.user && formValidateNotif()}
         <input
           type="text"
           minLength={2}
           maxLength={80}
           value={newComment}
-          className="input rounded-md w-full h-42 outline-none border-none dark:placeholder-slate-800"
+          className="input rounded-md w-full h-42 outline-none border-none dark:placeholder-slate-800  dark:text-black"
           placeholder={
             props.user == null
               ? "Login untuk mengisi komentar"
