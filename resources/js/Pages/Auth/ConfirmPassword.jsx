@@ -33,10 +33,6 @@ export default function ConfirmPassword() {
                         Demi keamanan, silahkan konfirmasi password kamu sebelum lanjut memakai CuyUniverse.
                     </div>
                     <div>
-                        {/* <img
-                            className="mx-auto h-12 w-auto"
-                            src="logo gue"
-                            alt="logo gue" /> */}
                         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Daftar CuyUniverse</h2>
                         <p className="mt-2 text-center text-sm text-gray-600">
                             Atau{' '}
@@ -58,7 +54,7 @@ export default function ConfirmPassword() {
                                     type="password"
                                     autoComplete="on"
                                     required
-                                    className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                    className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 dark:bg-slate-900 dark:placeholder-slate-100 dark:text-white dark:border-gray-600 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                     placeholder="password"
                                     onChange={onHandleChange}
                                     value={data.password} />
