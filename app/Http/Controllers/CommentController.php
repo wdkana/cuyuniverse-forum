@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
-use Inertia\Inertia;
 
 class CommentController extends Controller
 {
