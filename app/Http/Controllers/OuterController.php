@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\PostsCollection;
+use App\Models\Like;
 use App\Models\Posts;
 use App\Models\SavedPosts;
 use GuzzleHttp\Psr7\Request;
@@ -53,11 +54,13 @@ class OuterController extends Controller
 
     if (Auth::user()) {
       $isSavedPost = SavedPosts::where('post_id', $post_id)->where('user_id', Auth::user()->id)->get();
+      $isLikedPost = Like::where('post_id', $post_id)->where('user_id', Auth::user()->id)->get();
     }
 
     return Inertia::render('Post', [
       'posts' => $posts->only(['id', 'description', 'image', 'author', 'created_at', 'likes_count']),
-      'is_saved_post' => Auth::user() ? !count($isSavedPost) == 0 : null,
+      'is_saved_post' => Auth::user() ? count($isSavedPost) !== 0 : null,
+      'is_liked_post' => Auth::user() ? count($isLikedPost) !== 0 : null,
       'comments' => $posts->comments,
       'author_image' => $posts->users->image,
       'title' => "Postingan Dari CuyPeople",

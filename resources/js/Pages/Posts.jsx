@@ -41,8 +41,8 @@ export default function PostsPage(props) {
       <Head title={props.title} />
       <div className="min-h-screen">
         <div className="text-center pt-6">
-          <h1 className="font-bold text-lg">✨ {props.title} ✨</h1>
-          <p className="text-sm">{props.description}</p>
+          <h1 className="font-bold text-lg dark:text-white">✨ {props.title} ✨</h1>
+          <p className="text-sm dark:text-white">{props.description}</p>
         </div>
         <div className="flex flex-col">
           <div className="pt-2 relative mx-auto text-gray-600">

@@ -19,7 +19,7 @@ export default function AuthorPage(props) {
               <img src={props.author_image !== null ? `/storage/images/${props.author_image}` : '/storage/images/defaultavatar.png'} />
             </div>
           </div>
-          <h1 className="text-xl font-bold">✨ {props.author} ✨</h1>
+          <h1 className="text-xl font-bold dark:text-white">✨ {props.author} ✨</h1>
         </div>
         <div className='flex flex-col justify-center items-center lg:flex-row lg:flex-wrap lg:items-stretch p-4 gap-6'>
           <PostsList posts={props.posts.data} from={thisData} />

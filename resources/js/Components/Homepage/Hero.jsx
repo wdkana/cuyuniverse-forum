@@ -1,6 +1,6 @@
 const Hero = () => {
   return (
-    <div className="hero">
+    <div className="hero dark:text-white">
       <div className="hero-content text-center">
         <div className="max-w-md">
           <h1 className="text-3xl font-bold">✨ Cuy Universe ✨</h1>

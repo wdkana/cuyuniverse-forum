@@ -12,8 +12,8 @@ export default function AuthorListPage(props) {
       <Head title={props.title} />
       <div className="min-h-screen">
         <div className="text-center pt-6">
-          <h1 className="font-bold text-lg">✨ {props.title} ✨</h1>
-          <p className="text-sm">{props.description}</p>
+          <h1 className="font-bold text-lg dark:text-white">✨ {props.title} ✨</h1>
+          <p className="text-sm dark:text-white">{props.description}</p>
         </div>
         <div className="flex flex-col justify-center items-center sm:flex-row sm:flex-wrap p-4 gap-6">
           {props.data
