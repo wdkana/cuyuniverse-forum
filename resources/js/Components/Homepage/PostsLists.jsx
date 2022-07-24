@@ -26,24 +26,13 @@ const isPosts = (posts, from) => {
           className="card-body p-6"
         >
           <div
-            className={`text-xl ${
-              post.description.length > 80 ? "overflow-x-hidden" : "break-words"
-            } h-20`}
+            className={`text-xl ${post.description.length > 80 ? "overflow-x-hidden" : "break-words"
+              } h-20`}
           >
             {post.description}
           </div>
 
           <div className="flex flex-row">
-            <div className="basis-1/2 content-end card-actions text-sm">
-              <div className="text-xs break-normal">
-                posted {formatTime(post.updated_at)} |{" "}
-                {post.comments && post.comments.length > 0
-                  ? post.comments.length
-                  : "no"}{" "}
-                comment
-              </div>
-            </div>
-
             <RenderIfTrue isTrue={from !== "authorPage"}>
               <Link
                 href={`/author/${post.author}`}
@@ -72,7 +61,6 @@ const isPosts = (posts, from) => {
                     : "no"}{" "}
                   comment
                 </p>
-              </div>
               </div>
             </RenderIfTrue>
           </div>
