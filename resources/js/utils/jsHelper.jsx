@@ -8,9 +8,11 @@ export const formatTime = (time) => {
 
 export const randomColor = (param) => {
     let option;
+
     if (param == "hair") {
         option = ["Black", "Blonde", "Brown", "Auburn", "Blue", "Platinum", "Red", "SilverGray"];
     }
+
     if (param == "top") {
         option = [
             "NoHair",
@@ -27,15 +29,19 @@ export const randomColor = (param) => {
             "ShortHairTheCaesar"
         ];
     }
+
     if (param == "eyes") {
         option = ["Dizzy", "EyeRoll", "Hearts", "Side", "Surprised", "Wink", "Cry", "Close"];
     }
+
     if (param == "mouth") {
         option = ["Concerned", "Eating", "Sad", "Smile", "ScreamOpen", "Tongue", "Vomit"];
     }
+
     if (param == "facial") {
         option = ["BeardMedium", "BeardLight", "Blank", "BeardMajestic", "MoustacheFancy", "MoustacheMagnum"];
     }
+
     if (param == "shirt") {
         option = [
             "BlazerShirt",

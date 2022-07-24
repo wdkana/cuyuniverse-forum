@@ -8,9 +8,15 @@ export default function TeamsPage(props) {
 
     useEffect(() => {
         const fetchpairs = async () => {
-            const result = await axios.get("https://api.github.com/repos/deaaprizal/laract9/contributors?");
-            setData(result.data);
+            try {
+                const result = await axios.get("https://api.github.com/repos/deaaprizal/laract9/contributors?");
+
+                setData(result.data);
+            } catch (error) {
+                throw error;
+            }
         };
+
         fetchpairs();
     }, []);
 

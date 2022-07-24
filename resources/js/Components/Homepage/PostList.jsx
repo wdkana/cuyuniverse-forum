@@ -1,9 +1,9 @@
 import RenderIfTrue from "@/helper/RenderIfTrue";
-import { formatTime } from "@/utils/jsHelper";
 import { Inertia } from "@inertiajs/inertia";
 import { Link } from "@inertiajs/inertia-react";
 import { useEffect, useState } from "react";
 import NotificationAlert from "../Default/NotificationAlert";
+import CommentCard from "./CommentCard";
 
 export default function PostList(props) {
     const [newComment, setNewComment] = useState("");
@@ -11,27 +11,13 @@ export default function PostList(props) {
     const [isValid, setIsValid] = useState(true);
     const [showNotif, setShowNotif] = useState(false);
 
-    useEffect(() => {
-        let mount = true;
-        if (limiter > 0) {
-            mount && newComment.length >= 2 && newComment.length <= 80 ? setIsValid(true) : setIsValid(false);
-        }
-        return () => {
-            mount = false;
-        };
-    }, [newComment.length]);
-
-    useEffect(() => {
-        setShowNotif(true);
-        return () => setShowNotif(false);
-    }, [props]);
-
     const handlerCommentInput = (value) => {
         setNewComment(value);
+        const x = 80 - Number(value.length);
+
         if (value.length > 2) {
             setShowNotif(false);
         }
-        const x = 80 - Number(value.length);
         if (x >= 0) {
             setLimiter(x);
         }
@@ -43,10 +29,31 @@ export default function PostList(props) {
             description: newComment,
             token: props.user.token
         };
+
         isValid && Inertia.post("/post/comment", data);
+
         setNewComment("");
+
         return setLimiter(80);
     };
+
+    useEffect(() => {
+        let mount = true;
+
+        if (limiter > 0) {
+            mount && newComment.length >= 2 && newComment.length <= 80 ? setIsValid(true) : setIsValid(false);
+        }
+
+        return () => {
+            mount = false;
+        };
+    }, [newComment.length]);
+
+    useEffect(() => {
+        setShowNotif(true);
+
+        return () => setShowNotif(false);
+    }, [props]);
 
     const formValidateNotif = () => {
         return (
@@ -85,6 +92,7 @@ export default function PostList(props) {
             preserveScroll: true
         });
     };
+
     return (
         <div className="card w-full md:w-2/3 bg-base-100 shadow-lg">
             <RenderIfTrue isTrue={showNotif}>
@@ -119,34 +127,9 @@ export default function PostList(props) {
                 </div>
 
                 <div className="bg-base-200">
-                    {props.comments.map((comment, i) => {
-                        return (
-                            <div className="border-b-2 flex flex-col p-2" key={i}>
-                                <div className="text-md font-mono font-bold">{comment.description}</div>
-                                <Link
-                                    href={`/author/${comment.commentartor}`}
-                                    as="div"
-                                    method="get"
-                                    className="mt-2 p-2 items-end justify-end flex gap-1 flex-row text-xs cursor-pointer hover:cursor-pointer hover:translate-x-1 hover:transition-all"
-                                >
-                                    <div className="mr-1">
-                                        comment {formatTime(comment.created_at)} by {comment.commentartor}
-                                    </div>
-                                    <div className="avatar">
-                                        <div className="w-6 rounded-full">
-                                            <img
-                                                src={
-                                                    comment.users.image !== null
-                                                        ? `/storage/images/${comment.users.image}`
-                                                        : "/storage/images/defaultavatar.png"
-                                                }
-                                            />
-                                        </div>
-                                    </div>
-                                </Link>
-                            </div>
-                        );
-                    })}
+                    {props.comments.map((comment, i) => (
+                        <CommentCard key={i} comment={comment} />
+                    ))}
                 </div>
             </div>
             <div className="flex flex-col justify-center items-start gap-4 py-2 px-2 sm:px-10">

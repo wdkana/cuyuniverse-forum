@@ -25,6 +25,7 @@ export default function PostsPage(props) {
                     setNodata(true);
                     return;
                 }
+
                 setPosts(res.data.data);
                 setMeta({
                     current_page: res.data.current_page,

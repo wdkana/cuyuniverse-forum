@@ -7,6 +7,7 @@ import { Link } from "@inertiajs/inertia-react";
 
 export default function Authenticated({ auth, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
+
     return (
         <div className="min-h-screen">
             <nav className="md:shadow-lg">
