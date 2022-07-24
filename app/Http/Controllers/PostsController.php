@@ -114,11 +114,11 @@ class PostsController extends Controller
                 'post_id' => $request->post_id,
                 'user_id' => Auth::user()->id
             ]);
-        } else {
-            $postLiked->delete();
+            return to_route('outer.byId', ['id' => $request->post_id])->with('message', 'Post telah dilike!');
         }
 
-        return to_route('outer.byId', ['id' => $request->post_id])->with('message', 'Post telah di-like!');
+        $postLiked->delete();
+        return to_route('outer.byId', ['id' => $request->post_id])->with('message', 'Post telah didislike!');
     }
     
     public function storeSavedPosts(Request $request)
@@ -130,10 +130,10 @@ class PostsController extends Controller
                 'user_id' => Auth::user()->id
             ]);
             return to_route('outer.byId', ['id' => $request->post_id])->with('message', 'Post telah disimpan!');
-        } else {
-            $savedPosts->delete();
-            return to_route('outer.byId', ['id' => $request->post_id])->with('message', 'Post telah dihapus!');
         }
+        
+        $savedPosts->delete();
+        return to_route('outer.byId', ['id' => $request->post_id])->with('message', 'Post telah dihapus!');
     }
     /**
      * Remove the specified resource from storage.
