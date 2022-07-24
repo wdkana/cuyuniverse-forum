@@ -1,81 +1,108 @@
-import React, { useState } from "react";
-import { Head } from "@inertiajs/inertia-react";
+import React, { useCallback, useEffect, useState } from "react";
+import { Head, Link } from "@inertiajs/inertia-react";
 import PostsList from "@/Components/Homepage/PostsLists";
 import Paginate from "@/Components/Homepage/Paginate";
 import Guest from "@/Layouts/Guest";
-import axios from "axios";
+import { debounce, pickBy } from "lodash";
+import { Inertia } from "@inertiajs/inertia";
+import { Menu } from "@headlessui/react";
+
+const menus = [
+  { name: "latest", value: "latest" },
+  { name: "oldest", value: "oldest" },
+];
 
 export default function PostsPage(props) {
-  const [keyword, setKeyword] = useState("");
-  const [posts, setPosts] = useState([]);
-  const [meta, setMeta] = useState({});
-  const [nodata, setNodata] = useState(false);
+  const { auth, title, description, filter } = props;
+  const { data: posts, meta } = props.posts;
+  const [keyword, setKeyword] = useState(filter.search);
 
-  const handleChange = (event) => {
-    setKeyword(event.target.value);
-  };
-
-  const searchHandle = async (event) => {
-    await axios
-      .post(route("posts.more"), {
-        keyword: keyword,
-      })
-      .then((res) => {
-        if (!res.data.data.length) {
-          setNodata(true);
-          return;
-        }
-        setPosts(res.data.data);
-        setMeta({
-          current_page: res.data.current_page,
-          links: res.data.links,
-        });
-      })
-      .catch((err) => {
-        throw err
+  const reload = useCallback(
+    debounce((q) => {
+      Inertia.get("/posts", pickBy({ search: q, page: filter.page }), {
+        preserveState: true,
       });
-  };
+    }, 500),
+    []
+  );
 
+  useEffect(() => reload(keyword), [keyword]);
   return (
-    <Guest auth={props.auth.user}>
-      <Head title={props.title} />
+    <Guest auth={auth.user}>
+      <Head title={title} />
       <div className="min-h-screen">
         <div className="text-center pt-6">
-          <h1 className="font-bold text-lg">✨ {props.title} ✨</h1>
-          <p className="text-sm">{props.description}</p>
+          <h1 className="font-bold text-lg">✨ {title} ✨</h1>
+          <p className="text-sm">{description}</p>
         </div>
-        <div className="flex flex-col">
-          <div className="pt-2 relative mx-auto text-gray-600">
-            <input
-              className="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
-              type="search"
-              name="search"
-              onChange={handleChange}
-              placeholder="Search"
-            />
-            <button
-              type="button"
-              className="absolute right-0 top-0 mt-5 mr-4"
-              onClick={searchHandle}
-            >
-              <svg
-                className="text-gray-600 h-4 w-4 fill-current"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlnsXlink="http://www.w3.org/1999/xlink"
-                version="1.1"
-                id="Capa_1"
-                x="0px"
-                y="0px"
-                viewBox="0 0 56.966 56.966"
-                width="512px"
-                height="512px"
+        <div className="flex justify-center pt-5">
+          <div className="w-full lg:w-2/3 flex justify-between">
+            <div className="flex">
+              <Menu
+                as="div"
+                className="relative focus-within:ring focus-within:ring-blue-100 focus-within:border-blue-400 transition duration-200 rounded-lg border"
               >
-                <path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z" />
-              </svg>
-            </button>
+                <Menu.Button className="capitalize flex items-center justify-between rounded-lg focus:outline-none bg-white h-10 pl-3 pr-2 w-full lg:w-52">
+                  {/* {filter.filtered ? filter.filtered : 'Filter'} */}
+                  {filter.filtered == filter.filtered ? "All" : filter.filtered}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5 text-gray-400"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </Menu.Button>
+                <Menu.Items className="absolute w-52 z-50 bg-white shadow rounded-lg mt-1.5 overflow-hidden py-0.5">
+                  {menus.map((menu, key) => {
+                    return menu.name == "line" ? (
+                      <div
+                        key={key}
+                        className="h-px bg-gray-200 my-0.5 w-full"
+                      ></div>
+                    ) : (
+                      <Menu.Item key={key}>
+                        <Link
+                          preserveState
+                          className={`block px-4 py-2 hover:bg-gray-100 font-medium capitalize text-sm`}
+                          href={`/posts?filtered=${menu.value}`}
+                        >
+                          {menu.name}
+                        </Link>
+                      </Menu.Item>
+                    );
+                  })}
+                </Menu.Items>
+              </Menu>
+            </div>
+            <div>
+              <input
+                className="h-10 focus:outline-none focus:ring focus:ring-blue-100 focus:border-blue-400 border rounded-lg border-gray-200"
+                type="text"
+                name="search"
+                id="search"
+                placeholder="Search . . ."
+                value={keyword}
+                onChange={(e) => setKeyword(e.target.value)}
+              />
+            </div>
           </div>
         </div>
-        {nodata ? (
+        {posts.length ? (
+          <>
+            <div className="flex flex-col justify-center items-center lg:flex-row lg:flex-wrap lg:items-strech pt-6 px-4 gap-6">
+              <PostsList posts={posts} />
+            </div>
+            <div className="flex justify-center items-center py-6">
+              <Paginate meta={meta} />
+            </div>
+          </>
+        ) : (
           <div className="flex justify-center pt-5">
             <div className="alert alert-warning shadow-lg text-white w-1/3">
               <div>
@@ -96,15 +123,6 @@ export default function PostsPage(props) {
               </div>
             </div>
           </div>
-        ) : (
-          <>
-            <div className="flex flex-col justify-center items-center lg:flex-row lg:flex-wrap lg:items-strech pt-6 px-4 gap-6">
-              <PostsList posts={!posts.length ? props.posts.data : posts} />
-            </div>
-            <div className="flex justify-center items-center py-6">
-              <Paginate meta={props.posts.meta} />
-            </div>
-          </>
         )}
       </div>
     </Guest>
