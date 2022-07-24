@@ -4,7 +4,7 @@ const Announcemenet = () => {
       <pre data-prefix="1">
         <code>Versi BETA 1.1.0</code>
       </pre>
-      <pre data-prefix="2" className="bg-warning text-warning-content">
+      <pre data-prefix="2" className="bg-warning text-warning-content ">
         <code>sedang dalam development</code>
       </pre>
     </div>

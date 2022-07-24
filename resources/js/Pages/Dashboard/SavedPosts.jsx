@@ -15,7 +15,7 @@ export default function SavedPost(props) {
       errors={props.errors}
     >
       <Head title={props.title} />
-      <div className='min-h-screen'>
+      <div className='min-h-screen dark:text-white'>
         {data.length > 0 ? (
           <>
             <div className='text-center pt-6'>
