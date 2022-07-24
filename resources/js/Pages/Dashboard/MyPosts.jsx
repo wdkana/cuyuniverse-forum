@@ -38,7 +38,7 @@ export default function MyPosts(props) {
             auth={props.auth}
             errors={props.errors}
             header={
-                <div className="flex flex-row justify-between">
+                <div className="flex flex-row justify-between dark:text-white">
                     <h2 className="font-semibold text-xl leading-tight cursor-default">
                         {props.page}
                     </h2>
@@ -61,7 +61,7 @@ export default function MyPosts(props) {
                         return (
                             <div
                                 key={i}
-                                className="card w-full md:w-1/2 lg:w-1/3 bg-base-100 shadow-lg"
+                                className="card w-full md:w-1/2 lg:w-1/3 xl:w-1/3 bg-base-100 dark:bg-slate-700 shadow-lg cursor-pointer hover:transition-all hover:delay-75 dark:hover:bg-gray-600 dark:text-white hover:-translate-y-1 hover:bg-neutral"
                             >
                                 <div className="card-body">
                                     <Link
@@ -141,7 +141,7 @@ export default function MyPosts(props) {
                         );
                     })
                 ) : (
-                    <div className="text-center">
+                    <div className="text-center dark:text-white">
                         <p className="font-bold text-2xl">
                             kamu belum punya postingan
                         </p>

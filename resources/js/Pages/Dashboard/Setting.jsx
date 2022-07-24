@@ -45,7 +45,7 @@ export default function SettingPage(props) {
     <Authenticated
       auth={props.auth}
       errors={props.errors}
-      header={<div className='flex flex-row justify-between'>
+      header={<div className='flex flex-row justify-between dark:text-white'>
         <h2 className="font-semibold text-xl leading-tight cursor-default">{props.title}</h2>
         <Link href={route(`${props.nextRoute}`)} as="button" className="btn btn-sm btn-ghost rounded-md leading-tight">{props.next}</Link>
       </div>}
@@ -69,12 +69,12 @@ export default function SettingPage(props) {
               </form>
             </div>
           </div>
-          <div className='divider w-full'>Profile Identity</div>
-          <div className='flex justify-center w-full'>
+          <div className='divider w-full dark:text-white'>Profile Identity</div>
+          <div className='flex justify-center w-full '>
             <form onSubmit={updateUsername}>
-              <label className="form-label font-semibold">username ✔</label>
+              <label className="form-label font-semibold dark:text-white">username ✔</label>
               <input onChange={handleChangeUsername} name='username' type="text" className="w-full text-lg font-bold font-mono input input-bordered rounded-md" value={username} />
-              <button type='submit' disabled={processing} className='btn w-full border-0 rounded-md mt-2 bg-primary hover:bg-secondary'>Update</button>
+              <button type='submit' disabled={processing} className='btn w-full dark:text-white border-0 rounded-md mt-2 bg-primary hover:bg-secondary'>Update</button>
             </form>
           </div>
         </div>
