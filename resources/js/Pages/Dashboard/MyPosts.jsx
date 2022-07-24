@@ -71,11 +71,10 @@ export default function MyPosts(props) {
                                         className="card-title"
                                     >
                                         <p
-                                            className={`cursor-pointer hover:-translate-y-1 hover:transition-all text-xl text-left ${
-                                                posts.description.length > 100
-                                                    ? "break-normal overflow-x-hidden"
-                                                    : "break-words"
-                                            } h-20`}
+                                            className={`cursor-pointer hover:-translate-y-1 hover:transition-all text-xl text-left ${posts.description.length > 100
+                                                ? "break-normal overflow-x-hidden"
+                                                : "break-words"
+                                                } h-20`}
                                         >
                                             {posts.description}
                                         </p>
@@ -147,7 +146,8 @@ export default function MyPosts(props) {
                             kamu belum punya postingan
                         </p>
                         <Link
-                            href={route("posts.create")}
+                            href={`${route(props.nextRoute)}`}
+                            method="get"
                             as="button"
                             className="btn btn-ghost rounded-md"
                         >

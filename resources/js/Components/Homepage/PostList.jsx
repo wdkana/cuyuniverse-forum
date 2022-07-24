@@ -94,7 +94,7 @@ export default function PostList(props) {
       token: props.user.token
     }
 
-    return Inertia.post('/post/savedpost/saved', data)
+    return Inertia.post('/post/saved-post/saved', data)
   }
 
   return (

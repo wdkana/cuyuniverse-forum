@@ -26,7 +26,7 @@ export default function Authenticated({ auth, header, children }) {
                                 <NavLink href={route('posts.main')} active={route().current('posts.main')}>
                                     Manage Post
                                 </NavLink>
-                                <NavLink href={route('dash.savedpost')} active={route().current('dash.savedpost')}>
+                                <NavLink href={route('dash.saved.post')} active={route().current('dash.saved.post')}>
                                     Saved Post
                                 </NavLink>
                                 <NavLink href={route('dash.setting.profile')} active={route().current('dash.setting.profile')}>
@@ -108,7 +108,7 @@ export default function Authenticated({ auth, header, children }) {
                         <ResponsiveNavLink href={route('posts.main')} active={route().current('posts.main')}>
                             Manage Post
                         </ResponsiveNavLink>
-                        <ResponsiveNavLink href={route('dash.savedpost')} active={route().current('dash.savedpost')}>
+                        <ResponsiveNavLink href={route('dash.saved.post')} active={route().current('dash.saved.post')}>
                             Saved Post
                         </ResponsiveNavLink>
                         <ResponsiveNavLink href={route('dash.setting.profile')} active={route().current('dash.setting.profile')}>
