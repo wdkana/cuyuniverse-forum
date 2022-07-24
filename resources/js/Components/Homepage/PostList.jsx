@@ -10,7 +10,6 @@ export default function PostList(props) {
   const [limiter, setLimiter] = useState(80);
   const [isValid, setIsValid] = useState(true);
   const [showNotif, setShowNotif] = useState(false);
-  console.log(props)
 
   useEffect(() => {
     let mount = true;

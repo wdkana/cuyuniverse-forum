@@ -38,6 +38,25 @@ final class DashboardController extends Controller
         ]);
     }
 
+    public function notification()
+    {
+        $notifications = Auth::user()->unreadNotifications;
+
+        return Inertia::render('Dashboard/Notification', [
+            'notifications' => $notifications,
+            'title' => 'Notification',
+            'next' => 'Notification',
+            'nextRoute' => 'dash.main',
+        ]);
+    }
+
+    public function markNotificationAsRead($id)
+    {
+      $notification = Auth::user()->notifications->find($id);
+
+      $notification->markAsRead();
+    }
+
     public function showSavedPost()
     {
         $savedPosts = SavedPosts::orderByDesc('id')->where('user_id', auth()->user()->id)->with('posts')->with('comments')->get();
