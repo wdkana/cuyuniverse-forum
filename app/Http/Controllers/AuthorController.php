@@ -12,7 +12,7 @@ class AuthorController extends Controller
 {
     public function profile($author)
     {
-        $user = User::where('username', $author)->first();
+        $user = User::where('username', $author)->get();
         if ($user == null) {
             return abort(404);
         }
@@ -20,9 +20,9 @@ class AuthorController extends Controller
         return Inertia::render('Author', [
             'title' => $author,
             'root' => "HOME",
-            'author' => $user->username,
-            'author_image' => $user->image,
-            'is_online' => $user->token ? true : false,
+            'author' => $user[0]->username,
+            'author_image' => $user[0]->image,
+            'is_online' => $user[0]->token ? true : false,
             'posts' => $posts
         ]);
     }
