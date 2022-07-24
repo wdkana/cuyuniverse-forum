@@ -16,3 +16,5 @@ yarn-error.log
 
 # cache php cs fixer
 .php-cs-fixer.cache
+
+yarn.lock
