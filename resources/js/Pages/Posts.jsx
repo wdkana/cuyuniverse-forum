@@ -40,9 +40,9 @@ export default function PostsPage(props) {
             <div className="flex">
               <Menu
                 as="div"
-                className="relative focus-within:ring focus-within:ring-blue-100 focus-within:border-blue-400 transition duration-200 rounded-lg border"
+                className="relative focus-within:ring focus-within:ring-blue-100 focus-within:border-blue-300 dark:focus-within:ring-0 dark:focus-within:border-slate-500 transition duration-200 rounded-lg border dark:border-slate-600 text-gray-600 dark:text-slate-600"
               >
-                <Menu.Button className="capitalize flex items-center justify-between rounded-lg focus:outline-none bg-white h-10 pl-3 pr-2 w-full lg:w-52">
+                <Menu.Button className="capitalize flex items-center justify-between rounded-lg focus:outline-none bg-white dark:bg-slate-800 h-10 pl-3 pr-2 w-full lg:w-52">
                   {filter.filtered == filter.filtered ? "All" : filter.filtered}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -57,7 +57,7 @@ export default function PostsPage(props) {
                     />
                   </svg>
                 </Menu.Button>
-                <Menu.Items className="absolute w-52 z-50 bg-white shadow rounded-lg mt-1.5 overflow-hidden py-0.5">
+                <Menu.Items className="absolute w-52 z-50 bg-white dark:bg-slate-700 shadow rounded-lg mt-1.5 overflow-hidden py-0.5 text-gray-900 dark:text-slate-100">
                   {menus.map((menu, key) => {
                     return menu.name == "line" ? (
                       <div
@@ -68,7 +68,7 @@ export default function PostsPage(props) {
                       <Menu.Item key={key}>
                         <Link
                           preserveState
-                          className={`block px-4 py-2 hover:bg-gray-100 font-medium capitalize text-sm`}
+                          className={`block px-4 py-2 hover:bg-gray-100 dark:hover:bg-slate-600 font-medium capitalize text-sm`}
                           href={`/posts?filtered=${menu.value}`}
                         >
                           {menu.name}
@@ -81,7 +81,7 @@ export default function PostsPage(props) {
             </div>
             <div>
               <input
-                className="h-10 focus:outline-none focus:ring focus:ring-blue-100 focus:border-blue-400 border rounded-lg border-gray-200"
+                className="h-10 bg-white dark:bg-slate-800 placeholder:text-gray-600 dark:placeholder:text-slate-600 focus:outline-none focus:ring focus:ring-blue-100 focus:border-blue-400 dark:focus:border-slate-500 dark:focus:ring-0 border rounded-lg border-gray-200 dark:border-slate-500"
                 type="text"
                 name="search"
                 id="search"
