@@ -32,6 +32,8 @@ git checkout -b dev
 ```bash
 git push -u origin dev
 ```
+CHECKOUT ke "dev" dan lakukan push ke "dev" juga.
+
 7. Klik tombol Compare & Pull Request
 8. Klik Create pull request to open a new pull request
 
