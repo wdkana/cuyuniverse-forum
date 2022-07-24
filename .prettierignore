@@ -1,1 +1,12 @@
 *.md
+/test
+/storage
+/routes
+/public
+/lang
+/database
+/config
+/bootstrap
+/app
+/node_modules
+/vendor

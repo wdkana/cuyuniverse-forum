@@ -1,5 +1,6 @@
 {
-    "githubPullRequests.ignoredPullRequestBranches": [
-        "main"
-    ]
+    "githubPullRequests.ignoredPullRequestBranches": ["main"],
+    "editor.tabSize": 2,
+    "editor.cursorStyle": "line-thin",
+    "editor.wordWrap": "on"
 }

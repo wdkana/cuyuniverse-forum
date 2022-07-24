@@ -27,7 +27,7 @@ export default function MyPosts(props) {
     const removePosts = (id) => {
         const data = {
             id: id,
-            token: props.auth.user.token,
+            token: props.auth.user.token
         };
         Inertia.post("/dashboard/manage-posts/posts/delete", data);
         return setWantRemove(false);
@@ -39,9 +39,7 @@ export default function MyPosts(props) {
             errors={props.errors}
             header={
                 <div className="flex flex-row justify-between">
-                    <h2 className="font-semibold text-xl leading-tight cursor-default">
-                        {props.page}
-                    </h2>
+                    <h2 className="font-semibold text-xl leading-tight cursor-default">{props.page}</h2>
                     <Link
                         href={`${route(props.nextRoute)}`}
                         method="get"
@@ -59,17 +57,9 @@ export default function MyPosts(props) {
                 {props.data.length > 0 ? (
                     props.data.map((posts, i) => {
                         return (
-                            <div
-                                key={i}
-                                className="card w-full md:w-1/2 lg:w-1/3 bg-base-100 shadow-lg"
-                            >
+                            <div key={i} className="card w-full md:w-1/2 lg:w-1/3 bg-base-100 shadow-lg">
                                 <div className="card-body">
-                                    <Link
-                                        href={`/post/${posts.id}`}
-                                        method="get"
-                                        as="div"
-                                        className="card-title"
-                                    >
+                                    <Link href={`/post/${posts.id}`} method="get" as="div" className="card-title">
                                         <p
                                             className={`cursor-pointer hover:-translate-y-1 hover:transition-all text-xl text-left ${
                                                 posts.description.length > 100
@@ -82,14 +72,10 @@ export default function MyPosts(props) {
                                     </Link>
                                     <div className="card-actions justify-between">
                                         <div className="text-xs">
-                                            posted{" "}
-                                            {formatTime(posts.updated_at)} |{" "}
-                                            {posts.comments.length} comment
+                                            posted {formatTime(posts.updated_at)} | {posts.comments.length} comment
                                         </div>
                                         <label
-                                            onClick={() =>
-                                                handleRemoveConfirmation()
-                                            }
+                                            onClick={() => handleRemoveConfirmation()}
                                             className="btn btn-ghost cursor-pointer hover:bg-base-300 hover:rounded-md modal-button"
                                             htmlFor={`my-modal-${posts.id}`}
                                         >
@@ -104,24 +90,15 @@ export default function MyPosts(props) {
                                                 />
                                                 <div className="modal">
                                                     <div className="modal-box">
-                                                        <h3 className="font-bold text-lg">
-                                                            Hapus Postingan{" "}
-                                                        </h3>
+                                                        <h3 className="font-bold text-lg">Hapus Postingan </h3>
                                                         <p className="py-4">
-                                                            Kamu yakin ingin
-                                                            menghapus postingan{" "}
-                                                            <b>{posts.title}</b>
-                                                            ?
+                                                            Kamu yakin ingin menghapus postingan <b>{posts.title}</b>?
                                                         </p>
                                                         <div className="modal-action">
                                                             <label
                                                                 htmlFor={`my-modal-${posts.id}`}
                                                                 className="btn btn-outline rounded-md"
-                                                                onClick={() =>
-                                                                    removePosts(
-                                                                        posts.id
-                                                                    )
-                                                                }
+                                                                onClick={() => removePosts(posts.id)}
                                                             >
                                                                 Ya Hapus
                                                             </label>
@@ -143,14 +120,8 @@ export default function MyPosts(props) {
                     })
                 ) : (
                     <div className="text-center">
-                        <p className="font-bold text-2xl">
-                            kamu belum punya postingan
-                        </p>
-                        <Link
-                            href={route("posts.create")}
-                            as="button"
-                            className="btn btn-ghost rounded-md"
-                        >
+                        <p className="font-bold text-2xl">kamu belum punya postingan</p>
+                        <Link href={route("posts.create")} as="button" className="btn btn-ghost rounded-md">
                             Post Sekarang!
                         </Link>
                     </div>
