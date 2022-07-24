@@ -32,6 +32,9 @@ export default function Authenticated({ auth, header, children }) {
                                 <NavLink href={route('dash.setting.profile')} active={route().current('dash.setting.profile')}>
                                     Setting
                                 </NavLink>
+                                <NavLink href={route('dash.notif')} active={route().current('dash.notif')}>
+                                    Notification
+                                </NavLink>
                             </div>
                         </div>
 
