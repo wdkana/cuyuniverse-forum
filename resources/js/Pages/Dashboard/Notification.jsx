@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Authenticated from "@/Layouts/Authenticated";
 import { Head, Link } from "@inertiajs/inertia-react";
-import { Inertia } from "@inertiajs/inertia";
 
 export default function NotificationPage(props) {
 
-  const markNotificationAsRead = (notificationId) => {
-    // console.log(notificationId);
-    // return Inertia.get('/dashboard/mark-notification-as-read/' + notificationId);
-  }
+    const markNotificationAsRead = (notificationId) => {
+        // return Inertia.get('/dashboard/mark-notification-as-read/' + notificationId);
+    }
 
     return (
         <Authenticated
@@ -37,12 +35,12 @@ export default function NotificationPage(props) {
                         <div className="card w-full p-5 md:w-1/2 lg:w-1/3 xl:w-1/3 bg-base-100 shadow-lg">
                             {(notification.data.type === 'comment') ? (
                                 <Link onClick={() => markNotificationAsRead(notification.id)} href={route("outer.byId", [notification.data.post_id])}>
-                                  <b>{notification.data.commentartor}</b> mengomentari postingan Anda <i> "{notification.data.description}"</i>
+                                    <b>{notification.data.commentartor}</b> mengomentari postingan Anda <i> "{notification.data.description}"</i>
                                 </Link>
                             ) : (
-                            <Link onClick={() => markNotificationAsRead(notification.id)} href={route("outer.byId", [notification.data.post_id])}>
-                                <b>{notification.data.user_like}</b> menyukai postingan Anda
-                            </Link>
+                                <Link onClick={() => markNotificationAsRead(notification.id)} href={route("outer.byId", [notification.data.post_id])}>
+                                    <b>{notification.data.user_like}</b> menyukai postingan Anda
+                                </Link>
                             )}
                         </div>
                     )) : (
@@ -50,7 +48,6 @@ export default function NotificationPage(props) {
                     )}
                 </div>
             </div>
-            {/* <div className='divider'></div> */}
         </Authenticated>
     );
 }
