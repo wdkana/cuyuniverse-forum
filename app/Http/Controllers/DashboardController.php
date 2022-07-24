@@ -8,6 +8,7 @@ use App\Models\SavedPosts;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
@@ -35,6 +36,15 @@ final class DashboardController extends Controller
             'title' => 'USER PROFILE',
             'next' => 'DASHBOARD',
             'nextRoute' => 'dash.main',
+        ]);
+    }
+
+    public function changePassword()
+    {
+        return Inertia::render('Dashboard/ChangePassword', [
+            'title' => 'CHANGE PASSWORD',
+            'next' => 'PROFILE',
+            'nextRoute' => 'dash.setting.profile',
         ]);
     }
 
@@ -105,5 +115,21 @@ final class DashboardController extends Controller
         ]);
 
         return to_route('dash.main')->with('message', 'Username berhasil diganti');
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $request->validate([
+            'oldPassword' => 'required|current_password:web',
+            'newPassword' => 'required|min:8|confirmed|different:oldPassword',
+            'token' => 'required',
+        ]);
+
+        $users = User::find(Auth::user()->id)->where('token', $request->token);
+        $users->update([
+            'password' => Hash::make($request->newPassword),
+        ]);
+
+        return to_route('dash.setting.profile')->with('message', 'Password berhasil diganti');
     }
 }
