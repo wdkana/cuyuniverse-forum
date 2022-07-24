@@ -94,16 +94,16 @@ php artisan serve
 ```
 Project ini akan berjalan di `https://localhost:8080`.
 
-Untuk mengenai bagaimana cara untuk berkontribusi dalam pengembangan project ini bisa kalian lihat pada dokumentasi tentang [CONTRIBUTING.md]() ya cui.
+Untuk mengenai bagaimana cara untuk berkontribusi dalam pengembangan project ini bisa kalian lihat pada dokumentasi tentang [CONTRIBUTING.md](https://github.com/deaaprizal/laract9/blob/main/CONTRIBUTING.md) ya cui.
 
 
 <br>
 
 ## Contributing
 ### Contributing Guidelines
-Kalian juga bisa kunjungi [CONTRIBUTING.md]() untuk bagaimana cara berkontribusi ke project ini ya cui.
+Kalian juga bisa kunjungi [CONTRIBUTING.md](https://github.com/deaaprizal/laract9/blob/main/CONTRIBUTING.md) untuk bagaimana cara berkontribusi ke project ini ya cui.
 ### Want To Help?
-Ingin melaporkan bug, menyumbangkan beberapa kode, atau meningkatkan dokumentasi? Tentu bisa cui, kalian bisa baca [panduan]() untuk berkontribusi.
+Ingin melaporkan bug, menyumbangkan beberapa kode, atau meningkatkan dokumentasi? Tentu bisa cui, kalian bisa baca [panduan](https://github.com/deaaprizal/laract9/blob/main/CONTRIBUTING.md) untuk berkontribusi.
 ### Code Of Conduct
 Bantu menjaga project ini tetap terbuka dan selalu terupdate ya cui. Harap baca dan ikuti [Code Of Conduct]().
 
