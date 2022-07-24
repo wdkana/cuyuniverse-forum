@@ -4,11 +4,10 @@ import Dropdown from '@/Components/Default/Dropdown';
 import NavLink from '@/Components/Default/NavLink';
 import ResponsiveNavLink from '@/Components/Default/ResponsiveNavLink';
 import { Link } from '@inertiajs/inertia-react';
-import DarkToggle from "@/Components/Homepage/DarkToggle";
+import DarkToggle from '@/Components/Homepage/DarkToggle';
 
 export default function Authenticated({ auth, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
-
     return (
         <div className="min-h-screen dark:text-white">
             <nav className="md:shadow-lg dark:text-white dark:bg-slate-900">
