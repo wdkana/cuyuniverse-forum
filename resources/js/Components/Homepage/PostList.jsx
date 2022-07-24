@@ -176,7 +176,7 @@ export default function PostList(props) {
         </div>
       </div>
       <div className="flex justify-start px-2 lg:px-10 py-2 items-center gap-2">
-        <button onClick={() => likePost(props.posts.id)} type='button' className={`btn dark:text-white rounded-md btn-sm ${props.is_liked_post ? 'btn-primary' : 'hover:btn-primary'}`} disabled={!props.user ? true : false}>{props.posts.likes_count} {props.likes_count === 1 ? 'Like' : 'Likes'}</button>
+        <button onClick={() => likePost(props.posts.id)} type='button' className={`btn dark:text-white rounded-md btn-sm ${props.is_liked_post ? 'btn-primary' : 'hover:btn-primary'}`} disabled={!props.user ? true : false}>{props.posts.likes_count} {props.posts.likes_count === 1 ? 'Like' : 'Likes'}</button>
         <button onClick={() => savePost(props.posts.id)} type='button' className={`btn dark:text-white rounded-md btn-sm ${props.is_saved_post ? 'btn-primary' : 'hover:btn-primary'}`} disabled={!props.user ? true : false}>{props.is_saved_post ? 'Disimpan' : 'Simpan'}</button>
       </div>
       <div className="flex flex-col justify-center items-center gap-4 py-2 px-2 sm:px-10">
