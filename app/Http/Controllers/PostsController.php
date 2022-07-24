@@ -10,8 +10,10 @@ use App\Models\Posts;
 use App\Models\User;
 use App\Notifications\UserComment;
 use App\Notifications\UserLike;
+use App\Models\SavedPosts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class PostsController extends Controller
 {
@@ -37,14 +39,6 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        return Inertia::render('Dashboard/CreatePosts', [
-            'page' => 'BUAT POSTING',
-            'next' => 'POSTINGAN SAYA',
-            'nextRoute' => 'posts.main'
-        ]);
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -57,11 +51,17 @@ class PostsController extends Controller
         $request->validate(
             [
                 'description' => 'required|string|min:4|max:200',
+                // 'image' => 'nullable|image|mimes:jpeg,png,jpg,|max:1048',
                 'token' => 'required'
             ]
         );
         $posts = new Posts();
         $posts->description = $request->description;
+        // if ($request->hasFile('image')) {
+        //     $nama_foto = Auth::user()->username . Str::random(60) . "." . $request->image->getClientOriginalExtension();
+        //     $filePath = $request->file('image')->storeAs('images_post', $nama_foto);
+        //     $posts->image = $nama_foto;
+        // }
         $posts->author = auth()->user()->username;
         $posts->user_id = auth()->user()->id;
         $posts->save();
@@ -77,11 +77,12 @@ class PostsController extends Controller
     public function show()
     {
         $posts = Posts::orderByDesc('id')->where('author', auth()->user()->username)->with('comments')->get();
+
         return Inertia::render('Dashboard/MyPosts', [
             'data' => $posts,
             'page' => 'POSTINGAN SAYA',
             'next' => 'BUAT POSTINGAN',
-            'nextRoute' => 'posts.create'
+            'nextRoute' => 'dash.main'
         ]);
     }
 
@@ -111,6 +112,7 @@ class PostsController extends Controller
         return to_route('outer.byId', ['id' => $request->post_id])->with('message', 'Komentar telah dikirim');
     }
 
+
     public function storeLike(Request $request)
     {
         $postLiked = Like::where('post_id', $request->post_id)->where('user_id', Auth::user()->id)->first();
@@ -120,20 +122,27 @@ class PostsController extends Controller
                 'post_id' => $request->post_id,
                 'user_id' => Auth::user()->id
             ]);
-
-            if($like->post->users->id !== Auth::id()) {
-                $like->post->users->notify(new UserLike($like));
-            }
-
-            $message = 'Post telah di-like!';
-        } else {
-            $postLiked->delete();
-            $message = 'Post telah di-unlike!';
+            return to_route('outer.byId', ['id' => $request->post_id])->with('message', 'Post telah dilike!');
         }
 
-        return to_route('outer.byId', ['id' => $request->post_id])->with('message', $message);
+        $postLiked->delete();
+        return to_route('outer.byId', ['id' => $request->post_id])->with('message', 'Post telah didislike!');
     }
 
+    public function storeSavedPosts(Request $request)
+    {
+        $savedPosts = SavedPosts::where('post_id', $request->post_id)->where('user_id', Auth::user()->id)->first();
+        if (!$savedPosts) {
+            SavedPosts::create([
+                'post_id' => $request->post_id,
+                'user_id' => Auth::user()->id
+            ]);
+            return to_route('outer.byId', ['id' => $request->post_id])->with('message', 'Post telah disimpan!');
+        }
+
+        $savedPosts->delete();
+        return to_route('outer.byId', ['id' => $request->post_id])->with('message', 'Post telah dihapus!');
+    }
     /**
      * Remove the specified resource from storage.
      *

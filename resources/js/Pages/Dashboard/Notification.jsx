@@ -3,7 +3,6 @@ import Authenticated from "@/Layouts/Authenticated";
 import { Head, Link } from "@inertiajs/inertia-react";
 
 export default function NotificationPage(props) {
-    console.log(props.notifications);
     return (
         <Authenticated
             auth={props.auth}

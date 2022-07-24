@@ -2,7 +2,10 @@
     "name": "laravel/laravel",
     "type": "project",
     "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
@@ -18,11 +21,14 @@
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",
+        "ergebnis/php-cs-fixer-config": "^4.6",
         "fakerphp/faker": "^1.9.1",
+        "friendsofphp/php-cs-fixer": "^3.9",
         "laravel/breeze": "^1.10",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^6.1",
+        "phpro/grumphp": "^1.13",
         "phpunit/phpunit": "^9.5.10",
         "spatie/laravel-ignition": "^1.0"
     },
@@ -51,6 +57,9 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
+        ],
+        "cs-fixer": [
+            "@php ./vendor/bin/grumphp run --tasks phpcsfixer2"
         ]
     },
     "extra": {
@@ -61,7 +70,10 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "phpro/grumphp": true
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true
