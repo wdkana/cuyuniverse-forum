@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PostResource;
 use App\Http\Resources\PostsCollection;
 use App\Models\Like;
 use App\Models\Posts;
 use App\Models\SavedPosts;
-use GuzzleHttp\Psr7\Request;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
@@ -32,15 +33,31 @@ class OuterController extends Controller
     ]);
   }
 
-  public function PostsAll()
+  public function postsAll(Request $request)
   {
-    $posts = new PostsCollection(Posts::orderByDesc('id')->with(['comments', 'users:id,image'])->paginate(12));
+    $posts = Posts::query()->with(['comments', 'users:id,image'])
+      ->when($request->search, fn ($q, $key) => $q->where('description', 'like', "%{$key}%"))
+      ->when($request->filtered, function ($q, $value) {
+        switch ($value) {
+          case 'latest':
+            $q->latest();
+            break;
+          case 'oldest':
+            $q->oldest();
+            break;
 
-    return Inertia::render('Posts', [
+          default:
+            abort(404);
+            break;
+        }
+      });
+
+    return inertia('Posts', [
       'title' => "POSTINGAN CUYPEOPLE",
       'root' => 'HOME',
       'description' => "Semua postingan dari CuyPeople tersedia disini",
-      'posts' => $posts,
+      'posts' => PostResource::collection($posts->latest()->paginate()->withQueryString()),
+      'filter' => $request->only(['search', 'page', 'filtered'])
     ]);
   }
 
@@ -74,9 +91,8 @@ class OuterController extends Controller
 
   public function MorePosts(Request $request)
   {
-    $posts = Posts::when(!is_null($request->keyword), function ($q) use ($request) {
-      $q->where('description', 'like', "%$request->keyword%");
-    })
+    $posts = Posts::query()
+      ->when($request->keyword, fn ($q, $key) => $q->where('description', 'like', "%{$key}%"))
       ->with(['comments', 'users:id,image'])
       ->paginate(12);
 
