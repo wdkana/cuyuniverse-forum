@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
-            $table->uuid('id')->uniqid();
+            $table->uuid('id')->unique();
             $table->string('type');
             $table->morphs('notifiable');
             $table->text('data');
