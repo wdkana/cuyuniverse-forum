@@ -19,7 +19,7 @@ export default function HomePage(props) {
         </div>
         {props.posts.data.length > 3 && (
           <div className="flex flex-col dark:text-white justify-center items-center lg:flex-row lg:flex-wrap lg:items-stretch py-4 gap-4">
-            <Link href={route("outer.posts")} as="button" className="btn btn-ghost btn-sm rounded-md">
+            <Link href={route("outer.posts")} as="button" className="btn btn-ghost dark:hover:bg-slate-600 btn-sm rounded-md">
               Lihat Semua Postingan
             </Link>
           </div>
