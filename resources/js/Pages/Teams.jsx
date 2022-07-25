@@ -5,15 +5,23 @@ import { useEffect, useState } from "react";
 
 export default function TeamsPage(props) {
   const [githubData, setData] = useState([]);
+  const [err, setErr] = useState(null);
+
+  const fetchpairs = async () => {
+    await axios
+      .get("https://api.github.com/repos/deaaprizal/laract9/contributors?")
+      .then((res) => {
+        setData(res.data);
+      })
+      .catch((err) => {
+        setErr(err.message);
+      });
+  };
 
   useEffect(() => {
-    const fetchpairs = async () => {
-      const result = await axios.get("https://api.github.com/repos/deaaprizal/laract9/contributors?");
-      setData(result.data);
-    };
     fetchpairs();
   }, []);
-
+  console.log(githubData);
   return (
     <Guest auth={props.auth.user}>
       <Head title={props.title} />
@@ -36,6 +44,11 @@ export default function TeamsPage(props) {
             );
           }, this)}
         </div>
+        {err ? (
+          <div className="text-center pt-6">
+            <p className="text-sm dark:text-white">{err}</p>
+          </div>
+        ) : null}
       </div>
     </Guest>
   );
