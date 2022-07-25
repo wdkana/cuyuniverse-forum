@@ -117,7 +117,7 @@ export default function PostList(props) {
                   href={`/author/${comment.commentartor}`}
                   as="div"
                   method="get"
-                  className="mt-2 p-2 items-end justify-end flex gap-1 flex-row text-xs cursor-pointer hover:cursor-pointer hover:translate-x-1 hover:transition-all"
+                  className="mt-2 p-2 items-end justify-end flex gap-1 flex-row text-xs cursor-pointer hover:cursor-pointer hover:translate-x-1 transition-all"
                 >
                   <div className="mr-1">
                     comment {formatTime(comment.created_at)} by {comment.commentartor}
@@ -137,9 +137,14 @@ export default function PostList(props) {
         <button
           onClick={() => likePost(props.posts.id)}
           type="button"
-          className={`bg-slate-300 text-black uppercase border-none rounded-md btn-sm ${
-            props.is_liked_post ? "bg-red-600 text-white" : "hover:bg-red-600 hover:text-white"
-          }`}
+          className={`${props.user == null 
+            ? "bg-slate-300 text-black uppercase border-none rounded-md btn-sm cursor-not-allowed"
+            : `bg-slate-300 text-black uppercase border-none rounded-md btn-sm
+              ${props.is_liked_post 
+                ? "bg-red-600 text-white" 
+                : "hover:bg-red-600 hover:text-white"
+              }`}
+          `}
           disabled={!props.user ? true : false}
         >
           {props.posts.likes_count} {props.posts.likes_count === 1 ? "Like" : "Likes"}
@@ -147,9 +152,14 @@ export default function PostList(props) {
         <button
           onClick={() => savePost(props.posts.id)}
           type="button"
-          className={`bg-gray-300 text-black uppercase rounded-md btn-sm ${
-            props.is_saved_post ? "bg-orange-500 text-white" : "hover:bg-orange-500 hover:text-white"
-          }`}
+          className={`${props.user == null 
+            ? "bg-gray-300 text-black uppercase rounded-md btn-sm cursor-not-allowed" 
+            : `bg-gray-300 text-black uppercase rounded-md btn-sm 
+              ${props.is_saved_post 
+                ? "bg-orange-500 text-white" 
+                : "hover:bg-orange-500 hover:text-white"
+              }`} 
+          `}
           disabled={!props.user ? true : false}
         >
           {props.is_saved_post ? "Disimpan" : "Simpan"}

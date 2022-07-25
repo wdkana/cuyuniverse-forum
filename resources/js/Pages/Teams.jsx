@@ -29,7 +29,7 @@ export default function TeamsPage(props) {
           <h1 className="font-bold text-lg dark:text-white">✨ {props.title} ✨</h1>
           <p className="text-sm dark:text-white">{props.description}</p>
         </div>
-        <div className="flex flex-col justify-center items-center lg:flex-row lg:flex-wrap lg:items-strech pt-6 px-4 gap-6">
+        <div className="flex flex-col justify-center items-center lg:flex-row lg:flex-wrap lg:items-strech py-6 px-4 gap-6">
           {githubData.map((item, index) => {
             return (
               <a href={item.html_url} key={index} target="_blank">
