@@ -83,7 +83,7 @@ export default function ChangePassword(props) {
                 <input
                   type="password"
                   name="newPassword"
-                  className="w-full text-lg text-black font-bold font-mono input input-bordered rounded-md dark:bg-slate-900 dark:text-white dark:placeholder-slate-100"
+                  className="w-full text-lg font-bold font-mono input input-bordered rounded-md dark:bg-slate-900 dark:text-white dark:placeholder-slate-100"
                   required
                   value={data.newPassword}
                   onChange={handleChange}
@@ -96,13 +96,12 @@ export default function ChangePassword(props) {
                   name="newPassword_confirmation"
                   required
                   className="w-full text-lg text-black font-bold font-mono input input-bordered rounded-md dark:bg-slate-900 dark:text-white dark:placeholder-slate-100" value={data.newPassword_confirmation}
-                  value={data.newPassword_confirmation}
                   onChange={handleChange}
                 />
               </div>
               <div className="form-control">
                 <label className="label cursor-pointer">
-                  <span className="label-text text-black dark:text-white">Confirm change password.</span> 
+                  <span className="label-text text-black dark:text-white">Confirm change password.</span>
                   <input
                     type="checkbox"
                     name="confirm"
@@ -113,7 +112,7 @@ export default function ChangePassword(props) {
                   />
                 </label>
               </div>
-              <button type="submit" disabled={processing} className="btn w-full border-0 rounded-md mt-2 bg-primary hover:bg-secondary">
+              <button type="submit" disabled={processing} className="btn w-full border-0 rounded-md mt-2 bg-primary text-primary-content hover:bg-secondary">
                 Change
               </button>
             </form>
