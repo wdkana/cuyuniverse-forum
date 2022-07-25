@@ -44,9 +44,9 @@ export default function PostsPage(props) {
             <div className="flex">
               <Menu
                 as="div"
-                className="relative focus-within:ring focus-within:ring-blue-100 focus-within:border-blue-300 dark:focus-within:ring-0 dark:focus-within:border-slate-500 transition duration-200 rounded-lg border dark:border-slate-600 text-gray-600 dark:text-slate-600"
+                className="relative focus-within:ring focus-within:ring-blue-100 focus-within:border-blue-300 dark:focus-within:ring-0 dark:focus-within:border-slate-500 transition duration-200 rounded-lg border dark:border-slate-200 text-gray-600 dark:text-slate-100"
               >
-                <Menu.Button className="capitalize flex items-center justify-between rounded-lg focus:outline-none bg-white dark:bg-slate-800 h-10 pl-3 pr-2 w-full lg:w-52">
+                <Menu.Button className="capitalize flex items-center justify-between rounded-lg focus:outline-none bg-slate-100 dark:bg-slate-900 h-10 pl-3 pr-2 w-full lg:w-52">
                   {!filter.filtered ? "All" : filter.filtered}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -61,7 +61,7 @@ export default function PostsPage(props) {
                     />
                   </svg>
                 </Menu.Button>
-                <Menu.Items className="absolute w-52 z-50 bg-white dark:bg-slate-700 shadow rounded-lg mt-1.5 overflow-hidden py-0.5 text-gray-900 dark:text-slate-100">
+                <Menu.Items className="absolute w-52 z-50 bg-white dark:bg-slate-600 shadow rounded-lg mt-1.5 overflow-hidden py-0.5 text-gray-900 dark:text-slate-100">
                   {menus.map((menu, key) => {
                     return menu.name == "line" ? (
                       <div
@@ -85,7 +85,8 @@ export default function PostsPage(props) {
             </div>
             <div>
               <input
-                className="h-10 bg-white dark:bg-slate-800 placeholder:text-gray-600 dark:placeholder:text-slate-600 focus:outline-none focus:ring focus:ring-blue-100 focus:border-blue-400 dark:focus:border-slate-500 dark:focus:ring-0 border rounded-lg border-gray-200 dark:border-slate-500"
+                className="h-10 bg-slate-100 dark:bg-slate-900 placeholder:text-gray-600 dark:placeholder:text-slate-100 focus:outline-none focus:ring focus:ring-blue-100 focus:border-blue-400 dark:focus:border-slate-500 dark:focus:ring-0 border rounded-lg border-gray-200 dark:border-slate-500"
+                autoComplete="off"
                 type="text"
                 name="search"
                 id="search"
@@ -107,7 +108,7 @@ export default function PostsPage(props) {
           </>
         ) : (
           <div className="flex justify-center pt-5">
-            <div className="alert alert-warning shadow-lg text-white w-1/3">
+            <div className="alert alert-warning rounded-md shadow-lg text-slate-900 w-1/3">
               <div>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

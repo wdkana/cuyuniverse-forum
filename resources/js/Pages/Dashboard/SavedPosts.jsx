@@ -1,10 +1,10 @@
 import React from 'react';
-import { Head, Link } from '@inertiajs/inertia-react';
+import { Head } from '@inertiajs/inertia-react';
 import Authenticated from '@/Layouts/Authenticated';
 import PostsList from '@/Components/Homepage/PostsLists';
 
 export default function SavedPost(props) {
-  const data = props.data.map((value, i) => {
+  const data = props.data.map(value => {
     const comments = value.comments;
     return { ...value.posts, comments }
   })

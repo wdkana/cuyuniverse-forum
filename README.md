@@ -84,9 +84,11 @@ php artisan key:generate --show
 ```
 Install dependencies nodejs didalam folder `node_modules` menggunakan Npm atau Yarn:
 ```bash
-npm install && npm update
+npm install && npm run dev
 # atau menggunakan Yarn
 yarn && yarn dev
+# atau menggunakan pnpm
+pnpm i && pnpm dev
 ```
 Langkah Terakhir, silahkan jalankan local development server Laravel dengan menggunakan artisan command sebagai berikut:
 ```bash
