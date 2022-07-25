@@ -50,7 +50,7 @@ export default function PostList(props) {
 
   const formValidateNotif = () => {
     return (
-      <div className="alert alert-sm shadow-sm text-white bg-indigo-500 dark:bg-slate-300 mt-4 rounded-md dark:text-slate-900">
+      <div className="alert alert-sm shadow-sm text-base-100 bg-secondary dark:bg-slate-300 mt-4 rounded-md dark:text-slate-900">
         <div>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-current flex-shrink-0 w-6 h-6">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -84,14 +84,14 @@ export default function PostList(props) {
   };
 
   return (
-    <div className="card w-full md:w-2/3 bg-slate-100 dark:bg-slate-700 shadow-lg dark:text-white mb-10">
+    <div className="card w-full md:w-2/3 bg-base dark:bg-slate-700 shadow-lg dark:text-white mb-10">
       <RenderIfTrue isTrue={showNotif}>
         <NotificationAlert message={props.notif} />
       </RenderIfTrue>
       <div className="card-body p-6">
         <p className="text-2xl break-all cursor-default font-bold">{props.posts.description}</p>
 
-        <div className="flex flex-row py-2 border-b-4 border-b-slate-600 dark:border-b-slate-400">
+        <div className="flex flex-row py-2 border-b-4 border-b-secondary dark:border-b-slate-400">
           <div className="basis-1/2 flex justify-start items-end">
             <div className="text-xs cursor-default break-normal">posted {formatTime(props.posts.created_at)}</div>
           </div>
@@ -111,7 +111,7 @@ export default function PostList(props) {
         <div className="bg-base-200">
           {props.comments.map((comment, i) => {
             return (
-              <div className="border-b-2 border-b-slate-300 dark:border-b-slate-500 dark:text-white dark:bg-slate-800 flex flex-col p-3" key={i}>
+              <div className="border-b-2 border-b-secondary dark:border-b-slate-500 dark:text-white dark:bg-slate-800 flex flex-col p-3" key={i}>
                 <div className="text-md font-mono font-bold">{comment.description}</div>
                 <Link
                   href={`/author/${comment.commentartor}`}
@@ -133,17 +133,17 @@ export default function PostList(props) {
           })}
         </div>
       </div>
-      <div className="flex justify-start px-2 lg:px-10 py-2 items-center gap-2">
+      <div className="flex justify-start px-2 lg:px-10 py-2 items-center gap-2 text-base-100">
         <button
           onClick={() => likePost(props.posts.id)}
           type="button"
-          className={`${props.user == null 
-            ? "bg-slate-300 text-black uppercase border-none rounded-md btn-sm cursor-not-allowed"
-            : `bg-slate-300 text-black uppercase border-none rounded-md btn-sm
-              ${props.is_liked_post 
-                ? "bg-red-600 text-white" 
-                : "hover:bg-red-600 hover:text-white"
-              }`}
+          className={`${props.user == null
+            ? "bg-secondary uppercase border-none rounded-md btn-sm cursor-not-allowed"
+            : `bg-secondary uppercase border-none rounded-md btn-sm
+              ${props.is_liked_post
+              ? "hover:bg-primary bg-secondary-focus"
+              : "bg-secondary hover:bg-primary hover:text-base-100"
+            }`}
           `}
           disabled={!props.user ? true : false}
         >
@@ -152,13 +152,13 @@ export default function PostList(props) {
         <button
           onClick={() => savePost(props.posts.id)}
           type="button"
-          className={`${props.user == null 
-            ? "bg-gray-300 text-black uppercase rounded-md btn-sm cursor-not-allowed" 
-            : `bg-gray-300 text-black uppercase rounded-md btn-sm 
-              ${props.is_saved_post 
-                ? "bg-orange-500 text-white" 
-                : "hover:bg-orange-500 hover:text-white"
-              }`} 
+          className={`${props.user == null
+            ? "bg-secondary uppercase rounded-md btn-sm cursor-not-allowed"
+            : `bg-secondary uppercase rounded-md btn-sm 
+              ${props.is_saved_post
+              ? "hover:bg-primary bg-secondary-focus"
+              : "bg-secondary hover:bg-primary hover:text-base-100"
+            }`} 
           `}
           disabled={!props.user ? true : false}
         >
@@ -172,7 +172,7 @@ export default function PostList(props) {
           minLength={2}
           maxLength={80}
           value={newComment}
-          className="input rounded-md w-full h-42 outline-none border-none dark:placeholder-white bg-slate-200 dark:bg-slate-900 dark:text-white"
+          className="input rounded-md w-full h-42 outline-none border-base-300 dark:placeholder-white dark:bg-slate-900 dark:text-white"
           placeholder={props.user == null ? "Login untuk mengisi komentar" : "Tulis komentar"}
           onChange={(e) => handlerCommentInput(e.target.value)}
           disabled={props.user == null ? true : false}
@@ -182,10 +182,9 @@ export default function PostList(props) {
           type="button"
           className={
             !isValid
-              ? `bg-indigo-300 text-white dark:text-slate-900 dark:bg-slate-300 mb-4 font-bold btn-md w-full rounded-md cursor-not-allowed`
-              : `bg-indigo-500 text-white dark:bg-slate-500 mb-4 font-bold btn-md w-full rounded-md ${
-                  props.user == null || (!isValid && "text-white")
-                }`
+              ? `bg-secondary text-base-100 dark:text-slate-900 dark:bg-slate-300 mb-4 font-bold btn-md w-full rounded-md cursor-not-allowed`
+              : `bg-primary text-base-100 dark:bg-slate-500 mb-4 font-bold btn-md w-full rounded-md ${props.user == null || (!isValid && "text-base-100")
+              }`
           }
           disabled={props.user == null || !isValid ? true : false}
           onClick={() => handlerCommentSubmit()}
