@@ -32,7 +32,7 @@ export default function ChangePassword(props) {
     const name = e.target.getAttribute("name");
 
     if (name === "confirm") {
-      setConfirmUpdate(!confirmUpdate);
+      return setConfirmUpdate(!confirmUpdate);
     }
 
     setData({
@@ -43,7 +43,6 @@ export default function ChangePassword(props) {
 
   function updatePassword(e) {
     e.preventDefault();
-    console.log(data);
     put(route("dash.update.password"));
   }
 
