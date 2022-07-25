@@ -67,7 +67,7 @@ export default function Authenticated({ auth, header, children }) {
                                     </Dropdown.Trigger>
 
                                     <Dropdown.Content>
-                                        <Dropdown.Link href={route('dash.setting.profile')} active={route().current('dash.setting.profile')} as="button">
+                                        <Dropdown.Link href={route('dash.setting.profile')} method="get" as="button">
                                             Setting
                                         </Dropdown.Link>
                                         <Dropdown.Link href={route('logout')} method="post" as="button">
