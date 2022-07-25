@@ -37,11 +37,15 @@ export default function NotificationPage(props) {
                                 <Link onClick={() => markNotificationAsRead(notification.id)} href={route("outer.byId", [notification.data.post_id])}>
                                     <b>{notification.data.commentartor}</b> mengomentari postingan Anda <i> "{notification.data.description}"</i>
                                 </Link>
-                            ) : (
+                            ) : (notification.data.type === 'like') ? (
                                 <Link onClick={() => markNotificationAsRead(notification.id)} href={route("outer.byId", [notification.data.post_id])}>
                                     <b>{notification.data.user_like}</b> menyukai postingan Anda
                                 </Link>
-                            )}
+                            ) : (notification.data.type === 'mention') ? (
+                                <Link onClick={() => markNotificationAsRead(notification.id)} href={route("outer.byId", [notification.data.post_id])}>
+                                    <b>{notification.data.from}</b> telah mentioned Anda
+                                </Link>
+                            ) : (<></>)}
                         </div>
                     )) : (
                         <h1>Tidak ada notifikasi</h1>
