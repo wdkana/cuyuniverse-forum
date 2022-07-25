@@ -1,12 +1,26 @@
-import React from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Head, Link } from "@inertiajs/inertia-react";
 import Guest from "@/Layouts/Guest";
-import RenderIfTrue from "@/helper/RenderIfTrue";
+import Paginate from "@/Components/Homepage/Paginate";
+import { Inertia } from "@inertiajs/inertia";
+import { debounce, pickBy } from "lodash";
 
 export default function AuthorListPage(props) {
-  const scrollToTop = () =>
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-
+    const [keyword, setKeyword] = useState(props.filter.search);
+    const reload = useCallback(
+      debounce((q) => {
+        Inertia.get(
+          "/cuypeople/status",
+          pickBy({ search: q, page: props.filter.page }),
+          {
+            preserveState: true,
+          }
+        );
+      }, 500),
+      []
+    );
+    
+    useEffect(() => reload(keyword), [keyword]);
   return (
     <Guest auth={props.auth.user}>
       <Head title={props.title} />
@@ -14,6 +28,20 @@ export default function AuthorListPage(props) {
         <div className="text-center pt-6">
           <h1 className="font-bold text-lg dark:text-white">✨ {props.title} ✨</h1>
           <p className="text-sm dark:text-white">{props.description}</p>
+        </div>
+        <div className="w-full flex justify-center my-7">
+          <div className="w-11/12 lg:w-[77%] flex justify-end">
+              <input
+                className="h-10 w-96 bg-slate-100 dark:bg-slate-900 placeholder:text-gray-600 dark:placeholder:text-slate-100 focus:outline-none focus:ring focus:ring-blue-100 focus:border-blue-400 dark:focus:border-slate-500 dark:focus:ring-0 border rounded-lg border-gray-200 dark:border-slate-500"
+                autoComplete="off"
+                type="text"
+                name="search"
+                id="search"
+                placeholder="Search . . ."
+                value={keyword}
+                onChange={(e) => setKeyword(e.target.value)}
+              />
+          </div>
         </div>
         <div className="flex flex-col justify-center items-center sm:flex-row sm:flex-wrap p-4 gap-6 dark:text-white">
           {props.data
@@ -67,16 +95,10 @@ export default function AuthorListPage(props) {
               </Link>
             ))}
         </div>
-        <RenderIfTrue isTrue={props.data.length > 20}>
-          <div className="text-center py-6">
-            <button
-              onClick={() => scrollToTop()}
-              className="btn btn-ghost text-white btn-sm"
-            >
-              Kembali Ke Atas
-            </button>
-          </div>
-        </RenderIfTrue>
+
+        <div className="flex justify-center items-center p-4">
+          <Paginate meta={props.users} />
+        </div>
       </div>
     </Guest>
   );
