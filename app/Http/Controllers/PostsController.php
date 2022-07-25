@@ -121,7 +121,13 @@ class PostsController extends Controller
             $like = Like::create([
                 'post_id' => $request->post_id,
                 'user_id' => Auth::user()->id
-            ]);
+              ]);
+
+              // dd($like->post->users->id Auth::id());
+              if($like->post->users->id !== Auth::id()) {
+                $like->post->users->notify(new UserLike($like));
+              }
+
             return to_route('outer.byId', ['id' => $request->post_id])->with('message', 'Post telah dilike!');
         }
 
