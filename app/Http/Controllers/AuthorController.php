@@ -12,10 +12,11 @@ class AuthorController extends Controller
 {
     public function profile($author)
     {
-        $user = User::where('username', $author)->get();
-        if ($user == null) {
-            return abort(404);
-        }
+
+        $user = User::where('username', $author)->first();
+
+        if ($user == null) { return abort(404); }
+
         $posts = Posts::orderByDesc('id')->where('author', $author)->with('comments')->paginate(10);
         return Inertia::render('Author', [
             'title' => $author,
