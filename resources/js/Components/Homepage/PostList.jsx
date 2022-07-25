@@ -117,7 +117,7 @@ export default function PostList(props) {
                   href={`/author/${comment.commentartor}`}
                   as="div"
                   method="get"
-                  className="mt-2 p-2 items-end justify-end flex gap-1 flex-row text-xs cursor-pointer hover:cursor-pointer hover:translate-x-1 hover:transition-all"
+                  className="mt-2 p-2 items-end justify-end flex gap-1 flex-row text-xs cursor-pointer hover:cursor-pointer hover:translate-x-1 transition-all"
                 >
                   <div className="mr-1">
                     comment {formatTime(comment.created_at)} by {comment.commentartor}

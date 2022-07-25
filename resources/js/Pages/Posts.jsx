@@ -99,7 +99,7 @@ export default function PostsPage(props) {
         </div>
         {posts.length ? (
           <>
-            <div className="flex flex-col justify-center items-center lg:flex-row lg:flex-wrap lg:items-strech pt-6 px-4 gap-6">
+            <div className="flex flex-col justify-center items-center lg:flex-row lg:flex-wrap lg:items-strech py-6 px-4 gap-6">
               <PostsList posts={posts} />
             </div>
             <div className="flex justify-center items-center py-6">
