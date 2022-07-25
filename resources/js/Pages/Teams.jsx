@@ -21,7 +21,6 @@ export default function TeamsPage(props) {
   useEffect(() => {
     fetchpairs();
   }, []);
-  console.log(githubData);
   return (
     <Guest auth={props.auth.user}>
       <Head title={props.title} />

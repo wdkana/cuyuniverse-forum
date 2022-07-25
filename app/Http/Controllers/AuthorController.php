@@ -15,15 +15,17 @@ class AuthorController extends Controller
 
         $user = User::where('username', $author)->first();
 
-        if ($user == null) { return abort(404); }
+        if ($user == null) {
+            return abort(404);
+        }
 
         $posts = Posts::orderByDesc('id')->where('author', $author)->with('comments')->paginate(10);
         return Inertia::render('Author', [
             'title' => $author,
             'root' => "HOME",
-            'author' => $user[0]->username,
-            'author_image' => $user[0]->image,
-            'is_online' => $user[0]->token ? true : false,
+            'author' => $user->username,
+            'author_image' => $user->image,
+            'is_online' => $user->token ? true : false,
             'posts' => $posts
         ]);
     }
