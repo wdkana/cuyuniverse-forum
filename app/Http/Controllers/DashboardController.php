@@ -54,17 +54,17 @@ final class DashboardController extends Controller
 
         return Inertia::render('Dashboard/Notification', [
             'notifications' => $notifications,
-            'title' => 'Notification',
-            'next' => 'Notification',
+            'title' => 'NOTIFICATION',
+            'next' => 'DASHBOARD',
             'nextRoute' => 'dash.main',
         ]);
     }
 
     public function markNotificationAsRead($id)
     {
-      $notification = Auth::user()->notifications->find($id);
+        $notification = Auth::user()->notifications->find($id);
 
-      $notification->markAsRead();
+        $notification->markAsRead();
     }
 
     public function showSavedPost()

@@ -32,7 +32,7 @@ export default function NotificationPage(props) {
                 {/* <div className='flex flex-col justify-center items-center lg:flex-row lg:flex-wrap lg:items-center gap-4'> */}
                 <div className="flex flex-col justify-center items-center lg:flex-col lg:flex-wrap gap-4">
                     {(props.notifications.length > 0) ? props.notifications.map((notification, index) => (
-                        <div className="card w-full p-5 md:w-1/2 lg:w-1/3 xl:w-1/3 bg-base-100 shadow-lg">
+                        <div className="card w-full p-5 md:w-1/2 lg:w-1/3 xl:w-1/3 bg-base-100 shadow-lg dark:text-black" key={index}>
                             {(notification.data.type === 'comment') ? (
                                 <Link onClick={() => markNotificationAsRead(notification.id)} href={route("outer.byId", [notification.data.post_id])}>
                                     <b>{notification.data.commentartor}</b> mengomentari postingan Anda <i> "{notification.data.description}"</i>
