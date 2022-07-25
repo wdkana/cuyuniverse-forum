@@ -1,28 +1,29 @@
 import { Link } from "@inertiajs/inertia-react";
-import RenderIfTrue from "@/helper/RenderIfTrue";
+import React from "react";
 
-const Paginate = ({ meta }) => {
-  const prev = meta.links[0].url;
-  const next = meta.links[meta.links.length - 1].url;
-
-  if (meta.last_page == 1) return null;
+export default function Paginate({ meta }) {
   return (
-    <div className="btn-group">
-      <RenderIfTrue isTrue={prev}>
-        <Link href={prev} className="btn btn-sm btn-outline rounded-md">
-          «
-        </Link>
-      </RenderIfTrue>
-      <Link className="btn btn-sm btn-outline rounded-md">
-        {meta.current_page}
-      </Link>
-      <RenderIfTrue isTrue={next}>
-        <Link href={next} className="btn btn-sm btn-outline rounded-md">
-          »
-        </Link>
-      </RenderIfTrue>
+    <div className="flex items-center gap-x-4 !mb-10">
+      {meta.links.map((link, key) =>
+        link.url == null ? (
+          <span
+            key={key}
+            className="text-gray-500"
+            dangerouslySetInnerHTML={{ __html: link.label }}
+          />
+        ) : (
+          <Link
+            key={key}
+            className={`${
+              link.active
+                ? "text-blue-500 px-3 py-1 shadow rounded-lg bg-white"
+                : ""
+            }`}
+            href={link.url || ""}
+            dangerouslySetInnerHTML={{ __html: link.label }}
+          />
+        )
+      )}
     </div>
   );
-};
-
-export default Paginate;
+}

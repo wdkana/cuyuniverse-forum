@@ -15,8 +15,8 @@ use Illuminate\Support\Facades\Route;
 Route::controller(OuterController::class)->name('outer.')->group(
     function () {
         Route::get('/', 'index')->name('main')->middleware('throttle:20,1');
-        Route::get('/posts', 'PostsAll')->name('posts');
-        Route::post('/posts', 'MorePosts')->name('posts.more');
+        Route::get('/teams', 'Teams')->name('teams');
+        Route::get('/posts', 'postsAll')->name('posts');
         Route::get('/post/{id}', 'find')->name('byId');
     }
 );
@@ -29,6 +29,7 @@ Route::controller(AuthorController::class)->name('author.')->middleware('throttl
 );
 
 // user dashboard authorized grup
+
 Route::middleware(['auth', 'verified'])->group(function() {
     Route::controller(DashboardController::class)->name('dash.')->group(
         function () {
@@ -53,5 +54,6 @@ Route::middleware(['auth', 'verified'])->group(function() {
     );
 
 });
+
 
 require __DIR__ . '/auth.php';

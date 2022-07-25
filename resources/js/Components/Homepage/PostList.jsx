@@ -52,7 +52,7 @@ export default function PostList(props) {
 
   const formValidateNotif = () => {
     return (
-      <div className="alert alert-sm shadow-sm bg-primary mt-4 rounded-md">
+      <div className="alert alert-sm shadow-sm bg-primary mt-4 rounded-md text-slate-900">
         <div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -80,13 +80,25 @@ export default function PostList(props) {
   const likePost = (postId) => {
     const data = {
       post_id: postId,
-      token: props.user.token,
-    };
+      token: props.user.token
+    }
 
-    return Inertia.post("/post/like/love", data);
-  };
+    return Inertia.post("/post/like/love", data, {
+      preserveScroll: true,
+    });
+  }
+
+  const savePost = (postId) => {
+    const data = {
+      post_id: postId,
+      token: props.user.token
+    }
+
+    return Inertia.post('/post/saved-post/saved', data)
+  }
+
   return (
-    <div className="card w-full md:w-2/3 bg-base-100 shadow-lg">
+    <div className="card w-full md:w-2/3 bg-base-100 dark:bg-slate-700 shadow-lg dark:text-white mb-10">
       <RenderIfTrue isTrue={showNotif}>
         <NotificationAlert message={props.notif} />
       </RenderIfTrue>
@@ -128,7 +140,10 @@ export default function PostList(props) {
         <div className="bg-base-200">
           {props.comments.map((comment, i) => {
             return (
-              <div className="border-b-2 flex flex-col p-2" key={i}>
+              <div
+                className="border-b-2 dark:border-b-slate-500 dark:text-white dark:bg-slate-800 flex flex-col p-3"
+                key={i}
+              >
                 <div className="text-md font-mono font-bold">
                   {comment.description}
                 </div>
@@ -159,24 +174,18 @@ export default function PostList(props) {
           })}
         </div>
       </div>
-      <div className="flex flex-col justify-center items-start gap-4 py-2 px-2 sm:px-10">
-        {/* {props.user && formValidateNotif()} */}
-        <button
-          onClick={() => likePost(props.posts.id)}
-          type="button"
-          className="btn btn-primary"
-        >
-          {props.posts.likes_count} Like
-        </button>
+      <div className="flex justify-start px-2 lg:px-10 py-2 items-center gap-2">
+        <button onClick={() => likePost(props.posts.id)} type='button' className={`btn rounded-md btn-sm ${props.is_liked_post ? 'btn-primary' : 'hover:btn-primary'}`} disabled={!props.user ? true : false}>{props.posts.likes_count} {props.posts.likes_count === 1 ? 'Like' : 'Likes'}</button>
+        <button onClick={() => savePost(props.posts.id)} type='button' className={`btn rounded-md btn-sm ${props.is_saved_post ? 'btn-primary' : 'hover:btn-primary'}`} disabled={!props.user ? true : false}>{props.is_saved_post ? 'Disimpan' : 'Simpan'}</button>
       </div>
-      <div className="flex flex-col justify-center items-center gap-4 py-2 px-2 sm:px-10">
+      <div className="flex flex-col justify-center items-center gap-4 py-2 px-2 sm:px-10 ">
         {props.user && formValidateNotif()}
         <input
           type="text"
           minLength={2}
           maxLength={80}
           value={newComment}
-          className="input rounded-md w-full h-42"
+          className="input rounded-md w-full h-42 outline-none border-none dark:placeholder-white bg-slate-200 dark:bg-slate-900 dark:text-white"
           placeholder={
             props.user == null
               ? "Login untuk mengisi komentar"
@@ -184,10 +193,11 @@ export default function PostList(props) {
           }
           onChange={(e) => handlerCommentInput(e.target.value)}
           disabled={props.user == null ? true : false}
+          autoComplete="off"
         />
         <button
           type="button"
-          className="btn btn-primary font-bold btn-md w-full rounded-md"
+          className={`btn btn-primary font-bold btn-md w-full rounded-md ${props.user == null || !isValid && 'text-white'}`}
           disabled={props.user == null || !isValid ? true : false}
           onClick={() => handlerCommentSubmit()}
         >

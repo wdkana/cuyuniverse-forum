@@ -4,13 +4,13 @@ import Dropdown from '@/Components/Default/Dropdown';
 import NavLink from '@/Components/Default/NavLink';
 import ResponsiveNavLink from '@/Components/Default/ResponsiveNavLink';
 import { Link } from '@inertiajs/inertia-react';
-import Avatar from 'avataaars';
+import DarkToggle from '@/Components/Homepage/DarkToggle';
 
 export default function Authenticated({ auth, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
     return (
-        <div className="min-h-screen">
-            <nav className="md:shadow-lg">
+        <div className="min-h-screen dark:text-white">
+            <nav className="md:shadow-lg dark:text-white dark:bg-slate-900">
                 <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
                         <div className="flex">
@@ -24,8 +24,14 @@ export default function Authenticated({ auth, header, children }) {
                                 <NavLink href={route('dash.main')} active={route().current('dash.main')}>
                                     Dashboard
                                 </NavLink>
-                                <NavLink href={route('dash.manage.posts')} active={route().current('dash.manage.posts')}>
+                                <NavLink href={route('posts.main')} active={route().current('posts.main')}>
                                     Manage Post
+                                </NavLink>
+                                <NavLink href={route('dash.saved.post')} active={route().current('dash.saved.post')}>
+                                    Saved Post
+                                </NavLink>
+                                <NavLink href={route('dash.setting.profile')} active={route().current('dash.setting.profile')}>
+                                    Setting
                                 </NavLink>
                                 <NavLink href={route('dash.notif')} active={route().current('dash.notif')}>
                                     Notification
@@ -103,8 +109,14 @@ export default function Authenticated({ auth, header, children }) {
                         <ResponsiveNavLink href={route('dash.main')} active={route().current('dash.main')}>
                             Dashboard
                         </ResponsiveNavLink>
-                        <ResponsiveNavLink href={route('dash.manage.posts')} active={route().current('dash.manage.posts')}>
+                        <ResponsiveNavLink href={route('posts.main')} active={route().current('posts.main')}>
                             Manage Post
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink href={route('dash.saved.post')} active={route().current('dash.saved.post')}>
+                            Saved Post
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink href={route('dash.setting.profile')} active={route().current('dash.setting.profile')}>
+                            Setting
                         </ResponsiveNavLink>
                         <ResponsiveNavLink href={route('dash.notif')} active={route().current('dash.notif')}>
                             Notification
@@ -137,6 +149,10 @@ export default function Authenticated({ auth, header, children }) {
             )}
 
             <main>{children}</main>
+
+            <div className="fixed right-6 bottom-6">
+                <DarkToggle />
+            </div>
         </div>
     );
 }

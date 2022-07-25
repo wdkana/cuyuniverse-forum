@@ -1,8 +1,5 @@
 import React, { useEffect } from 'react';
-import Button from '@/Components/Default/Button';
 import Guest from '@/Layouts/Guest';
-import Input from '@/Components/Default/Input';
-import Label from '@/Components/Default/Label';
 import ValidationErrors from '@/Components/Default/ValidationErrors';
 import { Head, useForm } from '@inertiajs/inertia-react';
 
@@ -29,33 +26,55 @@ export default function ConfirmPassword() {
 
     return (
         <Guest>
-            <Head title="Confirm Password" />
-            <div className="mb-4 text-sm ">
-                This is a secure area of the application. Please confirm your password before continuing.
+            <Head title="Konfirmasi Password" />
+            <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+                <div className="max-w-md w-full space-y-8">
+                    <div className="mb-4 text-sm ">
+                        Demi keamanan, silahkan konfirmasi password kamu sebelum lanjut memakai CuyUniverse.
+                    </div>
+                    <div>
+                        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Daftar CuyUniverse</h2>
+                        <p className="mt-2 text-center text-sm text-gray-600">
+                            Atau{' '}
+                            <Link href={route('login')} as="button" className="font-medium text-indigo-600 hover:text-indigo-500">
+                                sudah punya akun masuk disini
+                            </Link>
+                        </p>
+                        <ValidationErrors errors={errors} />
+                    </div>
+                    <form className="mt-8 space-y-6" onSubmit={submit}>
+                        <div className="flex flex-col gap-3 rounded-md shadow-sm -space-y-px">
+                            <div>
+                                <label htmlFor="password" className="sr-only">
+                                    password
+                                </label>
+                                <input
+                                    id="password"
+                                    name="password"
+                                    type="password"
+                                    autoComplete="on"
+                                    required
+                                    className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 dark:bg-slate-900 dark:placeholder-slate-100 dark:text-white dark:border-gray-600 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                    placeholder="password"
+                                    onChange={onHandleChange}
+                                    value={data.password} />
+                            </div>
+
+                            <div className=''>
+                                <button
+                                    type="submit"
+                                    className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                    disabled={processing}>
+                                    <span className="absolute left-0 inset-y-0 flex items-center pl-3">
+                                        <MdAccountCircle />
+                                    </span>
+                                    Setuju
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-
-            <ValidationErrors errors={errors} />
-
-            <form onSubmit={submit}>
-                <div className="mt-4">
-                    <Label forInput="password" value="Password" className="" />
-
-                    <Input
-                        type="password"
-                        name="password"
-                        value={data.password}
-                        className="mt-1 block w-full"
-                        isFocused={true}
-                        handleChange={onHandleChange}
-                    />
-                </div>
-
-                <div className="flex items-center justify-end mt-4">
-                    <Button className="ml-4 hover:bg-indigo-800" processing={processing}>
-                        Confirm
-                    </Button>
-                </div>
-            </form>
         </Guest>
     );
 }

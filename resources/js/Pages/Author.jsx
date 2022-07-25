@@ -5,6 +5,10 @@ import Paginate from '@/Components/Homepage/Paginate';
 import Guest from '@/Layouts/Guest';
 
 export default function AuthorPage(props) {
+  const thisData = {
+    page: "author",
+    author_image: props.author_image
+  }
   return (
     <Guest auth={props.auth.user}>
       <Head title={props.title} />
@@ -15,10 +19,10 @@ export default function AuthorPage(props) {
               <img src={props.author_image !== null ? `/storage/images/${props.author_image}` : '/storage/images/defaultavatar.png'} />
             </div>
           </div>
-          <h1 className="text-xl font-bold">✨ {props.author} ✨</h1>
+          <h1 className="text-xl font-bold dark:text-white">✨ {props.author} ✨</h1>
         </div>
         <div className='flex flex-col justify-center items-center lg:flex-row lg:flex-wrap lg:items-stretch p-4 gap-6'>
-          <PostsList posts={props.posts.data} from="authorPage" />
+          <PostsList posts={props.posts.data} from={thisData} />
         </div>
         <div className='flex justify-center items-center p-4'>
           <Paginate meta={props.posts} />
