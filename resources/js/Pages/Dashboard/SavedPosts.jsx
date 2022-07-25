@@ -21,7 +21,7 @@ export default function SavedPost(props) {
             <div className='text-center pt-6'>
               <h1 className='font-bold text-lg'>✨ {props.page} ✨</h1>
             </div>
-            <div className='flex flex-col justify-center items-center lg:flex-row lg:flex-wrap lg:items-strech pt-6 px-4 gap-6'>
+            <div className='flex flex-col justify-center items-center lg:flex-row lg:flex-wrap lg:items-strech py-6 px-4 gap-6'>
               <PostsList posts={data} />
             </div>
           </>

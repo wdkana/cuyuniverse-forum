@@ -54,7 +54,7 @@ export default function MyPosts(props) {
             }
         >
             <Head title="Dashboard" />
-            <div className="flex flex-col justify-center items-center lg:flex-row lg:flex-wrap lg:items-strech pt-6 px-4 gap-6">
+            <div className="flex flex-col justify-center items-center lg:flex-row lg:flex-wrap lg:items-strech py-6 px-4 gap-6">
                 {showNotif && <NotificationAlert message={flash.message} />}
                 {props.data.length > 0 ? (
                     props.data.map((posts, i) => {
