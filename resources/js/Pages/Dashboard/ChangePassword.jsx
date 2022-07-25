@@ -72,7 +72,7 @@ export default function ChangePassword(props) {
                 <input
                   type="password"
                   name="oldPassword"
-                  className="w-full text-lg text-black font-bold font-mono input input-bordered rounded-md"
+                  className="w-full text-lg text-black font-bold font-mono input input-bordered rounded-md dark:bg-slate-900 dark:text-white dark:placeholder-slate-100"
                   required
                   value={data.oldPassword}
                   onChange={handleChange}
@@ -83,7 +83,7 @@ export default function ChangePassword(props) {
                 <input
                   type="password"
                   name="newPassword"
-                  className="w-full text-lg text-black font-bold font-mono input input-bordered rounded-md"
+                  className="w-full text-lg text-black font-bold font-mono input input-bordered rounded-md dark:bg-slate-900 dark:text-white dark:placeholder-slate-100"
                   required
                   value={data.newPassword}
                   onChange={handleChange}
@@ -95,14 +95,14 @@ export default function ChangePassword(props) {
                   type="password"
                   name="newPassword_confirmation"
                   required
-                  className="w-full text-lg text-black font-bold font-mono input input-bordered rounded-md"
+                  className="w-full text-lg text-black font-bold font-mono input input-bordered rounded-md dark:bg-slate-900 dark:text-white dark:placeholder-slate-100" value={data.newPassword_confirmation}
                   value={data.newPassword_confirmation}
                   onChange={handleChange}
                 />
               </div>
               <div className="form-control">
                 <label className="label cursor-pointer">
-                  <span className="label-text text-black dark:text-white">Confirm change password.</span>
+                  <span className="label-text text-black dark:text-white">Confirm change password.</span> 
                   <input
                     type="checkbox"
                     name="confirm"
