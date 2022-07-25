@@ -33,14 +33,10 @@ export default function Register() {
             <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-md w-full space-y-8">
                     <div>
-                        {/* <img
-                            className="mx-auto h-12 w-auto"
-                            src="logo gue"
-                            alt="logo gue" /> */}
-                        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Daftar CuyUniverse</h2>
-                        <p className="mt-2 text-center text-sm text-gray-600">
+                        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-white">Daftar CuyUniverse</h2>
+                        <p className="mt-2 text-center text-sm text-gray-600 dark:text-white">
                             Atau{' '}
-                            <Link href={route('login')} as="button" className="font-medium text-indigo-600 hover:text-indigo-500">
+                            <Link href={route('login')} as="button" className="font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400">
                                 sudah punya akun masuk disini
                             </Link>
                         </p>
@@ -58,7 +54,7 @@ export default function Register() {
                                     type="text"
                                     autoComplete="on"
                                     required
-                                    className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                    className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 dark:bg-slate-900 dark:placeholder-slate-100 dark:text-white dark:border-gray-600 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                     placeholder="username"
                                     onChange={onHandleChange}
                                     value={data.username} />
@@ -73,7 +69,7 @@ export default function Register() {
                                     type="email"
                                     autoComplete="on"
                                     required
-                                    className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                    className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 dark:bg-slate-900 dark:placeholder-slate-100 dark:text-white dark:border-gray-600 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                     placeholder="email address"
                                     onChange={onHandleChange}
                                     value={data.email} />
@@ -88,7 +84,7 @@ export default function Register() {
                                     type="password"
                                     autoComplete="on"
                                     required
-                                    className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                    className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 dark:bg-slate-900 dark:placeholder-slate-100 dark:text-white dark:border-gray-600 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                     placeholder="password"
                                     onChange={onHandleChange}
                                     value={data.password} />
@@ -103,7 +99,7 @@ export default function Register() {
                                     type="password"
                                     autoComplete="on"
                                     required
-                                    className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                    className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 dark:bg-slate-900 dark:placeholder-slate-100 dark:text-white dark:border-gray-600 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                     placeholder="ketik ulang password"
                                     onChange={onHandleChange}
                                     value={data.password_confirmation} />

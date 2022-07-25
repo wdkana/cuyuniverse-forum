@@ -34,10 +34,6 @@ export default function ResetPassword({ token, email }) {
             <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-md w-full space-y-8">
                     <div>
-                        {/* <img
-                            className="mx-auto h-12 w-auto"
-                            src="logo gue"
-                            alt="logo gue" /> */}
                         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Verifikasi Reset Password</h2>
                         <p className="mt-2 text-center text-sm text-gray-600">
                             Atau{' '}
@@ -60,7 +56,7 @@ export default function ResetPassword({ token, email }) {
                                     type="email"
                                     autoComplete="email"
                                     required
-                                    className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                    className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 dark:bg-slate-900 dark:placeholder-slate-100 dark:text-white dark:border-gray-600 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                     placeholder="email address"
                                     onChange={onHandleChange}
                                     value={data.email} />
@@ -76,7 +72,7 @@ export default function ResetPassword({ token, email }) {
                                     type="password"
                                     autoComplete="on"
                                     required
-                                    className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                    className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 dark:bg-slate-900 dark:placeholder-slate-100 dark:text-white dark:border-gray-600 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                     placeholder="password"
                                     onChange={onHandleChange}
                                     value={data.password} />
@@ -92,7 +88,7 @@ export default function ResetPassword({ token, email }) {
                                     type="password"
                                     autoComplete="on"
                                     required
-                                    className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                    className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 dark:bg-slate-900 dark:placeholder-slate-100 dark:text-white dark:border-gray-600 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                     placeholder="ketik ulang password"
                                     onChange={onHandleChange}
                                     value={data.password_confirmation} />

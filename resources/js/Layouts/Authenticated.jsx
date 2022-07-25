@@ -4,12 +4,13 @@ import Dropdown from '@/Components/Default/Dropdown';
 import NavLink from '@/Components/Default/NavLink';
 import ResponsiveNavLink from '@/Components/Default/ResponsiveNavLink';
 import { Link } from '@inertiajs/inertia-react';
+import DarkToggle from '@/Components/Homepage/DarkToggle';
 
 export default function Authenticated({ auth, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
     return (
-        <div className="min-h-screen">
-            <nav className="md:shadow-lg">
+        <div className="min-h-screen dark:text-white">
+            <nav className="md:shadow-lg dark:text-white dark:bg-slate-900">
                 <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
                         <div className="flex">
@@ -20,8 +21,8 @@ export default function Authenticated({ auth, header, children }) {
                             </div>
 
                             <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <NavLink href={route('dash.main')} active={route().current('dash.main')}>
-                                    Dashboard
+                                <NavLink href={route('dash.notif')} active={route().current('dash.notif')}>
+                                    Notification
                                 </NavLink>
                                 <NavLink href={route('posts.main')} active={route().current('posts.main')}>
                                     Manage Post
@@ -29,11 +30,8 @@ export default function Authenticated({ auth, header, children }) {
                                 <NavLink href={route('dash.saved.post')} active={route().current('dash.saved.post')}>
                                     Saved Post
                                 </NavLink>
-                                <NavLink href={route('dash.setting.profile')} active={route().current('dash.setting.profile')}>
-                                    Setting
-                                </NavLink>
-                                <NavLink href={route('dash.notif')} active={route().current('dash.notif')}>
-                                    Notification
+                                <NavLink href={route('dash.main')} active={route().current('dash.main')}>
+                                    Dashboard
                                 </NavLink>
                             </div>
                         </div>
@@ -69,6 +67,9 @@ export default function Authenticated({ auth, header, children }) {
                                     </Dropdown.Trigger>
 
                                     <Dropdown.Content>
+                                        <Dropdown.Link href={route('dash.setting.profile')} active={route().current('dash.setting.profile')} as="button">
+                                            Setting
+                                        </Dropdown.Link>
                                         <Dropdown.Link href={route('logout')} method="post" as="button">
                                             Log Out
                                         </Dropdown.Link>
@@ -114,8 +115,8 @@ export default function Authenticated({ auth, header, children }) {
                         <ResponsiveNavLink href={route('dash.saved.post')} active={route().current('dash.saved.post')}>
                             Saved Post
                         </ResponsiveNavLink>
-                        <ResponsiveNavLink href={route('dash.setting.profile')} active={route().current('dash.setting.profile')}>
-                            Setting
+                        <ResponsiveNavLink href={route('dash.notif')} active={route().current('dash.notif')}>
+                            Notification
                         </ResponsiveNavLink>
                     </div>
 
@@ -130,6 +131,9 @@ export default function Authenticated({ auth, header, children }) {
                         </div>
 
                         <div className="mt-3 space-y-1">
+                            <Dropdown.Link href={route('dash.setting.profile')} active={route().current('dash.setting.profile')} as="button">
+                                Setting
+                            </Dropdown.Link>
                             <ResponsiveNavLink method="post" href={route('logout')} as="button">
                                 Log Out
                             </ResponsiveNavLink>
@@ -145,6 +149,10 @@ export default function Authenticated({ auth, header, children }) {
             )}
 
             <main>{children}</main>
+
+            <div className="fixed right-6 bottom-6">
+                <DarkToggle />
+            </div>
         </div>
     );
 }

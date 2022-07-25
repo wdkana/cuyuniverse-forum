@@ -3,6 +3,7 @@ import Guest from '@/Layouts/Guest';
 import ValidationErrors from '@/Components/Default/ValidationErrors';
 import { Head, Link, useForm } from '@inertiajs/inertia-react';
 import { MdLockOpen } from 'react-icons/md';
+import RenderIfTrue from '@/helper/RenderIfTrue';
 
 export default function Login({ status, canResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -33,18 +34,16 @@ export default function Login({ status, canResetPassword }) {
             <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-md w-full space-y-8">
                     <div>
-                        {/* <img
-                            className="mx-auto h-12 w-auto"
-                            src="logo gue"
-                            alt="logo gue" /> */}
-                        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Masuk CuyUniverse</h2>
-                        <p className="mt-2 text-center text-sm text-gray-600">
+                        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:!text-white">Masuk CuyUniverse</h2>
+                        <p className="mt-2 text-center text-sm text-gray-600 dark:!text-white">
                             Atau{' '}
-                            <Link href={route('register')} as="button" className="font-medium text-indigo-600 hover:text-indigo-500">
+                            <Link href={route('register')} as="button" className="font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400">
                                 daftar gratis disini
                             </Link>
                         </p>
-                        {status && <div className="mb-4 font-medium text-sm">{status}</div>}
+                        <RenderIfTrue isTrue={status}>
+                        <div className="mb-4 font-medium text-sm">{status}</div>
+                        </RenderIfTrue>
                         <ValidationErrors errors={errors} />
                     </div>
                     <form className="mt-8 space-y-6" onSubmit={submit}>
@@ -60,7 +59,7 @@ export default function Login({ status, canResetPassword }) {
                                     type="text"
                                     autoComplete="on"
                                     required
-                                    className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                    className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 dark:bg-slate-900 dark:placeholder-slate-100 dark:text-white dark:border-gray-600 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                     placeholder="Masukan Username"
                                     onChange={onHandleChange}
                                     value={data.username} />
@@ -75,7 +74,7 @@ export default function Login({ status, canResetPassword }) {
                                     type="password"
                                     autoComplete="on"
                                     required
-                                    className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                    className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 dark:bg-slate-900 dark:placeholder-slate-100 dark:text-white dark:border-gray-600 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                     placeholder="Password"
                                     onChange={onHandleChange}
                                     value={data.password} />
@@ -87,21 +86,21 @@ export default function Login({ status, canResetPassword }) {
                                 <input
                                     id="remember-me"
                                     type="checkbox"
-                                    className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                                    className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded dark:bg-white"
                                     name="remember" value={data.remember} onChange={onHandleChange} />
-                                <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
+                                <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900 dark:text-white">
                                     Ingatkan saya
                                 </label>
                             </div>
 
                             <div className="text-sm">
-                                {canResetPassword && (
+                                <RenderIfTrue isTrue={canResetPassword}>
                                     <Link
                                         href={route('password.request')}
-                                        className="font-medium text-indigo-600 hover:text-indigo-500">
+                                        className="font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400">
                                         Lupa password?
                                     </Link>
-                                )}
+                                </RenderIfTrue>
                             </div>
                         </div>
 
