@@ -8,9 +8,7 @@ export default function TeamsPage(props) {
 
   useEffect(() => {
     const fetchpairs = async () => {
-      const result = await axios.get(
-        "https://api.github.com/repos/deaaprizal/laract9/contributors?"
-      );
+      const result = await axios.get("https://api.github.com/repos/deaaprizal/laract9/contributors?");
       setData(result.data);
     };
     fetchpairs();
@@ -28,17 +26,10 @@ export default function TeamsPage(props) {
           {githubData.map((item, index) => {
             return (
               <a href={item.html_url} key={index} target="_blank">
-                <div
-                  className="card card-side dark:bg-blue-600 dark:text-white shadow-lg dark:shadow-slate-900"
-                  key={index}
-                >
-                  <img
-                    src={item.avatar_url}
-                    alt=""
-                    className="rounded-full h-16 w-16 ml-4 mt-3 align-middle"
-                  ></img>
+                <div className="card w-72 card-side dark:bg-blue-600 dark:text-white shadow-lg dark:shadow-slate-900" key={index}>
+                  <img src={item.avatar_url} alt="" className="rounded-full h-16 w-16 ml-4 mt-3 align-middle"></img>
                   <div className="card-body">
-                    <h2 className="card-title">{item.login}</h2>
+                    <h2 className="card-title">{item.login.length > 14 ? item.login.slice(0, 14) + "..." : item.login}</h2>
                   </div>
                 </div>
               </a>
