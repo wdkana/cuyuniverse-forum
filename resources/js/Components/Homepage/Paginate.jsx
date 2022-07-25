@@ -3,7 +3,7 @@ import React from "react";
 
 export default function Paginate({ meta }) {
   return (
-    <div className="flex items-center gap-x-4 !mb-10">
+    <div className="flex items-center gap-x-4">
       {meta.links.map((link, key) =>
         link.url == null ? (
           <span

@@ -56,7 +56,7 @@ class OuterController extends Controller
       'title' => "POSTINGAN CUYPEOPLE",
       'root' => 'HOME',
       'description' => "Semua postingan dari CuyPeople tersedia disini",
-      'posts' => PostResource::collection($posts->latest()->paginate()->withQueryString()),
+      'posts' => PostResource::collection($posts->latest()->paginate(20)->withQueryString()),
       'filter' => $request->only(['search', 'page', 'filtered'])
     ]);
   }
