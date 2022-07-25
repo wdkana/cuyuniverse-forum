@@ -22,7 +22,7 @@ export default function AuthorListPage(props) {
               <Link
                 href={`/author/${user.username}`}
                 as="button"
-                className="flex flex-col rounded-md shadow-lg w-full md:w-5/6 lg:w-1/3 xl:w-1/4 justify-center items-center cursor-pointer hover:-translate-y-1 hover:transition-all dark:bg-slate-700 dark:shadow-slate-900"
+                className="flex flex-col rounded-md shadow-lg w-full md:w-5/6 lg:w-1/3 xl:w-1/4 justify-center items-center cursor-pointer hover:-translate-y-1 transition-all duration-300 dark:bg-slate-700 dark:shadow-slate-900"
                 key={i}
               >
                 <div
