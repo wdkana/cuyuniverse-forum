@@ -61,7 +61,7 @@ const CreatePost = ({ props }) => {
           className={
             !isValid
               ? "bg-slate-500 py-2 rounded-md lg:w-1/2 w-full dark:text-white cursor-not-allowed"
-              : "bg-slate-700 py-2 rounded-md lg:w-1/2 w-full dark:text-white cursor-pointer"
+              : "bg-slate-700 py-2 rounded-md hover:bg-slate-600 lg:w-1/2 w-full dark:text-white cursor-pointer"
           }
           onClick={() => handlePostSubmit()}
         >
