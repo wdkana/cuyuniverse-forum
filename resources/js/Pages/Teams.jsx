@@ -5,17 +5,23 @@ import { useEffect, useState } from "react";
 
 export default function TeamsPage(props) {
   const [githubData, setData] = useState([]);
+  const [err, setErr] = useState(null);
+
+  const fetchpairs = async () => {
+    await axios
+      .get("https://api.github.com/repos/deaaprizal/laract9/contributors?")
+      .then((res) => {
+        setData(res.data);
+      })
+      .catch((err) => {
+        setErr(err.message);
+      });
+  };
 
   useEffect(() => {
-    const fetchpairs = async () => {
-      const result = await axios.get(
-        "https://api.github.com/repos/deaaprizal/laract9/contributors?"
-      );
-      setData(result.data);
-    };
     fetchpairs();
   }, []);
-
+  console.log(githubData);
   return (
     <Guest auth={props.auth.user}>
       <Head title={props.title} />
@@ -28,23 +34,21 @@ export default function TeamsPage(props) {
           {githubData.map((item, index) => {
             return (
               <a href={item.html_url} key={index} target="_blank">
-                <div
-                  className="card card-side dark:bg-blue-600 dark:text-white shadow-lg dark:shadow-slate-900"
-                  key={index}
-                >
-                  <img
-                    src={item.avatar_url}
-                    alt=""
-                    className="rounded-full h-16 w-16 ml-4 mt-3 align-middle"
-                  ></img>
+                <div className="card w-72 card-side dark:bg-blue-600 dark:text-white shadow-lg dark:shadow-slate-900" key={index}>
+                  <img src={item.avatar_url} alt="" className="rounded-full h-16 w-16 ml-4 mt-3 align-middle"></img>
                   <div className="card-body">
-                    <h2 className="card-title">{item.login}</h2>
+                    <h2 className="card-title">{item.login.length > 14 ? item.login.slice(0, 14) + "..." : item.login}</h2>
                   </div>
                 </div>
               </a>
             );
           }, this)}
         </div>
+        {err ? (
+          <div className="text-center pt-6">
+            <p className="text-sm dark:text-white">{err}</p>
+          </div>
+        ) : null}
       </div>
     </Guest>
   );
