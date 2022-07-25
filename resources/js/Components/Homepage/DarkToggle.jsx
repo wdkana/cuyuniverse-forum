@@ -25,7 +25,11 @@ const DarkToggle = () => {
   return (
     <div className="relative">
       <div className="absolute">
-        <input id="theme-toggle" type="checkbox" className="focus:outline-none rounded-md text-sm p-5 opacity-0 z-[99999999999999]" />
+        <input
+          id="theme-toggle"
+          type="checkbox"
+          className="focus:outline-none rounded-md text-sm p-5 opacity-0 z-[99999999999999] cursor-pointer"
+        />
       </div>
       <div className="p-1.5 rounded-md focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 bg-slate-700 dark:bg-slate-200 shadow-md shadow-slate-400 dark:shadow-slate-900 dark:text-white">
         <svg
