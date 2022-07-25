@@ -41,7 +41,7 @@ const CreatePost = ({ props }) => {
           </div>
         </div>
         <div className='w-full lg:w-1/2'>
-          <textarea minLength={10} maxLength={200} required className="textarea h-36 bg-base-200 rounded-md w-full mt-3" placeholder="Isi posting [min:10]" onChange={(description) => handleChangePostDescription(description)}></textarea>
+          <textarea minLength={10} maxLength={200} required className="textarea h-36 rounded-md w-full bg-slate-200 mt-3 dark:bg-slate-900 dark:text-white dark:placeholder-slate-100" placeholder="Isi posting [min:10]" onChange={(description) => handleChangePostDescription(description)}></textarea>
         </div>
         <button disabled={!isValid} className="btn btn-primary rounded-md lg:w-1/2 w-full dark:text-white" onClick={() => handlePostSubmit()}>Submit</button>
       </div >

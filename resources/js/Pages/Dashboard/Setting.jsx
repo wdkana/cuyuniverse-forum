@@ -73,10 +73,18 @@ export default function SettingPage(props) {
           <div className='flex justify-center w-full '>
             <form onSubmit={updateUsername}>
               <label className="form-label font-semibold dark:text-white">username ✔</label>
-              <input onChange={handleChangeUsername} name='username' type="text" className="w-full text-lg font-bold font-mono input input-bordered rounded-md" value={username} />
-              <button type='submit' disabled={processing} className='btn w-full dark:text-white border-0 rounded-md mt-2 bg-primary hover:bg-secondary'>Update</button>
+              <input onChange={handleChangeUsername} name='username' type="text" className="w-full text-lg font-bold font-mono input input-bordered rounded-md bg-slate-200 dark:bg-slate-900 dark:text-white dark:placeholder-slate-100" value={username} />
+              <button type='submit' disabled={processing} className='btn w-full border-0 rounded-md mt-2 bg-primary hover:bg-secondary text-slate-900'>Update</button>
             </form>
           </div>
+          <div className='divider w-full dark:text-white'>Security</div>
+          <Link
+            as="button"
+            href={route('dash.change.password')}
+            className="btn w-full sm:w-1/2 lg:w-1/3 dark:text-white border-0 rounded-md mt-2 bg-primary hover:bg-secondary"
+          >
+            Change Password
+          </Link>
         </div>
       </div>
     </Authenticated>

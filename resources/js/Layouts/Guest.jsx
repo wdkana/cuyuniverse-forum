@@ -19,7 +19,7 @@ export default function Guest({ children, auth }) {
 
   return (
     <div className="min-h-screen">
-      <nav className="md:shadow-lg dark:bg-slate-900">
+      <nav className="md:shadow-lg dark:text-white dark:bg-slate-900">
         <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex gap-2">
