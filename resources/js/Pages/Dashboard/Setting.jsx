@@ -69,7 +69,7 @@ export default function SettingPage(props) {
               </form>
             </div>
           </div>
-          <div className='divider w-full dark:text-white'>Profile Identity</div>
+          <div className='divider w-full dark:text-white dark:before:bg-slate-700 dark:after:bg-slate-700'>Profile Identity</div>
           <div className='flex justify-center w-full '>
             <form onSubmit={updateUsername}>
               <label className="form-label font-semibold dark:text-white">username ✔</label>
@@ -77,11 +77,11 @@ export default function SettingPage(props) {
               <button type='submit' disabled={processing} className='btn w-full border-0 rounded-md mt-2 bg-primary hover:bg-secondary text-slate-900'>Update</button>
             </form>
           </div>
-          <div className='divider w-full dark:text-white'>Security</div>
+          <div className='divider w-full dark:text-white dark:before:bg-slate-700 dark:after:bg-slate-700'>Security</div>
           <Link
             as="button"
             href={route('dash.change.password')}
-            className="btn w-full sm:w-1/2 lg:w-1/3 dark:text-white border-0 rounded-md mt-2 bg-primary hover:bg-secondary"
+            className="btn w-full sm:w-1/2 lg:w-1/3 border-0 rounded-md mt-2 bg-primary hover:bg-secondary"
           >
             Change Password
           </Link>
