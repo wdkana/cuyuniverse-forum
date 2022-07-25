@@ -31,13 +31,13 @@ class AuthorController extends Controller
 
     public function userOnlineStatus()
     {
-        $users = User::where('email_verified_at', '!=', NULL)->with(['posts', 'comments'])->get();
+        $users = User::withCount(['posts', 'comments'])->where('email_verified_at', '!=', NULL)->get();
         $user = $users->map(function ($items) {
             $data['username'] = $items->username;
             $data['is_online'] = Cache::has('user-is-online-' . $items->id);
             $data['last_seen'] = Carbon::parse($items->last_seen)->diffForHumans();
-            $data['total_post'] = count($items->posts);
-            $data['total_comment'] = count($items->comments);
+            $data['total_post'] = $items->posts_count;
+            $data['total_comment'] = $items->comments_count;
             $data['author_image'] = $items->image;
             return $data;
         });
