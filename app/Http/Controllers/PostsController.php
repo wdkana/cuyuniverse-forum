@@ -11,7 +11,9 @@ use App\Models\User;
 use App\Notifications\UserComment;
 use App\Notifications\UserLike;
 use App\Models\SavedPosts;
+use App\Notifications\UserMentioned;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
@@ -55,6 +57,7 @@ class PostsController extends Controller
                 'token' => 'required'
             ]
         );
+
         $posts = new Posts();
         $posts->description = $request->description;
         // if ($request->hasFile('image')) {
@@ -65,6 +68,9 @@ class PostsController extends Controller
         $posts->author = auth()->user()->username;
         $posts->user_id = auth()->user()->id;
         $posts->save();
+
+        $this->mentionUser($request->description, $posts);
+
         return to_route('posts.main')->with('message', 'Posting Berhasil');
     }
 
@@ -109,6 +115,8 @@ class PostsController extends Controller
             $user->notify(new UserComment($saveComment));
         }
 
+        $this->mentionUser($request->description, $post);
+
         return to_route('outer.byId', ['id' => $request->post_id])->with('message', 'Komentar telah dikirim');
     }
 
@@ -121,7 +129,12 @@ class PostsController extends Controller
             $like = Like::create([
                 'post_id' => $request->post_id,
                 'user_id' => Auth::user()->id
-            ]);
+              ]);
+
+              if($like->post->users->id !== Auth::id()) {
+                $like->post->users->notify(new UserLike($like));
+              }
+
             return to_route('outer.byId', ['id' => $request->post_id])->with('message', 'Post telah dilike!');
         }
 
@@ -153,5 +166,26 @@ class PostsController extends Controller
     {
         Posts::where('id', $request->id)->where('user_id', Auth::user()->id)->delete();
         return to_route('posts.main');
+    }
+
+    private function mentionUser($description, Posts $post)
+    {
+      $users = User::select('id', 'username')->get()->pluck('username')->map(function($item) {
+        return '@' . $item;
+      })->all();
+
+      $mentionedUser = Arr::where($users, function ($value, $key) use ($description) {
+        return Str::contains($description, $value);
+      });
+
+      $mentionedUser = collect($mentionedUser)->map(function($item) {
+        return substr($item, 1);
+      })->all();
+
+      $notifyUsers = User::whereIn('username', $mentionedUser)->get();
+
+      $notifyUsers->each(function($notifyUser) use ($post) {
+        $notifyUser->notify(new UserMentioned($post));
+      });
     }
 }

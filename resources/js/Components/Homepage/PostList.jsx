@@ -197,7 +197,7 @@ export default function PostList(props) {
         />
         <button
           type="button"
-          className={`btn btn-primary font-bold btn-md w-full rounded-md ${props.user == null || !isValid && 'text-white'}`}
+          className={`btn dark:text-white btn-primary font-bold btn-md w-full rounded-md ${props.user == null || !isValid && 'text-white'}`}
           disabled={props.user == null || !isValid ? true : false}
           onClick={() => handlerCommentSubmit()}
         >

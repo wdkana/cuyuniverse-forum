@@ -21,8 +21,8 @@ export default function Authenticated({ auth, header, children }) {
                             </div>
 
                             <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <NavLink href={route('dash.main')} active={route().current('dash.main')}>
-                                    Dashboard
+                                <NavLink href={route('dash.notif')} active={route().current('dash.notif')}>
+                                    Notification
                                 </NavLink>
                                 <NavLink href={route('posts.main')} active={route().current('posts.main')}>
                                     Manage Post
@@ -30,11 +30,8 @@ export default function Authenticated({ auth, header, children }) {
                                 <NavLink href={route('dash.saved.post')} active={route().current('dash.saved.post')}>
                                     Saved Post
                                 </NavLink>
-                                <NavLink href={route('dash.setting.profile')} active={route().current('dash.setting.profile')}>
-                                    Setting
-                                </NavLink>
-                                <NavLink href={route('dash.notif')} active={route().current('dash.notif')}>
-                                    Notification
+                                <NavLink href={route('dash.main')} active={route().current('dash.main')}>
+                                    Dashboard
                                 </NavLink>
                             </div>
                         </div>
@@ -70,6 +67,9 @@ export default function Authenticated({ auth, header, children }) {
                                     </Dropdown.Trigger>
 
                                     <Dropdown.Content>
+                                        <Dropdown.Link href={route('dash.setting.profile')} active={route().current('dash.setting.profile')} as="button">
+                                            Setting
+                                        </Dropdown.Link>
                                         <Dropdown.Link href={route('logout')} method="post" as="button">
                                             Log Out
                                         </Dropdown.Link>
@@ -115,9 +115,6 @@ export default function Authenticated({ auth, header, children }) {
                         <ResponsiveNavLink href={route('dash.saved.post')} active={route().current('dash.saved.post')}>
                             Saved Post
                         </ResponsiveNavLink>
-                        <ResponsiveNavLink href={route('dash.setting.profile')} active={route().current('dash.setting.profile')}>
-                            Setting
-                        </ResponsiveNavLink>
                         <ResponsiveNavLink href={route('dash.notif')} active={route().current('dash.notif')}>
                             Notification
                         </ResponsiveNavLink>
@@ -134,6 +131,9 @@ export default function Authenticated({ auth, header, children }) {
                         </div>
 
                         <div className="mt-3 space-y-1">
+                            <Dropdown.Link href={route('dash.setting.profile')} active={route().current('dash.setting.profile')} as="button">
+                                Setting
+                            </Dropdown.Link>
                             <ResponsiveNavLink method="post" href={route('logout')} as="button">
                                 Log Out
                             </ResponsiveNavLink>
