@@ -54,14 +54,13 @@ export default function MyPosts(props) {
             }
         >
             <Head title="Dashboard" />
-            <div className="flex flex-col justify-center items-center lg:flex-row lg:flex-wrap lg:items-strech pt-6 px-4 gap-6">
+            <div className="flex flex-col justify-center items-center lg:flex-row lg:flex-wrap lg:items-strech py-6 px-4 gap-6">
                 {showNotif && <NotificationAlert message={flash.message} />}
                 {props.data.length > 0 ? (
                     props.data.map((posts, i) => {
                         return (
-                            <div
-                                key={i}
-                                className="card w-full md:w-1/2 lg:w-1/3 xl:w-1/3 bg-base-100 dark:bg-slate-700 shadow-lg cursor-pointer hover:transition-all hover:delay-75 dark:hover:bg-gray-600 dark:text-white hover:-translate-y-1 hover:bg-neutral"
+                            <div key={i}
+                                className="card w-full md:w-1/2 lg:w-1/3 xl:w-1/3 bg-base-100 dark:bg-slate-700 text-base-content shadow-lg cursor-pointer transition-all duration-300 hover:delay-75 dark:hover:bg-gray-600 dark:text-white hover:-translate-y-1"
                             >
                                 <div className="card-body">
                                     <Link
@@ -71,7 +70,7 @@ export default function MyPosts(props) {
                                         className="card-title"
                                     >
                                         <p
-                                            className={`cursor-pointer hover:-translate-y-1 hover:transition-all text-xl text-left ${posts.description.length > 100
+                                            className={`cursor-pointer hover:-translate-y-1 transition-all duration-300 text-xl text-left ${posts.description.length > 100
                                                 ? "break-normal overflow-x-hidden"
                                                 : "break-words"
                                                 } h-20`}

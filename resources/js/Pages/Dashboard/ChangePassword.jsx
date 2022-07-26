@@ -72,7 +72,7 @@ export default function ChangePassword(props) {
                 <input
                   type="password"
                   name="oldPassword"
-                  className="w-full text-lg text-black font-bold font-mono input input-bordered rounded-md"
+                  className="w-full text-lg text-black font-bold font-mono input input-bordered rounded-md dark:bg-slate-900 dark:text-white dark:placeholder-slate-100"
                   required
                   value={data.oldPassword}
                   onChange={handleChange}
@@ -83,7 +83,7 @@ export default function ChangePassword(props) {
                 <input
                   type="password"
                   name="newPassword"
-                  className="w-full text-lg text-black font-bold font-mono input input-bordered rounded-md"
+                  className="w-full text-lg font-bold font-mono input input-bordered rounded-md dark:bg-slate-900 dark:text-white dark:placeholder-slate-100"
                   required
                   value={data.newPassword}
                   onChange={handleChange}
@@ -95,8 +95,7 @@ export default function ChangePassword(props) {
                   type="password"
                   name="newPassword_confirmation"
                   required
-                  className="w-full text-lg text-black font-bold font-mono input input-bordered rounded-md"
-                  value={data.newPassword_confirmation}
+                  className="w-full text-lg text-black font-bold font-mono input input-bordered rounded-md dark:bg-slate-900 dark:text-white dark:placeholder-slate-100" value={data.newPassword_confirmation}
                   onChange={handleChange}
                 />
               </div>
@@ -113,7 +112,7 @@ export default function ChangePassword(props) {
                   />
                 </label>
               </div>
-              <button type="submit" disabled={processing} className="btn w-full border-0 rounded-md mt-2 bg-primary hover:bg-secondary">
+              <button type="submit" disabled={processing} className="btn w-full border-0 rounded-md mt-2 bg-primary text-primary-content hover:bg-secondary">
                 Change
               </button>
             </form>

@@ -10,7 +10,7 @@ export default function Authenticated({ auth, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
     return (
         <div className="min-h-screen dark:text-white">
-            <nav className="md:shadow-lg dark:text-white dark:bg-slate-900">
+            <nav className="md:shadow-lg bg-white dark:text-white dark:bg-slate-900">
                 <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
                         <div className="flex">
@@ -67,7 +67,7 @@ export default function Authenticated({ auth, header, children }) {
                                     </Dropdown.Trigger>
 
                                     <Dropdown.Content>
-                                        <Dropdown.Link href={route('dash.setting.profile')} active={route().current('dash.setting.profile')} as="button">
+                                        <Dropdown.Link href={route('dash.setting.profile')} method="get" as="button">
                                             Setting
                                         </Dropdown.Link>
                                         <Dropdown.Link href={route('logout')} method="post" as="button">
@@ -81,7 +81,7 @@ export default function Authenticated({ auth, header, children }) {
                         <div className="-mr-2 flex items-center sm:hidden">
                             <button
                                 onClick={() => setShowingNavigationDropdown((previousState) => !previousState)}
-                                className="inline-flex items-center justify-center p-2 rounded-md hover:text-white hover:bg-neutral focus:outline-none focus:bg-neutral focus:text-white transition duration-150 ease-in-out"
+                                className="inline-flex items-center justify-center p-2 rounded-md hover:text-base-100 hover:bg-base-content focus:outline-none focus:bg-base-content focus:text-base-100 transition duration-150 ease-in-out"
                             >
                                 <svg className="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                                     <path
@@ -120,7 +120,7 @@ export default function Authenticated({ auth, header, children }) {
                         </ResponsiveNavLink>
                     </div>
 
-                    <div className="pt-4 pb-1 border-b border-neutral">
+                    <div className="pt-4 pb-1 border-b border-base-100">
                         <div className="px-4 justify-center flex-col flex items-center gap-1">
                             <div className="w-16 rounded-full">
                                 <div className='avatar w-16 h-16 mr-2'>
@@ -131,9 +131,9 @@ export default function Authenticated({ auth, header, children }) {
                         </div>
 
                         <div className="mt-3 space-y-1">
-                            <Dropdown.Link href={route('dash.setting.profile')} active={route().current('dash.setting.profile')} as="button">
+                            <ResponsiveNavLink href={route('dash.setting.profile')} active={route().current('dash.setting.profile')} as="button">
                                 Setting
-                            </Dropdown.Link>
+                            </ResponsiveNavLink>
                             <ResponsiveNavLink method="post" href={route('logout')} as="button">
                                 Log Out
                             </ResponsiveNavLink>
