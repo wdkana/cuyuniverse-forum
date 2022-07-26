@@ -36,7 +36,7 @@ const CreatePost = ({ props }) => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
       <div className="flex flex-col justify-center items-center p-4 gap-4">
-        <div className="alert alert-sm rounded-md shadow-lg w-full lg:w-1/2 bg-secondary text-secondary-content dark:bg-slate-700">
+        <div className="alert alert-sm rounded-md shadow-lg w-full lg:w-1/2 dark:bg-slate-700">
           <div>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-current flex-shrink-0 w-6 h-6 ">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -60,7 +60,7 @@ const CreatePost = ({ props }) => {
           disabled={!isValid}
           className={
             !isValid
-              ? "bg-secondary text-secondary-content py-2 rounded-md lg:w-1/2 w-full text-secondary-content dark:bg-slate-500 cursor-not-allowed"
+              ? "bg-secondary text-secondary-content py-2 rounded-md lg:w-1/2 w-full dark:bg-slate-500 cursor-not-allowed"
               : "bg-primary text-primary-content py-2 rounded-md hover:bg-slate-600 lg:w-1/2 w-full dark:bg-slate-700 cursor-pointer"
           }
           onClick={() => handlePostSubmit()}

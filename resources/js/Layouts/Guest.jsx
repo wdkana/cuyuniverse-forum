@@ -3,13 +3,12 @@ import Dropdown from "@/Components/Default/Dropdown";
 import NavLink from "@/Components/Default/NavLink";
 import ResponsiveNavLink from "@/Components/Default/ResponsiveNavLink";
 import {
-  MdOutlineArticle,
-  MdOutlineTrendingUp,
-  MdOutlineLeaderboard,
   MdLogin,
   MdDashboard,
-  MdPeople,
+  MdOutlineHome,
+  MdSearch,
 } from "react-icons/md";
+import { FaGithub } from "react-icons/fa"
 import { Link } from "@inertiajs/inertia-react";
 import DarkToggle from "@/Components/Homepage/DarkToggle";
 
@@ -19,41 +18,31 @@ export default function Guest({ children, auth }) {
 
   return (
     <div className="min-h-screen">
-      <nav className="md:shadow-lg bg-white dark:text-white dark:bg-slate-900">
-        <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex gap-2">
-              <div className="shrink-1 flex items-center">
+      <nav className="md:shadow-lg fixed bottom-0 border-t-base-200 border-2 lg:top-0 lg:sticky z-10 w-full bg-white dark:text-white dark:bg-slate-900">
+        <div className="w-full mx-auto sm:px-6 lg:px-8">
+          <div className="flex justify-around lg:justify-center h-16">
+            <div className="flex gap-2 w-full">
+              <div className="shrink-1 flex items-center w-full lg:w-auto">
                 <NavLink
                   href={route("outer.main")}
                   active={route().current("outer.main")}
                 >
-                  <MdOutlineTrendingUp className="m-1" />
-                  Trend
+                  <MdOutlineHome className="m-1" size={24} />
                 </NavLink>
               </div>
 
-              <div className="flex items-center">
-                <NavLink
-                  href={route("outer.posts")}
-                  active={route().current("outer.posts")}
-                >
-                  <MdOutlineArticle className="m-1" /> Post
-                </NavLink>
-              </div>
-
-              <div className="flex items-center">
+              <div className="flex items-center w-full lg:w-auto">
                 <NavLink
                   href={route("author.status")}
                   active={route().current("author.status")}
                 >
-                  <MdOutlineLeaderboard className="m-1" /> User
+                  <MdSearch className="m-1" size={24} />
                 </NavLink>
               </div>
 
-              <div className="flex items-center">
+              <div className="flex items-center w-full lg:w-auto">
                 <NavLink href="/teams" active={route().current("outer.teams")}>
-                  <MdPeople className="m-1" /> Team
+                  <FaGithub className="m-1" size={24} />
                 </NavLink>
               </div>
             </div>
@@ -168,13 +157,6 @@ export default function Guest({ children, auth }) {
           }
         >
           <div className="pt-2 space-y-1">
-            <ResponsiveNavLink
-              href={route("author.status")}
-              active={route().current("author.status")}
-            >
-              <MdOutlineLeaderboard className="m-1" />
-              Semua Pengguna
-            </ResponsiveNavLink>
             {auth && (
               <ResponsiveNavLink
                 href={route("dash.main")}
