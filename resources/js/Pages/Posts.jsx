@@ -91,7 +91,7 @@ export default function PostsPage(props) {
                 name="search"
                 id="search"
                 placeholder="Search . . ."
-                value={keyword}
+                value={keyword || ''}
                 onChange={(e) => setKeyword(e.target.value)}
               />
             </div>
