@@ -24,7 +24,7 @@ export default function TeamsPage(props) {
   return (
     <Guest auth={props.auth.user}>
       <Head title={props.title} />
-      <div className="min-h-screen">
+      <div className="min-h-screen mb-20 lg:mb-0">
         <div className="text-center pt-6">
           <h1 className="font-bold text-lg dark:text-white">✨ {props.description} ✨</h1>
           <a href={props.repo_link} className="btn btn-link btn-sm dark:text-white">Repository Link</a>

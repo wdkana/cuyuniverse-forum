@@ -97,12 +97,12 @@ export default function PostsPage(props) {
             </div>
           </div>
         </div>
-        {posts.length ? (
+        {posts.length > 0 ? (
           <>
             <div className="flex flex-col justify-center items-center lg:flex-row lg:flex-wrap lg:items-strech py-6 px-4 gap-6">
               <PostsList posts={posts} />
             </div>
-            <div className="flex justify-center items-center py-6">
+            <div className="flex justify-center items-center mb-20 md:mb-4">
               <Paginate meta={meta} />
             </div>
           </>
@@ -123,7 +123,7 @@ export default function PostsPage(props) {
                     d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                   ></path>
                 </svg>
-                <span>Tidak ada postingan yang tersedia</span>
+                <span>Belum ada postingan yang tersedia</span>
               </div>
             </div>
           </div>

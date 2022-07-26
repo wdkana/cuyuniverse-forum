@@ -6,21 +6,21 @@ import { Inertia } from "@inertiajs/inertia";
 import { debounce, pickBy } from "lodash";
 
 export default function AuthorListPage(props) {
-    const [keyword, setKeyword] = useState(props.filter.search);
-    const reload = useCallback(
-      debounce((q) => {
-        Inertia.get(
-          "/cuypeople/status",
-          pickBy({ search: q, page: props.filter.page }),
-          {
-            preserveState: true,
-          }
-        );
-      }, 500),
-      []
-    );
-    
-    useEffect(() => reload(keyword), [keyword]);
+  const [keyword, setKeyword] = useState(props.filter.search);
+  const reload = useCallback(
+    debounce((q) => {
+      Inertia.get(
+        "/cuypeople/status",
+        pickBy({ search: q, page: props.filter.page }),
+        {
+          preserveState: true,
+        }
+      );
+    }, 500),
+    []
+  );
+
+  useEffect(() => reload(keyword), [keyword]);
   return (
     <Guest auth={props.auth.user}>
       <Head title={props.title} />
@@ -31,16 +31,16 @@ export default function AuthorListPage(props) {
         </div>
         <div className="w-full flex justify-center my-7">
           <div className="w-11/12 lg:w-[77%] flex justify-end">
-              <input
-                className="h-10 w-96 bg-slate-100 dark:bg-slate-900 placeholder:text-gray-600 dark:placeholder:text-slate-100 focus:outline-none focus:ring focus:ring-blue-100 focus:border-blue-400 dark:focus:border-slate-500 dark:focus:ring-0 border rounded-lg border-gray-200 dark:border-slate-500"
-                autoComplete="off"
-                type="text"
-                name="search"
-                id="search"
-                placeholder="Search . . ."
-                value={keyword || ''}
-                onChange={(e) => setKeyword(e.target.value)}
-              />
+            <input
+              className="h-10 w-96 bg-slate-100 dark:bg-slate-900 placeholder:text-gray-600 dark:placeholder:text-slate-100 focus:outline-none focus:ring focus:ring-blue-100 focus:border-blue-400 dark:focus:border-slate-500 dark:focus:ring-0 border rounded-lg border-gray-200 dark:border-slate-500"
+              autoComplete="off"
+              type="text"
+              name="search"
+              id="search"
+              placeholder="Search . . ."
+              value={keyword || ''}
+              onChange={(e) => setKeyword(e.target.value)}
+            />
           </div>
         </div>
         <div className="flex flex-col justify-center items-center sm:flex-row sm:flex-wrap p-4 gap-6 dark:text-white">
@@ -82,8 +82,8 @@ export default function AuthorListPage(props) {
                       {user.total_comment > 10
                         ? "📖"
                         : user.total_post > 5 && user.total_comment > 10
-                        ? "🐱‍💻"
-                        : "🗿"}
+                          ? "🐱‍💻"
+                          : "🗿"}
                     </div>
                     <div className="text-sm">
                       {user.total_post == 0
@@ -96,7 +96,7 @@ export default function AuthorListPage(props) {
             ))}
         </div>
 
-        <div className="flex justify-center items-center p-4">
+        <div className="flex justify-center items-center mb-20 md:mb-4">
           <Paginate meta={props.users} />
         </div>
       </div>
