@@ -14,9 +14,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::controller(OuterController::class)->name('outer.')->group(
     function () {
-        Route::get('/', 'index')->name('main')->middleware('throttle:20,1');
+        Route::get('/', 'index')->name('main')->middleware('throttle:25,1');
         Route::get('/teams', 'Teams')->name('teams');
-        Route::get('/posts', 'postsAll')->name('posts');
         Route::get('/post/{id}', 'find')->name('byId');
     }
 );
