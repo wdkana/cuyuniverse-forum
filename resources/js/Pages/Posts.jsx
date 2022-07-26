@@ -20,7 +20,7 @@ export default function PostsPage(props) {
   const reload = useCallback(
     debounce((q) => {
       Inertia.get(
-        "/posts",
+        "/",
         pickBy({ search: q, page: filter.page, filtered: filter.filtered }),
         {
           preserveState: true,
@@ -73,7 +73,7 @@ export default function PostsPage(props) {
                         <Link
                           preserveState
                           className={`block px-4 py-2 hover:bg-gray-100 dark:hover:bg-slate-600 font-medium capitalize text-sm`}
-                          href={`/posts?filtered=${menu.value}`}
+                          href={`?filtered=${menu.value}`}
                         >
                           {menu.name}
                         </Link>
@@ -91,7 +91,7 @@ export default function PostsPage(props) {
                 name="search"
                 id="search"
                 placeholder="Search . . ."
-                value={keyword}
+                value={keyword || ''}
                 onChange={(e) => setKeyword(e.target.value)}
               />
             </div>
