@@ -36,7 +36,7 @@ const CreatePost = ({ props }) => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
       <div className="flex flex-col justify-center items-center p-4 gap-4">
-        <div className="alert alert-sm rounded-md shadow-lg w-full lg:w-1/2 bg-indigo-500 text-white dark:bg-slate-700">
+        <div className="alert alert-sm rounded-md shadow-lg w-full lg:w-1/2 dark:bg-slate-700">
           <div>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-current flex-shrink-0 w-6 h-6 ">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -51,7 +51,7 @@ const CreatePost = ({ props }) => {
             minLength={10}
             maxLength={200}
             required
-            className="textarea h-36 rounded-md w-full bg-slate-200 mt-3 dark:bg-slate-900 dark:text-white dark:placeholder-slate-100"
+            className="textarea h-36 rounded-md w-full border-primary mt-3 dark:bg-slate-900 dark:text-white dark:placeholder-slate-100 text-xl"
             placeholder="Isi posting [min:10]"
             onChange={(description) => handleChangePostDescription(description)}
           ></textarea>
@@ -60,8 +60,8 @@ const CreatePost = ({ props }) => {
           disabled={!isValid}
           className={
             !isValid
-              ? "bg-indigo-300 py-2 rounded-md lg:w-1/2 w-full text-white dark:bg-slate-500 cursor-not-allowed"
-              : "bg-indigo-500 py-2 rounded-md hover:bg-slate-600 lg:w-1/2 w-full text-white dark:bg-slate-700 cursor-pointer"
+              ? "bg-secondary text-secondary-content py-2 rounded-md lg:w-1/2 w-full dark:bg-slate-500 cursor-not-allowed"
+              : "bg-primary text-primary-content py-2 rounded-md hover:bg-slate-600 lg:w-1/2 w-full dark:bg-slate-700 cursor-pointer"
           }
           onClick={() => handlePostSubmit()}
         >

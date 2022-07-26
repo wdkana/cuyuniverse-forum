@@ -3,7 +3,7 @@ import React from "react";
 
 export default function Paginate({ meta }) {
   return (
-    <div className="flex items-center gap-x-4">
+    <div className="flex flex-wrap gap-2 py-8 px-2">
       {meta.links.map((link, key) =>
         link.url == null ? (
           <span
@@ -14,11 +14,10 @@ export default function Paginate({ meta }) {
         ) : (
           <Link
             key={key}
-            className={`${
-              link.active
-                ? "text-blue-500 px-3 py-1 shadow rounded-lg bg-white"
-                : ""
-            }`}
+            className={`${link.active
+              ? "text-blue-500 px-3 py-1 shadow rounded-lg bg-white"
+              : ""
+              }`}
             href={link.url || ""}
             dangerouslySetInnerHTML={{ __html: link.label }}
           />

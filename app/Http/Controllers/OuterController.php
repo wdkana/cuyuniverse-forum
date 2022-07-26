@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\PostResource;
-use App\Http\Resources\PostsCollection;
 use App\Models\Like;
 use App\Models\Posts;
 use App\Models\SavedPosts;
@@ -13,27 +12,7 @@ use Inertia\Inertia;
 
 class OuterController extends Controller
 {
-  public function index()
-  {
-    $posts = new PostsCollection(Posts::with(['comments', 'users:id,image'])->lazy()->shuffle()->take(4)->all());
-    return Inertia::render('Home', [
-      'title' => "HOME",
-      'root' => "HOME",
-      'description' => "Selamat Datang Di Cuy Universe Portal",
-      'posts' => $posts,
-    ]);
-  }
-
-  public function Teams()
-  {
-    return Inertia::render('Teams', [
-      'title' => "TEAMS",
-      'root' => "TEAMS",
-      'description' => "Cuy Universe Teams",
-    ]);
-  }
-
-  public function postsAll(Request $request)
+  public function index(Request $request)
   {
     $posts = Posts::query()->with(['comments', 'users:id,image'])
       ->when($request->search, fn ($q, $key) => $q->where('description', 'like', "%{$key}%"))
@@ -53,11 +32,21 @@ class OuterController extends Controller
       });
 
     return inertia('Posts', [
-      'title' => "POSTINGAN CUYPEOPLE",
+      'title' => "CUY UNIVERSE",
       'root' => 'HOME',
-      'description' => "Semua postingan dari CuyPeople tersedia disini",
-      'posts' => PostResource::collection($posts->latest()->paginate(20)->withQueryString()),
+      'description' => "Tempat Nongkrongnya Programmer Indie",
+      'posts' => PostResource::collection($posts->latest()->paginate(22)->withQueryString()),
       'filter' => $request->only(['search', 'page', 'filtered'])
+    ]);
+  }
+
+  public function Teams()
+  {
+    return Inertia::render('Teams', [
+      'title' => "Coders Contributor",
+      'root' => "TEAMS",
+      'description' => "Cuy Universe Dev",
+      'repo_link' => "https://github.com/deaaprizal/laract9"
     ]);
   }
 

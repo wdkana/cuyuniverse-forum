@@ -70,12 +70,12 @@ const Content = ({
         leaveTo="transform opacity-0 scale-95"
       >
         <div
-          className={`absolute bg-base-300 z-50 mt-2 rounded-md shadow-lg ${alignmentClasses} ${widthClasses}`}
+          className={`absolute bg-base-100 z-50 mt-2 rounded-md shadow-lg ${alignmentClasses} ${widthClasses}`}
           onClick={() => setOpen(false)}
         >
           <div
             className={
-              `rounded-md ring-1 ring-black ring-opacity-5 ` + contentClasses
+              `rounded-md ring-1 ring-secondary ring-opacity-5 ` + contentClasses
             }
           >
             {children}
@@ -86,13 +86,13 @@ const Content = ({
   );
 };
 
-const DropdownLink = ({ href, method = "post", as = "a", children }) => {
+const DropdownLink = ({ href, method = "post", as = "a", children, active }) => {
   return (
     <Link
       href={href}
       method={method}
       as={as}
-      className="block w-full px-4 py-2 text-left dark:text-slate-900 text-sm leading-5 hover:bg-indigo-600 hover:text-white dark:hover:text-white focus:outline-none focus:bg-indigo-700 transition duration-150 ease-in-out"
+      className={`block w-full px-4 py-2 text-left dark:text-slate-900 text-sm leading-5 hover:bg-primary hover:text-primary-content focus:border-b-primary dark:hover:text-white focus:outline-none focus:bg-primary transition duration-150 ease-in-out ${active ? 'bg-primary text-primary-content' : 'bg-transparent hover:text-primary-content'}`}
     >
       {children}
     </Link>

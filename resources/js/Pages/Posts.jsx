@@ -20,7 +20,7 @@ export default function PostsPage(props) {
   const reload = useCallback(
     debounce((q) => {
       Inertia.get(
-        "/posts",
+        "/",
         pickBy({ search: q, page: filter.page, filtered: filter.filtered }),
         {
           preserveState: true,
@@ -73,7 +73,7 @@ export default function PostsPage(props) {
                         <Link
                           preserveState
                           className={`block px-4 py-2 hover:bg-gray-100 dark:hover:bg-slate-600 font-medium capitalize text-sm`}
-                          href={`/posts?filtered=${menu.value}`}
+                          href={`?filtered=${menu.value}`}
                         >
                           {menu.name}
                         </Link>
@@ -91,18 +91,18 @@ export default function PostsPage(props) {
                 name="search"
                 id="search"
                 placeholder="Search . . ."
-                value={keyword}
+                value={keyword || ''}
                 onChange={(e) => setKeyword(e.target.value)}
               />
             </div>
           </div>
         </div>
-        {posts.length ? (
+        {posts.length > 0 ? (
           <>
             <div className="flex flex-col justify-center items-center lg:flex-row lg:flex-wrap lg:items-strech py-6 px-4 gap-6">
               <PostsList posts={posts} />
             </div>
-            <div className="flex justify-center items-center py-6">
+            <div className="flex justify-center items-center mb-20 md:mb-4">
               <Paginate meta={meta} />
             </div>
           </>
@@ -123,7 +123,7 @@ export default function PostsPage(props) {
                     d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                   ></path>
                 </svg>
-                <span>Tidak ada postingan yang tersedia</span>
+                <span>Belum ada postingan yang tersedia</span>
               </div>
             </div>
           </div>

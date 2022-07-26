@@ -7,6 +7,7 @@ use App\Models\User;
 use Inertia\Inertia;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Http\Request;
 
 class AuthorController extends Controller
 {
@@ -32,9 +33,9 @@ class AuthorController extends Controller
 
     public $data = [];
 
-    public function userOnlineStatus()
+    public function userOnlineStatus(Request $request)
     {
-        $users = User::withCount(['posts', 'comments'])->where('email_verified_at', '!=', NULL)->get();
+        $users = User::withCount(['posts', 'comments'])->when($request->search, fn ($q, $key) => $q->where('username', 'like', "%{$key}%"))->where('email_verified_at', '!=', NULL)->paginate(24);
         $user = $users->map(function ($items) {
             $data['username'] = $items->username;
             $data['is_online'] = Cache::has('user-is-online-' . $items->id);
@@ -49,7 +50,9 @@ class AuthorController extends Controller
             "title" => "CUY PEOPLE STATS",
             'root' => "HOME",
             "description" => "Pengguna aktif dan non-aktif di Cuy Universe",
-            "data" => $user
+            "users" => $users,
+            "data" => $user,
+            "filter" => $request->only(['search', 'page'])
         ]);
     }
 }
