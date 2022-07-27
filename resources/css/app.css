@@ -30,6 +30,9 @@ html.dark body {
   @apply bg-slate-800 text-white;
 }
 
+.avatar {
+  z-index: 1;
+}
 
 .avatar svg {
     display: none;

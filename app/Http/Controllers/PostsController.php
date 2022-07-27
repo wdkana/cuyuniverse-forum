@@ -15,6 +15,7 @@ use App\Notifications\UserMentioned;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
 
 class PostsController extends Controller
@@ -69,7 +70,7 @@ class PostsController extends Controller
         $posts->user_id = auth()->user()->id;
         $posts->save();
 
-        $this->mentionUser($request->description, $posts);
+        $this->mentionUsers($request->description, $posts);
 
         return to_route('posts.main')->with('message', 'Posting Berhasil');
     }
@@ -111,11 +112,11 @@ class PostsController extends Controller
         $saveComment = $post->comments()->save($comment);
 
         $user = User::find($post->user_id);
-        if($post->user_id !== Auth::id()) {
+        if ($post->user_id !== Auth::id()) {
             $user->notify(new UserComment($saveComment));
         }
 
-        $this->mentionUser($request->description, $post);
+        $this->mentionUsers($request->description, $post);
 
         return to_route('outer.byId', ['id' => $request->post_id])->with('message', 'Komentar telah dikirim');
     }
@@ -125,15 +126,15 @@ class PostsController extends Controller
     {
         $postLiked = Like::where('post_id', $request->post_id)->where('user_id', Auth::user()->id)->first();
 
-        if (! $postLiked) {
+        if (!$postLiked) {
             $like = Like::create([
                 'post_id' => $request->post_id,
                 'user_id' => Auth::user()->id
-              ]);
+            ]);
 
-              if($like->post->users->id !== Auth::id()) {
+            if ($like->post->users->id !== Auth::id()) {
                 $like->post->users->notify(new UserLike($like));
-              }
+            }
 
             return to_route('outer.byId', ['id' => $request->post_id])->with('message', 'Post telah dilike!');
         }
@@ -168,24 +169,28 @@ class PostsController extends Controller
         return to_route('posts.main');
     }
 
-    private function mentionUser($description, Posts $post)
+    /**
+     * @param string $content
+     * @param Posts $post
+     * 
+     * @return void
+     */
+    public function mentionUsers(string $content, Posts $post)
     {
-      $users = User::select('id', 'username')->get()->pluck('username')->map(function($item) {
-        return '@' . $item;
-      })->all();
+        $pattern = "/(?:^| )(@[A-Za-z0-9-_]+)/m";
+        $mentionedUsers = [];
 
-      $mentionedUser = Arr::where($users, function ($value, $key) use ($description) {
-        return Str::contains($description, $value);
-      });
+        $res = preg_match_all($pattern, $content, $mentionedUsers);
+        if (!$res || empty($mentionedUsers[1])) {
+            return;
+        }
 
-      $mentionedUser = collect($mentionedUser)->map(function($item) {
-        return substr($item, 1);
-      })->all();
+        $mentionedUsers = array_map(function ($username) {
+            return Str::after($username, "@");
+        }, $mentionedUsers[1]);
 
-      $notifyUsers = User::whereIn('username', $mentionedUser)->get();
+        $notifyUsers = User::whereIn('username', $mentionedUsers)->get();
 
-      $notifyUsers->each(function($notifyUser) use ($post) {
-        $notifyUser->notify(new UserMentioned($post));
-      });
+        Notification::send($notifyUsers, new UserMentioned(Auth::user(), $post));
     }
 }
