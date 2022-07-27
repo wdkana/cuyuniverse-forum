@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { Head, Link } from "@inertiajs/inertia-react";
 import Guest from "@/Layouts/Guest";
 import Paginate from "@/Components/Homepage/Paginate";
@@ -7,6 +7,8 @@ import { debounce, pickBy } from "lodash";
 
 export default function AuthorListPage(props) {
   const [keyword, setKeyword] = useState(props.filter.search);
+  const isFirstRender = useRef(true)
+
   const reload = useCallback(
     debounce((q) => {
       Inertia.get(
@@ -20,7 +22,14 @@ export default function AuthorListPage(props) {
     []
   );
 
-  useEffect(() => reload(keyword), [keyword]);
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false
+      return
+    }
+    reload(keyword)
+  }, [keyword]);
+
   return (
     <Guest auth={props.auth.user}>
       <Head title={props.title} />
