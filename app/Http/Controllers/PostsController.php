@@ -48,25 +48,27 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
         $request->validate(
             [
                 'description' => 'required|string|min:4|max:200',
-                // 'image' => 'nullable|image|mimes:jpeg,png,jpg,|max:1048',
+                'tags' => 'string|min:2|max:20|nullable',
                 'token' => 'required'
             ]
         );
 
+        $tags = $request->tags;
+        $hashtag = str_replace('#', '', $tags);
+
         $posts = new Posts();
+
         $posts->description = $request->description;
-        // if ($request->hasFile('image')) {
-        //     $nama_foto = Auth::user()->username . Str::random(60) . "." . $request->image->getClientOriginalExtension();
-        //     $filePath = $request->file('image')->storeAs('images_post', $nama_foto);
-        //     $posts->image = $nama_foto;
-        // }
         $posts->author = auth()->user()->username;
         $posts->user_id = auth()->user()->id;
+        $posts->hashtag = $tags ? $hashtag : NULL;
+
         $posts->save();
 
         $this->mentionUser($request->description, $posts);
@@ -111,7 +113,7 @@ class PostsController extends Controller
         $saveComment = $post->comments()->save($comment);
 
         $user = User::find($post->user_id);
-        if($post->user_id !== Auth::id()) {
+        if ($post->user_id !== Auth::id()) {
             $user->notify(new UserComment($saveComment));
         }
 
@@ -125,15 +127,15 @@ class PostsController extends Controller
     {
         $postLiked = Like::where('post_id', $request->post_id)->where('user_id', Auth::user()->id)->first();
 
-        if (! $postLiked) {
+        if (!$postLiked) {
             $like = Like::create([
                 'post_id' => $request->post_id,
                 'user_id' => Auth::user()->id
-              ]);
+            ]);
 
-              if($like->post->users->id !== Auth::id()) {
+            if ($like->post->users->id !== Auth::id()) {
                 $like->post->users->notify(new UserLike($like));
-              }
+            }
 
             return to_route('outer.byId', ['id' => $request->post_id])->with('message', 'Post telah dilike!');
         }
@@ -170,22 +172,22 @@ class PostsController extends Controller
 
     private function mentionUser($description, Posts $post)
     {
-      $users = User::select('id', 'username')->get()->pluck('username')->map(function($item) {
-        return '@' . $item;
-      })->all();
+        $users = User::select('id', 'username')->get()->pluck('username')->map(function ($item) {
+            return '@' . $item;
+        })->all();
 
-      $mentionedUser = Arr::where($users, function ($value, $key) use ($description) {
-        return Str::contains($description, $value);
-      });
+        $mentionedUser = Arr::where($users, function ($value, $key) use ($description) {
+            return Str::contains($description, $value);
+        });
 
-      $mentionedUser = collect($mentionedUser)->map(function($item) {
-        return substr($item, 1);
-      })->all();
+        $mentionedUser = collect($mentionedUser)->map(function ($item) {
+            return substr($item, 1);
+        })->all();
 
-      $notifyUsers = User::whereIn('username', $mentionedUser)->get();
+        $notifyUsers = User::whereIn('username', $mentionedUser)->get();
 
-      $notifyUsers->each(function($notifyUser) use ($post) {
-        $notifyUser->notify(new UserMentioned($post));
-      });
+        $notifyUsers->each(function ($notifyUser) use ($post) {
+            $notifyUser->notify(new UserMentioned($post));
+        });
     }
 }
