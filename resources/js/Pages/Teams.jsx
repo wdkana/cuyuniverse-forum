@@ -37,30 +37,38 @@ export default function TeamsPage(props) {
             .map((item, index) => {
               return (
                 <a href={item.html_url} key={index} target="_blank">
-                  {item.contributions > 10 ? (
-                    <div
-                      className="card w-72 card-side bg-gradient-to-r from-yellow-300 to-amber-600 text-black font-semibold shadow-lg dark:shadow-slate-900"
-                      key={index}>
-                      <img src={item.avatar_url} alt="" className="rounded-full h-16 w-16 ml-4 mt-3 align-middle"></img>
-                      <div className="card-body">
-                        <h3 className="card-title">
-                          {item.login.length > 14 ? item.login.slice(0, 14) + "..." : item.login}
-                        </h3>
-                        <p className="card-text">{item.contributions} contributions</p>
+                  <div className="all-card lg:hover:-translate-y-1 lg:hover:scale-110 transition ease-in-out duration-200">
+                    {item.contributions > 10 ? (
+                      <div
+                        className="card w-72 card-side bg-gradient-to-r from-yellow-300 to-amber-600 lg:hover:from-amber-600 lg:hover:to-yellow-300 brightness-150 text-black font-semibold shadow-lg dark:shadow-slate-900"
+                        key={index}>
+                        <img
+                          src={item.avatar_url}
+                          alt=""
+                          className="rounded-full h-16 w-16 ml-4 mt-3 align-middle"></img>
+                        <div className="card-body">
+                          <h3 className="card-title">
+                            {item.login.length > 14 ? item.login.slice(0, 14) + "..." : item.login}
+                          </h3>
+                          <p className="card-text">{item.contributions} contributions</p>
+                        </div>
                       </div>
-                    </div>
-                  ) : (
-                    <div
-                      className="card w-72 card-side dark:bg-blue-600 dark:text-white shadow-lg dark:shadow-slate-900"
-                      key={index}>
-                      <img src={item.avatar_url} alt="" className="rounded-full h-16 w-16 ml-4 mt-3 align-middle"></img>
-                      <div className="card-body">
-                        <h3 className="card-title">
-                          {item.login.length > 14 ? item.login.slice(0, 14) + "..." : item.login}
-                        </h3>
+                    ) : (
+                      <div
+                        className="card w-72 card-side dark:bg-blue-600 dark:text-white shadow-lg dark:shadow-slate-900"
+                        key={index}>
+                        <img
+                          src={item.avatar_url}
+                          alt=""
+                          className="rounded-full h-16 w-16 ml-4 mt-3 align-middle"></img>
+                        <div className="card-body">
+                          <h3 className="card-title">
+                            {item.login.length > 14 ? item.login.slice(0, 14) + "..." : item.login}
+                          </h3>
+                        </div>
                       </div>
-                    </div>
-                  )}
+                    )}
+                  </div>
                 </a>
               );
             }, this)}
