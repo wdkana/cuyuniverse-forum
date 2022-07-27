@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import {useEffect} from "react";
 
 const DarkToggle = () => {
   useEffect(() => {
@@ -15,7 +15,10 @@ const DarkToggle = () => {
       }
     });
 
-    if (localStorage.theme === "dark" || (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+    if (
+      localStorage.theme === "dark" ||
+      (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)
+    ) {
       document.documentElement.classList.add("dark");
     } else {
       document.documentElement.classList.remove("dark");
@@ -23,7 +26,7 @@ const DarkToggle = () => {
   }, []);
 
   return (
-    <div className="relative">
+    <div className="relative w-10">
       <div className="absolute">
         <input
           id="theme-toggle"
@@ -37,8 +40,7 @@ const DarkToggle = () => {
           className="w-7 h-7 text-white dark:text-black"
           fill="currentColor"
           viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+          xmlns="http://www.w3.org/2000/svg">
           <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
         </svg>
       </div>

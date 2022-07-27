@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Head, Link } from "@inertiajs/inertia-react";
 import PostsList from "@/Components/Homepage/PostsLists";
 import Paginate from "@/Components/Homepage/Paginate";
@@ -16,6 +16,7 @@ export default function PostsPage(props) {
   const { auth, title, description, filter } = props;
   const { data: posts, meta } = props.posts;
   const [keyword, setKeyword] = useState(filter.search);
+  const isFirstRender = useRef(true)
 
   const reload = useCallback(
     debounce((q) => {
@@ -30,7 +31,14 @@ export default function PostsPage(props) {
     []
   );
 
-  useEffect(() => reload(keyword), [keyword]);
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false
+      return
+    }
+    reload(keyword)
+  }, [keyword]);
+
   return (
     <Guest auth={auth.user}>
       <Head title={title} />
