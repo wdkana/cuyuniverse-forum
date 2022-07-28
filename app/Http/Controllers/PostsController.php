@@ -68,6 +68,7 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
+
     public function store(Request $request)
     {
         if ($redirect = $this->checkRateLimiter("post", Config::get('rate-limit.post'))) {
@@ -77,20 +78,21 @@ class PostsController extends Controller
         $request->validate(
             [
                 'description' => 'required|string|min:4|max:200',
-                // 'image' => 'nullable|image|mimes:jpeg,png,jpg,|max:1048',
+                'tags' => 'string|min:2|max:20|nullable',
                 'token' => 'required'
             ]
         );
 
+        $tags = $request->tags;
+        $hashtag = str_replace('#', '', $tags);
+
         $posts = new Posts();
+
         $posts->description = $request->description;
-        // if ($request->hasFile('image')) {
-        //     $nama_foto = Auth::user()->username . Str::random(60) . "." . $request->image->getClientOriginalExtension();
-        //     $filePath = $request->file('image')->storeAs('images_post', $nama_foto);
-        //     $posts->image = $nama_foto;
-        // }
         $posts->author = auth()->user()->username;
         $posts->user_id = auth()->user()->id;
+        $posts->hashtag = $tags ? $hashtag : NULL;
+
         $posts->save();
 
         $this->mentionUsers($request->description, $posts);
