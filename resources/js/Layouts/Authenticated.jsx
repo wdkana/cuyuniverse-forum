@@ -100,6 +100,13 @@ export default function Authenticated({auth, header, children}) {
                       Saved Post
                     </Dropdown.Link>
                     <Dropdown.Link
+                      href={route("dash.stats")}
+                      active={route().current("dash.stats")}
+                      as="button"
+                      method="get">
+                      Statistics
+                    </Dropdown.Link>
+                    <Dropdown.Link
                       href={route("dash.setting.profile")}
                       method="get"
                       as="button"
@@ -152,6 +159,9 @@ export default function Authenticated({auth, header, children}) {
             </ResponsiveNavLink>
             <ResponsiveNavLink href={route("dash.notif")} active={route().current("dash.notif")}>
               Notification
+            </ResponsiveNavLink>
+            <ResponsiveNavLink href={route("dash.stats")} active={route().current("dash.stats")}>
+              Statistics
             </ResponsiveNavLink>
           </div>
 
