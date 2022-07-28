@@ -7,7 +7,7 @@ const nothing = () => {
 const isNotif = message => {
   if (message) {
     return (
-      <div className="toast toast-top toast-center z-10 ">
+      <div className="toast toast-center toast-top z-10 ">
         <div className="alert bg-primary dark:bg-slate-700 dark:text-slate-300">
           <span className="text-sm">{message}</span>
         </div>

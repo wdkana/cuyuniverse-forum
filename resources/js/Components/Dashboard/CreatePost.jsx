@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Inertia } from "@inertiajs/inertia";
-import { findTags } from "@/utils/jsHelper";
-import './CreatePost.css'
+import React, {useEffect, useRef, useState} from "react";
+import {Inertia} from "@inertiajs/inertia";
+import {findTags} from "@/utils/jsHelper";
+import "./CreatePost.css";
 import NotificationAlert from "../Default/NotificationAlert";
 
-const CreatePost = ({ props }) => {
-  const inputPost = useRef(null)
+const CreatePost = ({props}) => {
+  const inputPost = useRef(null);
   const [description, setDescription] = useState("");
   const [limiter, setLimiter] = useState(200);
   const [isValid, setIsValid] = useState(true);
@@ -13,7 +13,7 @@ const CreatePost = ({ props }) => {
   const [isLimit, setIsLimit] = useState(false);
   const [isErrorNotif, setIsErrorNotif] = useState(false);
 
-  const regexHastag = new RegExp(/(^|\W)(#[a-z\d][\w-]*)/ig);
+  const regexHastag = new RegExp(/(^|\W)(#[a-z\d][\w-]*)/gi);
 
   useEffect(() => {
     let mount = true;
@@ -29,8 +29,8 @@ const CreatePost = ({ props }) => {
   }, [description.length]);
 
   useEffect(() => {
-    props.errors ? setIsErrorNotif(true) : setIsErrorNotif(false)
-  }, [props.errors])
+    props.errors ? setIsErrorNotif(true) : setIsErrorNotif(false);
+  }, [props.errors]);
 
   const submitPost = () => {
     const data = {
@@ -39,26 +39,26 @@ const CreatePost = ({ props }) => {
       token: props.auth.user.token,
     };
     return isValid && Inertia.post("/dashboard/manage-posts/posts", data);
-  }
+  };
 
-  const handlePostSubmit = (e) => {
+  const handlePostSubmit = e => {
     const newValue = e.target.innerHTML.replace(regexHastag, function (str) {
       return '<span class="highlighted">' + str + "</span>";
     });
 
     inputPost.current.innerHTML = newValue;
-    const value = e.currentTarget.textContent
+    const value = e.currentTarget.textContent;
     setDescription(value);
 
     if (e.target.innerHTML.length > 200) {
-      setIsLimit(true)
-      return e.target.innerHTML = '';
+      setIsLimit(true);
+      return (e.target.innerHTML = "");
     } else {
-      setIsLimit(false)
+      setIsLimit(false);
     }
 
     const inputHashtag = findTags(e.target.innerHTML);
-    setTextTagged(inputHashtag)
+    setTextTagged(inputHashtag);
 
     const x = 200 - Number(e.target.innerHTML.length);
     if (x >= 0) {
@@ -67,15 +67,15 @@ const CreatePost = ({ props }) => {
   };
 
   return (
-    <div className="max-w-7xl overflow-auto mx-auto px-4 sm:px-6 lg:px-8 ">
-      <div className="flex flex-col justify-center items-center p-4 gap-4">
-        <div className="alert alert-sm bg-secondary text-secondary-content rounded-md shadow-lg w-full lg:w-1/2 dark:bg-slate-700 dark:text-slate-300">
+    <div className="mx-auto max-w-7xl overflow-auto px-4 sm:px-6 lg:px-8 ">
+      <div className="flex flex-col items-center justify-center gap-4 p-4">
+        <div className="alert alert-sm w-full rounded-md bg-secondary text-secondary-content shadow-lg dark:bg-slate-700 dark:text-slate-300 lg:w-1/2">
           <div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              className="stroke-current flex-shrink-0 w-6 h-6 ">
+              className="h-6 w-6 flex-shrink-0 stroke-current ">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -91,7 +91,7 @@ const CreatePost = ({ props }) => {
           </div>
         </div>
         <i>{textTagged[0]}</i>
-        <div className="w-full lg:w-1/2 border-4 rounded-lg relative p-2">
+        <div className="relative w-full rounded-lg border-4 p-2 lg:w-1/2">
           <div
             aria-label="area"
             role="textbox"
@@ -107,18 +107,19 @@ const CreatePost = ({ props }) => {
           />
           <div className={`textarea-span input`} ref={inputPost} />
         </div>
-        {isLimit &&
-          <span className="lg:w-1/2 alert rounded:md alert-warning text-warning-content text-center">Mencapai batas limit text akan di hapus</span>
-        }
+        {isLimit && (
+          <span className="rounded:md alert alert-warning text-center text-warning-content lg:w-1/2">
+            Mencapai batas limit text akan di hapus
+          </span>
+        )}
         <button
           disabled={!isValid}
           className={
             !isValid
-              ? "absolute bottom-16 z-3 btn-lg lg:btn-md lg:rounded-md left-0 lg:relative lg:bottom-0 lg:left-0 text-xl bg-secondary text-secondary-content py-2  lg:w-1/2 w-full dark:bg-slate-500 cursor-not-allowed"
-              : "fixed bottom-16 z-3 btn-lg lg:btn-md lg:rounded-md left-0 text-xl lg:relative lg:bottom-0 lg:left-0 bg-primary text-primary-content py-2 hover:bg-secondary hover:text-secondary-content lg:w-1/2 w-full dark:bg-slate-700 cursor-pointer"
+              ? "z-3 btn-lg absolute bottom-16 left-0 w-full cursor-not-allowed bg-secondary py-2 text-xl text-secondary-content dark:bg-slate-500 lg:btn-md lg:relative  lg:bottom-0 lg:left-0 lg:w-1/2 lg:rounded-md"
+              : "z-3 btn-lg fixed bottom-16 left-0 w-full cursor-pointer bg-primary py-2 text-xl text-primary-content hover:bg-secondary hover:text-secondary-content dark:bg-slate-700 lg:btn-md lg:relative lg:bottom-0 lg:left-0 lg:w-1/2 lg:rounded-md"
           }
-          onClick={() => submitPost()}
-        >
+          onClick={() => submitPost()}>
           Posting Sekarang
         </button>
       </div>
