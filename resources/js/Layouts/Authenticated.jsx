@@ -1,12 +1,12 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Dropdown from "@/Components/Default/Dropdown";
 import NavLink from "@/Components/Default/NavLink";
 import ResponsiveNavLink from "@/Components/Default/ResponsiveNavLink";
 import DarkToggle from "@/Components/Homepage/DarkToggle";
-import {MdOutlineHome, MdSearch} from "react-icons/md";
-import {FaGithub} from "react-icons/fa";
+import { MdOutlineHome, MdSearch } from "react-icons/md";
+import { FaGithub } from "react-icons/fa";
 
-export default function Authenticated({auth, header, children}) {
+export default function Authenticated({ auth, header, children }) {
   const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
   return (
     <div className="min-h-screen dark:text-white">
@@ -36,7 +36,7 @@ export default function Authenticated({auth, header, children}) {
             </div>
 
             <div className="hidden sm:flex sm:items-center sm:ml-6">
-              <div className="ml-3 relative">
+              <div className="ml-3">
                 <Dropdown>
                   <Dropdown.Trigger>
                     <span className="inline-flex">
