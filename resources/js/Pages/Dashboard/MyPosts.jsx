@@ -25,7 +25,6 @@ export default function MyPosts(props) {
             token: props.auth.user.token,
         };
         Inertia.post("/dashboard/manage-posts/posts/delete", data);
-        return setWantRemove(false);
     };
 
     return (
