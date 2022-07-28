@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Models\Posts;
 use App\Models\SavedPosts;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -69,13 +70,31 @@ final class DashboardController extends Controller
 
     public function showSavedPost()
     {
-        $savedPosts = SavedPosts::orderByDesc('id')->where('user_id', auth()->user()->id)->with('posts')->with('comments')->get();
+        $savedPosts = SavedPosts::orderByDesc('id')->where('user_id', auth()->user()->id)->with(['posts.users', 'comments'])->get();
         return Inertia::render('Dashboard/SavedPosts', [
             'data' => $savedPosts,
             'title' => 'SAVED POST',
             'page' => 'Postingan yang anda simpan',
             'next' => 'BUAT POSTINGAN',
             'nextRoute' => 'posts.main'
+        ]);
+    }
+
+    public function stats()
+    {
+        $posts = Posts::where('author', auth()->user()->username)->withCount('likes')->get();
+        $likes_count = 0;
+
+        foreach ($posts as $post) {
+            $likes_count += $post->likes_count;
+        }
+
+        return Inertia::render('Dashboard/Stats', [
+            'title' => 'STATISTICS',
+            'next' => 'DASHBOARD',
+            'nextRoute' => 'dash.main',
+            'likes_count' => $likes_count,
+            'posts_count' => $posts->count(),
         ]);
     }
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { Head, Link } from "@inertiajs/inertia-react";
 import Guest from "@/Layouts/Guest";
 import Paginate from "@/Components/Homepage/Paginate";
@@ -7,6 +7,8 @@ import { debounce, pickBy } from "lodash";
 
 export default function AuthorListPage(props) {
   const [keyword, setKeyword] = useState(props.filter.search);
+  const isFirstRender = useRef(true)
+
   const reload = useCallback(
     debounce((q) => {
       Inertia.get(
@@ -20,14 +22,21 @@ export default function AuthorListPage(props) {
     []
   );
 
-  useEffect(() => reload(keyword), [keyword]);
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false
+      return
+    }
+    reload(keyword)
+  }, [keyword]);
+
   return (
     <Guest auth={props.auth.user}>
       <Head title={props.title} />
       <div className="min-h-screen">
         <div className="text-center pt-6">
-          <h1 className="font-bold text-lg dark:text-white">✨ {props.title} ✨</h1>
-          <p className="text-sm dark:text-white">{props.description}</p>
+          <h1 className="font-bold text-lg dark:text-white" data-aos="zoom-in" data-aos-duration="2500">✨ {props.title} ✨</h1>
+          <p className="text-sm dark:text-white" data-aos="zoom-in" data-aos-duration="3500">{props.description}</p>
         </div>
         <div className="w-full flex justify-center my-7">
           <div className="w-11/12 lg:w-[77%] flex justify-end">
@@ -40,10 +49,11 @@ export default function AuthorListPage(props) {
               placeholder="Search . . ."
               value={keyword || ''}
               onChange={(e) => setKeyword(e.target.value)}
+              data-aos="fade-left" data-aos-duration="2000"
             />
           </div>
         </div>
-        <div className="flex flex-col justify-center items-center sm:flex-row sm:flex-wrap p-4 gap-6 dark:text-white">
+        <div className="flex flex-col justify-center items-center sm:flex-row sm:flex-wrap p-4 gap-6 dark:text-white" data-aos="zoom-in" data-aos-duration="1000">
           {props.data
             .sort((a, b) => b.total_post - a.total_post)
             .map((user, i) => (
@@ -96,7 +106,7 @@ export default function AuthorListPage(props) {
             ))}
         </div>
 
-        <div className="flex justify-center items-center mb-20 md:mb-4">
+        <div className="flex justify-center items-center mb-20 md:mb-7" data-aos="fade-up" data-aos-duration="500">
           <Paginate meta={props.users} />
         </div>
       </div>

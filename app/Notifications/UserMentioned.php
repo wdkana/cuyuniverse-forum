@@ -21,10 +21,12 @@ class UserMentioned extends Notification
      * @return void
      */
     public $postOrComment;
+    public User $from;
 
-    public function __construct(Posts $postOrComment)
+    public function __construct(User $from, Posts $postOrComment)
     {
-      $this->postOrComment = $postOrComment;
+        $this->postOrComment = $postOrComment;
+        $this->from = $from;
     }
 
     /**
@@ -47,9 +49,9 @@ class UserMentioned extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+            ->line('The introduction to the notification.')
+            ->action('Notification Action', url('/'))
+            ->line('Thank you for using our application!');
     }
 
     /**
@@ -67,11 +69,9 @@ class UserMentioned extends Notification
 
     public function toDatabase($notifiable)
     {
-        $user = Auth::user();
-
         return [
-            'from'            => $user->username,
-            // 'notifiable'      => $notifiable,
+            'from'            => $this->from->username,
+            'notifiable'      => $notifiable,
             'post_id'         => $this->postOrComment?->id,
             'description'     => $this->postOrComment?->description,
             'type'            => 'mention',
