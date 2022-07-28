@@ -69,7 +69,7 @@ final class DashboardController extends Controller
 
     public function showSavedPost()
     {
-        $savedPosts = SavedPosts::orderByDesc('id')->where('user_id', auth()->user()->id)->with('posts')->with('comments')->get();
+        $savedPosts = SavedPosts::orderByDesc('id')->where('user_id', auth()->user()->id)->with(['posts.users', 'comments'])->get();
         return Inertia::render('Dashboard/SavedPosts', [
             'data' => $savedPosts,
             'title' => 'SAVED POST',

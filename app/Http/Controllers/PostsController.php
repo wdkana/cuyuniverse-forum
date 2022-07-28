@@ -13,8 +13,10 @@ use App\Notifications\UserLike;
 use App\Models\SavedPosts;
 use App\Notifications\UserMentioned;
 use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 
 class PostsController extends Controller
@@ -36,6 +38,24 @@ class PostsController extends Controller
         ]);
     }
 
+
+    /**
+     * @param string $postType Ones of "post" | "comment"
+     * @param int $perMinute maximum post or comment per minute
+     * 
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    private function checkRateLimiter(string $postType, $perMinute = 3): \Illuminate\Http\RedirectResponse|null
+    {
+        $key = "posts-store-{$postType}-" . Auth::id();
+        if (RateLimiter::tooManyAttempts($key, $perMinute)) {
+            return redirect()->back()->with('message', 'Too many attempts');
+        }
+
+        RateLimiter::hit($key);
+        return null;
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -46,11 +66,15 @@ class PostsController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
 
     public function store(Request $request)
     {
+        if ($redirect = $this->checkRateLimiter("post", Config::get('rate-limit.post'))) {
+            return $redirect;
+        }
+
         $request->validate(
             [
                 'description' => 'required|string|min:4|max:200',
@@ -71,7 +95,7 @@ class PostsController extends Controller
 
         $posts->save();
 
-        $this->mentionUser($request->description, $posts);
+        $this->mentionUsers($request->description, $posts);
 
         return to_route('posts.main')->with('message', 'Posting Berhasil');
     }
@@ -110,6 +134,10 @@ class PostsController extends Controller
 
         $post = Posts::find($request->post_id);
 
+        if ($redirect = $this->checkRateLimiter("comment-in-" . $post->getKey(), Config::get('rate-limit.comment'))) {
+            return $redirect;
+        }
+
         $saveComment = $post->comments()->save($comment);
 
         $user = User::find($post->user_id);
@@ -117,7 +145,7 @@ class PostsController extends Controller
             $user->notify(new UserComment($saveComment));
         }
 
-        $this->mentionUser($request->description, $post);
+        $this->mentionUsers($request->description, $post);
 
         return to_route('outer.byId', ['id' => $request->post_id])->with('message', 'Komentar telah dikirim');
     }
@@ -170,24 +198,28 @@ class PostsController extends Controller
         return to_route('posts.main');
     }
 
-    private function mentionUser($description, Posts $post)
+    /**
+     * @param string $content
+     * @param Posts $post
+     * 
+     * @return void
+     */
+    public function mentionUsers(string $content, Posts $post)
     {
-        $users = User::select('id', 'username')->get()->pluck('username')->map(function ($item) {
-            return '@' . $item;
-        })->all();
+        $pattern = "/(?:^| )(@[A-Za-z0-9-_]+)/m";
+        $mentionedUsers = [];
 
-        $mentionedUser = Arr::where($users, function ($value, $key) use ($description) {
-            return Str::contains($description, $value);
-        });
+        $res = preg_match_all($pattern, $content, $mentionedUsers);
+        if (!$res || empty($mentionedUsers[1])) {
+            return;
+        }
 
-        $mentionedUser = collect($mentionedUser)->map(function ($item) {
-            return substr($item, 1);
-        })->all();
+        $mentionedUsers = array_map(function ($username) {
+            return Str::after($username, "@");
+        }, $mentionedUsers[1]);
 
-        $notifyUsers = User::whereIn('username', $mentionedUser)->get();
+        $notifyUsers = User::whereIn('username', $mentionedUsers)->get();
 
-        $notifyUsers->each(function ($notifyUser) use ($post) {
-            $notifyUser->notify(new UserMentioned($post));
-        });
+        Notification::send($notifyUsers, new UserMentioned(Auth::user(), $post));
     }
 }

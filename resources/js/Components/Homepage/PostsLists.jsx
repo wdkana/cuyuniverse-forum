@@ -1,3 +1,4 @@
+import RenderIfTrue from "@/helper/RenderIfTrue";
 import { formatTime } from "@/utils/jsHelper";
 import { Link } from "@inertiajs/inertia-react";
 
@@ -16,7 +17,7 @@ const isPosts = (posts, from) => {
     return (
       <div
         key={i}
-        className="card w-full md:w-1/2 lg:w-1/3 xl:w-1/3 bg-base-100 dark:bg-slate-700 shadow-lg cursor-pointer transition-all duration-300 dark:hover:bg-gray-600 dark:text-white hover:-translate-y-1"
+        className="card w-full md:w-1/2 lg:w-1/3 xl:w-1/3 bg-base-100 dark:bg-slate-700 shadow-lg cursor-pointer transition-all duration-300 dark:hover:bg-gray-600 dark:text-white hover:-translate-y-1 hover:bg-neutral"
       >
         <Link
           href={`/post/${post.id}`}
@@ -57,7 +58,7 @@ const isPosts = (posts, from) => {
               </div>
             </Link>
             <div className="text-sm ml-4">
-              <p className="dark:text-white leading-none">
+              <p className="text-gray-900 dark:text-white leading-none">
                 {post.author}
               </p>
               <p className="text-xs break-normal">
