@@ -28,6 +28,13 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('likes');
+        Schema::dropIfExists('likes', function (Blueprint $table) {
+            $table->dropForeign('posts_user_id_foreign');
+            $table->dropIndex('posts_user_id_index');
+            $table->dropColumn('user_id');
+            $table->dropForeign('posts_post_id_foreign');
+            $table->dropIndex('posts_post_id_index');
+            $table->dropColumn('post_id');
+        });
     }
 };

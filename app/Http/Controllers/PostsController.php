@@ -13,9 +13,10 @@ use App\Notifications\UserLike;
 use App\Models\SavedPosts;
 use App\Notifications\UserMentioned;
 use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 
 class PostsController extends Controller
@@ -37,6 +38,24 @@ class PostsController extends Controller
         ]);
     }
 
+
+    /**
+     * @param string $postType Ones of "post" | "comment"
+     * @param int $perMinute maximum post or comment per minute
+     * 
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    private function checkRateLimiter(string $postType, $perMinute = 3): \Illuminate\Http\RedirectResponse|null
+    {
+        $key = "posts-store-{$postType}-" . Auth::id();
+        if (RateLimiter::tooManyAttempts($key, $perMinute)) {
+            return redirect()->back()->with('message', 'Too many attempts');
+        }
+
+        RateLimiter::hit($key);
+        return null;
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -47,27 +66,33 @@ class PostsController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
+
     public function store(Request $request)
     {
+        if ($redirect = $this->checkRateLimiter("post", Config::get('rate-limit.post'))) {
+            return $redirect;
+        }
+
         $request->validate(
             [
                 'description' => 'required|string|min:4|max:200',
-                // 'image' => 'nullable|image|mimes:jpeg,png,jpg,|max:1048',
+                'tags' => 'string|min:2|max:20|nullable',
                 'token' => 'required'
             ]
         );
 
+        $tags = $request->tags;
+        $hashtag = str_replace('#', '', $tags);
+
         $posts = new Posts();
+
         $posts->description = $request->description;
-        // if ($request->hasFile('image')) {
-        //     $nama_foto = Auth::user()->username . Str::random(60) . "." . $request->image->getClientOriginalExtension();
-        //     $filePath = $request->file('image')->storeAs('images_post', $nama_foto);
-        //     $posts->image = $nama_foto;
-        // }
         $posts->author = auth()->user()->username;
         $posts->user_id = auth()->user()->id;
+        $posts->hashtag = $tags ? $hashtag : NULL;
+
         $posts->save();
 
         $this->mentionUsers($request->description, $posts);
@@ -108,6 +133,10 @@ class PostsController extends Controller
         ]);
 
         $post = Posts::find($request->post_id);
+
+        if ($redirect = $this->checkRateLimiter("comment-in-" . $post->getKey(), Config::get('rate-limit.comment'))) {
+            return $redirect;
+        }
 
         $saveComment = $post->comments()->save($comment);
 

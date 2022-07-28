@@ -28,7 +28,9 @@ export default function DashboardPage(props) {
         >
             <Head title={props.title} />
             {showNotif && <NotificationAlert message={flash.message} />}
-            <CreatePost props={props} />
+            <div className='pb-32 lg:pb-2'>
+                <CreatePost props={props} />
+            </div>
         </Authenticated>
     );
 }

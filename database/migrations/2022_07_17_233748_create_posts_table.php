@@ -15,12 +15,14 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('description');
             $table->string('image')->nullable();
+            $table->string('description');
             $table->string('author');
+            $table->string('hashtag')->nullable()->default(NULL);
             $table->bigInteger('user_id')->unsigned()->index()->nullable();
             $table->foreign('author')->references('username')->on('users')->onDelete('CASCADE')->onUpdate('CASCADE');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('CASCADE');
+
             $table->timestamps();
         });
     }
@@ -36,6 +38,9 @@ return new class extends Migration
             $table->dropForeign('posts_user_id_foreign');
             $table->dropIndex('posts_user_id_index');
             $table->dropColumn('user_id');
+            $table->dropForeign('posts_author_foreign');
+            $table->dropIndex('posts_author_index');
+            $table->dropColumn('author');
         });
     }
 };
