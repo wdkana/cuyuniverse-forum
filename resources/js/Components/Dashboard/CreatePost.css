@@ -1,0 +1,43 @@
+.textarea-span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 18px;
+  width: 100%;
+  height: 100%;
+  resize: none;
+}
+
+.input {
+  color: black;
+  position: relative;
+  width: 100%;
+  min-height: 100px;
+  max-height: 100%;
+  padding: 13px 13px;
+  overflow: auto;
+  word-wrap: break-word;
+}
+
+.real {
+  z-index: 11;
+  background: transparent;
+  color: transparent;
+  caret-color: black;
+  padding: 24px 22px;
+  line-height: 1.92;
+  word-wrap: break-word;
+}
+
+.textarea-span span.highlighted {
+  color: red;
+}
+
+.textarea-span[contenteditable]:focus {
+  outline: none;
+}
+
+.textarea-span[contenteditable][placeholder]:empty:before {
+  content: attr(placeholder);
+  background-color: transparent;
+}

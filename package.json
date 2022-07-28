@@ -26,11 +26,14 @@
         "avataaars": "^2.0.0",
         "daisyui": "^2.19.0",
         "date-fns": "^2.28.0",
+        "html-react-parser": "^3.0.1",
         "prettier": "^2.7.1",
         "react-avatar": "^5.0.1",
         "react-countdown": "^2.3.2",
         "react-google-recaptcha": "^2.1.0",
         "react-haiku": "^2.0.1",
-        "react-icons": "^4.4.0"
+        "react-icons": "^4.4.0",
+        "react-marker": "^1.0.1",
+        "react-mentions": "^4.4.7"
     }
 }
