@@ -18,11 +18,11 @@ const isPosts = (posts, from) => {
         key={i}
         className="card w-full cursor-pointer bg-base-100 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-base-200 dark:bg-slate-700 dark:text-white dark:hover:bg-gray-600 md:w-1/2 lg:w-1/3 xl:w-1/3">
         <Link href={`/post/${post.id}`} method="get" as="div" className="card-body p-6">
-          <div className={`text-xl ${post.description.length > 80 ? "overflow-x-hidden" : "break-words"} h-20`}>
+          <div className={`text-xl ${post.description.length > 80 ? "overflow-x-hidden pr-2" : "break-words"} h-20`}>
             {post.description}
           </div>
 
-          <div className="flex flex-row">
+          <div className="mt-2 flex flex-row items-center">
             <Link href={`/author/${post.author}`} as="button" method="get" className="avatar">
               <div className="w-12 rounded-full ring ring-primary ring-offset-2 ring-offset-base-100">
                 {from?.page == "author" ? (
