@@ -77,6 +77,7 @@ const isPosts = (posts, from) => {
 };
 
 export default function PostsList(props) {
+  console.log(props)
   if (!props.posts || !props.posts.length) return noPosts();
   return isPosts(props.posts, props.from);
 }

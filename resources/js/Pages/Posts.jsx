@@ -13,6 +13,7 @@ const menus = [
 ];
 
 export default function PostsPage(props) {
+  console.log(props)
   const { auth, title, description, filter } = props;
   const { data: posts, meta } = props.posts;
   const [keyword, setKeyword] = useState(filter.search);
