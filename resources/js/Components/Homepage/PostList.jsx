@@ -98,7 +98,7 @@ export default function PostList(props) {
       <RenderIfTrue isTrue={showNotif}>
         <NotificationAlert message={props.notif} />
       </RenderIfTrue>
-      <div className="card-body p-6">
+      <div className="card-body p-6" data-aos="flip-left" data-aos-duration="500">
         <p className="text-2xl break-all cursor-default font-bold">{props.posts.description}</p>
 
         <div className="flex flex-row py-2 border-b-4 border-b-secondary dark:border-b-slate-400">
@@ -180,13 +180,13 @@ export default function PostList(props) {
           className={`${
             props.user == null
               ? "bg-secondary uppercase rounded-md btn-sm cursor-not-allowed"
-              : `bg-secondary uppercase rounded-md btn-sm 
+              : `bg-secondary uppercase rounded-md btn-sm
               ${
                 props.is_saved_post
                   ? "hover:bg-primary bg-primary-focus"
                   : "bg-secondary hover:bg-primary hover:text-base-100"
               }`
-          } 
+          }
           `}
           disabled={!props.user ? true : false}>
           {props.is_saved_post ? "Disimpan" : "Simpan"}

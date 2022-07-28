@@ -44,15 +44,15 @@ export default function PostsPage(props) {
       <Head title={title} />
       <div className="min-h-screen">
         <div className="text-center pt-6">
-          <h1 className="font-bold text-lg">✨ {title} ✨</h1>
-          <p className="text-sm">{description}</p>
+          <h1 className="font-bold text-lg" data-aos="zoom-in" data-aos-duration="2500">✨ {title} ✨</h1>
+          <p className="text-sm" data-aos="zoom-in" data-aos-duration="3500" >{description}</p>
         </div>
         <div className="flex justify-center pt-5 lg:px-0 px-5">
           <div className="w-full lg:w-2/3 flex justify-between">
             <div className="flex">
               <Menu
                 as="div"
-                className="relative focus-within:ring focus-within:ring-blue-100 focus-within:border-blue-300 dark:focus-within:ring-0 dark:focus-within:border-slate-500 transition duration-200 rounded-lg border dark:border-slate-200 text-gray-600 dark:text-slate-100"
+                className="relative focus-within:ring focus-within:ring-blue-100 focus-within:border-blue-300 dark:focus-within:ring-0 dark:focus-within:border-slate-500 transition duration-200 rounded-lg border dark:border-slate-200 text-gray-600 dark:text-slate-100" data-aos="zoom-out-right" data-aos-duration="500"
               >
                 <Menu.Button className="capitalize flex items-center justify-between rounded-lg focus:outline-none bg-slate-100 dark:bg-slate-900 h-10 pl-3 pr-2 w-full lg:w-52">
                   {!filter.filtered ? "All" : filter.filtered}
@@ -69,7 +69,7 @@ export default function PostsPage(props) {
                     />
                   </svg>
                 </Menu.Button>
-                <Menu.Items className="absolute w-52 z-50 bg-white dark:bg-slate-600 shadow rounded-lg mt-1.5 overflow-hidden py-0.5 text-gray-900 dark:text-slate-100">
+                <Menu.Items className="absolute w-52 z-50 bg-white dark:bg-slate-600 shadow rounded-lg mt-1.5 overflow-hidden py-0.5 text-gray-900 dark:text-slate-100" >
                   {menus.map((menu, key) => {
                     return menu.name == "line" ? (
                       <div
@@ -101,16 +101,17 @@ export default function PostsPage(props) {
                 placeholder="Search . . ."
                 value={keyword || ''}
                 onChange={(e) => setKeyword(e.target.value)}
+                data-aos="zoom-out-left" data-aos-duration="3500"
               />
             </div>
           </div>
         </div>
         {posts.length > 0 ? (
           <>
-            <div className="flex flex-col justify-center items-center lg:flex-row lg:flex-wrap lg:items-strech py-6 px-4 gap-6">
+            <div className="flex flex-col justify-center items-center lg:flex-row lg:flex-wrap lg:items-strech py-6 px-4 gap-6" data-aos="zoom-in" data-aos-duration="1000">
               <PostsList posts={posts} />
             </div>
-            <div className="flex justify-center items-center mb-20 md:mb-4">
+            <div className="flex justify-center items-center mb-20 md:mb-7" data-aos="fade-up" data-aos-duration="500">
               <Paginate meta={meta} />
             </div>
           </>
