@@ -69,7 +69,7 @@ export default function PostsPage(props) {
                     />
                   </svg>
                 </Menu.Button>
-                <Menu.Items className="absolute w-52 z-50 bg-white dark:bg-slate-600 shadow rounded-lg mt-1.5 overflow-hidden py-0.5 text-gray-900 dark:text-slate-100" >
+                <Menu.Items className="relative w-52 bg-white dark:bg-slate-600 shadow rounded-lg mt-1.5 overflow-hidden py-0.5 text-gray-900 dark:text-slate-100" >
                   {menus.map((menu, key) => {
                     return menu.name == "line" ? (
                       <div
