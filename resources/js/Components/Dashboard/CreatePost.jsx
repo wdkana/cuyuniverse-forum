@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Inertia } from "@inertiajs/inertia";
-import { findTags } from "@/utils/jsHelper";
-import './CreatePost.css'
+import React, {useEffect, useRef, useState} from "react";
+import {Inertia} from "@inertiajs/inertia";
+import {findTags} from "@/utils/jsHelper";
+import "./CreatePost.css";
 import NotificationAlert from "../Default/NotificationAlert";
 
-const CreatePost = ({ props }) => {
-  const inputPost = useRef(null)
+const CreatePost = ({props}) => {
+  const inputPost = useRef(null);
   const [description, setDescription] = useState("");
   const [limiter, setLimiter] = useState(200);
   const [isValid, setIsValid] = useState(true);
@@ -13,7 +13,7 @@ const CreatePost = ({ props }) => {
   const [isLimit, setIsLimit] = useState(false);
   const [isErrorNotif, setIsErrorNotif] = useState(false);
 
-  const regexHastag = new RegExp(/(^|\W)(#[a-z\d][\w-]*)/ig);
+  const regexHastag = new RegExp(/(^|\W)(#[a-z\d][\w-]*)/gi);
 
   useEffect(() => {
     let mount = true;
@@ -29,8 +29,8 @@ const CreatePost = ({ props }) => {
   }, [description.length]);
 
   useEffect(() => {
-    props.errors ? setIsErrorNotif(true) : setIsErrorNotif(false)
-  }, [props.errors])
+    props.errors ? setIsErrorNotif(true) : setIsErrorNotif(false);
+  }, [props.errors]);
 
   const submitPost = () => {
     const data = {
@@ -39,26 +39,26 @@ const CreatePost = ({ props }) => {
       token: props.auth.user.token,
     };
     return isValid && Inertia.post("/dashboard/manage-posts/posts", data);
-  }
+  };
 
-  const handlePostSubmit = (e) => {
+  const handlePostSubmit = e => {
     const newValue = e.target.innerHTML.replace(regexHastag, function (str) {
       return '<span class="highlighted">' + str + "</span>";
     });
 
     inputPost.current.innerHTML = newValue;
-    const value = e.currentTarget.textContent
+    const value = e.currentTarget.textContent;
     setDescription(value);
 
     if (e.target.innerHTML.length > 200) {
-      setIsLimit(true)
-      return e.target.innerHTML = '';
+      setIsLimit(true);
+      return (e.target.innerHTML = "");
     } else {
-      setIsLimit(false)
+      setIsLimit(false);
     }
 
     const inputHashtag = findTags(e.target.innerHTML);
-    setTextTagged(inputHashtag)
+    setTextTagged(inputHashtag);
 
     const x = 200 - Number(e.target.innerHTML.length);
     if (x >= 0) {
@@ -107,18 +107,19 @@ const CreatePost = ({ props }) => {
           />
           <div className={`textarea-span input`} ref={inputPost} />
         </div>
-        {isLimit &&
-          <span className="lg:w-1/2 alert rounded:md alert-warning text-warning-content text-center">Mencapai batas limit text akan di hapus</span>
-        }
+        {isLimit && (
+          <span className="lg:w-1/2 alert rounded:md alert-warning text-warning-content text-center">
+            Mencapai batas limit text akan di hapus
+          </span>
+        )}
         <button
           disabled={!isValid}
           className={
             !isValid
-              ? "absolute bottom-16 z-3 btn-lg lg:btn-md lg:rounded-md left-0 lg:relative lg:bottom-0 lg:left-0 text-xl bg-secondary text-secondary-content py-2  lg:w-1/2 w-full dark:bg-slate-500 cursor-not-allowed"
-              : "fixed bottom-16 z-3 btn-lg lg:btn-md lg:rounded-md left-0 text-xl lg:relative lg:bottom-0 lg:left-0 bg-primary text-primary-content py-2 hover:bg-secondary hover:text-secondary-content lg:w-1/2 w-full dark:bg-slate-700 cursor-pointer"
+              ? "absolute bottom-16 z-3 btn-lg lg:btn-md lg:rounded-md left-0 lg:relative lg:bottom-0 lg:left-0 text-xl bg-primary text-primary-content py-2 hover:bg-secondary hover:text-secondary-content lg:w-1/2 w-full dark:bg-slate-700 cursor-not-allowed transition duration-300 ease-in-out"
+              : "fixed bottom-16 z-3 btn-lg lg:btn-md lg:rounded-md left-0 text-xl lg:relative lg:bottom-0 lg:left-0 bg-secondary text-secondary-content py-2 lg:w-1/2 w-full dark:bg-slate-500 cursor-pointer transition duration-300 ease-in-out"
           }
-          onClick={() => submitPost()}
-        >
+          onClick={() => submitPost()}>
           Posting Sekarang
         </button>
       </div>
