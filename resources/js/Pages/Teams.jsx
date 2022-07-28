@@ -63,12 +63,9 @@ export default function TeamsPage(props) {
                   <div className="all-card transition duration-200 ease-in-out lg:hover:-translate-y-1 lg:hover:scale-110">
                     {item.contributions > 10 ? (
                       <div
-                        className="card card-side w-72 bg-gradient-to-r from-yellow-300 to-amber-600 font-semibold text-black shadow-lg brightness-150 dark:shadow-slate-900 lg:hover:from-amber-600 lg:hover:to-yellow-300"
+                        className="card card-side flex w-72 items-center justify-between bg-gradient-to-r from-yellow-300 to-amber-600 font-semibold text-black shadow-lg brightness-150 dark:shadow-slate-900 lg:hover:from-amber-600 lg:hover:to-yellow-300"
                         key={index}>
-                        <img
-                          src={item.avatar_url}
-                          alt=""
-                          className="ml-4 mt-3 h-16 w-16 rounded-full align-middle"></img>
+                        <img src={item.avatar_url} alt="" className="ml-4 h-16 w-16 rounded-full align-middle"></img>
                         <div className="card-body">
                           <h3 className="card-title">
                             {item.login.length > 14 ? item.login.slice(0, 14) + "..." : item.login}
@@ -78,12 +75,9 @@ export default function TeamsPage(props) {
                       </div>
                     ) : (
                       <div
-                        className="card card-side w-72 shadow-lg dark:bg-blue-600 dark:text-white dark:shadow-slate-900"
+                        className="card card-side flex w-72 items-center justify-between shadow-lg dark:bg-blue-600 dark:text-white dark:shadow-slate-900"
                         key={index}>
-                        <img
-                          src={item.avatar_url}
-                          alt=""
-                          className="ml-4 mt-3 h-16 w-16 rounded-full align-middle"></img>
+                        <img src={item.avatar_url} alt="" className="ml-4 h-16 w-16 rounded-full align-middle"></img>
                         <div className="card-body">
                           <h3 className="card-title">
                             {item.login.length > 14 ? item.login.slice(0, 14) + "..." : item.login}
