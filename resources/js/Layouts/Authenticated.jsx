@@ -10,7 +10,7 @@ export default function Authenticated({auth, header, children}) {
   const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
   return (
     <div className="min-h-screen dark:text-white">
-      <nav className="md:shadow-lg fixed bottom-0 border-t-base-200 border-2 lg:top-0 lg:sticky z-10 w-full bg-white dark:text-white dark:bg-slate-900">
+      <nav className="md:shadow-lg fixed bottom-0 lg:top-0 lg:sticky z-10 w-full bg-white dark:text-white dark:bg-slate-900">
         <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex">
@@ -100,6 +100,13 @@ export default function Authenticated({auth, header, children}) {
                       Saved Post
                     </Dropdown.Link>
                     <Dropdown.Link
+                      href={route("dash.stats")}
+                      active={route().current("dash.stats")}
+                      as="button"
+                      method="get">
+                      Statistics
+                    </Dropdown.Link>
+                    <Dropdown.Link
                       href={route("dash.setting.profile")}
                       method="get"
                       as="button"
@@ -152,6 +159,9 @@ export default function Authenticated({auth, header, children}) {
             </ResponsiveNavLink>
             <ResponsiveNavLink href={route("dash.notif")} active={route().current("dash.notif")}>
               Notification
+            </ResponsiveNavLink>
+            <ResponsiveNavLink href={route("dash.stats")} active={route().current("dash.stats")}>
+              Statistics
             </ResponsiveNavLink>
           </div>
 

@@ -166,7 +166,7 @@ export default function PostList(props) {
               : `bg-secondary uppercase border-none rounded-md btn-sm
               ${
                 props.is_liked_post
-                  ? "hover:bg-primary bg-secondary-focus"
+                  ? "hover:bg-primary bg-primary-focus"
                   : "bg-secondary hover:bg-primary hover:text-base-100"
               }`
           }
@@ -183,7 +183,7 @@ export default function PostList(props) {
               : `bg-secondary uppercase rounded-md btn-sm 
               ${
                 props.is_saved_post
-                  ? "hover:bg-primary bg-secondary-focus"
+                  ? "hover:bg-primary bg-primary-focus"
                   : "bg-secondary hover:bg-primary hover:text-base-100"
               }`
           } 
