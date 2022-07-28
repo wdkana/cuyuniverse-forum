@@ -17,6 +17,8 @@
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^2.8",
         "laravel/tinker": "^2.7",
+        "league/commonmark": "^2.3",
+        "spatie/laravel-tags": "^4.3",
         "tightenco/ziggy": "^1.0"
     },
     "require-dev": {

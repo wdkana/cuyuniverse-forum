@@ -10,12 +10,7 @@ import { TbTrashX } from "react-icons/tb";
 
 export default function MyPosts(props) {
     const { flash } = usePage().props;
-    const [wantRemove, setWantRemove] = useState(false);
     const [showNotif, setShowNotif] = useState(false);
-
-    const handleRemoveConfirmation = () => {
-        return setWantRemove(true);
-    };
 
     useEffect(() => {
         if (flash.message) {
@@ -30,7 +25,6 @@ export default function MyPosts(props) {
             token: props.auth.user.token,
         };
         Inertia.post("/dashboard/manage-posts/posts/delete", data);
-        return setWantRemove(false);
     };
 
     return (
@@ -56,6 +50,7 @@ export default function MyPosts(props) {
             <Head title="Dashboard" />
             <div className="flex flex-col justify-center items-center lg:flex-row lg:flex-wrap lg:items-strech py-6 px-4 gap-6">
                 {showNotif && <NotificationAlert message={flash.message} />}
+
                 {props.data.length > 0 ? (
                     props.data.map((posts, i) => {
                         return (
@@ -86,57 +81,19 @@ export default function MyPosts(props) {
                                         </div>
                                         <label
                                             onClick={() =>
-                                                handleRemoveConfirmation()
+                                                removePosts(
+                                                    posts.id
+                                                )
                                             }
                                             className="btn btn-ghost cursor-pointer hover:bg-base-300 hover:rounded-md modal-button"
                                             htmlFor={`my-modal-${posts.id}`}
                                         >
                                             <TbTrashX size={20} />
                                         </label>
-                                        {wantRemove && (
-                                            <>
-                                                <input
-                                                    type="checkbox"
-                                                    id={`my-modal-${posts.id}`}
-                                                    className="modal-toggle"
-                                                />
-                                                <div className="modal">
-                                                    <div className="modal-box">
-                                                        <h3 className="font-bold text-lg">
-                                                            Hapus Postingan{" "}
-                                                        </h3>
-                                                        <p className="py-4">
-                                                            Kamu yakin ingin
-                                                            menghapus postingan{" "}
-                                                            <b>{posts.title}</b>
-                                                            ?
-                                                        </p>
-                                                        <div className="modal-action">
-                                                            <label
-                                                                htmlFor={`my-modal-${posts.id}`}
-                                                                className="btn btn-outline rounded-md"
-                                                                onClick={() =>
-                                                                    removePosts(
-                                                                        posts.id
-                                                                    )
-                                                                }
-                                                            >
-                                                                Ya Hapus
-                                                            </label>
-                                                            <label
-                                                                htmlFor={`my-modal-${posts.id}`}
-                                                                className="btn btn-inline rounded-md"
-                                                            >
-                                                                Gak
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </>
-                                        )}
                                     </div>
                                 </div>
                             </div>
+
                         );
                     })
                 ) : (
