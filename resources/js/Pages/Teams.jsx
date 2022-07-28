@@ -51,7 +51,7 @@ export default function TeamsPage(props) {
             .filter(item => item.id != 103190281)
             .map((item, index) => {
               return (
-                <a href={item.html_url} key={index} target="_blank" data-aos="flip-right" data-aos-duration="1500">
+                <a href={item.html_url} key={index} target="_blank" data-aos="fade-up" data-aos-duration="1500">
                   <div className="all-card lg:hover:-translate-y-1 lg:hover:scale-110 transition ease-in-out duration-200">
                     {item.contributions > 10 ? (
                       <div
