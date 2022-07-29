@@ -50,13 +50,13 @@ export default function PostList(props) {
 
   const formValidateNotif = () => {
     return (
-      <div className="alert alert-sm shadow-sm text-base-100 bg-secondary dark:bg-slate-300 mt-4 rounded-md dark:text-slate-900">
+      <div className="alert alert-sm mt-4 rounded-md bg-secondary text-base-100 shadow-sm dark:bg-slate-300 dark:text-slate-900">
         <div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
-            className="stroke-current flex-shrink-0 w-6 h-6">
+            className="h-6 w-6 flex-shrink-0 stroke-current">
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -94,22 +94,22 @@ export default function PostList(props) {
   };
 
   return (
-    <div className="card w-full md:w-2/3 bg-base dark:bg-slate-700 shadow-lg dark:text-white mb-10">
+    <div className="bg-base card mb-10 w-full shadow-lg dark:bg-slate-700 dark:text-white md:w-2/3">
       <RenderIfTrue isTrue={showNotif}>
         <NotificationAlert message={props.notif} />
       </RenderIfTrue>
       <div className="card-body p-6" data-aos="flip-left" data-aos-duration="500">
-        <p className="text-2xl break-all cursor-default font-bold">{props.posts.description}</p>
+        <p className="cursor-default break-all text-2xl font-bold">{props.posts.description}</p>
 
-        <div className="flex flex-row py-2 border-b-4 border-b-secondary dark:border-b-slate-400">
-          <div className="basis-1/2 flex justify-start items-end">
-            <div className="text-xs cursor-default break-normal">posted {formatTime(props.posts.created_at)}</div>
+        <div className="flex flex-row border-b-4 border-b-secondary py-2 dark:border-b-slate-400">
+          <div className="flex basis-1/2 items-end justify-start">
+            <div className="cursor-default break-normal text-xs">posted {formatTime(props.posts.created_at)}</div>
           </div>
 
-          <div className="basis-1/2 card-actions flex flex-col justify-end items-end text-sm">
-            <div className="justify-center items-center flex flex-col">
+          <div className="card-actions flex basis-1/2 flex-col items-end justify-end text-sm">
+            <div className="flex flex-col items-center justify-center">
               <Link href={`/author/${props.posts.author}`} as="button" method="get" className="avatar">
-                <div className="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                <div className="w-12 rounded-full ring ring-primary ring-offset-2 ring-offset-base-100">
                   <img
                     src={
                       props.author_image !== null
@@ -128,14 +128,14 @@ export default function PostList(props) {
           {props.comments.map((comment, i) => {
             return (
               <div
-                className="border-b-2 border-b-secondary dark:border-b-slate-500 dark:text-white dark:bg-slate-800 flex flex-col p-3"
+                className="flex flex-col border-b-2 border-b-secondary p-3 dark:border-b-slate-500 dark:bg-slate-800 dark:text-white"
                 key={i}>
                 <div className="text-md font-mono font-bold">{comment.description}</div>
                 <Link
                   href={`/author/${comment.commentartor}`}
                   as="div"
                   method="get"
-                  className="mt-2 p-2 items-end justify-end flex gap-1 flex-row text-xs cursor-pointer hover:cursor-pointer hover:translate-x-1 transition-all">
+                  className="mt-2 flex cursor-pointer flex-row items-end justify-end gap-1 p-2 text-xs transition-all hover:translate-x-1 hover:cursor-pointer">
                   <div className="mr-1">
                     comment {formatTime(comment.created_at)} by {comment.commentartor}
                   </div>
@@ -156,17 +156,17 @@ export default function PostList(props) {
           })}
         </div>
       </div>
-      <div className="flex justify-start px-2 lg:px-10 py-2 items-center gap-2 text-base-100">
+      <div className="flex items-center justify-start gap-2 px-2 py-2 text-base-100 lg:px-10">
         <button
           onClick={() => likePost(props.posts.id)}
           type="button"
           className={`${
             props.user == null
-              ? "bg-secondary uppercase border-none rounded-md btn-sm cursor-not-allowed"
-              : `bg-secondary uppercase border-none rounded-md btn-sm
+              ? "btn-sm cursor-not-allowed rounded-md border-none bg-secondary uppercase"
+              : `btn-sm rounded-md border-none bg-secondary uppercase
               ${
                 props.is_liked_post
-                  ? "hover:bg-primary bg-primary-focus"
+                  ? "bg-primary-focus hover:bg-primary"
                   : "bg-secondary hover:bg-primary hover:text-base-100"
               }`
           }
@@ -179,11 +179,11 @@ export default function PostList(props) {
           type="button"
           className={`${
             props.user == null
-              ? "bg-secondary uppercase rounded-md btn-sm cursor-not-allowed"
-              : `bg-secondary uppercase rounded-md btn-sm
+              ? "btn-sm cursor-not-allowed rounded-md bg-secondary uppercase"
+              : `btn-sm rounded-md bg-secondary uppercase
               ${
                 props.is_saved_post
-                  ? "hover:bg-primary bg-primary-focus"
+                  ? "bg-primary-focus hover:bg-primary"
                   : "bg-secondary hover:bg-primary hover:text-base-100"
               }`
           }
@@ -192,14 +192,14 @@ export default function PostList(props) {
           {props.is_saved_post ? "Disimpan" : "Simpan"}
         </button>
       </div>
-      <div className="flex flex-col justify-center items-center gap-4 py-2 px-2 sm:px-10 ">
+      <div className="flex flex-col items-center justify-center gap-4 py-2 px-2 sm:px-10 ">
         {props.user && formValidateNotif()}
         <input
           type="text"
           minLength={2}
           maxLength={80}
           value={newComment}
-          className="input rounded-md w-full h-42 outline-none border-slate-600 dark:border-slate-400 dark:placeholder-white dark:bg-slate-900 dark:text-white"
+          className="h-42 input w-full rounded-md border-slate-600 outline-none dark:border-slate-400 dark:bg-slate-900 dark:text-white dark:placeholder-white"
           placeholder={props.user == null ? "Login untuk mengisi komentar" : "Tulis komentar"}
           onChange={e => handlerCommentInput(e.target.value)}
           disabled={props.user == null ? true : false}
@@ -209,10 +209,10 @@ export default function PostList(props) {
           type="button"
           className={
             !isValid
-              ? `bg-secondary text-base-100 mb-4 font-bold btn-md w-full rounded-md cursor-not-allowed ${
+              ? `btn-md mb-4 w-full cursor-not-allowed rounded-md bg-secondary font-bold text-base-100 ${
                   props.user == null || (!isValid && "text-base-100")
                 }`
-              : `bg-primary text-base-100 hover:bg-blue-600 duration-300 transition-all mb-4 font-bold btn-md w-full rounded-md ${
+              : `btn-md mb-4 w-full rounded-md bg-primary font-bold text-base-100 transition-all duration-300 hover:bg-blue-600 ${
                   props.user == null || (!isValid && "text-base-100")
                 }`
           }

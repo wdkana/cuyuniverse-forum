@@ -1,4 +1,4 @@
-import { BiLinkExternal } from "react-icons/bi";
+import {BiLinkExternal} from "react-icons/bi";
 
 const Announcemenet = () => {
   return (
@@ -10,7 +10,11 @@ const Announcemenet = () => {
         <code>masih dalam development</code>
       </pre>
       <pre data-prefix="3" className="bg-warning text-warning-content">
-        <code><a href="https://github.com/deaaprizal/laract9" target="_blank">Source Code <BiLinkExternal className="inline" /></a></code>
+        <code>
+          <a href="https://github.com/deaaprizal/laract9" target="_blank">
+            Source Code <BiLinkExternal className="inline" />
+          </a>
+        </code>
       </pre>
     </div>
   );

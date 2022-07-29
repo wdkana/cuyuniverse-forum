@@ -13,9 +13,9 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #d1c1d7;
-    border-radius: 100vh;
-    border: 3px solid #f6f7ed;
+  background: #d1c1d7;
+  border-radius: 100vh;
+  border: 3px solid #f6f7ed;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -23,7 +23,7 @@
 }
 
 body {
-  @apply transition-all duration-300 min-h-screen;
+  @apply min-h-screen transition-all duration-300;
 }
 
 html.dark body {
@@ -35,13 +35,17 @@ html.dark body {
 }
 
 .avatar svg {
-    display: none;
-    position: relative;
-    top: -64px;
-    width: 32px;
-    height: 32px;
-    margin: auto;
-    cursor: pointer;
+  display: none;
+  position: relative;
+  top: -64px;
+  width: 32px;
+  height: 32px;
+  margin: auto;
+  cursor: pointer;
 }
-.avatar div:hover svg {display: block;}
-.avatar div:hover img {opacity: 0.3;}
+.avatar div:hover svg {
+  display: block;
+}
+.avatar div:hover img {
+  opacity: 0.3;
+}
