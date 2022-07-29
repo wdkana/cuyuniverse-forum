@@ -12,37 +12,37 @@ export default function Guest({children, auth}) {
 
   return (
     <div className="min-h-screen">
-      <nav className="md:shadow-lg fixed bottom-0 lg:top-0 lg:sticky z-10 w-full bg-white dark:text-white dark:bg-slate-900">
-        <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex lg:justify-center h-16">
-            <div className="flex gap-2 w-full">
-              <div className="shrink-1 flex items-center w-full lg:w-auto">
+      <nav className="fixed bottom-0 z-10 w-full bg-white dark:bg-slate-900 dark:text-white md:shadow-lg lg:sticky lg:top-0">
+        <div className="mx-auto w-full px-4 sm:px-6 lg:px-8">
+          <div className="flex h-16 lg:justify-center">
+            <div className="flex w-full gap-2">
+              <div className="shrink-1 flex w-full items-center lg:w-auto">
                 <NavLink href={route("outer.main")} active={route().current("outer.main")}>
                   <MdOutlineHome className="m-1" size={24} />
                 </NavLink>
               </div>
 
-              <div className="flex items-center w-full lg:w-auto">
+              <div className="flex w-full items-center lg:w-auto">
                 <NavLink href={route("author.status")} active={route().current("author.status")}>
                   <MdSearch className="m-1" size={24} />
                 </NavLink>
               </div>
 
-              <div className="flex items-center w-full lg:w-auto">
+              <div className="flex w-full items-center lg:w-auto">
                 <NavLink href="/teams" active={route().current("outer.teams")}>
                   <FaGithub className="m-1" size={24} />
                 </NavLink>
               </div>
             </div>
 
-            <div className="hidden sm:flex sm:items-center sm:ml-6">
-              <div className="ml-3 relative">
+            <div className="hidden sm:ml-6 sm:flex sm:items-center">
+              <div className="relative ml-3">
                 {auth ? (
                   <Link href={route("dash.main")} method="get" as="button" className="mt-1">
-                    <div className="avatar w-8 h-8">
+                    <div className="avatar h-8 w-8">
                       <img
                         src={auth.image ? `/storage/images/${auth.image}` : "/storage/images/defaultavatar.png"}
-                        className="rounded-full ring ring-primary ring-offset-base-100 ring-offset-2"
+                        className="rounded-full ring ring-primary ring-offset-2 ring-offset-base-100"
                       />
                     </div>
                   </Link>
@@ -52,7 +52,7 @@ export default function Guest({children, auth}) {
                       <span className="inline-flex rounded-md ">
                         <button
                           type="button"
-                          className="inline-flex items-center px-3 py-2 border border-transparent text-base-100 text-sm leading-4 font-medium rounded-md hover:text-black focus:outline-none transition ease-in-out duration-150 dark:text-white">
+                          className="inline-flex items-center rounded-md border border-transparent px-3 py-2 text-sm font-medium leading-4 text-base-100 transition duration-150 ease-in-out hover:text-black focus:outline-none dark:text-white">
                           <MdLogin size={24} className="text-black dark:text-white" />
                           <svg
                             className="ml-2 -mr-0.5 h-4 w-4 text-black"
@@ -84,7 +84,7 @@ export default function Guest({children, auth}) {
             <div className="-mr-2 flex items-center sm:hidden">
               <button
                 onClick={() => setShowingNavigationDropdown(previousState => !previousState)}
-                className="inline-flex items-center justify-center p-2 rounded-md hover:text-black hover:bg-base-100 focus:outline-none focus:bg-base-100 focus:text-black transition duration-150 ease-in-out">
+                className="inline-flex items-center justify-center rounded-md p-2 transition duration-150 ease-in-out hover:bg-base-100 hover:text-black focus:bg-base-100 focus:text-black focus:outline-none">
                 <svg className="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                   <path
                     className={!showingNavigationDropdown ? "inline-flex" : "hidden"}
@@ -107,7 +107,7 @@ export default function Guest({children, auth}) {
         </div>
 
         <div className={(showingNavigationDropdown ? "block" : "hidden") + " sm:hidden"}>
-          <div className="pt-2 space-y-1">
+          <div className="space-y-1 pt-2">
             {auth && (
               <ResponsiveNavLink href={route("dash.main")} active={route().current("dash.main")}>
                 <MdDashboard className="m-1" />
@@ -116,18 +116,18 @@ export default function Guest({children, auth}) {
             )}
           </div>
 
-          <div className="pt-2 pb-1 border-b border-neutral">
+          <div className="border-b border-neutral pt-2 pb-1">
             {auth ? (
               <div className="flex justify-end px-4">
                 <Link
                   href={route("dash.main")}
                   method="get"
                   as="button"
-                  className="flex justify-center items-center flex-col">
-                  <div className="avatar w-10 h-10">
+                  className="flex flex-col items-center justify-center">
+                  <div className="avatar h-10 w-10">
                     <img
                       src={auth.image ? `/storage/images/${auth.image}` : "/storage/images/defaultavatar.png"}
-                      className="rounded-full ring ring-primary ring-offset-base-100 ring-offset-2"
+                      className="rounded-full ring ring-primary ring-offset-2 ring-offset-base-100"
                     />
                   </div>
                   <div>{auth.username}</div>
@@ -135,7 +135,7 @@ export default function Guest({children, auth}) {
               </div>
             ) : (
               <>
-                <div className="justify-center flex-col flex items-center gap-1">
+                <div className="flex flex-col items-center justify-center gap-1">
                   <ResponsiveNavLink method="get" href={route("login")} as="button">
                     Masuk
                   </ResponsiveNavLink>

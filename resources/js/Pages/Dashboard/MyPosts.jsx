@@ -1,117 +1,91 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 
 import Authenticated from "@/Layouts/Authenticated";
-import { Head, Link } from "@inertiajs/inertia-react";
-import { usePage } from "@inertiajs/inertia-react";
-import { formatTime } from "@/utils/jsHelper";
-import { Inertia } from "@inertiajs/inertia";
+import {Head, Link} from "@inertiajs/inertia-react";
+import {usePage} from "@inertiajs/inertia-react";
+import {formatTime} from "@/utils/jsHelper";
+import {Inertia} from "@inertiajs/inertia";
 import NotificationAlert from "@/Components/Default/NotificationAlert";
-import { TbTrashX } from "react-icons/tb";
+import {TbTrashX} from "react-icons/tb";
 
 export default function MyPosts(props) {
-    const { flash } = usePage().props;
-    const [showNotif, setShowNotif] = useState(false);
+  const {flash} = usePage().props;
+  const [showNotif, setShowNotif] = useState(false);
 
-    useEffect(() => {
-        if (flash.message) {
-            setShowNotif(true);
-        }
-        return () => setShowNotif(false);
-    }, [props]);
+  useEffect(() => {
+    if (flash.message) {
+      setShowNotif(true);
+    }
+    return () => setShowNotif(false);
+  }, [props]);
 
-    const removePosts = (id) => {
-        const data = {
-            id: id,
-            token: props.auth.user.token,
-        };
-        Inertia.post("/dashboard/manage-posts/posts/delete", data);
+  const removePosts = id => {
+    const data = {
+      id: id,
+      token: props.auth.user.token,
     };
+    Inertia.post("/dashboard/manage-posts/posts/delete", data);
+  };
 
-    return (
-        <Authenticated
-            auth={props.auth}
-            errors={props.errors}
-            header={
-                <div className="flex flex-row justify-between dark:text-white">
-                    <h2 className="font-semibold text-xl leading-tight cursor-default">
-                        {props.page}
-                    </h2>
-                    <Link
-                        href={`${route(props.nextRoute)}`}
-                        method="get"
-                        as="button"
-                        className="btn btn-sm btn-ghost leading-tight"
-                    >
-                        {props.next}
-                    </Link>
-                </div>
-            }
-        >
-            <Head title="Dashboard" />
-            <div className="flex flex-col justify-center items-center lg:flex-row lg:flex-wrap lg:items-strech py-6 px-4 gap-6">
-                {showNotif && <NotificationAlert message={flash.message} />}
+  return (
+    <Authenticated
+      auth={props.auth}
+      errors={props.errors}
+      header={
+        <div className="flex flex-row justify-between dark:text-white">
+          <h2 className="cursor-default text-xl font-semibold leading-tight">{props.page}</h2>
+          <Link
+            href={`${route(props.nextRoute)}`}
+            method="get"
+            as="button"
+            className="btn btn-ghost btn-sm leading-tight">
+            {props.next}
+          </Link>
+        </div>
+      }>
+      <Head title="Dashboard" />
+      <div className="lg:items-strech flex flex-col items-center justify-center gap-6 py-6 px-4 lg:flex-row lg:flex-wrap">
+        {showNotif && <NotificationAlert message={flash.message} />}
 
-                {props.data.length > 0 ? (
-                    props.data.map((posts, i) => {
-                        return (
-                            <div key={i}
-                                className="card w-full md:w-1/2 lg:w-1/3 xl:w-1/3 bg-base-100 dark:bg-slate-700 text-base-content shadow-lg cursor-pointer transition-all duration-300 hover:delay-75 dark:hover:bg-gray-600 dark:text-white hover:-translate-y-1"
-                            >
-                                <div className="card-body">
-                                    <Link
-                                        href={`/post/${posts.id}`}
-                                        method="get"
-                                        as="div"
-                                        className="card-title"
-                                    >
-                                        <p
-                                            className={`cursor-pointer hover:-translate-y-1 transition-all duration-300 text-xl text-left ${posts.description.length > 100
-                                                ? "break-normal overflow-x-hidden"
-                                                : "break-words"
-                                                } h-20`}
-                                        >
-                                            {posts.description}
-                                        </p>
-                                    </Link>
-                                    <div className="card-actions justify-between">
-                                        <div className="text-xs">
-                                            posted{" "}
-                                            {formatTime(posts.updated_at)} |{" "}
-                                            {posts.comments.length} comment
-                                        </div>
-                                        <label
-                                            onClick={() =>
-                                                removePosts(
-                                                    posts.id
-                                                )
-                                            }
-                                            className="btn btn-ghost cursor-pointer hover:bg-base-300 hover:rounded-md modal-button"
-                                            htmlFor={`my-modal-${posts.id}`}
-                                        >
-                                            <TbTrashX size={20} />
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-
-                        );
-                    })
-                ) : (
-                    <div className="text-center dark:text-white">
-                        <p className="font-bold text-2xl">
-                            kamu belum punya postingan
-                        </p>
-                        <Link
-                            href={`${route(props.nextRoute)}`}
-                            method="get"
-                            as="button"
-                            className="btn btn-ghost rounded-md"
-                        >
-                            Post Sekarang!
-                        </Link>
+        {props.data.length > 0 ? (
+          props.data.map((posts, i) => {
+            return (
+              <div
+                key={i}
+                className="card w-full cursor-pointer bg-base-100 text-base-content shadow-lg transition-all duration-300 hover:-translate-y-1 hover:delay-75 dark:bg-slate-700 dark:text-white dark:hover:bg-gray-600 md:w-1/2 lg:w-1/3 xl:w-1/3">
+                <div className="card-body">
+                  <Link href={`/post/${posts.id}`} method="get" as="div" className="card-title">
+                    <p
+                      className={`cursor-pointer text-left text-xl transition-all duration-300 hover:-translate-y-1 ${
+                        posts.description.length > 80 ? "overflow-x-hidden pr-2" : "break-words"
+                      } h-20`}>
+                      {posts.description}
+                    </p>
+                  </Link>
+                  <div className="card-actions flex items-center justify-between pt-3">
+                    <div className="text-xs">
+                      posted {formatTime(posts.updated_at)} | {posts.comments.length} comment
                     </div>
-                )}
-            </div>
-        </Authenticated>
-    );
+                    <label
+                      onClick={() => removePosts(posts.id)}
+                      className="modal-button btn btn-ghost cursor-pointer hover:rounded-md hover:bg-base-300"
+                      htmlFor={`my-modal-${posts.id}`}>
+                      <TbTrashX size={20} />
+                    </label>
+                  </div>
+                </div>
+              </div>
+            );
+          })
+        ) : (
+          <div className="text-center dark:text-white">
+            <p className="text-2xl font-bold">kamu belum punya postingan</p>
+            <Link href={`${route(props.nextRoute)}`} method="get" as="button" className="btn btn-ghost rounded-md">
+              Post Sekarang!
+            </Link>
+          </div>
+        )}
+      </div>
+    </Authenticated>
+  );
 }

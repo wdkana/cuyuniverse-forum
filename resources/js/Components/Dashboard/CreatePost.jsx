@@ -67,15 +67,15 @@ const CreatePost = ({ props }) => {
   };
 
   return (
-    <div className="max-w-7xl overflow-auto mx-auto px-4 sm:px-6 lg:px-8 ">
-      <div className="flex flex-col justify-center items-center p-4 gap-4">
-        <div className="alert alert-sm bg-secondary text-secondary-content rounded-md shadow-lg w-full lg:w-1/2 dark:bg-slate-700 dark:text-slate-300">
+    <div className="mx-auto max-w-7xl overflow-auto px-4 sm:px-6 lg:px-8 ">
+      <div className="flex flex-col items-center justify-center gap-4 p-4">
+        <div className="alert alert-sm w-full rounded-md bg-secondary text-secondary-content shadow-lg dark:bg-slate-700 dark:text-slate-300 lg:w-1/2">
           <div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              className="stroke-current flex-shrink-0 w-6 h-6 ">
+              className="h-6 w-6 flex-shrink-0 stroke-current ">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -91,7 +91,7 @@ const CreatePost = ({ props }) => {
           </div>
         </div>
         <i>{textTagged[0]}</i>
-        <div className="w-full lg:w-1/2 border-4 rounded-lg relative p-2">
+        <div className="relative w-full rounded-lg border-4 p-2 lg:w-1/2">
           <div
             aria-label="area"
             role="textbox"
