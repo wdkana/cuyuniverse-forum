@@ -1,18 +1,18 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import Dropdown from "@/Components/Default/Dropdown";
 import NavLink from "@/Components/Default/NavLink";
 import ResponsiveNavLink from "@/Components/Default/ResponsiveNavLink";
 import DarkToggle from "@/Components/Homepage/DarkToggle";
-import { MdOutlineHome, MdSearch } from "react-icons/md";
-import { FaGithub } from "react-icons/fa";
+import {MdOutlineHome, MdSearch} from "react-icons/md";
+import {FaGithub} from "react-icons/fa";
 
-export default function Authenticated({ auth, header, children }) {
+export default function Authenticated({auth, header, children}) {
   const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
   return (
     <div className="min-h-screen dark:text-white">
-      <nav className="md:shadow-lg fixed bottom-0 lg:top-0 lg:sticky z-10 w-full bg-white dark:text-white dark:bg-slate-900">
-        <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
+      <nav className="fixed bottom-0 z-10 w-full bg-white dark:bg-slate-900 dark:text-white md:shadow-lg lg:sticky lg:top-0">
+        <div className="mx-auto w-full px-4 sm:px-6 lg:px-8">
+          <div className="flex h-16 justify-between">
             <div className="flex">
               <div className="flex gap-2">
                 <div className="shrink-1 flex items-center">
@@ -35,22 +35,22 @@ export default function Authenticated({ auth, header, children }) {
               </div>
             </div>
 
-            <div className="hidden sm:flex sm:items-center sm:ml-6">
+            <div className="hidden sm:ml-6 sm:flex sm:items-center">
               <div className="ml-3">
                 <Dropdown>
                   <Dropdown.Trigger>
                     <span className="inline-flex">
                       <button
                         type="button"
-                        className="inline-flex items-center py-2 border border-transparent text-sm leading-4 font-medium hover:text-black focus:outline-none dark:hover:text-base-300 transition ease-in-out duration-150">
-                        <div className="avatar w-10 h-10 mr-2">
+                        className="inline-flex items-center border border-transparent py-2 text-sm font-medium leading-4 transition duration-150 ease-in-out hover:text-black focus:outline-none dark:hover:text-base-300">
+                        <div className="avatar mr-2 h-10 w-10">
                           <img
                             src={
                               auth.user.image
                                 ? `/storage/images/${auth.user.image}`
                                 : "/storage/images/defaultavatar.png"
                             }
-                            className=" rounded-full ring ring-primary ring-offset-base-100 ring-offset-2"
+                            className=" rounded-full ring ring-primary ring-offset-2 ring-offset-base-100"
                           />
                         </div>
                         {auth.user.username}
@@ -131,7 +131,7 @@ export default function Authenticated({ auth, header, children }) {
             <div className="-mr-2 flex items-center sm:hidden">
               <button
                 onClick={() => setShowingNavigationDropdown(previousState => !previousState)}
-                className="inline-flex items-center justify-center p-2 rounded-md hover:text-base-100 hover:bg-base-content focus:outline-none focus:bg-base-content focus:text-base-100 transition duration-150 ease-in-out">
+                className="inline-flex items-center justify-center rounded-md p-2 transition duration-150 ease-in-out hover:bg-base-content hover:text-base-100 focus:bg-base-content focus:text-base-100 focus:outline-none">
                 <svg className="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                   <path
                     className={!showingNavigationDropdown ? "inline-flex" : "hidden"}
@@ -154,7 +154,7 @@ export default function Authenticated({ auth, header, children }) {
         </div>
 
         <div className={(showingNavigationDropdown ? "block" : "hidden") + " sm:hidden"}>
-          <div className="pt-2 pb-3 space-y-1">
+          <div className="space-y-1 pt-2 pb-3">
             <ResponsiveNavLink href={route("dash.main")} active={route().current("dash.main")}>
               Dashboard
             </ResponsiveNavLink>
@@ -175,17 +175,17 @@ export default function Authenticated({ auth, header, children }) {
             </ResponsiveNavLink>
           </div>
 
-          <div className="pt-4 pb-1 border-b border-base-100">
-            <div className="px-4 justify-center flex-col flex items-center gap-1">
+          <div className="border-b border-base-100 pt-4 pb-1">
+            <div className="flex flex-col items-center justify-center gap-1 px-4">
               <div className="w-16 rounded-full">
-                <div className="avatar w-16 h-16 mr-2">
+                <div className="avatar mr-2 h-16 w-16">
                   <img
                     src={auth.user.image ? `/storage/images/${auth.user.image}` : "/storage/images/defaultavatar.png"}
-                    className=" rounded-full ring ring-primary ring-offset-base-100 ring-offset-2"
+                    className=" rounded-full ring ring-primary ring-offset-2 ring-offset-base-100"
                   />
                 </div>
               </div>
-              <div className="font-medium text-base badge badge-inline">
+              <div className="badge-inline badge text-base font-medium">
                 <i>{auth.user.username}</i>
               </div>
             </div>
@@ -208,7 +208,7 @@ export default function Authenticated({ auth, header, children }) {
 
       {header && (
         <header>
-          <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">{header}</div>
+          <div className="mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8">{header}</div>
         </header>
       )}
 
