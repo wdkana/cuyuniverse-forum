@@ -117,7 +117,7 @@ Jika kali menemukan kerentanan keamanan dalam project ini, silahkan untuk buka i
 <br>
 
 ## Discussions
-Bebaskan jiwa codingmu dan mari berdiskusi mengenai fitur, keamanan atau yang lain ya cui, bisa kalian kunjungi forum [diskusi](https://github.com/deaaprizal/laract9/discussions.)
+Bebaskan jiwa codingmu dan mari berdiskusi mengenai fitur, keamanan atau yang lain ya cui, bisa kalian kunjungi forum [diskusi](https://github.com/deaaprizal/laract9/discussions)
 
 <br>
 
