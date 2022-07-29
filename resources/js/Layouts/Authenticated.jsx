@@ -107,6 +107,13 @@ export default function Authenticated({auth, header, children}) {
                       Statistics
                     </Dropdown.Link>
                     <Dropdown.Link
+                      href={route("dash.integration")}
+                      active={route().current("dash.integration")}
+                      as="button"
+                      method="get">
+                      Integration
+                    </Dropdown.Link>
+                    <Dropdown.Link
                       href={route("dash.setting.profile")}
                       method="get"
                       as="button"
@@ -151,14 +158,17 @@ export default function Authenticated({auth, header, children}) {
             <ResponsiveNavLink href={route("dash.main")} active={route().current("dash.main")}>
               Dashboard
             </ResponsiveNavLink>
+            <ResponsiveNavLink href={route("dash.notif")} active={route().current("dash.notif")}>
+              Notification
+            </ResponsiveNavLink>
             <ResponsiveNavLink href={route("posts.main")} active={route().current("posts.main")}>
               Manage Post
             </ResponsiveNavLink>
             <ResponsiveNavLink href={route("dash.saved.post")} active={route().current("dash.saved.post")}>
               Saved Post
             </ResponsiveNavLink>
-            <ResponsiveNavLink href={route("dash.notif")} active={route().current("dash.notif")}>
-              Notification
+            <ResponsiveNavLink href={route("dash.integration")} active={route().current("dash.integration")}>
+              Integration
             </ResponsiveNavLink>
             <ResponsiveNavLink href={route("dash.stats")} active={route().current("dash.stats")}>
               Statistics
