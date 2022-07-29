@@ -8,7 +8,7 @@ const isNotif = message => {
   if (message) {
     return (
       <div className="toast toast-top toast-center z-10 ">
-        <div className="alert bg-primary dark:bg-slate-700 dark:text-slate-300">
+        <div className="alert bg-primary text-primary-content dark:bg-slate-700 dark:text-slate-300">
           <span className="text-sm">{message}</span>
         </div>
       </div>
@@ -18,7 +18,7 @@ const isNotif = message => {
   }
 };
 
-const NotificationAlert = ({message}) => {
+const NotificationAlert = ({ message }) => {
   const [show, setShow] = React.useState(false);
 
   React.useEffect(() => {
