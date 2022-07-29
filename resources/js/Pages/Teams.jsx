@@ -1,7 +1,7 @@
 import React from "react";
-import {Head} from "@inertiajs/inertia-react";
+import { Head } from "@inertiajs/inertia-react";
 import Guest from "@/Layouts/Guest";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 
 export default function TeamsPage(props) {
   const [githubData, setData] = useState([]);
@@ -60,7 +60,7 @@ export default function TeamsPage(props) {
             .map((item, index) => {
               return (
                 <a href={item.html_url} key={index} target="_blank" data-aos="flip-right" data-aos-duration="1500">
-                  <div className="all-card transition duration-200 ease-in-out lg:hover:-translate-y-1 lg:hover:scale-110">
+                  <div className="all-card lg:hover:-translate-y-1 lg:hover:scale-110 transition ease-in-out duration-200">
                     {item.contributions > 10 ? (
                       <div
                         className="card card-side flex w-72 items-center justify-between bg-gradient-to-r from-yellow-300 to-amber-600 font-semibold text-black shadow-lg brightness-150 dark:shadow-slate-900 lg:hover:from-amber-600 lg:hover:to-yellow-300"
