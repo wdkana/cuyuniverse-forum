@@ -156,7 +156,7 @@ export default function PostList(props) {
           })}
         </div>
       </div>
-      <div className="flex items-center justify-start gap-2 px-2 py-2 text-base-100 lg:px-10">
+      <div className="flex items-center justify-start gap-2 px-2 py-2 text-base-100 sm:px-10">
         <button
           onClick={() => likePost(props.posts.id)}
           type="button"

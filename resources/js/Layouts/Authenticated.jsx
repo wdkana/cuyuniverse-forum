@@ -35,7 +35,7 @@ export default function Authenticated({auth, header, children}) {
               </div>
             </div>
 
-            <div className="hidden sm:ml-6 sm:flex sm:items-center">
+            <div className="hidden sm:ml-6 sm:items-center lg:flex">
               <div className="ml-3">
                 <Dropdown>
                   <Dropdown.Trigger>
@@ -128,7 +128,7 @@ export default function Authenticated({auth, header, children}) {
               </div>
             </div>
 
-            <div className="-mr-2 flex items-center sm:hidden">
+            <div className="-mr-2 flex items-center lg:hidden">
               <button
                 onClick={() => setShowingNavigationDropdown(previousState => !previousState)}
                 className="inline-flex items-center justify-center rounded-md p-2 transition duration-150 ease-in-out hover:bg-base-content hover:text-base-100 focus:bg-base-content focus:text-base-100 focus:outline-none">
