@@ -9,13 +9,27 @@ use App\Models\SavedPosts;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
 
 final class DashboardController extends Controller
 {
+
+    private function checkCliRateLimiter(string $postType, $perMinute = 4): \Illuminate\Http\RedirectResponse|null
+    {
+        $key = "cli-store-{$postType}-" . Auth::id();
+        if (RateLimiter::tooManyAttempts($key, $perMinute)) {
+            return to_route('dash.integration')->with('message', 'Silahkan coba lagi dalam 1 menit kedepan');
+        }
+
+        RateLimiter::hit($key);
+        return null;
+    }
+
     public function index()
     {
         $user = User::find(Auth::user()->id);
@@ -28,6 +42,15 @@ final class DashboardController extends Controller
 
         return Inertia::render('Dashboard/Index', [
             'title' => 'DASHBOARD',
+        ]);
+    }
+
+    public function integration()
+    {
+        return Inertia::render('Dashboard/Integration', [
+            'title' => 'CUYUNIVERSE INTEGRATION',
+            'next' => 'DASHBOARD',
+            'nextRoute' => 'dash.main',
         ]);
     }
 
@@ -150,5 +173,25 @@ final class DashboardController extends Controller
         ]);
 
         return to_route('dash.setting.profile')->with('message', 'Password berhasil diganti');
+    }
+
+    public function cli_integration(Request $request)
+    {
+        if ($redirect = $this->checkCliRateLimiter("cli", Config::get('rate-limit.cli'))) {
+            return $redirect;
+        }
+        $request->validate(
+            [
+                'isActive' => 'required|boolean',
+            ],
+        );
+
+        $users = User::find(Auth::user()->id)->where('token', $request->token);
+        $users->update([
+            'secret' => $request->isActive ? Str::random(20) : NULL,
+            'cuycli' => $request->isActive ? 1 : 0
+        ]);
+
+        return redirect()->back()->with('message', $request->isActive ? 'Integrasi Cuy CLI berhasil diaktifkan ✔' : 'Integrasi Cuy CLI berhasil di non-aktifkan 🔻');
     }
 }
