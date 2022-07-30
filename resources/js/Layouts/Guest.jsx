@@ -35,7 +35,7 @@ export default function Guest({children, auth}) {
               </div>
             </div>
 
-            <div className="hidden sm:ml-6 sm:flex sm:items-center">
+            <div className="hidden sm:ml-6 sm:items-center lg:flex">
               <div className="relative ml-3">
                 {auth ? (
                   <Link href={route("dash.main")} method="get" as="button" className="mt-1">
@@ -81,7 +81,7 @@ export default function Guest({children, auth}) {
               </div>
             </div>
 
-            <div className="-mr-2 flex items-center sm:hidden">
+            <div className="-mr-2 flex items-center lg:hidden">
               <button
                 onClick={() => setShowingNavigationDropdown(previousState => !previousState)}
                 className="inline-flex items-center justify-center rounded-md p-2 transition duration-150 ease-in-out hover:bg-base-100 hover:text-black focus:bg-base-100 focus:text-black focus:outline-none">
@@ -106,7 +106,7 @@ export default function Guest({children, auth}) {
           </div>
         </div>
 
-        <div className={(showingNavigationDropdown ? "block" : "hidden") + " sm:hidden"}>
+        <div className={(showingNavigationDropdown ? "block" : "hidden") + " lg:hidden"}>
           <div className="space-y-1 pt-2">
             {auth && (
               <ResponsiveNavLink href={route("dash.main")} active={route().current("dash.main")}>
