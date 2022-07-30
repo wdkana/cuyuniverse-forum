@@ -95,16 +95,14 @@ const CreatePost = ({props}) => {
           <div
             aria-label="area"
             role="textbox"
-            contentEditable
-            value={description}
-            className={`textarea-span real`}
+            contenteditable="true"
+            value=""
+            class="textarea-span real"
             placeholder="Isi posting [min:10]"
-            autoComplete="off"
-            autoCorrect="off"
-            autoCapitalize="off"
-            spellCheck="false"
-            onInput={handlePostSubmit}
-          />
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="off"
+            spellcheck="false"></div>
           <div className={`textarea-span input`} ref={inputPost} />
         </div>
         {isLimit && (

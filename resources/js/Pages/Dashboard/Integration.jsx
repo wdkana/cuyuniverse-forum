@@ -18,7 +18,7 @@ export default function Integration(props) {
       }
     >
       <Head title={props.title} />
-      <div className='min-h-screen dark:text-white'>
+      <div className='min-h-screen dark:text-black'>
         <div className='text-center pt-6'>
           <h1 className='font-bold text-lg'>✨ {props.title} ✨</h1>
         </div>
