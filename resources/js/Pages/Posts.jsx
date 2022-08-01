@@ -49,13 +49,13 @@ export default function PostsPage(props) {
         </div>
         <div className="flex justify-center px-5 pt-5 lg:px-0">
           <div className="flex w-full justify-between lg:w-2/3">
-            <div className="flex lg:w-52">
+            <div className="flex w-4/12 rounded-lg border dark:border-slate-500 md:w-52 lg:w-52">
               <Menu
                 as="div"
-                className="rounded-lg border text-gray-600 transition duration-200 focus-within:border-blue-300 focus-within:ring focus-within:ring-blue-100 dark:border-slate-500 dark:text-slate-100 dark:focus-within:border-slate-500 dark:focus-within:ring-0"
+                className="w-full text-gray-600 transition duration-200 focus-within:ring focus-within:ring-blue-100 dark:text-slate-100 dark:focus-within:ring-0"
                 data-aos="zoom-out-right"
                 data-aos-duration="500">
-                <Menu.Button className="flex h-10 w-[121px] items-center justify-between rounded-lg bg-slate-100 pl-3 pr-2 capitalize focus:outline-none dark:bg-slate-900 md:w-52 lg:w-52">
+                <Menu.Button className="flex h-10 w-full items-center justify-between rounded-lg bg-slate-100 pl-3 pr-2 capitalize focus:outline-none dark:bg-slate-900">
                   {!filter.filtered ? "All" : filter.filtered}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -69,7 +69,7 @@ export default function PostsPage(props) {
                     />
                   </svg>
                 </Menu.Button>
-                <Menu.Items className="relative mt-1.5 w-[121px] overflow-hidden rounded-lg bg-white py-0.5 text-gray-900 shadow dark:bg-slate-600 dark:text-slate-100 md:w-52 lg:w-52">
+                <Menu.Items className="relative mt-1.5 overflow-hidden rounded-lg bg-white py-0.5 text-gray-900 shadow dark:bg-slate-600 dark:text-slate-100">
                   {menus.map((menu, key) => {
                     return menu.name == "line" ? (
                       <div key={key} className="my-0.5 h-px w-full bg-gray-200"></div>
@@ -77,7 +77,7 @@ export default function PostsPage(props) {
                       <Menu.Item key={key}>
                         <Link
                           preserveState
-                          className={`block w-[121px] px-4 py-2 text-sm font-medium capitalize hover:bg-gray-100 dark:hover:bg-slate-600 md:w-52`}
+                          className={`block px-4 py-2 text-sm font-medium capitalize hover:bg-gray-100 dark:hover:bg-slate-600 md:w-52`}
                           href={`?filtered=${menu.value}`}>
                           {menu.name}
                         </Link>
@@ -87,9 +87,9 @@ export default function PostsPage(props) {
                 </Menu.Items>
               </Menu>
             </div>
-            <div>
+            <div className="w-6/12 md:w-52 lg:w-52">
               <input
-                className="h-10 rounded-lg border border-gray-200 bg-slate-100 placeholder:text-gray-600 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-100 dark:border-slate-500 dark:bg-slate-900 dark:placeholder:text-slate-100 dark:focus:border-slate-500 dark:focus:ring-0"
+                className="h-10 w-full rounded-lg border border-gray-200 bg-slate-100 placeholder:text-gray-600 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-100 dark:border-slate-500 dark:bg-slate-900 dark:placeholder:text-slate-100 dark:focus:border-slate-500 dark:focus:ring-0"
                 autoComplete="off"
                 type="text"
                 name="search"
