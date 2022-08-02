@@ -117,7 +117,7 @@ export default function PostsPage(props) {
           </>
         ) : (
           <div className="flex justify-center pt-5">
-            <div className="alert alert-warning w-1/3 rounded-md text-slate-900 shadow-lg">
+            <div className="alert alert-warning w-11/12 md:w-1/3 rounded-md text-slate-900 shadow-lg">
               <div>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
