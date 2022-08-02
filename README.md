@@ -23,10 +23,6 @@
 </p>
 
 <br>
-<p align="center">
-    <a href="https://www.npmjs.com/package/cuy-cli">🧾 CUY-CLI INTEGRATED 🧾</a>
-</p>
-
 ## 📫 Join projek isengan ini?
 Cek staging server https://cuyuniverse.co
 
