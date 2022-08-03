@@ -26,40 +26,23 @@ export default function TeamsPage(props) {
       <Head title={props.title} />
       <div className="mb-20 min-h-screen lg:mb-0">
         <div className="pt-6 text-center">
-          <h1 className="text-lg font-bold dark:text-white" data-aos="zoom-in" data-aos-duration="1500">
+          <h1 className="text-lg font-bold dark:text-white" data-aos="zoom-in" data-aos-duration="1000">
             ✨ {props.description} ✨
           </h1>
           <a
             href={props.repo_link}
             className="btn btn-link btn-sm dark:text-white"
             data-aos="zoom-in"
-            data-aos-duration="3500">
+            data-aos-duration="1200">
             Repository Link
           </a>
         </div>
         <div className="lg:items-strech flex flex-col items-center justify-center gap-6 py-6 px-4 lg:flex-row lg:flex-wrap">
-          {/* {githubData.filter(item => item.id != 103190281).map((item, index) => {
-            return (
-              <a href={item.html_url} key={index} target="_blank" data-aos="flip-right" data-aos-duration="1500">
-                <div className="card w-72 card-side dark:bg-blue-600 dark:text-white shadow-lg dark:shadow-slate-900" key={index}>
-                  <img src={item.avatar_url} alt="" className="rounded-full h-16 w-16 ml-4 mt-3 align-middle"></img>
-                  <div className="card-body">
-                    <h3 className="card-title">{item.login.length > 14 ? item.login.slice(0, 14) + "..." : item.login}</h3>
-                  </div>
-                </a>
-              );
-            }, this)}
-        </div>
-        {err ? (
-          <div className="text-center pt-6">
-            <p className="text-sm dark:text-white">{err}</p>
-          </div>
-        ) : null} */}
           {githubData
             .filter(item => item.id != 103190281)
             .map((item, index) => {
               return (
-                <a href={item.html_url} key={index} target="_blank" data-aos="flip-right" data-aos-duration="1500">
+                <a href={item.html_url} key={index} target="_blank" data-aos="flip-right" data-aos-duration="900">
                   <div className="all-card lg:hover:-translate-y-1 lg:hover:scale-110 transition ease-in-out duration-200">
                     {item.contributions > 10 ? (
                       <div

@@ -78,7 +78,7 @@ class PostsController extends Controller
         $request->validate(
             [
                 'description' => 'required|string|min:4|max:200',
-                'tags' => 'string|min:2|max:20|nullable',
+                'tags' => 'string|min:3|max:15|nullable',
                 'token' => 'required'
             ]
         );
