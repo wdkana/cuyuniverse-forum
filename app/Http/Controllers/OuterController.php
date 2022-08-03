@@ -24,19 +24,24 @@ class OuterController extends Controller
           case 'oldest':
             $q->oldest();
             break;
-
           default:
             abort(404);
             break;
         }
-      });
+      })
+      ->when($request->tag, fn ($q, $key) => $q->where('hashtag', '=', $key));
+
+    $trending = $posts->whereIn('hashtag', function ($query) {
+      $query->select('hashtag')->from('posts')->groupBy('hashtag')->havingRaw('count(*) > 1');
+    })->distinct()->orderByDesc('updated_at')->limit(5)->get('hashtag');
 
     return inertia('Posts', [
       'title' => "CUY UNIVERSE",
       'root' => 'HOME',
       'description' => "Tempat Nongkrongnya Programmer Indie",
       'posts' => PostResource::collection($posts->latest()->paginate(22)->withQueryString()),
-      'filter' => $request->only(['search', 'page', 'filtered'])
+      'filter' => $request->only(['search', 'page', 'filtered', 'tag']),
+      'tags' => $trending,
     ]);
   }
 
