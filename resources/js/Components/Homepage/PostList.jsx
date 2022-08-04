@@ -94,7 +94,10 @@ export default function PostList(props) {
   };
 
   return (
-    <div className="bg-base card mb-10 w-full shadow-lg dark:bg-slate-700 dark:text-white md:w-2/3">
+    <div className="bg-base card mb-10 w-full shadow-lg dark:bg-slate-700 dark:text-white md:w-2/3 ">
+      {props.posts.image &&
+        <img src={`/storage/images/posts/${props.posts.image}`} className="image-full" />
+      }
       <RenderIfTrue isTrue={showNotif}>
         <NotificationAlert message={props.notif} />
       </RenderIfTrue>
@@ -160,12 +163,12 @@ export default function PostList(props) {
           onClick={() => likePost(props.posts.id)}
           type="button"
           className={`${props.user == null
-              ? "btn-sm cursor-not-allowed rounded-md border-none bg-secondary uppercase"
-              : `btn-sm rounded-md border-none bg-secondary uppercase
+            ? "btn-sm cursor-not-allowed rounded-md border-none bg-secondary uppercase"
+            : `btn-sm rounded-md border-none bg-secondary uppercase
               ${props.is_liked_post
-                ? "bg-primary-focus hover:bg-primary"
-                : "bg-secondary hover:bg-primary hover:text-base-100"
-              }`
+              ? "bg-primary-focus hover:bg-primary"
+              : "bg-secondary hover:bg-primary hover:text-base-100"
+            }`
             }
           `}
           disabled={!props.user ? true : false}>
@@ -175,12 +178,12 @@ export default function PostList(props) {
           onClick={() => savePost(props.posts.id)}
           type="button"
           className={`${props.user == null
-              ? "btn-sm cursor-not-allowed rounded-md bg-secondary uppercase"
-              : `btn-sm rounded-md bg-secondary uppercase
+            ? "btn-sm cursor-not-allowed rounded-md bg-secondary uppercase"
+            : `btn-sm rounded-md bg-secondary uppercase
               ${props.is_saved_post
-                ? "bg-primary-focus hover:bg-primary"
-                : "bg-secondary hover:bg-primary hover:text-base-100"
-              }`
+              ? "bg-primary-focus hover:bg-primary"
+              : "bg-secondary hover:bg-primary hover:text-base-100"
+            }`
             }
           `}
           disabled={!props.user ? true : false}>

@@ -30,17 +30,9 @@ export default function AuthorListPage(props) {
     <Guest auth={props.auth.user}>
       <Head title={props.title} />
       <div className="min-h-screen">
-        <div className="pt-6 text-center">
-          <h1 className="text-lg font-bold dark:text-white" data-aos="zoom-in" data-aos-duration="1500">
-            ✨ {props.title} ✨
-          </h1>
-          <p className="text-sm dark:text-white" data-aos="zoom-in" data-aos-duration="1500">
-            {props.description}
-          </p>
-        </div>
-        <div className="flex w-full p-4 lg:w-2/3 lg:p-0 lg:py-2 lg:mx-auto">
+        <div className="flex w-full p-4 lg:w-2/4 mx-auto">
           <input
-            className="h-10 w-full rounded-lg border border-gray-200 bg-slate-100 placeholder:text-gray-600 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-100 dark:border-slate-500 dark:bg-slate-900 dark:placeholder:text-slate-100 dark:focus:border-slate-500 dark:focus:ring-0"
+            className="h-10 w-full md:w-1/2 md:mx-auto px-4 rounded-lg border border-gray-200 bg-slate-100 placeholder:text-gray-600 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-100 dark:border-slate-500 dark:bg-slate-900 dark:placeholder:text-slate-100 dark:focus:border-slate-500 dark:focus:ring-0"
             autoComplete="off"
             type="text"
             name="search"

@@ -1,14 +1,14 @@
-import React, {useState} from "react";
-import {Inertia} from "@inertiajs/inertia";
+import React, { useState } from "react";
+import { Inertia } from "@inertiajs/inertia";
 import NotificationAlert from "../Default/NotificationAlert";
 
-const IntegrationCLI = ({token, props, secret, cli}) => {
+const IntegrationCLI = ({ token, props, secret, cli }) => {
   const [isCLIRequest, setIsCLIRequest] = useState(false);
   const [isCLIGuide, setIsCLIGuide] = useState(false);
 
   const requestActivatingCLI = request => {
     setIsCLIRequest(false);
-    return Inertia.put("/dashboard/integration/cuy-cli", {isActive: request, token: token});
+    return Inertia.put("/dashboard/integration/cuy-cli", { isActive: request, token: token });
   };
 
   return (

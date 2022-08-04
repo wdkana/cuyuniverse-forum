@@ -121,7 +121,7 @@ export default function PostsPage(props) {
               className="w-full p-2 mx-auto md:w-4/3 lg:w-4/6 xl:w-5/6 md:p-0"
               data-aos="zoom-in"
               data-aos-duration="500">
-              <div className="flex flex-row flex-wrap gap-1 md:gap-0 bg-base-200 md:bg-base-100">
+              <div className="flex flex-row flex-wrap place-items-end gap-1 bg-base-200 md:gap-0 md:bg-base-100">
                 <PostsList posts={posts} />
               </div>
             </div>
