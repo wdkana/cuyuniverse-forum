@@ -1,15 +1,20 @@
 import React from "react";
-import { Head } from "@inertiajs/inertia-react";
+import { Head, Link } from "@inertiajs/inertia-react";
 import PostList from "@/Components/Homepage/PostList";
 import Guest from "@/Layouts/Guest";
+import { FaArrowLeft } from "react-icons/fa";
+
 
 export default function PostPage(props) {
   return (
     <Guest auth={props.auth.user}>
       <Head title={props.title} />
       <div className="min-h-screen">
+        <Link className="px-2 pt-2" href="/" as="button">
+          <FaArrowLeft size={20} />
+        </Link>
         <div
-          className="flex  flex-col items-center justify-center gap-6 px-2 pt-6 lg:flex-row lg:flex-wrap lg:items-stretch lg:px-4"
+          className="flex  flex-col items-center justify-center gap-6 px-2 pt-2 lg:flex-row lg:flex-wrap lg:items-stretch lg:px-4"
           data-aos="zoom-in"
           data-aos-duration="500">
           <PostList

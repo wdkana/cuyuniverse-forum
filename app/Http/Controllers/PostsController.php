@@ -17,7 +17,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+
+use function PHPUnit\Framework\isEmpty;
 
 class PostsController extends Controller
 {
@@ -45,7 +48,7 @@ class PostsController extends Controller
      * 
      * @return \Illuminate\Http\RedirectResponse
      */
-    private function checkRateLimiter(string $postType, $perMinute = 3): \Illuminate\Http\RedirectResponse|null
+    private function checkRateLimiter(string $postType, $perMinute = 5): \Illuminate\Http\RedirectResponse|null
     {
         $key = "posts-store-{$postType}-" . Auth::id();
         if (RateLimiter::tooManyAttempts($key, $perMinute)) {
@@ -79,6 +82,7 @@ class PostsController extends Controller
             [
                 'description' => 'required|string|min:4|max:200',
                 'tags' => 'string|min:3|max:15|nullable',
+                'image' => 'image|mimes:jpg,png,jpeg,gif|max:1048|nullable',
                 'token' => 'required'
             ]
         );
@@ -88,15 +92,18 @@ class PostsController extends Controller
 
         $posts = new Posts();
 
+        if ($request->hasFile('image')) {
+            $fileName = Auth::user()->username . Str::random(60) . '.' . $request->image->getClientOriginalExtension();
+            $request->file('image')->storeAs('images/posts', $fileName);
+            $posts->image = $fileName;
+        }
         $posts->description = $request->description;
         $posts->author = auth()->user()->username;
         $posts->user_id = auth()->user()->id;
         $posts->hashtag = $tags ? $hashtag : NULL;
-
         $posts->save();
 
         $this->mentionUsers($request->description, $posts);
-
         return to_route('posts.main')->with('message', 'Posting Berhasil');
     }
 
