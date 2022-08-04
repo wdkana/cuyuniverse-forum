@@ -16,22 +16,25 @@ const isPosts = (posts, from) => {
     let more = false;
     let desc = post.description
     if (desc.length > 30) {
-      desc = desc.slice(0, 80)
+      desc = desc.slice(0, 60)
       more = true
     }
     return (
       <div
         key={i}
-        className="cursor-pointer md:border-2 md:p-2 bg-base-100 transition-all duration-300 hover:-translate-y-1 hover:bg-primary hover:text-primary-content dark:bg-slate-700 dark:text-white dark:hover:bg-gray-600 w-full md:w-1/2 lg:w-1/3 xl:w-1/4">
-        <Link href={`/post/${post.id}`} method="get" as="div" className="flex flex-col p-4 justify-evenly">
-          <div className="text-md break-words h-20">
+        className="card-normal cursor-pointer md:py-2 md:px-4 bg-base-100 transition-all duration-300 hover:-translate-y-1 hover:bg-primary hover:text-primary-content dark:bg-slate-700 dark:text-white dark:hover:bg-gray-600 w-full md:w-1/2 lg:w-1/3 xl:w-1/4 md:h-full">
+        {post.image &&
+          <img src={`/storage/images/posts/${post.image}`} className="relative pt-2 md:pt-0 block md:max-h-44 lg:max-h-40 w-auto h-auto min-w-full" />
+        }
+        <Link href={`/post/${post.id}`} method="get" as="div" className={`flex flex-col shadow-md p-4 justify-between h-auto`}>
+          <div className="text-md break-words">
             {desc}
             {more && <span className="italic text-sm text-primary"> ...lebih lengkap</span>}
           </div>
 
-          <div className="mt-2 flex flex-row items-center">
+          <div className="mt-2 py-2 flex flex-row items-center">
             <Link href={`/author/${post.author}`} as="button" method="get" className="avatar">
-              <div className="w-6 rounded-full ring ring-primary ring-offset-2 ring-offset-base-100">
+              <div className="w-6 rounded-full">
                 {from?.page == "author" ? (
                   <img
                     src={
@@ -51,9 +54,9 @@ const isPosts = (posts, from) => {
                 )}
               </div>
             </Link>
-            <div className="ml-4 text-sm">
+            <div className="ml-2 text-2xs">
               <p className="leading-none dark:text-white">{post.author}</p>
-              <p className="break-normal text-xs">
+              <p className="break-normal">
                 posted {formatTime(post.updated_at)} |{" "}
                 {post.comments && post.comments.length > 0 ? post.comments.length : "no"} comment
               </p>
