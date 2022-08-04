@@ -33,7 +33,7 @@ class OuterController extends Controller
 
     $trending = $posts->whereIn('hashtag', function ($query) {
       $query->select('hashtag')->from('posts')->groupBy('hashtag')->havingRaw('count(*) > 1');
-    })->distinct()->orderByDesc('updated_at')->limit(5)->get('hashtag');
+    })->distinct()->limit(5)->get('hashtag');
 
     return inertia('Posts', [
       'title' => "CUY UNIVERSE",
