@@ -12,6 +12,8 @@ const CreatePost = ({ props }) => {
   const [textTagged, setTextTagged] = useState("");
   const [isLimit, setIsLimit] = useState(false);
   const [isErrorNotif, setIsErrorNotif] = useState(false);
+  const [imageFile, setImageFile] = useState();
+  const [imagePreview, setImagePreview] = useState("");
 
   const regexHastag = new RegExp(/(^|\W)(#[a-z\d][\w-]*)/ig);
 
@@ -32,12 +34,24 @@ const CreatePost = ({ props }) => {
     props.errors ? setIsErrorNotif(true) : setIsErrorNotif(false)
   }, [props.errors])
 
+  const handleImagePost = (e) => {
+    setImageFile(e)
+  }
+
+  useEffect(() => {
+    if (!imageFile || imageFile.length < 1) return;
+    setImagePreview(URL.createObjectURL(imageFile))
+    return () => setImagePreview("")
+  }, [imageFile])
+
   const submitPost = () => {
     const data = {
       description: description,
       tags: textTagged.length > 0 ? textTagged[0].replace(/\s/g, "") : null,
+      image: imageFile ? imageFile : null,
       token: props.auth.user.token,
     };
+
     return isValid && Inertia.post("/dashboard/manage-posts/posts", data);
   }
 
@@ -83,12 +97,19 @@ const CreatePost = ({ props }) => {
                 d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
             {isErrorNotif && <NotificationAlert message={props.errors.description} />}
+            {props.errors && <NotificationAlert message={props.errors.image} />}
             <span>
               {!limiter
                 ? "Ngetiknya udah dulu ya, simpen buat postingan berikutnya 👍"
                 : `Saat ini postingan kamu dibatasi ${limiter} karakter`}
             </span>
           </div>
+        </div>
+        <div className="w-full lg:w-1/2">
+          {imagePreview &&
+            <div className="image-full pb-4"><img src={imagePreview} /></div>
+          }
+          <input type="file" name="image" accept="image/*" onChange={(e) => handleImagePost(e.target.files[0])} />
         </div>
         <i>{textTagged[0]}</i>
         <div className="relative w-full rounded-lg border-4 p-2 lg:w-1/2">
