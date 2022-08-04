@@ -94,8 +94,10 @@ export default function PostList(props) {
   };
 
   return (
-    <div className="bg-base card mb-10 w-full shadow-lg dark:bg-slate-700 dark:text-white md:w-2/3">
-      <img src={`/storage/images/posts/${props.posts.image}`} />
+    <div className="bg-base card mb-10 w-full shadow-lg dark:bg-slate-700 dark:text-white md:w-2/3 ">
+      {props.posts.image &&
+        <img src={`/storage/images/posts/${props.posts.image}`} className="image-full" />
+      }
       <RenderIfTrue isTrue={showNotif}>
         <NotificationAlert message={props.notif} />
       </RenderIfTrue>

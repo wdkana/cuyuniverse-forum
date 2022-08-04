@@ -1,15 +1,15 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 
 import Authenticated from "@/Layouts/Authenticated";
-import {Head, Link} from "@inertiajs/inertia-react";
-import {usePage} from "@inertiajs/inertia-react";
-import {formatTime} from "@/utils/jsHelper";
-import {Inertia} from "@inertiajs/inertia";
+import { Head, Link } from "@inertiajs/inertia-react";
+import { usePage } from "@inertiajs/inertia-react";
+import { formatTime } from "@/utils/jsHelper";
+import { Inertia } from "@inertiajs/inertia";
 import NotificationAlert from "@/Components/Default/NotificationAlert";
-import {TbTrashX} from "react-icons/tb";
+import { TbTrashX } from "react-icons/tb";
 
 export default function MyPosts(props) {
-  const {flash} = usePage().props;
+  const { flash } = usePage().props;
   const [showNotif, setShowNotif] = useState(false);
 
   useEffect(() => {
@@ -46,7 +46,6 @@ export default function MyPosts(props) {
       <Head title="Dashboard" />
       <div className="lg:items-strech flex flex-col items-center justify-center gap-6 py-6 px-4 lg:flex-row lg:flex-wrap">
         {showNotif && <NotificationAlert message={flash.message} />}
-
         {props.data.length > 0 ? (
           props.data.map((posts, i) => {
             return (
@@ -54,11 +53,13 @@ export default function MyPosts(props) {
                 key={i}
                 className="card w-full cursor-pointer bg-base-100 text-base-content shadow-lg transition-all duration-300 hover:-translate-y-1 hover:delay-75 dark:bg-slate-700 dark:text-white dark:hover:bg-gray-600 md:w-1/2 lg:w-1/3 xl:w-1/3">
                 <div className="card-body">
+                  {posts.image &&
+                    <img src={`/storage/images/posts/${posts.image}`} className="image-full" />
+                  }
                   <Link href={`/post/${posts.id}`} method="get" as="div" className="card-title">
                     <p
-                      className={`cursor-pointer text-left text-xl transition-all duration-300 hover:-translate-y-1 ${
-                        posts.description.length > 80 ? "overflow-x-hidden pr-2" : "break-words"
-                      } h-20`}>
+                      className={`cursor-pointer text-left text-xl transition-all duration-300 hover:-translate-y-1 ${posts.description.length > 80 ? "overflow-x-hidden pr-2" : "break-words"
+                        } h-20`}>
                       {posts.description}
                     </p>
                   </Link>

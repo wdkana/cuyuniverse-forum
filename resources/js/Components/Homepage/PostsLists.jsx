@@ -25,13 +25,14 @@ const isPosts = (posts, from) => {
       more = true
     }
     return (
-      <div
+      <Link
+        href={`/post/${post.id}`} method="get" as="div"
         key={i}
-        className="card-normal cursor-pointer md:py-2 md:px-1 bg-base-100 transition-all duration-300  dark:bg-slate-700 dark:text-white dark:hover:bg-gray-600 w-full md:w-1/2 lg:w-1/3 xl:w-1/4 md:h-full">
+        className="card-normal cursor-pointer md:py-2 md:px-1 bg-base-100 transition-all duration-300  dark:bg-slate-700 dark:text-white dark:hover:bg-gray-600 w-full md:w-1/2 md:h-full">
         {post.image &&
-          <img src={`/storage/images/posts/${post.image}`} className="relative pt-2 md:pt-0 block md:max-h-44 lg:max-h-40 w-auto h-auto min-w-full" />
+          <img src={`/storage/images/posts/${post.image}`} className="relative pt-2 md:pt-0 block md:max-h-72 w-auto h-auto min-w-full" />
         }
-        <Link href={`/post/${post.id}`} method="get" as="div" className={`flex flex-col shadow-md p-4 justify-between h-auto hover:-translate-y-1 hover:bg-primary hover:text-primary-content`}>
+        <div className={`flex flex-col shadow-md p-4 justify-between h-auto hover:-translate-y-1 hover:bg-primary hover:text-primary-content`}>
           <div className="text-md break-words">
             {post.image ? desc_with_image : desc_no_image}
             {more && <span className="italic text-sm text-primary"> ...lebih lengkap</span>}
@@ -67,8 +68,8 @@ const isPosts = (posts, from) => {
               </p>
             </div>
           </div>
-        </Link>
-      </div>
+        </div>
+      </Link>
     );
   });
 };
