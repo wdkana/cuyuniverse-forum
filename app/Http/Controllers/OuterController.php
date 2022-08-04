@@ -32,7 +32,7 @@ class OuterController extends Controller
       ->when($request->tag, fn ($q, $key) => $q->where('hashtag', '=', $key));
 
     $trending = $posts->whereIn('hashtag', function ($query) {
-      $query->select('hashtag')->from('posts')->groupBy('hashtag')->havingRaw('count(*) > 1');
+      $query->select('hashtag')->from('posts')->groupBy('hashtag')->havingRaw('count(*) > 10');
     })->distinct()->limit(5)->get('hashtag');
 
     return inertia('Posts', [
