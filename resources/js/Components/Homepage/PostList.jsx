@@ -1,8 +1,8 @@
 import RenderIfTrue from "@/helper/RenderIfTrue";
-import {formatTime} from "@/utils/jsHelper";
-import {Inertia} from "@inertiajs/inertia";
-import {Link} from "@inertiajs/inertia-react";
-import {useEffect, useState} from "react";
+import { formatTime } from "@/utils/jsHelper";
+import { Inertia } from "@inertiajs/inertia";
+import { Link } from "@inertiajs/inertia-react";
+import { useEffect, useState } from "react";
 import NotificationAlert from "../Default/NotificationAlert";
 
 export default function PostList(props) {
@@ -100,7 +100,6 @@ export default function PostList(props) {
       </RenderIfTrue>
       <div className="card-body p-6" data-aos="flip-left" data-aos-duration="500">
         <p className="cursor-default break-all text-2xl font-bold">{props.posts.description}</p>
-
         <div className="flex flex-row border-b-4 border-b-secondary py-2 dark:border-b-slate-400">
           <div className="flex basis-1/2 items-end justify-start">
             <div className="cursor-default break-normal text-xs">posted {formatTime(props.posts.created_at)}</div>
@@ -160,16 +159,14 @@ export default function PostList(props) {
         <button
           onClick={() => likePost(props.posts.id)}
           type="button"
-          className={`${
-            props.user == null
+          className={`${props.user == null
               ? "btn-sm cursor-not-allowed rounded-md border-none bg-secondary uppercase"
               : `btn-sm rounded-md border-none bg-secondary uppercase
-              ${
-                props.is_liked_post
-                  ? "bg-primary-focus hover:bg-primary"
-                  : "bg-secondary hover:bg-primary hover:text-base-100"
+              ${props.is_liked_post
+                ? "bg-primary-focus hover:bg-primary"
+                : "bg-secondary hover:bg-primary hover:text-base-100"
               }`
-          }
+            }
           `}
           disabled={!props.user ? true : false}>
           {props.posts.likes_count} {props.posts.likes_count === 1 ? "Like" : "Likes"}
@@ -177,16 +174,14 @@ export default function PostList(props) {
         <button
           onClick={() => savePost(props.posts.id)}
           type="button"
-          className={`${
-            props.user == null
+          className={`${props.user == null
               ? "btn-sm cursor-not-allowed rounded-md bg-secondary uppercase"
               : `btn-sm rounded-md bg-secondary uppercase
-              ${
-                props.is_saved_post
-                  ? "bg-primary-focus hover:bg-primary"
-                  : "bg-secondary hover:bg-primary hover:text-base-100"
+              ${props.is_saved_post
+                ? "bg-primary-focus hover:bg-primary"
+                : "bg-secondary hover:bg-primary hover:text-base-100"
               }`
-          }
+            }
           `}
           disabled={!props.user ? true : false}>
           {props.is_saved_post ? "Disimpan" : "Simpan"}
@@ -209,12 +204,10 @@ export default function PostList(props) {
           type="button"
           className={
             !isValid
-              ? `btn-md mb-4 w-full cursor-not-allowed rounded-md bg-secondary font-bold text-base-100 ${
-                  props.user == null || (!isValid && "text-base-100")
-                }`
-              : `btn-md mb-4 w-full rounded-md bg-primary font-bold text-base-100 transition-all duration-300 hover:bg-blue-600 ${
-                  props.user == null || (!isValid && "text-base-100")
-                }`
+              ? `btn-md mb-4 w-full cursor-not-allowed rounded-md bg-secondary font-bold text-base-100 ${props.user == null || (!isValid && "text-base-100")
+              }`
+              : `btn-md mb-4 w-full rounded-md bg-primary font-bold text-base-100 transition-all duration-300 hover:bg-blue-600 ${props.user == null || (!isValid && "text-base-100")
+              }`
           }
           disabled={props.user == null || !isValid ? true : false}
           onClick={() => handlerCommentSubmit()}>
