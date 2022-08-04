@@ -33,7 +33,7 @@ const isPosts = (posts, from) => {
           <img src={`/storage/images/posts/${post.image}`} className="relative pt-2 md:pt-0 block md:max-h-72 w-auto h-auto min-w-full" />
         }
         <div className={`flex flex-col shadow-md p-4 justify-between h-auto hover:-translate-y-1 hover:bg-primary hover:text-primary-content`}>
-          <div className="text-md break-words">
+          <div className="text-md break-words break-all">
             {post.image ? desc_with_image : desc_no_image}
             {more && <span className="italic text-sm text-primary"> ...lebih lengkap</span>}
           </div>
