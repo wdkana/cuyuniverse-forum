@@ -14,21 +14,26 @@ const noPosts = () => {
 const isPosts = (posts, from) => {
   return posts.map((post, i) => {
     let more = false;
-    let desc = post.description
-    if (desc.length > 30) {
-      desc = desc.slice(0, 60)
+    let desc_no_image = post.description
+    let desc_with_image = post.description
+    if (post.image && post.description.length > 20) {
+      desc_with_image = desc_with_image.slice(0, 20)
+      more = true
+    }
+    if (!post.image && post.description.length > 150) {
+      desc_no_image = desc_no_image.slice(0, 150)
       more = true
     }
     return (
       <div
         key={i}
-        className="card-normal cursor-pointer md:py-2 md:px-4 bg-base-100 transition-all duration-300 hover:-translate-y-1 hover:bg-primary hover:text-primary-content dark:bg-slate-700 dark:text-white dark:hover:bg-gray-600 w-full md:w-1/2 lg:w-1/3 xl:w-1/4 md:h-full">
+        className="card-normal cursor-pointer md:py-2 md:px-1 bg-base-100 transition-all duration-300  dark:bg-slate-700 dark:text-white dark:hover:bg-gray-600 w-full md:w-1/2 lg:w-1/3 xl:w-1/4 md:h-full">
         {post.image &&
           <img src={`/storage/images/posts/${post.image}`} className="relative pt-2 md:pt-0 block md:max-h-44 lg:max-h-40 w-auto h-auto min-w-full" />
         }
-        <Link href={`/post/${post.id}`} method="get" as="div" className={`flex flex-col shadow-md p-4 justify-between h-auto`}>
+        <Link href={`/post/${post.id}`} method="get" as="div" className={`flex flex-col shadow-md p-4 justify-between h-auto hover:-translate-y-1 hover:bg-primary hover:text-primary-content`}>
           <div className="text-md break-words">
-            {desc}
+            {post.image ? desc_with_image : desc_no_image}
             {more && <span className="italic text-sm text-primary"> ...lebih lengkap</span>}
           </div>
 
