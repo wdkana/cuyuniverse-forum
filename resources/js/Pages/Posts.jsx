@@ -112,7 +112,7 @@ export default function PostsPage(props) {
                   <span className="py-1" key={i}>
                     <p
                       name="tag"
-                      className={`${tag && 'bg-white text-black'} font-bold link px-2 hover:cursor-pointer hover:bg-white hover:text-black`}
+                      className={`${tag == props.tags[i].hashtag && 'bg-white text-black'} font-bold link px-2 hover:cursor-pointer hover:bg-white hover:text-black`}
                       onClick={() => setTag(trend.hashtag)}>
                       #{trend.hashtag}
                     </p>

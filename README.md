@@ -23,7 +23,6 @@
 </p>
 
 <br>
-
 ## 📫 Join projek isengan ini?
 Cek staging server https://cuyuniverse.co
 

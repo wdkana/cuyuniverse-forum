@@ -16,6 +16,7 @@ class OuterController extends Controller
   {
     $posts = Posts::query()->with(['comments', 'users:id,image'])
       ->when($request->search, fn ($q, $key) => $q->where('description', 'like', "%{$key}%"))
+      ->when($request->tag, fn ($q, $key) => $q->where('hashtag', '=', $key))
       ->when($request->filtered, function ($q, $value) {
         switch ($value) {
           case 'latest':
@@ -28,12 +29,7 @@ class OuterController extends Controller
             abort(404);
             break;
         }
-      })
-      ->when($request->tag, fn ($q, $key) => $q->where('hashtag', '=', $key));
-
-    $trending = $posts->whereIn('hashtag', function ($query) {
-      $query->select('hashtag')->from('posts')->groupBy('hashtag')->havingRaw('count(*) > 1');
-    })->distinct()->limit(5)->get('hashtag');
+      });
 
     return inertia('Posts', [
       'title' => "CUY UNIVERSE",
@@ -41,7 +37,9 @@ class OuterController extends Controller
       'description' => "Tempat Nongkrongnya Programmer Indie",
       'posts' => PostResource::collection($posts->latest()->paginate(22)->withQueryString()),
       'filter' => $request->only(['search', 'page', 'filtered', 'tag']),
-      'tags' => $trending,
+      'tags' => Posts::where('hashtag', '!=', null)->whereIn('hashtag', function ($query) {
+        $query->select('hashtag')->from('posts')->groupBy('hashtag')->havingRaw('count(*) > 10');
+      })->limit(5)->distinct()->get('hashtag')
     ]);
   }
 
