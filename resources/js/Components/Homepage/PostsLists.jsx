@@ -24,7 +24,7 @@ const isPosts = (posts, from) => {
         href={`/post/${post.id}`} method="get" as="div"
         key={i}
         className="card cursor-pointer md:py-2 md:px-1 bg-base-100 transition-all duration-300  dark:bg-slate-700 dark:text-white dark:hover:bg-gray-600 w-full md:w-full">
-        <div className={`card-body rounded-md flex flex-col shadow-md m-2 md:m-0 p-4 justify-between hover:-translate-y-1 hover:bg-primary hover:text-primary-content`}>
+        <div className={`card-body rounded-md flex flex-col shadow-md m-2 md:m-0 p-4 justify-between hover:-translate-y-1 hover:bg-primary hover:text-primary-content dark:bg-none dark:shadow-none`}>
           {post.hashtag &&
             <Link className="card-title" as="a" href={`/?tag=${post.hashtag}`}>
               <div className="badge badge-primary text-primary-content">#{post.hashtag}</div>
