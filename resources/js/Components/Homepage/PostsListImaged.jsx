@@ -20,7 +20,7 @@ const isPostsWithImage = (posts, from) => {
       more = true
     }
     return <Link
-      href={`/post/${post.id}`} method="get" as="div" className="flex" key={i}>
+      href={`/post/${post.id}`} method="get" as="div" className="flex cursor-pointer" key={i}>
       <div className="z-0 card bg-base-100 shadow-xl w-full max-h-72 image-full">
         <figure><img src={`/storage/images/posts/${post.image}`} alt="Post Image" height={200} width={200} /></figure>
         <div className="card-body w-80">
@@ -31,7 +31,7 @@ const isPostsWithImage = (posts, from) => {
           }
           <p className="text-sm">{desc} {more && <span className="italic text-sm text-white break-words break-normal"> ...lebih lengkap</span>}</p>
           <div className="flex flex-row flex-wrap gap-2 p-2 absolute bottom-0 left-0 bg-opacity-70 text-white bg-black">
-            <Link href={`/author/${post.author}`} as="button" method="get" className="avatar">
+            <Link href={`/author/${post.author}`} as="button" method="get" className="avatar cursor-pointer">
               <div className="w-6 rounded-full">
                 {from?.page == "author" ? (
                   <img
