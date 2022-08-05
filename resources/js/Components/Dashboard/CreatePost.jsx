@@ -142,7 +142,7 @@ const CreatePost = ({ props }) => {
           className={
             !isValid
               ? "absolute bottom-16 z-3 btn-lg lg:btn-md lg:rounded-md left-0 lg:relative lg:bottom-0 lg:left-0 text-xl bg-secondary text-secondary-content py-2  lg:w-1/2 w-full dark:bg-slate-500 cursor-not-allowed"
-              : "fixed bottom-16 z-3 btn-lg lg:btn-md lg:rounded-md left-0 text-xl lg:relative lg:bottom-0 lg:left-0 bg-primary text-primary-content py-2 hover:bg-secondary hover:text-secondary-content lg:w-1/2 w-full dark:bg-slate-700 cursor-pointer"
+              : "fixed bottom-16 z-3 btn-lg lg:btn-md lg:rounded-md left-0 text-xl lg:relative lg:bottom-0 lg:left-0 bg-primary text-primary-content py-2 hover:bg-secondary hover:text-secondary-content lg:w-1/2 w-full cursor-pointer"
           }
           onClick={() => submitPost()}
         >
