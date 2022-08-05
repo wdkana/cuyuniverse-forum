@@ -7,6 +7,7 @@ import { formatTime } from "@/utils/jsHelper";
 import { Inertia } from "@inertiajs/inertia";
 import NotificationAlert from "@/Components/Default/NotificationAlert";
 import { TbTrashX } from "react-icons/tb";
+import { FaArrowAltCircleUp } from "react-icons/fa";
 
 export default function MyPosts(props) {
   const { flash } = usePage().props;
@@ -44,6 +45,7 @@ export default function MyPosts(props) {
         </div>
       }>
       <Head title="Dashboard" />
+      <div className="fixed bottom-16 z-10 right-2 w-10 h-10 flex justify-center items-center" onClick={() => window.scrollTo(0, 0)}><FaArrowAltCircleUp size={24} /></div>
       <div className="lg:items-strech flex flex-col items-center justify-center gap-6 py-6 px-4 lg:flex-row lg:flex-wrap">
         {showNotif && <NotificationAlert message={flash.message} />}
         {props.data.length > 0 ? (
