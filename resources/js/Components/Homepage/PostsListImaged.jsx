@@ -25,7 +25,7 @@ const isPostsWithImage = (posts, from) => {
         <figure><img src={`/storage/images/posts/${post.image}`} alt="Post Image" height={200} width={200} /></figure>
         <div className="card-body w-80">
           {post.hashtag &&
-            <Link className="card-title" as="a" href={`/?tag=${post.hashtag}`}>
+            <Link className="card-title w-1/2" as="a" href={`/?tag=${post.hashtag}`}>
               <div className="badge badge-primary text-primary-content">#{post.hashtag}</div>
             </Link>
           }

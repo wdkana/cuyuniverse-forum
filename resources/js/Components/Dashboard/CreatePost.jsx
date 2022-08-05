@@ -97,7 +97,8 @@ const CreatePost = ({ props }) => {
                 d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
             {isErrorNotif && <NotificationAlert message={props.errors.description} />}
-            {props.errors && <NotificationAlert message={props.errors.image} />}
+            {isErrorNotif && props.errors.tags && <NotificationAlert message={props.errors.tags} />}
+            {isErrorNotif && <NotificationAlert message={props.errors.image} />}
             <span>
               {!limiter
                 ? "Ngetiknya udah dulu ya, simpen buat postingan berikutnya 👍"
