@@ -102,7 +102,7 @@ export default function PostList(props) {
         <NotificationAlert message={props.notif} />
       </RenderIfTrue>
       <div className="card-body p-6" data-aos="flip-left" data-aos-duration="500">
-        <p className="cursor-default break-all text-2xl font-bold">{props.posts.description}</p>
+        <p className="cursor-default break-normal break-words text-xl">{props.posts.description}</p>
         <div className="flex flex-row border-b-4 border-b-secondary py-2 dark:border-b-slate-400">
           <div className="flex basis-1/2 items-end justify-start">
             <div className="cursor-default break-normal text-xs">posted {formatTime(props.posts.created_at)}</div>
@@ -125,14 +125,13 @@ export default function PostList(props) {
             </div>
           </div>
         </div>
-
         <div className="bg-base-200">
           {props.comments.map((comment, i) => {
             return (
               <div
                 className="flex flex-col border-b-2 border-b-secondary p-3 dark:border-b-slate-500 dark:bg-slate-800 dark:text-white"
                 key={i}>
-                <div className="text-md font-mono font-bold">{comment.description}</div>
+                <div className="text-md font-mono break-words break-normal">{comment.description}</div>
                 <Link
                   href={`/author/${comment.commentartor}`}
                   as="div"
@@ -158,6 +157,7 @@ export default function PostList(props) {
           })}
         </div>
       </div>
+      <div className="divider" />
       <div className="flex items-center justify-start gap-2 px-2 py-2 text-base-100 sm:px-10">
         <button
           onClick={() => likePost(props.posts.id)}

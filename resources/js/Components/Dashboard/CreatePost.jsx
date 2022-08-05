@@ -109,7 +109,7 @@ const CreatePost = ({ props }) => {
           {imagePreview &&
             <div className="image-full pb-4"><img src={imagePreview} /></div>
           }
-          <input type="file" name="image" accept="image/*" onChange={(e) => handleImagePost(e.target.files[0])} />
+          <input className="p-4 w-full border border-spacing-1" type="file" name="image" accept="image/*" onChange={(e) => handleImagePost(e.target.files[0])} />
         </div>
         <i>{textTagged[0]}</i>
         <div className="relative w-full rounded-lg border-4 p-2 lg:w-1/2">

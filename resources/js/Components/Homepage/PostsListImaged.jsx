@@ -11,33 +11,28 @@ const noPosts = () => {
   );
 };
 
-const isPosts = (posts, from) => {
-  return posts.filter((post) => post.image == null).map((post, i) => {
+const isPostsWithImage = (posts, from) => {
+  return posts.filter(post => post.image !== null).map((post, i) => {
     let more = false;
     let desc = post.description
-    if (desc.length > 150) {
-      desc = desc.slice(0, 150)
+    if (desc.length > 60) {
+      desc = desc.slice(0, 60)
       more = true
     }
-    return (
-      <Link
-        href={`/post/${post.id}`} method="get" as="div"
-        key={i}
-        className="card cursor-pointer md:py-2 md:px-1 bg-base-100 transition-all duration-300  dark:bg-slate-700 dark:text-white dark:hover:bg-gray-600 w-full md:w-full">
-        <div className={`card-body rounded-md flex flex-col shadow-md m-2 md:m-0 p-4 justify-between hover:-translate-y-1 hover:bg-primary hover:text-primary-content`}>
+    return <Link
+      href={`/post/${post.id}`} method="get" as="div" className="flex" key={i}>
+      <div className="z-0 card bg-base-100 shadow-xl w-full max-h-72 image-full">
+        <figure><img src={`/storage/images/posts/${post.image}`} alt="Post Image" height={200} width={200} /></figure>
+        <div className="card-body w-80">
           {post.hashtag &&
             <Link className="card-title" as="a" href={`/?tag=${post.hashtag}`}>
               <div className="badge badge-primary text-primary-content">#{post.hashtag}</div>
             </Link>
           }
-          <div className="text-xl break-words break-normal">
-            {desc}
-            {more && <span className="italic text-sm text-primary"> ...lebih lengkap</span>}
-          </div>
-
-          <div className="mt-2 py-2 flex flex-row items-center">
+          <p className="text-sm">{desc} {more && <span className="italic text-sm text-white break-words break-normal"> ...lebih lengkap</span>}</p>
+          <div className="flex flex-row flex-wrap gap-2 p-2 absolute bottom-0 left-0 bg-opacity-70 text-white bg-black">
             <Link href={`/author/${post.author}`} as="button" method="get" className="avatar">
-              <div className="w-8 rounded-full">
+              <div className="w-6 rounded-full">
                 {from?.page == "author" ? (
                   <img
                     src={
@@ -57,21 +52,19 @@ const isPosts = (posts, from) => {
                 )}
               </div>
             </Link>
-            <div className="ml-2 text-sm">
-              <p className="leading-none dark:text-white">{post.author}</p>
-              <p className="break-normal break-words">
-                posted {formatTime(post.updated_at)} |{" "}
-                {post.comments && post.comments.length > 0 ? post.comments.length : "no"} comment
-              </p>
-            </div>
+            <div className="badge badge-outline">{post.author}</div>
+            <p className="break-words break-normal text-2xs">
+              posted {formatTime(post.updated_at)} |{" "}
+              {post.comments && post.comments.length > 0 ? post.comments.length : "no"} comment
+            </p>
           </div>
         </div>
-      </Link>
-    );
-  });
-};
+      </div>
+    </Link>
+  })
+}
 
-export default function PostsList(props) {
+export default function PostsListImage(props) {
   if (!props.posts || !props.posts.length) return noPosts();
-  return isPosts(props.posts, props.from);
+  return isPostsWithImage(props.posts, props.from)
 }

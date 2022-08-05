@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Head, Link } from "@inertiajs/inertia-react";
 import PostsList from "@/Components/Homepage/PostsLists";
+import PostsListImaged from "@/Components/Homepage/PostsListImaged";
 import Paginate from "@/Components/Homepage/Paginate";
 import Guest from "@/Layouts/Guest";
 import { debounce, pickBy } from "lodash";
@@ -19,6 +20,7 @@ export default function PostsPage(props) {
   const [keyword, setKeyword] = useState(filter.search);
   const [tag, setTag] = useState(filter.tag);
   const isFirstRender = useRef(true);
+  const [postImageLength, setPostImageLength] = useState(0);
 
   const reload = useCallback(
     debounce((q, x) => {
@@ -28,6 +30,16 @@ export default function PostsPage(props) {
     }, 500),
     []
   );
+
+  useEffect(() => {
+    let isImagedPost = true
+    if (isImagedPost) {
+      posts.filter(post => post.image !== null).map((post, i) => {
+        setPostImageLength(i);
+      })
+    }
+    return () => { isImagedPost = false };
+  }, [posts])
 
   useEffect(() => {
     if (isFirstRender.current) {
@@ -116,21 +128,25 @@ export default function PostsPage(props) {
           </div>
         }
         {posts.length > 0 ? (
-          <>
-            <div
-              className="w-full p-2 mx-auto md:w-4/3 lg:w-4/6 xl:w-5/6 md:p-0"
-              data-aos="zoom-in"
-              data-aos-duration="500">
-              <div className="flex flex-row flex-wrap place-items-end gap-1 bg-base-200 md:gap-0 md:bg-base-100">
-                <PostsList posts={posts} />
-              </div>
+          <div className="py-2 px-2 w-full lg:w-2/3 xl:w-5/6 lg:p-0 lg:py-2 mx-auto">
+            {postImageLength > 0 &&
+              <>
+                <h1 className="font-sans font-bold text-2xl border-b-2 mb-4">Latest Image Posts</h1>
+                <div className="flex flex-row gap-2 overflow-x-auto">
+                  <PostsListImaged posts={posts} />
+                </div>
+              </>
+            }
+            <h1 className="font-sans font-bold text-2xl px-2 mt-4 border-b-2 mb-4">Readable Posts</h1>
+            <div className="flex flex-row flex-wrap place-items-end gap-2 md:gap-1 bg-base-100 dark:bg-neutral">
+              <PostsList posts={posts} />
             </div>
             {meta.last_page > 1
-              && <div className="mb-10 lg:mb-2 flex items-center justify-center md:mb-7">
+              && <div className="mb-10 lg:mb-2 w-full flex justify-center mx-auto md:mb-7">
                 <Paginate meta={meta} />
               </div>
             }
-          </>
+          </div>
         ) : (
           <div className="flex justify-center pt-5">
             <div className="alert alert-warning w-11/12 md:w-1/3 rounded-sm text-slate-900 shadow-lg">

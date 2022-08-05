@@ -1,13 +1,13 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Dropdown from "@/Components/Default/Dropdown";
 import NavLink from "@/Components/Default/NavLink";
 import ResponsiveNavLink from "@/Components/Default/ResponsiveNavLink";
-import {MdLogin, MdDashboard, MdOutlineHome, MdSearch} from "react-icons/md";
-import {FaGithub} from "react-icons/fa";
-import {Link} from "@inertiajs/inertia-react";
+import { MdLogin, MdDashboard, MdOutlineHome, MdSearch } from "react-icons/md";
+import { FaGithub } from "react-icons/fa";
+import { Link } from "@inertiajs/inertia-react";
 import DarkToggle from "@/Components/Homepage/DarkToggle";
 
-export default function Guest({children, auth}) {
+export default function Guest({ children, auth }) {
   const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
   return (
@@ -152,7 +152,7 @@ export default function Guest({children, auth}) {
         </div>
       </nav>
       <main>{children}</main>
-      <div className="fixed bottom-24 right-6 lg:right-6 lg:bottom-6">
+      <div className="fixed bottom-16 right-2 lg:right-6 lg:bottom-6">
         <DarkToggle />
       </div>
     </div>
