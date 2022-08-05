@@ -30,7 +30,7 @@ const isPostsWithImage = (posts, from) => {
             </Link>
           }
           <p className="text-sm">{desc} {more && <span className="italic text-sm text-white break-words break-normal"> ...lebih lengkap</span>}</p>
-          <div className="flex flex-row flex-wrap gap-2 p-2 absolute bottom-0 left-0 bg-opacity-70 text-white bg-black">
+          <div className="w-full flex flex-row flex-wrap gap-2 p-2 absolute bottom-0 left-0 bg-opacity-70 text-white bg-black">
             <Link href={`/author/${post.author}`} as="button" method="get" className="avatar cursor-pointer">
               <div className="w-6 rounded-full">
                 {from?.page == "author" ? (
