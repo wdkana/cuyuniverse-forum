@@ -138,7 +138,7 @@ export default function PostsPage(props) {
               </>
             }
             <h1 className="font-sans font-bold text-2xl px-2 mt-4 border-b-2 mb-4">Readable Posts</h1>
-            <div className="flex flex-row flex-wrap place-items-end gap-2 md:gap-1">
+            <div className="flex flex-row flex-wrap place-items-end gap-2 md:gap-1 bg-base-100 dark:bg-neutral">
               <PostsList posts={posts} />
             </div>
             {meta.last_page > 1
