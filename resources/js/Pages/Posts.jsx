@@ -2,12 +2,13 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Head, Link } from "@inertiajs/inertia-react";
 import PostsList from "@/Components/Homepage/PostsLists";
 import PostsListImaged from "@/Components/Homepage/PostsListImaged";
-import Paginate from "@/Components/Homepage/Paginate";
+// import Paginate from "@/Components/Homepage/Paginate";
 import Guest from "@/Layouts/Guest";
 import { debounce, pickBy } from "lodash";
 import { Inertia } from "@inertiajs/inertia";
 import { Menu } from "@headlessui/react";
 import { FaArrowLeft } from "react-icons/fa";
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 const menus = [
   { name: "latest", value: "latest" },
@@ -16,7 +17,10 @@ const menus = [
 
 export default function PostsPage(props) {
   const { auth, title, filter, } = props;
-  const { data: posts, meta } = props.posts;
+  const { data: posts, meta, links } = props.posts;
+
+  const [allPosts, setAllPosts] = useState([...posts]);
+
   const [keyword, setKeyword] = useState(filter.search);
   const [tag, setTag] = useState(filter.tag);
   const isFirstRender = useRef(true);
@@ -30,6 +34,18 @@ export default function PostsPage(props) {
     }, 500),
     []
   );
+
+  const loadMorePosts = async () => {
+    Inertia.get(links.next, {}, {
+      preserveState: true,
+      preserveScroll: true,
+      only: ['posts'],
+      onSuccess: ({props}) => {
+        setAllPosts([...allPosts, ...props.posts.data]);
+        window.history.replaceState({}, document.title, meta.path) 
+      }
+    });
+  }
 
   useEffect(() => {
     let isImagedPost = true
@@ -133,19 +149,37 @@ export default function PostsPage(props) {
               <>
                 <h1 className="font-sans font-bold text-2xl border-b-2 mb-4">Latest Image Posts</h1>
                 <div className="flex flex-row gap-2 overflow-x-auto">
-                  <PostsListImaged posts={posts} />
+                  <PostsListImaged posts={allPosts} />
                 </div>
               </>
             }
             <h1 className="font-sans font-bold text-2xl px-2 mt-4 border-b-2 mb-4">Readable Posts</h1>
             <div className="flex flex-row flex-wrap place-items-end gap-2 md:gap-1">
-              <PostsList posts={posts} />
+              <InfiniteScroll
+                dataLength={allPosts.length} //This is important field to render the next data
+                next={loadMorePosts}
+                hasMore={links.next !== null}
+                loader={
+                  <h4 style={{ textAlign: 'center' }}>
+                    Loading...
+                  </h4>
+                }
+                endMessage={
+                  <p style={{ textAlign: 'center' }}>
+                    <b>Ooops! lu udah lihat semuanya bro...</b>
+                  </p>
+                }
+              >
+                <PostsList posts={allPosts} />
+              </InfiniteScroll>
             </div>
-            {meta.last_page > 1
-              && <div className="mb-10 lg:mb-2 w-full flex justify-center mx-auto md:mb-7">
-                <Paginate meta={meta} />
-              </div>
-            }
+            {/* {
+              meta.last_page ? (
+                <div className="mb-10 lg:mb-2 w-full flex justify-center mx-auto md:mb-7">
+                  <Paginate meta={meta} />
+                </div>
+              ) : ""
+            } */}
           </div>
         ) : (
           <div className="flex justify-center pt-5">
@@ -168,6 +202,6 @@ export default function PostsPage(props) {
           </div>
         )}
       </div>
-    </Guest >
+    </Guest>
   );
 }
