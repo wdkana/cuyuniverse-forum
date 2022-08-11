@@ -214,7 +214,7 @@ export default function Authenticated({auth, header, children}) {
 
       <main>{children}</main>
 
-      <div className="fixed right-6 bottom-6">
+      <div className="fixed bottom-16 right-2 lg:right-6 lg:bottom-6">
         <DarkToggle />
       </div>
     </div>
