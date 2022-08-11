@@ -23,13 +23,13 @@ const isPosts = (posts, from) => {
       <Link
         href={`/post/${post.id}`} method="get" as="div"
         key={i}
-        className="card w-full mb-4 cursor-pointer rounded-md transition ease-in-out duration-400 border border-zinc-300 hover:-translate-y-1 hover:bg-blue-500 hover:text-white dark:shadow-none dark:bg-slate-700 dark:hover:bg-blue-500 dark:border-0">
+        className="card w-full md:w-1/2 mx-auto mb-4 cursor-pointer rounded-md transition ease-in-out duration-400 bg-slate-50 shadow-md hover:-translate-y-1 hover:bg-slate-200 hover:shadow-xl text-black dark:shadow-none dark:bg-slate-500 dark:hover:bg-slate-700 dark:border-0 dark:text-white">
+        {post.image &&
+          // <div class="md:shrink-0">
+          <img src={`/storage/images/posts/${post.image}`} alt="Post Image" className="w-full h-auto mx-auto" />
+          // </div>
+        }
         <div className="card-body">
-          {post.image &&
-            <>
-              <img src={`/storage/images/posts/${post.image}`} alt="Post Image" width={"auto"} height={"auto"} />
-            </>
-          }
           {post.hashtag &&
             <Link className="card-title" as="a" href={`/?tag=${post.hashtag}`}>
               <div className="badge badge-primary text-primary-content">#{post.hashtag}</div>
