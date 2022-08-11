@@ -40,9 +40,9 @@ export default function PostsPage(props) {
       preserveState: true,
       preserveScroll: true,
       only: ['posts'],
-      onSuccess: ({props}) => {
+      onSuccess: ({ props }) => {
         setAllPosts([...allPosts, ...props.posts.data]);
-        window.history.replaceState({}, document.title, meta.path) 
+        window.history.replaceState({}, document.title, meta.path)
       }
     });
   }
@@ -154,7 +154,7 @@ export default function PostsPage(props) {
               </>
             }
             <h1 className="font-sans font-bold text-2xl px-2 mt-4 border-b-2 mb-4">Readable Posts</h1>
-            <div className="flex flex-row flex-wrap place-items-end gap-2 md:gap-1">
+            <div className="flex flex-row flex-wrap place-items-end gap-2 md:gap-1 mb-16 lg:mb-10 md:mb-12">
               <InfiniteScroll
                 dataLength={allPosts.length} //This is important field to render the next data
                 next={loadMorePosts}
@@ -166,7 +166,7 @@ export default function PostsPage(props) {
                 }
                 endMessage={
                   <p style={{ textAlign: 'center' }}>
-                    <b>Ooops! lu udah lihat semuanya bro...</b>
+                    <b>🌹...🌹</b>
                   </p>
                 }
               >
