@@ -15,28 +15,13 @@ class OuterController extends Controller
   public function index(Request $request)
   {
     $posts = Posts::query()->with(['comments', 'users:id,image'])
-      ->when($request->search, fn ($q, $key) => $q->where('description', 'like', "%{$key}%"))
-      ->when($request->tag, fn ($q, $key) => $q->where('hashtag', '=', $key))
-      ->when($request->filtered, function ($q, $value) {
-        switch ($value) {
-          case 'latest':
-            $q->latest();
-            break;
-          case 'oldest':
-            $q->oldest();
-            break;
-          default:
-            abort(404);
-            break;
-        }
-      });
+      ->when($request->tag, fn ($q, $key) => $q->where('hashtag', '=', $key));
 
     return inertia('Posts', [
       'title' => "CUY UNIVERSE",
       'root' => 'HOME',
       'description' => "Tempat Nongkrongnya Programmer Indie",
       'posts' => PostResource::collection($posts->latest()->paginate(22)->withQueryString()),
-      'filter' => $request->only(['search', 'page', 'filtered', 'tag']),
       'tags' => Posts::where('hashtag', '!=', null)->whereIn('hashtag', function ($query) {
         $query->select('hashtag')->from('posts')->groupBy('hashtag')->havingRaw('count(*) > 10');
       })->limit(5)->distinct()->get('hashtag')

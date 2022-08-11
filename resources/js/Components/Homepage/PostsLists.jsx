@@ -12,7 +12,7 @@ const noPosts = () => {
 };
 
 const isPosts = (posts, from) => {
-  return posts.filter((post) => post.image == null).map((post, i) => {
+  return posts.map((post, i) => {
     let more = false;
     let desc = post.description
     if (desc.length > 150) {
@@ -24,7 +24,12 @@ const isPosts = (posts, from) => {
         href={`/post/${post.id}`} method="get" as="div"
         key={i}
         className="card w-full mb-4 cursor-pointer rounded-md transition ease-in-out duration-400 border border-zinc-300 hover:-translate-y-1 hover:bg-blue-500 hover:text-white dark:shadow-none dark:bg-slate-700 dark:hover:bg-blue-500 dark:border-0">
-        <div className={`card-body`}>
+        <div className="card-body">
+          {post.image &&
+            <>
+              <img src={`/storage/images/posts/${post.image}`} alt="Post Image" width={"auto"} height={"auto"} />
+            </>
+          }
           {post.hashtag &&
             <Link className="card-title" as="a" href={`/?tag=${post.hashtag}`}>
               <div className="badge badge-primary text-primary-content">#{post.hashtag}</div>
