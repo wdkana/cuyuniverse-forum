@@ -21,7 +21,7 @@ class OuterController extends Controller
       'title' => "CUY UNIVERSE",
       'root' => 'HOME',
       'description' => "Tempat Nongkrongnya Programmer Indie",
-      'posts' => PostResource::collection($posts->latest()->paginate(22)->withQueryString()),
+      'posts' => PostResource::collection($posts->latest()->paginate(6)->withQueryString()),
       'tags' => Posts::where('hashtag', '!=', null)->whereIn('hashtag', function ($query) {
         $query->select('hashtag')->from('posts')->groupBy('hashtag')->havingRaw('count(*) > 10');
       })->limit(5)->distinct()->get('hashtag')
@@ -71,7 +71,7 @@ class OuterController extends Controller
     $posts = Posts::query()
       ->when($request->keyword, fn ($q, $key) => $q->where('description', 'like', "%{$key}%"))
       ->with(['comments', 'users:id,image'])
-      ->paginate(12);
+      ->paginate(6);
 
     return response()->json($posts, 200);
   }
