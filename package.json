@@ -35,6 +35,7 @@
         "react-google-recaptcha": "^2.1.0",
         "react-haiku": "^2.0.1",
         "react-icons": "^4.4.0",
+        "react-infinite-scroll-component": "^6.1.0",
         "react-marker": "^1.0.1",
         "react-mentions": "^4.4.7"
     }

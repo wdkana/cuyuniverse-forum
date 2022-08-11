@@ -12,7 +12,7 @@ const noPosts = () => {
 };
 
 const isPosts = (posts, from) => {
-  return posts.filter((post) => post.image == null).map((post, i) => {
+  return posts.map((post, i) => {
     let more = false;
     let desc = post.description
     if (desc.length > 150) {
@@ -23,8 +23,13 @@ const isPosts = (posts, from) => {
       <Link
         href={`/post/${post.id}`} method="get" as="div"
         key={i}
-        className="card cursor-pointer md:py-2 md:px-1 bg-base-100 transition-all duration-300  dark:bg-slate-700 dark:text-white dark:hover:bg-gray-600 w-full md:w-full">
-        <div className={`card-body rounded-md flex flex-col shadow-md m-2 md:m-0 p-4 justify-between hover:-translate-y-1 hover:bg-primary hover:text-primary-content dark:bg-none dark:shadow-none`}>
+        className="card w-full mb-4 cursor-pointer rounded-md transition ease-in-out duration-400 border border-zinc-300 hover:-translate-y-1 hover:bg-blue-500 hover:text-white dark:shadow-none dark:bg-slate-700 dark:hover:bg-blue-500 dark:border-0">
+        <div className="card-body">
+          {post.image &&
+            <>
+              <img src={`/storage/images/posts/${post.image}`} alt="Post Image" width={"auto"} height={"auto"} />
+            </>
+          }
           {post.hashtag &&
             <Link className="card-title" as="a" href={`/?tag=${post.hashtag}`}>
               <div className="badge badge-primary text-primary-content">#{post.hashtag}</div>
