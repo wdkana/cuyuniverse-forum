@@ -88,9 +88,11 @@ export default function AuthorListPage(props) {
                   </Link>
                 ))}
             </div>
-            <div className="mb-20 flex items-center justify-center md:mb-7" data-aos="fade-up" data-aos-duration="500">
-              <Paginate meta={props.users} />
-            </div>
+            {props.meta.meta.last_page > 1 &&
+              <div className="mb-20 flex items-center justify-center md:mb-7" data-aos="fade-up" data-aos-duration="500">
+                <Paginate meta={props.meta.meta} />
+              </div>
+            }
           </>
         ) : (
           <div className="flex justify-center pt-5">
