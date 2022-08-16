@@ -1,7 +1,7 @@
 <h2 align="center"><img src="https://emojis.slackmojis.com/emojis/images/1531849430/4246/blob-sunglasses.gif?1531849430" width="30"/> LARACT9 🐱‍💻, CUY UNIVERSE PROJECT <img src="https://media.giphy.com/media/12oufCB0MyZ1Go/giphy.gif" width="50"></h2>
 
 <p align="center"><em>Tech Entertainer <a href="https://youtube.com/deaafrizal">youtube.com/deaafrizal
-</a><img src="https://media.giphy.com/media/WUlplcMpOCEmTGBtBW/giphy.gif" width="30"> 
+</a><img src="https://media.giphy.com/media/WUlplcMpOCEmTGBtBW/giphy.gif" width="30">
 </em></p>
 
 <p align="center">
@@ -45,7 +45,7 @@ FORK atau coba-coba di clone project ini sekarang di lokal komputer kalian masin
 
 ### Setting Up Project
 
-Silahkan fork terlebih dahulu repository ini, kemudian clone repository yang udah kalian fork ya (Inget repository yang kalian fork, bukan repository ini). 
+Silahkan fork terlebih dahulu repository ini, kemudian clone repository yang udah kalian fork ya (Inget repository yang kalian fork, bukan repository ini).
 Bisa gunakan command berikut:
 ```bash
 git clone git@github.com:{username github kalian}/laract9.git
@@ -78,8 +78,12 @@ php artisan migrate
 Lanjut, generate aplikasi key untuk keamanan pada project laravel dengan menggunakan artisan command berikut:
 ```bash
 php artisan key:generate
-# atau 
+# atau
 php artisan key:generate --show
+```
+Untuk membuat file pada public storage dapat diakses lewat web gunakan Artisan command `storage:link`:
+```bash
+php artisan storage:link
 ```
 Install dependencies nodejs didalam folder `node_modules` menggunakan Npm atau Yarn:
 ```bash
