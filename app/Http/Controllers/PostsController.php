@@ -197,7 +197,7 @@ final class PostsController extends Controller
             return;
         }
 
-        $mentionedUsers = \array_map(static function ($username) {
+        $mentionedUsers = \array_map(function ($username) {
             return Str::after($username, '@');
         }, $mentionedUsers[1]);
 
