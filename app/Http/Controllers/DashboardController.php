@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
 
-final class DashboardController extends Controller
+class DashboardController extends Controller
 {
     public function index()
     {

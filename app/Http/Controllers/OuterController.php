@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
-final class OuterController extends Controller
+class OuterController extends Controller
 {
   public function index(Request $request)
   {

@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
 
-final class PostsController extends Controller
+class PostsController extends Controller
 {
     /**
      * Display a listing of the resource.
