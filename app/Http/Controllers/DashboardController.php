@@ -18,25 +18,14 @@ use Inertia\Inertia;
 
 final class DashboardController extends Controller
 {
-
-    private function checkCliRateLimiter(string $postType, $perMinute = 4): \Illuminate\Http\RedirectResponse|null
-    {
-        $key = "cli-store-{$postType}-" . Auth::id();
-        if (RateLimiter::tooManyAttempts($key, $perMinute)) {
-            return to_route('dash.integration')->with('message', 'Silahkan coba lagi dalam 1 menit kedepan');
-        }
-
-        RateLimiter::hit($key);
-        return null;
-    }
-
     public function index()
     {
         $user = User::find(Auth::user()->id);
 
-        if ($user->token == null) {
+        if (null === $user->token) {
             $user->token = Str::random(60);
             $user->save();
+
             return back();
         }
 
@@ -84,7 +73,7 @@ final class DashboardController extends Controller
         ]);
     }
 
-    public function markNotificationAsRead($id)
+    public function markNotificationAsRead($id): void
     {
         $notification = Auth::user()->notifications->find($id);
 
@@ -93,13 +82,12 @@ final class DashboardController extends Controller
 
     public function showSavedPost()
     {
-        $savedPosts = SavedPosts::orderByDesc('id')->where('user_id', auth()->user()->id)->with(['posts.users', 'comments'])->get();
         return Inertia::render('Dashboard/SavedPosts', [
-            'data' => $savedPosts,
+            'data' => SavedPosts::orderByDesc('id')->where('user_id', auth()->user()->id)->with(['posts.users', 'comments'])->get(),
             'title' => 'SAVED POST',
             'page' => 'Postingan yang anda simpan',
             'next' => 'BUAT POSTINGAN',
-            'nextRoute' => 'posts.main'
+            'nextRoute' => 'posts.main',
         ]);
     }
 
@@ -177,7 +165,7 @@ final class DashboardController extends Controller
 
     public function cli_integration(Request $request)
     {
-        if ($redirect = $this->checkCliRateLimiter("cli", Config::get('rate-limit.cli'))) {
+        if ($redirect = $this->checkCliRateLimiter('cli', Config::get('rate-limit.cli'))) {
             return $redirect;
         }
         $request->validate(
@@ -188,10 +176,23 @@ final class DashboardController extends Controller
 
         $users = User::find(Auth::user()->id)->where('token', $request->token);
         $users->update([
-            'secret' => $request->isActive ? Str::random(20) : NULL,
-            'cuycli' => $request->isActive ? 1 : 0
+            'secret' => $request->isActive ? Str::random(20) : null,
+            'cuycli' => $request->isActive ? 1 : 0,
         ]);
 
         return redirect()->back()->with('message', $request->isActive ? 'Integrasi Cuy CLI berhasil diaktifkan ✔' : 'Integrasi Cuy CLI berhasil di non-aktifkan 🔻');
+    }
+
+    private function checkCliRateLimiter(string $postType, $perMinute = 4): \Illuminate\Http\RedirectResponse|null
+    {
+        $key = "cli-store-{$postType}-" . Auth::id();
+
+        if (RateLimiter::tooManyAttempts($key, $perMinute)) {
+            return to_route('dash.integration')->with('message', 'Silahkan coba lagi dalam 1 menit kedepan');
+        }
+
+        RateLimiter::hit($key);
+
+        return null;
     }
 }

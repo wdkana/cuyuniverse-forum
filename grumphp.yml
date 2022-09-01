@@ -1,4 +1,4 @@
-# grumphp:
-#   tasks:
-#     phpcsfixer2:
-#       config: .php-cs-fixer.php
+grumphp:
+  tasks:
+    phpcsfixer2:
+      config: .php-cs-fixer.php
