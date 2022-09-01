@@ -63,10 +63,8 @@ final class DashboardController extends Controller
 
     public function notification()
     {
-        $notifications = Auth::user()->unreadNotifications;
-
         return Inertia::render('Dashboard/Notification', [
-            'notifications' => $notifications,
+            'notifications' => Auth::user()->unreadNotifications,
             'title' => 'NOTIFICATION',
             'next' => 'DASHBOARD',
             'nextRoute' => 'dash.main',
