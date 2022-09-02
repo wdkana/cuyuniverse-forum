@@ -4,17 +4,24 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use Inertia\Inertia;
 use App\Models\Posts;
 use App\Models\SavedPosts;
-use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\RateLimiter;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Inertia\Inertia;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\{
+    Auth,
+    Hash,
+    Config,
+    Storage,
+    RateLimiter
+};
+use App\Http\Requests\{
+    UpdatePasswordRequest,
+    UpdatePhotoRequest,
+    UpdateUsernameRequest
+};
 
 class DashboardController extends Controller
 {
@@ -107,12 +114,9 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function update_photo(Request $request)
+    public function update_photo(UpdatePhotoRequest $request)
     {
-        $request->validate([
-            'image' => 'required|image|mimes:jpg,png,jpeg,gif|max:1048',
-            'token' => 'required',
-        ]);
+        $request->validated();
 
         $users = new User();
         $user = $users->where('id', Auth::user()->id)->where('token', Auth::user()->token)->first();
@@ -122,7 +126,7 @@ class DashboardController extends Controller
                 Storage::delete('images/' . $user->image);
             }
             $fileName = Auth::user()->username . Str::random(60) . '.' . $request->image->getClientOriginalExtension();
-            $filePath = $request->file('image')->storeAs('images', $fileName);
+            $request->file('image')->storeAs('images', $fileName);
             $user->image = $fileName;
         }
         $user->save();
@@ -130,12 +134,9 @@ class DashboardController extends Controller
         return to_route('dash.setting.profile')->with('message', 'Avatar berhasil diganti');
     }
 
-    public function update_username(Request $request)
+    public function update_username(UpdateUsernameRequest $request)
     {
-        $request->validate([
-            'username' => 'required|string|min:4|max:40|unique:users|alpha_dash',
-            'token' => 'required',
-        ]);
+        $request->validated();
 
         $users = User::find(Auth::user()->id)->where('token', $request->token);
         $users->update([
@@ -145,14 +146,9 @@ class DashboardController extends Controller
         return to_route('dash.main')->with('message', 'Username berhasil diganti');
     }
 
-    public function updatePassword(Request $request)
+    public function updatePassword(UpdatePasswordRequest $request)
     {
-        $request->validate([
-            'oldPassword' => 'required|current_password:web',
-            'newPassword' => 'required|min:8|confirmed|different:oldPassword',
-            'token' => 'required',
-        ]);
-
+        $request->validated();
         $users = User::find(Auth::user()->id)->where('token', $request->token);
         $users->update([
             'password' => Hash::make($request->newPassword),
