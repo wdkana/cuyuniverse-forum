@@ -1,20 +1,13 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\Http\Controllers;
 
-use App\Models\Posts;
-use App\Models\SavedPosts;
-use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\RateLimiter;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 use Inertia\Inertia;
+use App\Models\{Posts, SavedPosts, User};
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\{RateLimiter, Auth, Hash, Config, Storage};
+use App\Http\Requests\{UpdatePhotoRequest, UpdatePasswordRequest, UpdateUsernameRequest};
 
 final class DashboardController extends Controller
 {
@@ -74,10 +67,8 @@ final class DashboardController extends Controller
 
     public function notification()
     {
-        $notifications = Auth::user()->unreadNotifications;
-
         return Inertia::render('Dashboard/Notification', [
-            'notifications' => $notifications,
+            'notifications' => auth()->user()->unreadNotifications,
             'title' => 'NOTIFICATION',
             'next' => 'DASHBOARD',
             'nextRoute' => 'dash.main',
@@ -86,16 +77,13 @@ final class DashboardController extends Controller
 
     public function markNotificationAsRead($id)
     {
-        $notification = Auth::user()->notifications->find($id);
-
-        $notification->markAsRead();
+        Auth::user()->notifications->find($id)->markAsRead();
     }
 
     public function showSavedPost()
     {
-        $savedPosts = SavedPosts::orderByDesc('id')->where('user_id', auth()->user()->id)->with(['posts.users', 'comments'])->get();
         return Inertia::render('Dashboard/SavedPosts', [
-            'data' => $savedPosts,
+            'data' => SavedPosts::orderByDesc('id')->where('user_id', auth()->user()->id)->with(['posts.users', 'comments'])->get(),
             'title' => 'SAVED POST',
             'page' => 'Postingan yang anda simpan',
             'next' => 'BUAT POSTINGAN',
@@ -121,12 +109,9 @@ final class DashboardController extends Controller
         ]);
     }
 
-    public function update_photo(Request $request)
+    public function updatePhoto(UpdatePhotoRequest $request)
     {
-        $request->validate([
-            'image' => 'required|image|mimes:jpg,png,jpeg,gif|max:1048',
-            'token' => 'required',
-        ]);
+        $request->validated();
 
         $users = new User();
         $user = $users->where('id', Auth::user()->id)->where('token', Auth::user()->token)->first();
@@ -136,7 +121,7 @@ final class DashboardController extends Controller
                 Storage::delete('images/' . $user->image);
             }
             $fileName = Auth::user()->username . Str::random(60) . '.' . $request->image->getClientOriginalExtension();
-            $filePath = $request->file('image')->storeAs('images', $fileName);
+            $request->file('image')->storeAs('images', $fileName);
             $user->image = $fileName;
         }
         $user->save();
@@ -144,31 +129,21 @@ final class DashboardController extends Controller
         return to_route('dash.setting.profile')->with('message', 'Avatar berhasil diganti');
     }
 
-    public function update_username(Request $request)
+    public function updateUsername(UpdateUsernameRequest $request)
     {
-        $request->validate([
-            'username' => 'required|string|min:4|max:40|unique:users|alpha_dash',
-            'token' => 'required',
-        ]);
-
-        $users = User::find(Auth::user()->id)->where('token', $request->token);
-        $users->update([
-            'username' => $request->username,
+        $request->validated();
+        User::find(Auth::user()->id)->where('token', $request->token)->update([
+            'username' => $request->username
         ]);
 
         return to_route('dash.main')->with('message', 'Username berhasil diganti');
     }
 
-    public function updatePassword(Request $request)
+    public function updatePassword(UpdatePasswordRequest $request)
     {
-        $request->validate([
-            'oldPassword' => 'required|current_password:web',
-            'newPassword' => 'required|min:8|confirmed|different:oldPassword',
-            'token' => 'required',
-        ]);
+        $request->validated();
 
-        $users = User::find(Auth::user()->id)->where('token', $request->token);
-        $users->update([
+        User::find(Auth::user()->id)->where('token', $request->token)->update([
             'password' => Hash::make($request->newPassword),
         ]);
 

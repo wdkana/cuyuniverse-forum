@@ -104,7 +104,7 @@ export default function PostsPage(props) {
                 <div className="sticky top-20 w-full rounded-md bg-gray-200 p-3 shadow-md dark:bg-slate-900">
                   <h1 className="text-2xl font-bold italic">Trends CuyUniverse</h1>
                   {tags.map((trend, i) => {
-                    return <TrendsPart tags={trend.hashtag} linktag={trend.hashtag} key={i} />;
+                    return <TrendsPart tags={trend.hashtag} linktag={trend.hashtag} countTags={trend.count} key={i} />;
                   })}
                 </div>
               </div>

@@ -39,11 +39,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::get('/dashboard/setting-profile', 'setting')->name('setting.profile');
             Route::get('/dashboard/stats', 'stats')->name('stats');
             Route::get('/dashboard/integration', 'integration')->name('integration');
-            Route::put('/dashboard/update-username', 'update_username')->name('update.username')->middleware('isValidUser');
+            Route::put('/dashboard/update-username', 'updateUsername')->name('update.username')->middleware('isValidUser');
             Route::get('/dashboard/mark-notification-as-read/{id}', 'markNotificationAsRead')->name('notif.mark-as-read')->middleware('isValidUser');
             Route::get('/dashboard/change-password', 'changePassword')->name('change.password');
             Route::put('/dashboard/update-password', 'updatePassword')->name('update.password')->middleware('isValidUser');
-            Route::post('/dashboard/photo', 'update_photo')->name('update.photo')->middleware('isValidUser');
+            Route::post('/dashboard/photo', 'updatePhoto')->name('update.photo')->middleware('isValidUser');
             Route::put('/dashboard/integration/cuy-cli', 'cli_integration')->name('integration.cli')->middleware('isValidUser');
         }
     );

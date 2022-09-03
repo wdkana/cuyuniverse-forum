@@ -2,52 +2,46 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\PostsCollection;
-use App\Models\Comment;
-use App\Models\Like;
+use App\Models\{
+    Like,
+    User,
+    Posts,
+    Comment,
+    SavedPosts
+};
 use Inertia\Inertia;
-use App\Models\Posts;
-use App\Models\User;
-use App\Notifications\UserComment;
-use App\Notifications\UserLike;
-use App\Models\SavedPosts;
-use App\Notifications\UserMentioned;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Notification;
-use Illuminate\Support\Facades\RateLimiter;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-
-use function PHPUnit\Framework\isEmpty;
+use Illuminate\Http\Request;
+use App\Notifications\{
+    UserLike,
+    UserComment,
+    UserMentioned
+};
+use Illuminate\Support\Facades\{
+    Auth,
+    Config,
+    RateLimiter,
+    Notification
+};
+use App\Http\Resources\PostsCollection;
+use App\Http\Requests\{
+    StorePostsRequest,
+    StoreCommentRequest,
+};
 
 class PostsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
 
     public function index()
     {
-        $posts = new PostsCollection(Posts::orderByDesc('id')->paginate(20));
         return Inertia::render('Posts', [
             'title' => "POSTS",
             'root' => "HOME",
             'description' => "Selamat Datang Di Cuy Universe Portal",
-            'posts' => $posts,
+            'posts' => new PostsCollection(Posts::orderByDesc('id')->paginate(20)),
         ]);
     }
 
-
-    /**
-     * @param string $postType Ones of "post" | "comment"
-     * @param int $perMinute maximum post or comment per minute
-     * 
-     * @return \Illuminate\Http\RedirectResponse
-     */
     private function checkRateLimiter(string $postType, $perMinute = 5): \Illuminate\Http\RedirectResponse|null
     {
         $key = "posts-store-{$postType}-" . Auth::id();
@@ -59,36 +53,14 @@ class PostsController extends Controller
         return null;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
-     */
-
-    public function store(Request $request)
+    public function store(StorePostsRequest $request)
     {
         if ($redirect = $this->checkRateLimiter("post", Config::get('rate-limit.post'))) {
             return $redirect;
         }
+        $request->validated();
 
-        $request->validate(
-            [
-                'description' => 'required|string|min:4|max:200',
-                'tags' => 'string|min:3|max:20|nullable',
-                'image' => 'image|mimes:jpg,png,jpeg,gif|max:1048|nullable',
-                'token' => 'required'
-            ]
-        );
-
-        $tags = $request->tags;
-        $hashtag = str_replace('#', '', $tags);
+        $hashtag = Str::replace('#', '', $request->tags);
 
         $posts = new Posts();
 
@@ -100,39 +72,27 @@ class PostsController extends Controller
         $posts->description = $request->description;
         $posts->author = auth()->user()->username;
         $posts->user_id = auth()->user()->id;
-        $posts->hashtag = $tags ? $hashtag : NULL;
+        $posts->hashtag = $request->tags ? $hashtag : NULL;
         $posts->save();
 
         $this->mentionUsers($request->description, $posts);
         return to_route('posts.main')->with('message', 'Posting Berhasil');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Posts  $posts
-     * @return \Illuminate\Http\Response
-     */
     public function show()
     {
-        $posts = Posts::orderByDesc('id')->where('author', auth()->user()->username)->with('comments')->get();
 
         return Inertia::render('Dashboard/MyPosts', [
-            'data' => $posts,
+            'data' => Posts::orderByDesc('id')->where('author', auth()->user()->username)->with('comments')->get(),
             'page' => 'POSTINGAN SAYA',
             'next' => 'BUAT POSTINGAN',
             'nextRoute' => 'dash.main'
         ]);
     }
 
-    public function storeComment(Request $request)
+    public function storeComment(StoreCommentRequest $request)
     {
-        $request->validate(
-            [
-                'description' => 'required|string|min:2|max:80',
-                'token' => 'required'
-            ]
-        );
+        $request->validated();
 
         $comment = new Comment([
             'description' => $request->description,
@@ -181,7 +141,7 @@ class PostsController extends Controller
 
     public function storeSavedPosts(Request $request)
     {
-        $savedPosts = SavedPosts::where('post_id', $request->post_id)->where('user_id', Auth::user()->id)->first();
+        $savedPosts = SavedPosts::where('post_id', $request->post_id)->where('user_id', auth()->user()->id)->first();
         if (!$savedPosts) {
             SavedPosts::create([
                 'post_id' => $request->post_id,
@@ -193,24 +153,13 @@ class PostsController extends Controller
         $savedPosts->delete();
         return to_route('outer.byId', ['id' => $request->post_id])->with('message', 'Post telah dihapus!');
     }
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Posts  $posts
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request)
+
+    public function destroy()
     {
-        Posts::where('id', $request->id)->where('user_id', Auth::user()->id)->delete();
+        Posts::where('id', request()->id)->where('user_id', auth()->user()->id)->delete();
         return to_route('posts.main');
     }
 
-    /**
-     * @param string $content
-     * @param Posts $post
-     * 
-     * @return void
-     */
     public function mentionUsers(string $content, Posts $post)
     {
         $pattern = "/(?:^| )(@[A-Za-z0-9-_]+)/m";

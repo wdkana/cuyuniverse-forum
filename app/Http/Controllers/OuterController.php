@@ -3,28 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\PostResource;
-use App\Models\Like;
-use App\Models\Posts;
-use App\Models\SavedPosts;
+use App\Models\{Like, Posts, SavedPosts};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class OuterController extends Controller
 {
-  public function index(Request $request)
+  public function index()
   {
-    $posts = Posts::query()->with(['comments', 'users:id,image'])
-      ->when($request->tag, fn ($q, $key) => $q->where('hashtag', '=', $key));
-
     return inertia('Posts', [
       'title' => "CUY UNIVERSE",
       'root' => 'HOME',
       'description' => "Tempat Nongkrongnya Programmer Indie",
-      'posts' => PostResource::collection($posts->latest()->paginate(20)),
-      'tags' => Posts::where('hashtag', '!=', null)->whereIn('hashtag', function ($query) {
-        $query->select('hashtag')->from('posts')->groupBy('hashtag')->havingRaw('count(*) > 10');
-      })->limit(5)->distinct()->get('hashtag')
+      'posts' => PostResource::collection(Posts::query()->with(['comments', 'users:id,image'])
+        ->when(request()->tag, fn ($q, $key) => $q->where('hashtag', '=', $key))->latest()->paginate(12)),
+      'tags' => Posts::whereNotNull("hashtag")->selectRaw("hashtag, count(hashtag) as count")->groupBy('hashtag')
+        ->havingRaw('count(*) > 10')->get()
     ]);
   }
 
@@ -38,17 +33,17 @@ class OuterController extends Controller
     ]);
   }
 
-  public function find($post_id)
+  public function find($postId)
   {
-    $posts = Posts::with('comments.users:username,image')->withCount('likes')->where('id', $post_id)->first();
+    $posts = Posts::with('comments.users:username,image')->withCount('likes')->where('id', $postId)->first();
 
     if ($posts == null) {
       return abort(404);
     }
 
     if (Auth::user()) {
-      $isSavedPost = SavedPosts::where('post_id', $post_id)->where('user_id', Auth::user()->id)->get();
-      $isLikedPost = Like::where('post_id', $post_id)->where('user_id', Auth::user()->id)->get();
+      $isSavedPost = SavedPosts::where('post_id', $postId)->where('user_id', Auth::user()->id)->get();
+      $isLikedPost = Like::where('post_id', $postId)->where('user_id', Auth::user()->id)->get();
     }
 
     return Inertia::render('Post', [
@@ -68,11 +63,12 @@ class OuterController extends Controller
 
   public function MorePosts(Request $request)
   {
-    $posts = Posts::query()
-      ->when($request->keyword, fn ($q, $key) => $q->where('description', 'like', "%{$key}%"))
-      ->with(['comments', 'users:id,image'])
-      ->paginate(20);
-
-    return response()->json($posts, 200);
+    return response()->json(
+      Posts::query()
+        ->when($request->keyword, fn ($q, $key) => $q->whereLike('description', "%{$key}%"))
+        ->with(['comments', 'users:id,image'])
+        ->paginate(12),
+      200
+    );
   }
 }
