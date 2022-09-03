@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   width: 20px;
   height: 20px;
 }
@@ -10,17 +10,26 @@
 ::-webkit-scrollbar-track {
   border-radius: 100vh;
   background: #f7f4ed;
+  -webkit-border-radius: 100vh;
+  -moz-border-radius: 100vh;
+  -ms-border-radius: 100vh;
+  -o-border-radius: 100vh;
 }
 
 ::-webkit-scrollbar-thumb {
   background: #d1c1d7;
   border-radius: 100vh;
   border: 3px solid #f6f7ed;
+  -webkit-border-radius: 100vh;
+  -moz-border-radius: 100vh;
+  -ms-border-radius: 100vh;
+  -o-border-radius: 100vh;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: #c0a0b9;
 }
+ */
 
 body {
   @apply min-h-screen transition-all duration-300;

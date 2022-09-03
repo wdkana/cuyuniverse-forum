@@ -1,18 +1,21 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import Dropdown from "@/Components/Default/Dropdown";
 import NavLink from "@/Components/Default/NavLink";
 import ResponsiveNavLink from "@/Components/Default/ResponsiveNavLink";
-import { MdLogin, MdDashboard, MdOutlineHome, MdSearch } from "react-icons/md";
-import { FaGithub } from "react-icons/fa";
-import { Link } from "@inertiajs/inertia-react";
+import {MdLogin, MdDashboard, MdOutlineHome, MdSearch} from "react-icons/md";
+import {FaGithub} from "react-icons/fa";
+import {Link} from "@inertiajs/inertia-react";
+import NavBar from "@/Components/Default/NavBar";
 import DarkToggle from "@/Components/Homepage/DarkToggle";
 
-export default function Guest({ children, auth }) {
+export default function Guest({children, auth}) {
   const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
   return (
     <div className="min-h-screen">
-      <nav className="fixed bottom-0 z-10 w-full bg-white dark:bg-slate-900 dark:text-white md:shadow-lg lg:sticky lg:top-0">
+      <NavBar />
+
+      {/* <nav className="fixed bottom-0 z-10 w-full bg-white dark:bg-slate-900 dark:text-white md:shadow-lg lg:sticky lg:top-0">
         <div className="mx-auto w-full px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 lg:justify-center">
             <div className="flex w-full gap-2">
@@ -150,7 +153,7 @@ export default function Guest({ children, auth }) {
             )}
           </div>
         </div>
-      </nav>
+      </nav> */}
       <main>{children}</main>
       <div className="fixed bottom-16 right-2 lg:right-6 lg:bottom-6">
         <DarkToggle />

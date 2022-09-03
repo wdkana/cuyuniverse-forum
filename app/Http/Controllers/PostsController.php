@@ -32,7 +32,7 @@ class PostsController extends Controller
 
     public function index()
     {
-        $posts = new PostsCollection(Posts::orderByDesc('id')->paginate(8));
+        $posts = new PostsCollection(Posts::orderByDesc('id')->paginate(20));
         return Inertia::render('Posts', [
             'title' => "POSTS",
             'root' => "HOME",

@@ -54,10 +54,10 @@ export default function PostsPage(props) {
       <div className="min-h-screen">
         <div>
           <div className="lg:mt-4">
-            <div className="flex flex-col gap-3 px-5 lg:flex-row mb-4">
-              <div className="mt-3 lg:w-2/5 lg:hidden block">
-                <div className="w-full rounded-md shadow-md bg-gray-200 dark:bg-slate-900 p-3 ">
-                  <h1 className="italic font-bold">Trends CuyUniverse</h1>
+            <div className="mb-4 flex flex-col gap-3 px-5 lg:flex-row">
+              <div className="mt-3 block lg:hidden lg:w-2/5">
+                <div className="w-full rounded-md bg-gray-200 p-3 shadow-md dark:bg-slate-900 ">
+                  <h1 className="font-bold italic">Trends CuyUniverse</h1>
                   {tags.map((trend, i) => {
                     return <TrendsPart tags={trend.hashtag} linktag={trend.hashtag} key={i} />;
                   })}
@@ -81,7 +81,7 @@ export default function PostsPage(props) {
                   </InfiniteScroll>
                 ) : (
                   <div className="flex justify-center pt-5">
-                    <div className="alert alert-warning w-11/12 md:w-1/3 rounded-sm text-slate-900 shadow-lg">
+                    <div className="alert alert-warning w-11/12 rounded-sm text-slate-900 shadow-lg md:w-1/3">
                       <div>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -100,9 +100,9 @@ export default function PostsPage(props) {
                   </div>
                 )}
               </div>
-              <div className="mt-3 lg:w-2/5 hidden lg:block">
-                <div className="w-full rounded-md shadow-md bg-gray-200 dark:bg-slate-900 p-3 ">
-                  <h1 className="italic font-bold">Trends CuyUniverse</h1>
+              <div className="mt-3 hidden lg:block lg:w-2/5">
+                <div className="sticky top-20 w-full rounded-md bg-gray-200 p-3 shadow-md dark:bg-slate-900">
+                  <h1 className="text-2xl font-bold italic">Trends CuyUniverse</h1>
                   {tags.map((trend, i) => {
                     return <TrendsPart tags={trend.hashtag} linktag={trend.hashtag} key={i} />;
                   })}
