@@ -97,7 +97,7 @@ final class DashboardController extends Controller
         return Inertia::render('Dashboard/SavedPosts', [
             'data' => $savedPosts,
             'title' => 'SAVED POST',
-            'page' => 'Postingan yang anda simpan',
+            'page' => 'Postingan yang kamu simpan',
             'next' => 'BUAT POSTINGAN',
             'nextRoute' => 'posts.main'
         ]);
