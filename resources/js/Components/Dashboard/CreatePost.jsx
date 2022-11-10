@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Inertia } from "@inertiajs/inertia";
 import { findTags } from "@/utils/jsHelper";
-import './CreatePost.css'
+import styles from './CreatePost.module.css';
 import NotificationAlert from "../Default/NotificationAlert";
 
 const CreatePost = ({ props }) => {
@@ -14,6 +14,8 @@ const CreatePost = ({ props }) => {
   const [isErrorNotif, setIsErrorNotif] = useState(false);
   const [imageFile, setImageFile] = useState();
   const [imagePreview, setImagePreview] = useState("");
+
+  console.log(styles);
 
   const regexHastag = new RegExp(/(^|\W)(#[a-z\d][\w-]*)/ig);
 
@@ -57,7 +59,7 @@ const CreatePost = ({ props }) => {
 
   const handlePostSubmit = (e) => {
     const newValue = e.target.innerHTML.replace(regexHastag, function (str) {
-      return '<span class="highlighted">' + str + "</span>";
+      return '<span class="' + styles.highlighted + '">' + str + "</span>";
     });
 
     inputPost.current.innerHTML = newValue;
@@ -119,7 +121,7 @@ const CreatePost = ({ props }) => {
             role="textbox"
             contentEditable
             value={description}
-            className={`textarea-span real`}
+            className={`${styles.textarea_span} ${styles.real}`}
             placeholder="Isi posting [min:10]"
             autoComplete="off"
             autoCorrect="off"
@@ -127,7 +129,7 @@ const CreatePost = ({ props }) => {
             spellCheck="false"
             onInput={handlePostSubmit}
           />
-          <div className={`textarea-span input`} ref={inputPost} />
+          <div className={`${styles.textarea_span} ${styles.input} input`} ref={inputPost} />
         </div>
         {isLimit &&
           <span className="lg:w-1/2 alert rounded:md alert-warning text-warning-content text-center">Mencapai batas limit text akan di hapus</span>
