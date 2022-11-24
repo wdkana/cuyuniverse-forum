@@ -15,6 +15,8 @@ const CreatePost = ({ props }) => {
   const [imageFile, setImageFile] = useState();
   const [imagePreview, setImagePreview] = useState("");
 
+  console.log(styles);
+
   const regexHastag = new RegExp(/(^|\W)(#[a-z\d][\w-]*)/ig);
 
   useEffect(() => {
