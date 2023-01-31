@@ -58,7 +58,7 @@ class OuterController extends Controller
       'comments' => $posts->comments,
       'author_image' => $posts->users->image,
       'title' => "Postingan Dari CuyPeople",
-      'description' => "komentari postingan ini",
+      'description' => "komentar di postingan ini",
       'next' => 'HOME',
       'root' => 'HOME',
       'page' => 'POSTING COMMENT',
