@@ -1,4 +1,4 @@
-.textarea-span {
+.textarea_span {
   position: absolute;
   top: 0;
   left: 0;
@@ -29,15 +29,15 @@
   word-wrap: break-word;
 }
 
-.textarea-span span.highlighted {
+.textarea_span span.highlighted {
   color: red;
 }
 
-.textarea-span[contenteditable]:focus {
+.textarea_span[contenteditable]:focus {
   outline: none;
 }
 
-.textarea-span[contenteditable][placeholder]:empty:before {
+.textarea_span[contenteditable][placeholder]:empty:before {
   content: attr(placeholder);
   background-color: transparent;
 }
