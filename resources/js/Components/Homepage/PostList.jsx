@@ -2,6 +2,7 @@ import RenderIfTrue from "@/helper/RenderIfTrue";
 import { formatTime } from "@/utils/jsHelper";
 import { Inertia } from "@inertiajs/inertia";
 import { Link } from "@inertiajs/inertia-react";
+import React from "react";
 import { useEffect, useState } from "react";
 import NotificationAlert from "../Default/NotificationAlert";
 
@@ -10,6 +11,8 @@ export default function PostList(props) {
   const [limiter, setLimiter] = useState(80);
   const [isValid, setIsValid] = useState(true);
   const [showNotif, setShowNotif] = useState(false);
+  const [descriptionParts, setDescriptionParts] = useState([]);
+  const [links, setLinks] = useState([]);
 
   useEffect(() => {
     let mount = true;
@@ -93,6 +96,22 @@ export default function PostList(props) {
     return Inertia.post("/post/saved-post/saved", data);
   };
 
+  const linkify = (text) => {
+    let replacedText, replacePattern, links;
+
+    replacePattern = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
+    replacedText = text.replace(replacePattern, '#links#');
+    links = text.match(replacePattern);
+
+    setDescriptionParts(replacedText.split('#links#'));
+
+    if(links) setLinks(links);
+  }
+
+  useEffect(() => {
+    linkify(props.posts.description)
+  }, [props.posts.description])
+
   return (
     <div className="bg-base card mb-10 w-full shadow-lg dark:bg-slate-700 dark:text-white md:w-2/3 ">
       {props.posts.image &&
@@ -102,7 +121,22 @@ export default function PostList(props) {
         <NotificationAlert message={props.notif} />
       </RenderIfTrue>
       <div className="card-body p-6" data-aos="flip-left" data-aos-duration="500">
-        <p className="cursor-default break-normal break-words text-xl">{props.posts.description}</p>
+        <p className="cursor-default break-normal break-words text-xl">
+          {descriptionParts.map((part, index) => {
+            return (
+              <React.Fragment key={index}>
+                <span >{part}</span>
+                {(links && links[index] !== undefined) &&
+                  <span>
+                    <a
+                      className="underline"
+                      href={links[index]} target="_blank">{links[index]}</a>
+                  </span>
+                }
+              </React.Fragment>
+            )
+          })}
+        </p>
         <div className="flex flex-row border-b-4 border-b-secondary py-2 dark:border-b-slate-400">
           <div className="flex basis-1/2 items-end justify-start">
             <div className="cursor-default break-normal text-xs">posted {formatTime(props.posts.created_at)}</div>
