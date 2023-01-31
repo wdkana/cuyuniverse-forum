@@ -73,7 +73,7 @@ export default function SettingPage(props) {
           <div className='flex justify-center w-full '>
             <form onSubmit={updateUsername}>
               <label className="form-label font-semibold dark:text-white">username ✔</label>
-              <input onChange={handleChangeUsername} name='username' type="text" className="w-full text-lg font-bold font-mono input input-bordered rounded-md bg-base-100 dark:bg-slate-900 dark:text-white dark:placeholder-slate-100" value={username} />
+              <input onChange={handleChangeUsername} name='username' type="text" className="w-full text-lg font-bold font-mono input-bordered rounded-md bg-base-100 dark:bg-slate-900 dark:text-white dark:placeholder-slate-100" value={username} />
               <button type='submit' disabled={processing} className='btn w-full border-0 rounded-md mt-2 bg-primary hover:bg-secondary text-primary-content'>Update</button>
             </form>
           </div>
